@@ -19,6 +19,7 @@
   a { color:var(--accent); }
   ul { padding-left:20px; }
   code { background:#efeadf; padding:1px 5px; border-radius:4px; font-size:.9em; }
+  .box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 18px; margin:14px 0; }
   footer { margin-top:40px; color:var(--muted); font-size:.85rem; }
 </style>
 </head>
@@ -27,7 +28,7 @@
 
 <!-- ================= MAGYAR ================= -->
 <h1>FreshPlate — Adatvédelmi szabályzat</h1>
-<div class="updated">Utolsó frissítés: 2026. július 28.</div>
+<div class="updated">Utolsó frissítés: 2026. augusztus 31.</div>
 
 <p>Ez az adatvédelmi szabályzat ismerteti, hogyan kezeli a FreshPlate alkalmazás
 („az App") a felhasználók adatait. Az adatkezelő elérhetősége lentebb olvasható.</p>
@@ -63,13 +64,30 @@
     (Megosztás → Appok), vagy az appon belül a Profil fülön.</li>
 </ul>
 
-<h2>2. Miért kezeljük az adatokat</h2>
+<h2>2. Miért kezeljük az adatokat, és milyen jogalapon</h2>
 <ul>
-  <li>Az e-mail címet és az étrendi preferenciákat az <strong>app működéséhez</strong>
-    (fiókkezelés, személyre szabott receptek) használjuk.</li>
-  <li>Az eszközazonosítót és a használati adatokat <strong>anonim elemzéshez</strong>
-    (az app fejlesztéséhez) használjuk.</li>
+  <li><strong>E-mail cím, megszólítás, fiókadatok</strong> — a fiókod kezeléséhez és a
+    bejelentkezéshez. Jogalap: <em>a veled kötött szerződés teljesítése</em>
+    (GDPR 6. cikk (1) b) pont).</li>
+  <li><strong>Étrendi és allergiás preferenciák</strong> — hogy a recepteket és az
+    étrendtervet hozzád igazítsuk. Ezek az adatok
+    <strong>egészségügyi adatnak, azaz különleges kategóriájú személyes adatnak</strong>
+    minősülhetnek, ezért kezelésük jogalapja
+    <strong>a te kifejezett hozzájárulásod</strong> (GDPR 9. cikk (2) a) pont).
+    A megadásuk önkéntes: az App ezek nélkül is használható, csak a személyre szabás
+    lesz pontatlanabb. A hozzájárulásodat bármikor visszavonhatod azzal, hogy az
+    Appban törlöd ezeket a beállításokat, vagy törlöd a fiókodat — a visszavonás nem
+    érinti a visszavonás előtti adatkezelés jogszerűségét.</li>
+  <li><strong>Eszközazonosító és használati adatok</strong> — az App fejlesztését szolgáló
+    összesített, névtelen statisztikához. Jogalap: <em>jogos érdekünk</em> az App
+    működésének mérésében és javításában (GDPR 6. cikk (1) f) pont).</li>
+  <li><strong>Apple Health adat</strong> — kizárólag a saját eszközödön, a napi
+    kalóriacélod pontosításához. Jogalap: <strong>a te kifejezett hozzájárulásod</strong>
+    (GDPR 9. cikk (2) a) pont), amelyet az iOS engedélykérésekor adsz meg, és bármikor
+    visszavonhatsz.</li>
 </ul>
+<p>Automatizált döntéshozatalt vagy profilalkotást, amelynek rád nézve joghatása lenne,
+nem végzünk. A receptajánlások személyre szabása nem tartozik ebbe a körbe.</p>
 
 <h2>3. Adattovábbítás és tárolás</h2>
 <p>Az adatokat saját, biztonságos szerverünkön (Render, PostgreSQL adatbázis) tároljuk.
@@ -94,18 +112,34 @@ jelentheted, más felhasználókat letilthatsz; a bejelentéseket ellenőrizzük
 és a szabályzatot sértő tartalmat 24 órán belül eltávolítjuk. A közzétett
 tartalmad a fiókod törlésekor törlődik.</p>
 
-<h2>7. Gyermekek</h2>
-<p>Az app nem 13 év alatti gyermekeknek készült, és tudatosan nem gyűjtünk ilyen
-korú felhasználóktól adatot.</p>
+<h2>7. Korhatár</h2>
+<p>Az App <strong>16 éven aluliak számára nem használható</strong>, és tudatosan nem
+gyűjtünk adatot 16 év alatti felhasználóktól. Az Appban megadható legalacsonyabb
+életkor 16 év. Ha tudomásunkra jut, hogy 16 év alatti felhasználó adatait kezeljük,
+azokat haladéktalanul töröljük — ilyet a lenti címen jelezhetsz.</p>
 
-<h2>8. Kapcsolat</h2>
-<p>Adatvédelmi kérdésekben: <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+<h2>8. Az adatkezelő és a kapcsolat</h2>
+<div class="box">
+<p><strong>Adatkezelő:</strong> Movement Lab Kft.<br>
+<strong>Székhely:</strong> 1038 Budapest, Dűne utca 12. 1. emelet 4.<br>
+<strong>Cégjegyzékszám:</strong> 01-09-352058<br>
+<strong>Adószám:</strong> 27286012-2-41<br>
+<strong>E-mail:</strong> <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+</div>
+<p>Adatvédelmi kérdésekben, illetve a hozzáférési, helyesbítési, törlési, korlátozási,
+adathordozhatósági és tiltakozási jogod gyakorlásához írj a fenti címre. A megkeresésedre
+legkésőbb egy hónapon belül válaszolunk.</p>
+<p>Ha úgy érzed, hogy az adatkezelésünk jogsértő, panasszal élhetsz a
+<strong>Nemzeti Adatvédelmi és Információszabadság Hatóságnál</strong>
+(NAIH, 1055 Budapest, Falk Miksa utca 9–11.,
+<a href="https://naih.hu">naih.hu</a>), illetve bírósághoz fordulhatsz.</p>
+<p>Lásd még a <a href="./terms.html">Felhasználási feltételeket</a>.</p>
 
 <hr class="lang-sep">
 
 <!-- ================= ENGLISH ================= -->
 <h1>FreshPlate — Privacy Policy</h1>
-<div class="updated">Last updated: 28 July 2026</div>
+<div class="updated">Last updated: 31 August 2026</div>
 
 <p>This Privacy Policy explains how the FreshPlate app ("the App") handles user data.
 Contact details are provided below.</p>
@@ -140,13 +174,26 @@ Contact details are provided below.</p>
     (Sharing → Apps), or on the Profile tab inside the app.</li>
 </ul>
 
-<h2>2. Why we process it</h2>
+<h2>2. Why we process it, and on what legal basis</h2>
 <ul>
-  <li>Email and dietary preferences are used for <strong>app functionality</strong>
-    (account management, personalized recipes).</li>
-  <li>Device identifier and usage data are used for <strong>anonymous analytics</strong>
-    to improve the App.</li>
+  <li><strong>Email, display name, account data</strong> — to manage your account and sign
+    you in. Legal basis: <em>performance of our contract with you</em> (GDPR Art. 6(1)(b)).</li>
+  <li><strong>Dietary and allergy preferences</strong> — to tailor recipes and meal plans to
+    you. This may qualify as <strong>health data, i.e. a special category of personal
+    data</strong>, so we process it on the basis of <strong>your explicit consent</strong>
+    (GDPR Art. 9(2)(a)). Providing it is optional: the App works without it, personalisation
+    is simply less accurate. You may withdraw consent at any time by clearing these settings
+    in the App or deleting your account; withdrawal does not affect the lawfulness of
+    processing before it.</li>
+  <li><strong>Device identifier and usage data</strong> — for aggregated, anonymous
+    statistics used to improve the App. Legal basis: our <em>legitimate interest</em> in
+    measuring and improving the App (GDPR Art. 6(1)(f)).</li>
+  <li><strong>Apple Health data</strong> — only on your own device, to refine your daily
+    calorie target. Legal basis: <strong>your explicit consent</strong> (GDPR Art. 9(2)(a)),
+    given at the iOS permission prompt and revocable at any time.</li>
 </ul>
+<p>We do not carry out automated decision-making or profiling that produces legal effects
+concerning you. Personalising recipe suggestions does not fall into that category.</p>
 
 <h2>3. Sharing and storage</h2>
 <p>Data is stored on our own secure server (Render, PostgreSQL database). We do
@@ -170,14 +217,29 @@ our server. You can report objectionable content and block other users; we
 review reports and remove violating content within 24 hours. Your posted
 content is deleted when you delete your account.</p>
 
-<h2>7. Children</h2>
-<p>The App is not directed to children under 13, and we do not knowingly collect data
-from users of that age.</p>
+<h2>7. Age limit</h2>
+<p>The App is <strong>not available to anyone under 16</strong>, and we do not knowingly
+collect data from users under 16. The lowest age you can enter in the App is 16. If we
+learn that we hold data of a user under 16, we delete it without delay — you can report
+this at the address below.</p>
 
-<h2>8. Contact</h2>
-<p>For privacy questions: <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+<h2>8. Controller and contact</h2>
+<div class="box">
+<p><strong>Controller:</strong> Movement Lab Kft.<br>
+<strong>Registered seat:</strong> 1038 Budapest, Dűne utca 12. 1. emelet 4., Hungary<br>
+<strong>Company registration number:</strong> 01-09-352058<br>
+<strong>VAT number:</strong> 27286012-2-41<br>
+<strong>Email:</strong> <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+</div>
+<p>Write to the address above with privacy questions or to exercise your rights of access,
+rectification, erasure, restriction, data portability and objection. We respond within one
+month at the latest.</p>
+<p>If you believe our processing is unlawful, you may lodge a complaint with the Hungarian
+Data Protection Authority (NAIH, 1055 Budapest, Falk Miksa utca 9–11.,
+<a href="https://naih.hu">naih.hu</a>) or go to court.</p>
+<p>See also our <a href="./terms.html">Terms of Use</a>.</p>
 
-<footer>© 2026 FreshPlate</footer>
+<footer>© 2026 Movement Lab Kft. — FreshPlate</footer>
 </div>
 </body>
 </html>
