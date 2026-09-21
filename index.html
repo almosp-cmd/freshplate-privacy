@@ -3,360 +3,361 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>FreshPlate — Adatvédelmi szabályzat / Privacy Policy</title>
+<title>FreshPlate — Heti menü három lépésben</title>
+<meta name="description" content="Nem diéta. Heti menü három lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept, iPhone-ra, ingyenesen letölthető.">
+<link rel="canonical" href="https://freshplate.hu/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FreshPlate">
+<meta property="og:title" content="FreshPlate — Heti menü három lépésben">
+<meta property="og:description" content="Nem diéta. Heti menü, bevásárlólista és egy csapat, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept.">
+<meta property="og:url" content="https://freshplate.hu/">
+<meta property="og:image" content="https://freshplate.hu/assets/og.png">
+<meta property="og:locale" content="hu_HU">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="apple-itunes-app" content="app-id=6793034579">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
 <style>
-  :root { --fg:#1f2a24; --muted:#5c6b62; --bg:#faf8f3; --accent:#2f5741; --line:#e2ddd2; }
+  :root {
+    --bg:#faf8f3; --paper:#ffffff; --ink:#1f2a24; --muted:#5c6b62; --line:#e2ddd2;
+    --green:#1f4d38; --green-2:#2f5741; --leaf:#e3eee6; --leaf-2:#cfe3d4; --terra:#b8654a;
+    --radius:18px;
+  }
   * { box-sizing:border-box; }
-  body { margin:0; background:var(--bg); color:var(--fg);
+  html { scroll-behavior:smooth; }
+  body { margin:0; background:var(--bg); color:var(--ink);
     font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.6; }
-  .wrap { max-width:760px; margin:0 auto; padding:48px 22px 80px; }
-  h1 { font-size:1.7rem; margin:0 0 4px; color:var(--accent); }
-  h2 { font-size:1.15rem; margin:34px 0 8px; color:var(--accent);
-    border-bottom:1px solid var(--line); padding-bottom:6px; }
-  .updated { color:var(--muted); font-size:.9rem; margin-bottom:26px; }
-  .lang-sep { margin:60px 0 0; border:0; border-top:2px solid var(--line); }
-  a { color:var(--accent); }
-  ul { padding-left:20px; }
-  code { background:#efeadf; padding:1px 5px; border-radius:4px; font-size:.9em; }
-  .box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 18px; margin:14px 0; }
-  footer { margin-top:40px; color:var(--muted); font-size:.85rem; }
+    line-height:1.55; -webkit-font-smoothing:antialiased; }
+  .serif { font-family:"Fraunces",Georgia,"Times New Roman",serif; font-weight:500; letter-spacing:-.01em; }
+  a { color:var(--green-2); }
+  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
+  .eyebrow { font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--green-2); font-weight:600; }
+  h1,h2,h3 { margin:0; }
+  h1 { font-size:clamp(2rem,5.2vw,3.4rem); line-height:1.08; }
+  h2 { font-size:clamp(1.5rem,3.4vw,2.2rem); line-height:1.15; }
+  h3 { font-size:1.15rem; }
+  p { margin:0; }
+  .muted { color:var(--muted); }
+  .small { font-size:.85rem; }
+
+  /* Fejléc */
+  header { position:sticky; top:0; z-index:10; background:rgba(250,248,243,.92); backdrop-filter:saturate(1.3) blur(10px); border-bottom:1px solid var(--line); }
+  .nav { display:flex; align-items:center; justify-content:space-between; height:62px; gap:16px; }
+  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); }
+  .brand .mark { width:30px; height:30px; border-radius:9px; background:var(--green); display:grid; place-items:center; }
+  .brand .mark svg { width:18px; height:18px; }
+  .brand .name { font-size:1.15rem; }
+  .nav nav { display:none; gap:22px; font-size:.95rem; }
+  .nav nav a { color:var(--muted); text-decoration:none; }
+  .nav nav a:hover { color:var(--ink); }
+  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 18px; border-radius:999px;
+    background:var(--green); color:#fff; text-decoration:none; font-weight:600; font-size:.95rem; border:0; cursor:pointer; white-space:nowrap; }
+  .btn:hover { background:var(--green-2); }
+  .btn.ghost { background:transparent; color:var(--green); border:1.5px solid var(--leaf-2); }
+  .btn.small { padding:9px 14px; font-size:.88rem; }
+
+  /* Hero */
+  .hero { padding:56px 0 24px; }
+  .hero-grid { display:grid; grid-template-columns:1fr; gap:36px; align-items:center; }
+  .hero .lead { font-size:1.15rem; color:var(--muted); max-width:34rem; margin-top:18px; }
+  .cta { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:26px; }
+  .badge img { height:52px; display:block; }
+  .fine { font-size:.8rem; color:var(--muted); margin-top:12px; max-width:34rem; }
+  .facts { display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:26px; font-size:.9rem; color:var(--muted); }
+  .facts b { color:var(--ink); font-weight:600; }
+
+  /* Telefon-keret */
+  .phone { position:relative; width:250px; margin:0 auto; border-radius:40px; background:#101512; padding:10px;
+    box-shadow:0 30px 60px -30px rgba(31,42,36,.55), 0 0 0 1px rgba(0,0,0,.35) inset; }
+  .phone::before { content:""; position:absolute; top:18px; left:50%; transform:translateX(-50%); width:78px; height:22px; border-radius:12px; background:#000; z-index:2; }
+  .phone img { display:block; width:100%; border-radius:31px; }
+  .phone.lg { width:290px; }
+  .phone-wrap { display:flex; justify-content:center; }
+
+  /* Szekciók */
+  section { padding:64px 0; }
+  section + section { border-top:1px solid var(--line); }
+  .sec-head { max-width:40rem; margin-bottom:34px; }
+  .sec-head p { margin-top:12px; color:var(--muted); font-size:1.05rem; }
+  .steps { display:grid; grid-template-columns:1fr; gap:26px; }
+  .step { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:26px 22px 0; display:flex; flex-direction:column; gap:14px; overflow:hidden; }
+  .step .num { width:34px; height:34px; border-radius:50%; background:var(--leaf); color:var(--green); display:grid; place-items:center; font-weight:700; }
+  .step p { color:var(--muted); }
+  .step .phone { width:200px; margin:14px auto -70px; border-radius:32px; padding:8px; }
+  .step .phone::before { width:60px; height:16px; top:14px; }
+  .step .phone img { border-radius:25px; }
+  .pro-tag { display:inline-block; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--green-2); background:var(--leaf); border-radius:999px; padding:3px 9px; font-weight:700; }
+
+  .grid-4 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+  .tile { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:18px; }
+  .tile h3 { font-size:1rem; margin-bottom:6px; }
+  .tile p { font-size:.92rem; color:var(--muted); }
+
+  /* Árak */
+  .plans { display:grid; grid-template-columns:1fr; gap:16px; }
+  .plan { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px; }
+  .plan.pro { background:var(--green); color:#fff; border-color:var(--green); }
+  .plan.pro .muted, .plan.pro li { color:rgba(255,255,255,.82); }
+  .price { font-size:2rem; margin:8px 0 2px; }
+  .plan ul { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:9px; }
+  .plan li { padding-left:24px; position:relative; color:var(--muted); }
+  .plan li::before { content:""; position:absolute; left:0; top:.55em; width:12px; height:7px; border-left:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); opacity:.85; }
+  .plan.pro li::before { color:#fff; }
+
+  /* Várólista */
+  .waitlist { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:30px 24px; }
+  form { margin-top:18px; display:grid; gap:12px; max-width:34rem; }
+  .row { display:flex; flex-wrap:wrap; gap:10px; }
+  input[type=email] { flex:1 1 220px; min-width:0; padding:13px 14px; border:1.5px solid var(--line); border-radius:12px; font-size:1rem; background:#fff; color:var(--ink); }
+  input[type=email]:focus { outline:2px solid var(--leaf-2); border-color:var(--green-2); }
+  label.consent { display:flex; gap:10px; align-items:flex-start; font-size:.85rem; color:var(--muted); }
+  label.consent input { margin-top:3px; accent-color:var(--green); }
+  .msg { font-size:.92rem; min-height:1.4em; }
+  .msg.ok { color:var(--green-2); font-weight:600; }
+  .msg.err { color:var(--terra); }
+
+  /* GYIK */
+  details { border-top:1px solid var(--line); padding:14px 0; }
+  details:last-of-type { border-bottom:1px solid var(--line); }
+  summary { cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
+  summary::-webkit-details-marker { display:none; }
+  summary::after { content:"+"; color:var(--green-2); font-size:1.3rem; line-height:1; }
+  details[open] summary::after { content:"–"; }
+  details p { margin-top:10px; color:var(--muted); }
+
+  footer { padding:44px 0 60px; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
+  footer .cols { display:grid; grid-template-columns:1fr; gap:22px; }
+  footer a { color:var(--muted); }
+  footer nav { display:flex; flex-wrap:wrap; gap:14px 20px; }
+
+  @media (min-width:720px) {
+    .nav nav { display:flex; }
+    .hero { padding:80px 0 40px; }
+    .hero-grid { grid-template-columns:1.15fr .85fr; gap:40px; }
+    .steps { grid-template-columns:repeat(3,1fr); }
+    .grid-4 { grid-template-columns:repeat(4,1fr); }
+    .plans { grid-template-columns:1fr 1fr; }
+    footer .cols { grid-template-columns:1.2fr 1fr; }
+  }
+  @media (prefers-reduced-motion:no-preference) { .step { transition:transform .25s ease; } .step:hover { transform:translateY(-3px); } }
 </style>
 </head>
 <body>
-<div class="wrap">
 
-<!-- ================= MAGYAR ================= -->
-<h1>FreshPlate — Adatvédelmi szabályzat</h1>
-<div class="updated">Utolsó frissítés: 2026. szeptember 19.</div>
+<header>
+  <div class="wrap nav">
+    <a class="brand" href="/" aria-label="FreshPlate">
+      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-4.4 3.6-8 8-8s8 3.6 8 8"/><path d="M2 18h20"/><path d="M12 6V3"/></svg></span>
+      <span class="name serif">FreshPlate</span>
+    </a>
+    <nav aria-label="Oldalon belül">
+      <a href="#hogyan">Hogyan működik</a>
+      <a href="#arak">Árak</a>
+      <a href="#android">Android</a>
+      <a href="support.html">Támogatás</a>
+    </nav>
+    <a class="btn small js-store" data-ct="land_nav" href="https://apps.apple.com/hu/app/id6793034579">Letöltés</a>
+  </div>
+</header>
 
-<p>Ez az adatvédelmi szabályzat ismerteti, hogyan kezeli a FreshPlate alkalmazás
-(„az App") a felhasználók adatait. Az adatkezelő elérhetősége lentebb olvasható.</p>
+<main>
+  <section class="hero">
+    <div class="wrap hero-grid">
+      <div>
+        <div class="eyebrow">iPhone-ra · ingyenesen letölthető</div>
+        <h1 class="serif" style="margin-top:14px">Nem diéta.<br>Heti menü három lépésben.</h1>
+        <p class="lead">Bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
+        <div class="cta">
+          <a class="badge js-store" data-ct="land_hero" href="https://apps.apple.com/hu/app/id6793034579" aria-label="Letöltés az App Store-ból">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="157" height="52">
+          </a>
+          <a class="btn ghost" href="#hogyan">Hogyan működik?</a>
+        </div>
+        <p class="fine">Az alapverzió ingyenes. A FreshPlate Pro 7 napig ingyen kipróbálható, utána 1 990 Ft/hó vagy 12 990 Ft/év, bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
+        <div class="facts">
+          <span><b>1300</b> recept</span>
+          <span><b>0</b> reklám</span>
+          <span><b>7 nap</b> ingyen Pro</span>
+          <span><b>Magyar</b> és angol</span>
+        </div>
+      </div>
+      <div class="phone-wrap">
+        <div class="phone lg"><img src="assets/hero-heti-terv.webp" alt="A FreshPlate Naptár füle: 7 napos heti terv, bevásárlólista 140 tétellel, heti növényfogyasztás" width="460" height="1000" loading="eager"></div>
+      </div>
+    </div>
+  </section>
 
-<h2>1. Milyen adatokat gyűjtünk</h2>
-<ul>
-  <li><strong>E-mail cím</strong> — a felhasználói fiók létrehozásához és bejelentkezéshez.</li>
-  <li><strong>Egészséggel kapcsolatos adatok</strong> — az általad megadott étrendi és
-    allergiás preferenciák (pl. vegetáriánus, gluténmentes), hogy a recepteket ezekhez igazítsuk.</li>
-  <li><strong>Profil-beállítások</strong> — amit az induló kérdéssornál megadsz: nem, életkor,
-    testsúly, testmagasság, célsúly, cél (pl. fogyás, izomépítés), aktivitási szint, napi
-    kalóriacél, nem kedvelt hozzávalók, akadályok, költségkeret, nyelv. Ezeket a
-    készülékeden kívül a szerverünkön is tároljuk, hogy új telefonon bejelentkezve ne kelljen
-    újra megadnod; a testsúly, magasság és cél egészséggel kapcsolatos adatnak minősül.</li>
-  <li><strong>Eszközazonosító</strong> — egy alkalmazás által generált anonim azonosító
-    (<code>device_id</code>), amely az események összegzéséhez szükséges.</li>
-  <li><strong>Használati adatok</strong> — az appon belüli interakciók (pl. recept
-    megnyitása, keresés) anonim statisztikai céllal.</li>
-  <li><strong>Megszólítás</strong> — a regisztrációnál megadott név, amit az appon
-    belüli köszönéshez használunk.</li>
-  <li><strong>Apple Health / Apple Watch adat</strong> — <em>kizárólag</em> a mozgással
-    elégetett energia (aktív energia), és csak akkor, ha ezt te magad bekapcsolod.</li>
-  <li><strong>Push-értesítési token</strong> — ha engedélyezed az értesítéseket, a
-    készülékedhez tartozó, az Expo által kiadott token, amivel értesítést tudunk küldeni.</li>
-  <li><strong>Előfizetés állapota</strong> — hogy Pro előfizető vagy-e, és meddig; ezt
-    az Apple-től és a RevenueCat-től kapjuk, a pszeudonim fiókazonosítódhoz kötve
-    (e-mail-címet nem adunk át nekik).</li>
-  <li><strong>Az AI-receptgenerálás bemenete</strong> (csak Pro) — a megadott hozzávalók,
-    kamratartalom, kalóriakeret, étrendi preferenciák és nem kedvelt hozzávalók, amelyekből
-    a modell receptet készít.</li>
-  <li><strong>Támogatási és moderációs levelezés</strong> — amit a support@freshplate.hu
-    címre írsz, illetve a bejelentéseid tartalma és a bejelentett tartalom.</li>
-</ul>
+  <section id="hogyan">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Hogyan működik</div>
+        <h2 class="serif" style="margin-top:10px">Vasárnap este már tudod, mit eszel egész héten</h2>
+        <p>Három kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
+      </div>
+      <div class="steps">
+        <article class="step">
+          <div class="num">1</div>
+          <h3>Heti terv három lépésben <span class="pro-tag">Pro</span></h3>
+          <p>Napok → étkezések → szűrők. A varázsló a saját ízlésedből, allergiáidból és kalóriacélodból rak össze egy hetet — reggelitől vacsoráig, tízóraival és uzsonnával.</p>
+          <div class="phone"><img src="assets/terv-kesz.webp" alt="A heti terv elkészült: 7 nap, 5 étkezés naponta" width="460" height="1000" loading="lazy"></div>
+        </article>
+        <article class="step">
+          <div class="num">2</div>
+          <h3>Bevásárlólista, ami magától összeáll <span class="pro-tag">Pro</span></h3>
+          <p>A hét minden hozzávalója egy listán, polcok szerint rendezve. A boltban csak pipálsz — fejben nem kell tartanod semmit.</p>
+          <div class="phone"><img src="assets/lista.webp" alt="Bevásárlólista polcok szerint: zöldség-gyümölcs, tejtermék, hús" width="460" height="1000" loading="lazy"></div>
+        </article>
+        <article class="step">
+          <div class="num">3</div>
+          <h3>21 nap — egyedül vagy a csapatoddal</h3>
+          <p>Egyszerre egy szokás épül. Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p>
+          <div class="phone"><img src="assets/szokas-21.webp" alt="Fókusz-szokás: 11 napos sorozat a 21-ből, napi bejelöléssel" width="460" height="1000" loading="lazy"></div>
+        </article>
+      </div>
+    </div>
+  </section>
 
-<h2>1/a. Apple Health és Apple Watch</h2>
-<p>Ha összekötöd az appot az Apple Health-szel, a következők érvényesek:</p>
-<ul>
-  <li>Csak az <strong>aktív energia</strong> (elégetett kalória) értékét olvassuk be.
-    A teljes energiafelhasználást, a pulzust, a lépésszámot és minden más
-    egészségadatot nem kérünk el.</li>
-  <li>Az így beolvasott adat <strong>nem hagyja el a készüléket</strong>: nem küldjük
-    a szerverünkre, és nem tároljuk el. Kizárólag arra használjuk, hogy a napi
-    kalóriacélod a helyi számításban ehhez igazodjon.</li>
-  <li>Egészségadatot <strong>soha nem használunk hirdetési célra</strong>, és nem adjuk
-    át harmadik félnek.</li>
-  <li>Az appba semmit nem <em>írunk</em> az Apple Health-be.</li>
-  <li>A hozzáférést bármikor visszavonhatod az iOS <em>Egészség</em> appban
-    (Megosztás → Appok), vagy az appon belül a Profil fülön.</li>
-</ul>
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Amit még tud</div>
+        <h2 class="serif" style="margin-top:10px">Nem csak azt nézi, mennyit eszel</h2>
+      </div>
+      <div class="grid-4">
+        <div class="tile"><h3>Heti 30 növény</h3><p>Hét szín, harminc különböző növény hetente — a változatosságot méri, nem csak a kalóriát.</p></div>
+        <div class="tile"><h3>Apple Health és Apple Watch</h3><p>Ha bekapcsolod, a napi kalóriacél az elégetett aktív energiához igazodik. Az adat nem hagyja el a telefonodat.</p></div>
+        <div class="tile"><h3>Widgetek a főképernyőn</h3><p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül.</p></div>
+        <div class="tile"><h3>Tippek, amiknek ott a forrása</h3><p>Longevity-tippek szakirodalmi hivatkozással. Nem orvosi tanács — de nem is találgatás.</p></div>
+      </div>
+    </div>
+  </section>
 
-<h2>2. Miért kezeljük az adatokat, és milyen jogalapon</h2>
-<ul>
-  <li><strong>E-mail cím, megszólítás, fiókadatok</strong> — a fiókod kezeléséhez és a
-    bejelentkezéshez. Jogalap: <em>a veled kötött szerződés teljesítése</em>
-    (GDPR 6. cikk (1) b) pont).</li>
-  <li><strong>Étrendi és allergiás preferenciák, testsúly, magasság, cél</strong> — hogy a
-    recepteket, a kalóriacélt és az étrendtervet hozzád igazítsuk. Ezek az adatok
-    <strong>egészségügyi adatnak, azaz különleges kategóriájú személyes adatnak</strong>
-    minősülhetnek, ezért kezelésük jogalapja
-    <strong>a te kifejezett hozzájárulásod</strong> (GDPR 9. cikk (2) a) pont).
-    A megadásuk önkéntes: az App ezek nélkül is használható, csak a személyre szabás
-    lesz pontatlanabb. A hozzájárulásodat bármikor visszavonhatod azzal, hogy az
-    Appban törlöd ezeket a beállításokat, vagy törlöd a fiókodat — a visszavonás nem
-    érinti a visszavonás előtti adatkezelés jogszerűségét.</li>
-  <li><strong>Eszközazonosító és használati adatok</strong> — az App fejlesztését szolgáló
-    összesített, névtelen statisztikához. Jogalap: <em>jogos érdekünk</em> az App
-    működésének mérésében és javításában (GDPR 6. cikk (1) f) pont).</li>
-  <li><strong>Apple Health adat</strong> — kizárólag a saját eszközödön, a napi
-    kalóriacélod pontosításához. Jogalap: <strong>a te kifejezett hozzájárulásod</strong>
-    (GDPR 9. cikk (2) a) pont), amelyet az iOS engedélykérésekor adsz meg, és bármikor
-    visszavonhatsz.</li>
-  <li><strong>Push-értesítések</strong> — emlékeztetők és a csoportod eseményei. Jogalap:
-    <em>hozzájárulás</em> (az iOS értesítési engedélye), amelyet a Beállításokban bármikor
-    visszavonhatsz (GDPR 6. cikk (1) a) pont).</li>
-  <li><strong>AI-receptgenerálás</strong> (Pro) — a kért receptek előállítása. Jogalap:
-    <em>a szerződés teljesítése</em> (GDPR 6. cikk (1) b) pont); az étrendi preferenciák
-    átadására a fenti kifejezett hozzájárulásod terjed ki. A modellhez e-mail-címet vagy
-    fiókazonosítót nem küldünk.</li>
-  <li><strong>Támogatás, panaszok, bejelentések</strong> — a megkeresésed megválaszolása és a
-    közösségi szabályzat érvényesítése. Jogalap: <em>a szerződés teljesítése</em> és <em>jogos
-    érdekünk</em> a biztonságos közösség fenntartásában (GDPR 6. cikk (1) b) és f) pont).</li>
-</ul>
-<p>Automatizált döntéshozatalt vagy profilalkotást, amelynek rád nézve joghatása lenne,
-nem végzünk. A receptajánlások személyre szabása nem tartozik ebbe a körbe.</p>
+  <section id="arak">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Árak</div>
+        <h2 class="serif" style="margin-top:10px">Ingyenes alapverzió, Pro annak, aki minden nap használja</h2>
+      </div>
+      <div class="plans">
+        <div class="plan">
+          <div class="eyebrow">Ingyenes</div>
+          <div class="price serif">0 Ft</div>
+          <p class="muted">Letöltés után azonnal.</p>
+          <ul>
+            <li>Receptböngészés és keresés</li>
+            <li>Napi naplózás, heti haladás</li>
+            <li>Szokások, 21 napos építés</li>
+            <li>Csoportok, csapatcél, biztatás</li>
+            <li>Widgetek, Apple Health</li>
+          </ul>
+        </div>
+        <div class="plan pro">
+          <div class="eyebrow" style="color:#cfe3d4">FreshPlate Pro</div>
+          <div class="price serif">1 990 Ft<span style="font-size:1rem;font-weight:400;opacity:.8"> / hó</span></div>
+          <p class="muted">vagy 12 990 Ft / év · az első 7 nap ingyen</p>
+          <ul>
+            <li>Heti terv varázsló, 3 lépésben</li>
+            <li>Bevásárlólista polcok szerint</li>
+            <li>Heti 30 növény követése, tenyér-adagok</li>
+            <li>A teljes recepttár és a bővített ízlésprofil</li>
+            <li>Longevity tippek forrással</li>
+          </ul>
+          <p class="small" style="margin-top:18px;color:rgba(255,255,255,.75)">A próba után az előfizetés automatikusan megújul, az App Store beállításaiban bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<h2>3. Adatfeldolgozók, adattovábbítás és tárolás</h2>
-<p>Az adatokat saját háttérrendszerünkben tároljuk. A működéshez az alábbi szolgáltatókat
-vesszük igénybe; ők <strong>adatfeldolgozóként</strong>, a mi utasításunk szerint és
-adatfeldolgozói szerződés alapján kezelik az adatokat — kivéve ahol önálló adatkezelőként
-jelöljük őket:</p>
-<ul>
-  <li><strong>Render Services, Inc.</strong> (USA) — szerver- és PostgreSQL-adatbázis-hosting;
-    minden fiókhoz kötött adat itt tárolódik.</li>
-  <li><strong>Anthropic, PBC</strong> (USA) — a Pro <em>receptgenerálás</em> funkció AI-modellje.
-    Csak a receptkéréshez szükséges adatokat kapja (hozzávalók, kamratartalom, kalóriakeret,
-    étrendi preferenciák, nem kedvelt hozzávalók), e-mail-címet vagy fiókazonosítót nem;
-    az API-n keresztül kapott adatot nem használja modelltanításra.</li>
-  <li><strong>RevenueCat, Inc.</strong> (USA) — az előfizetés állapotának kezelése
-    (pszeudonim fiókazonosító, vásárlási státusz, Apple-tranzakció-azonosító).</li>
-  <li><strong>Resend, Inc.</strong> (USA) — tranzakciós e-mailek küldése: jelszó-visszaállító
-    kód a te címedre, moderációs értesítés nekünk (a bejelentő címe és a bejelentett tartalom).</li>
-  <li><strong>Expo (650 Industries, Inc.)</strong> (USA) — push-értesítések kézbesítése
-    (push-token; az értesítés tartalmát a kézbesítés után törli).</li>
-  <li><strong>Apple Inc. / Apple Distribution International Ltd.</strong> (USA / Írország) —
-    App Store, In-App vásárlás (<em>önálló adatkezelőként</em>, a saját adatvédelmi feltételei
-    szerint), „Bejelentkezés Apple-lel", push-kézbesítés (APNs).</li>
-  <li><strong>ImprovMX</strong> (USA; az EU-s ügyfelek adatait Franciaországban tárolja) és
-    <strong>Apple iCloud Mail</strong> — a support@freshplate.hu címre küldött leveleid
-    továbbítása és fogadása.</li>
-  <li><strong>GitHub, Inc.</strong> (USA) — a freshplate.hu weboldal (ezen tájékoztató)
-    kiszolgálása; a GitHub Pages szokásos szervernaplókat (IP-cím) kezel.</li>
-</ul>
-<p><strong>Harmadik országba továbbítás:</strong> a fenti USA-beli szolgáltatók az
-EU–USA adatvédelmi keret (Data Privacy Framework) tanúsításával, illetve az Európai
-Bizottság általános szerződési feltételeivel (SCC) biztosítják a GDPR szerinti védelmet.
-Az Apple Health-adat és a helyben számított értékek nem hagyják el a készülékedet.</p>
-<p>Az adatokat <strong>nem adjuk el</strong>, és <strong>nem használjuk hirdetési
-követésre</strong> (tracking), sem harmadik felek reklámcéljaira. Az appban nincs
-hirdetési vagy közösségimédia-SDK.</p>
+  <section id="android">
+    <div class="wrap">
+      <div class="waitlist">
+        <div class="eyebrow">Android</div>
+        <h2 class="serif" style="margin-top:10px">Androidon van a telefonod?</h2>
+        <p class="muted" style="margin-top:10px;max-width:36rem">A FreshPlate ma iPhone-on érhető el. Az Android-verzió készül — hagyd itt az e-mail-címed, és egyszer szólunk, amikor megjelent. Mást nem küldünk.</p>
+        <form id="wl" novalidate>
+          <div class="row">
+            <input type="email" name="email" id="wl-email" placeholder="e-mail-címed" autocomplete="email" required inputmode="email">
+            <button class="btn" type="submit" id="wl-btn">Értesíts</button>
+          </div>
+          <label class="consent"><input type="checkbox" id="wl-consent" required>
+            <span>Hozzájárulok, hogy a Movement Lab Kft. az e-mail-címemet az Android-verzió megjelenéséről szóló egyszeri értesítéshez kezelje. A hozzájárulást bármikor visszavonhatom a support@freshplate.hu címen. <a href="privacy.html">Adatkezelési tájékoztató</a></span>
+          </label>
+          <div class="msg" id="wl-msg" aria-live="polite"></div>
+        </form>
+      </div>
+    </div>
+  </section>
 
-<h2>4. Adatmegőrzés</h2>
-<p>A fiókhoz kötött adatokat addig őrizzük, amíg a fiókod aktív. A fiók törlésekor
-a hozzá tartozó személyes adatokat töröljük. A jelszó-visszaállító kód 15 percig
-érvényes. A támogatási levelezést és a moderációs bejelentéseket a megkeresés
-lezárásától számított legfeljebb 1 évig, az anonim használati statisztikát összesített
-formában őrizzük. Jogszabályi kötelezettség (pl. számviteli megőrzés) esetén az érintett
-adatot a kötelezettség fennállásáig tartjuk meg.</p>
+  <section id="gyik">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Gyakori kérdések</div>
+        <h2 class="serif" style="margin-top:10px">Mielőtt letöltöd</h2>
+      </div>
+      <details><summary>Tényleg ingyenes?</summary><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></details>
+      <details><summary>Kell fiókot létrehoznom?</summary><p>Az alapfunkciókhoz nem. Fiók a csoportokhoz és a barátokhoz kell — e-mail-címmel vagy Bejelentkezés az Apple-lel.</p></details>
+      <details><summary>Ez egy fogyókúrás app?</summary><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></details>
+      <details><summary>Milyen adatot lát az app az Apple Healthből?</summary><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></details>
+      <details><summary>Hogyan mondom le a Pro-t?</summary><p>Az iPhone Beállítások → Apple-fiók → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></details>
+      <details><summary>Mikor jön Androidra?</summary><p>Készül. Iratkozz fel fent, és szólunk, amint elérhető.</p></details>
+    </div>
+  </section>
+</main>
 
-<h2>5. A te jogaid</h2>
-<p>Az appon belül bármikor <strong>törölheted a fiókodat</strong> és a hozzá tartozó
-adatokat. A közösségi felületen megosztott bejegyzéseidet egyenként is törölheted.
-Az Apple Health-hozzáférést bármikor visszavonhatod. Kérheted továbbá az adataidhoz
-való hozzáférést vagy azok helyesbítését az alábbi elérhetőségen.</p>
+<footer>
+  <div class="wrap cols">
+    <div>
+      <div class="serif" style="font-size:1.1rem;color:var(--ink)">FreshPlate</div>
+      <p style="margin-top:8px">Üzemeltető: Movement Lab Kft. · 1038 Budapest, Dűne utca 12. 1. em. 4. · Cégjegyzékszám: 01-09-352058 · Adószám: 27286012-2-41 · <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+      <p style="margin-top:8px">Az Apple, az App Store és az Apple Health az Apple Inc. védjegyei. A tápérték-adatok tájékoztató jellegűek; az app nem nyújt orvosi tanácsot.</p>
+    </div>
+    <nav aria-label="Jogi oldalak">
+      <a href="privacy.html">Adatvédelmi szabályzat</a>
+      <a href="terms.html">Felhasználási feltételek</a>
+      <a href="support.html">Támogatás</a>
+      <a href="https://apps.apple.com/hu/app/id6793034579">App Store</a>
+    </nav>
+  </div>
+</footer>
 
-<h2>6. Közösségi funkciók</h2>
-<p>Az appban létrehozhatsz felhasználónevet, és a Közösség fülön tartalmat
-oszthatsz meg (bejegyzések, hozzászólások, csoportok), amely más felhasználók
-számára látható. Ezt a tartalmat a szerverünkön tároljuk. A sértő tartalmat
-jelentheted, más felhasználókat letilthatsz; a bejelentéseket ellenőrizzük,
-és a szabályzatot sértő tartalmat 24 órán belül eltávolítjuk. A közzétett
-tartalmad a fiókod törlésekor törlődik.</p>
+<script>
+  // --- App Store kampánylinkek (ASC App Analytics → Campaigns). ---
+  // A PT a fejlesztői fiók „provider token"-je az App Store Connect kampánylink-generátorából.
+  // Amíg üres, a linkek sima Store-linkek maradnak (működnek, csak nem mérhetők).
+  var PT = '';
+  var APP_ID = '6793034579';
+  function storeLink(ct) {
+    if (!PT) return 'https://apps.apple.com/hu/app/id' + APP_ID;
+    return 'https://apps.apple.com/app/apple-store/id' + APP_ID + '?pt=' + encodeURIComponent(PT) + '&ct=' + encodeURIComponent(ct) + '&mt=8';
+  }
+  document.querySelectorAll('.js-store').forEach(function (a) { a.href = storeLink(a.getAttribute('data-ct') || 'land'); });
 
-<h2>7. Korhatár</h2>
-<p>Az App <strong>16 éven aluliak számára nem használható</strong>, és tudatosan nem
-gyűjtünk adatot 16 év alatti felhasználóktól. Az Appban megadható legalacsonyabb
-életkor 16 év. Ha tudomásunkra jut, hogy 16 év alatti felhasználó adatait kezeljük,
-azokat haladéktalanul töröljük — ilyet a lenti címen jelezhetsz.</p>
+  // A /go/ átirányító oldalakról nem-iPhone-nal érkezők ide jönnek: az Android-blokkhoz görgetünk.
+  var qs = new URLSearchParams(location.search);
+  if (qs.get('from')) { setTimeout(function () { document.getElementById('android').scrollIntoView({ behavior: 'smooth' }); }, 300); }
 
-<h2>8. Az adatkezelő és a kapcsolat</h2>
-<div class="box">
-<p><strong>Adatkezelő:</strong> Movement Lab Kft.<br>
-<strong>Székhely:</strong> 1038 Budapest, Dűne utca 12. 1. emelet 4.<br>
-<strong>Cégjegyzékszám:</strong> 01-09-352058<br>
-<strong>Adószám:</strong> 27286012-2-41<br>
-<strong>E-mail:</strong> <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
-</div>
-<p>Adatvédelmi kérdésekben, illetve a hozzáférési, helyesbítési, törlési, korlátozási,
-adathordozhatósági és tiltakozási jogod gyakorlásához írj a fenti címre. A megkeresésedre
-legkésőbb egy hónapon belül válaszolunk.</p>
-<p>Ha úgy érzed, hogy az adatkezelésünk jogsértő, panasszal élhetsz a
-<strong>Nemzeti Adatvédelmi és Információszabadság Hatóságnál</strong>
-(NAIH, 1055 Budapest, Falk Miksa utca 9–11.,
-<a href="https://naih.hu">naih.hu</a>), illetve bírósághoz fordulhatsz.</p>
-<p>Lásd még a <a href="./terms.html">Felhasználási feltételeket</a>.</p>
-
-<hr class="lang-sep">
-
-<!-- ================= ENGLISH ================= -->
-<h1>FreshPlate — Privacy Policy</h1>
-<div class="updated">Last updated: 19 September 2026</div>
-
-<p>This Privacy Policy explains how the FreshPlate app ("the App") handles user data.
-Contact details are provided below.</p>
-
-<h2>1. Data we collect</h2>
-<ul>
-  <li><strong>Email address</strong> — to create your account and sign you in.</li>
-  <li><strong>Health-related data</strong> — the dietary and allergy preferences you
-    provide (e.g. vegetarian, gluten-free), used to tailor recipes to you.</li>
-  <li><strong>Profile settings</strong> — what you enter in the initial questionnaire: gender,
-    age, weight, height, target weight, goal (e.g. weight loss, muscle gain), activity level,
-    daily calorie target, disliked ingredients, obstacles, budget band, language. Besides your
-    device we also store these on our server so you do not have to start over on a new phone;
-    weight, height and goal qualify as health-related data.</li>
-  <li><strong>Device identifier</strong> — an app-generated anonymous identifier
-    (<code>device_id</code>) used to aggregate events.</li>
-  <li><strong>Usage data</strong> — in-app interactions (e.g. opening a recipe,
-    searching) for anonymous statistics.</li>
-  <li><strong>Display name</strong> — the name you provide at sign-up, used to greet
-    you inside the app.</li>
-  <li><strong>Apple Health / Apple Watch data</strong> — <em>only</em> active energy
-    burned, and only if you enable the connection yourself.</li>
-  <li><strong>Push notification token</strong> — if you allow notifications, the
-    device token issued by Expo that lets us deliver notifications to you.</li>
-  <li><strong>Subscription status</strong> — whether and until when you are a Pro
-    subscriber; received from Apple and RevenueCat, linked to your pseudonymous account ID
-    (we do not pass them your email address).</li>
-  <li><strong>AI recipe generation input</strong> (Pro only) — the ingredients, pantry
-    contents, calorie budget, dietary preferences and disliked ingredients you enter, from
-    which the model creates a recipe.</li>
-  <li><strong>Support and moderation correspondence</strong> — what you write to
-    support@freshplate.hu, and the content of your reports and the reported content.</li>
-</ul>
-
-<h2>1a. Apple Health and Apple Watch</h2>
-<p>If you connect the app to Apple Health, the following applies:</p>
-<ul>
-  <li>We read <strong>active energy burned only</strong>. We do not request total
-    energy, heart rate, step count or any other health data.</li>
-  <li>This data <strong>never leaves your device</strong>: we do not send it to our
-    server and we do not store it. It is used solely so that your daily calorie
-    goal is adjusted locally.</li>
-  <li>We <strong>never use health data for advertising</strong> and never share it
-    with third parties.</li>
-  <li>We do not <em>write</em> anything back to Apple Health.</li>
-  <li>You can revoke access at any time in the iOS <em>Health</em> app
-    (Sharing → Apps), or on the Profile tab inside the app.</li>
-</ul>
-
-<h2>2. Why we process it, and on what legal basis</h2>
-<ul>
-  <li><strong>Email, display name, account data</strong> — to manage your account and sign
-    you in. Legal basis: <em>performance of our contract with you</em> (GDPR Art. 6(1)(b)).</li>
-  <li><strong>Dietary and allergy preferences, weight, height, goal</strong> — to tailor
-    recipes, your calorie target and meal plans to you. This may qualify as <strong>health data, i.e. a special category of personal
-    data</strong>, so we process it on the basis of <strong>your explicit consent</strong>
-    (GDPR Art. 9(2)(a)). Providing it is optional: the App works without it, personalisation
-    is simply less accurate. You may withdraw consent at any time by clearing these settings
-    in the App or deleting your account; withdrawal does not affect the lawfulness of
-    processing before it.</li>
-  <li><strong>Device identifier and usage data</strong> — for aggregated, anonymous
-    statistics used to improve the App. Legal basis: our <em>legitimate interest</em> in
-    measuring and improving the App (GDPR Art. 6(1)(f)).</li>
-  <li><strong>Apple Health data</strong> — only on your own device, to refine your daily
-    calorie target. Legal basis: <strong>your explicit consent</strong> (GDPR Art. 9(2)(a)),
-    given at the iOS permission prompt and revocable at any time.</li>
-  <li><strong>Push notifications</strong> — reminders and your group's events. Legal basis:
-    <em>consent</em> (the iOS notification permission), revocable at any time in Settings
-    (GDPR Art. 6(1)(a)).</li>
-  <li><strong>AI recipe generation</strong> (Pro) — producing the recipes you request. Legal
-    basis: <em>performance of the contract</em> (GDPR Art. 6(1)(b)); the transfer of dietary
-    preferences is covered by your explicit consent above. No email address or account ID is
-    sent to the model.</li>
-  <li><strong>Support, complaints and reports</strong> — answering your request and enforcing
-    the community guidelines. Legal basis: <em>performance of the contract</em> and our
-    <em>legitimate interest</em> in keeping the community safe (GDPR Art. 6(1)(b) and (f)).</li>
-</ul>
-<p>We do not carry out automated decision-making or profiling that produces legal effects
-concerning you. Personalising recipe suggestions does not fall into that category.</p>
-
-<h2>3. Processors, transfers and storage</h2>
-<p>Data is stored in our own backend. We rely on the following providers; they act as
-<strong>data processors</strong> on our instructions under a data processing agreement,
-except where marked as an independent controller:</p>
-<ul>
-  <li><strong>Render Services, Inc.</strong> (USA) — server and PostgreSQL database hosting;
-    all account-linked data is stored here.</li>
-  <li><strong>Anthropic, PBC</strong> (USA) — the AI model behind the Pro <em>recipe
-    generation</em> feature. It receives only what the request needs (ingredients, pantry
-    contents, calorie budget, dietary preferences, disliked ingredients), never your email
-    address or account ID; data received via the API is not used to train models.</li>
-  <li><strong>RevenueCat, Inc.</strong> (USA) — subscription status management (pseudonymous
-    account ID, purchase status, Apple transaction identifier).</li>
-  <li><strong>Resend, Inc.</strong> (USA) — transactional email: the password-reset code sent
-    to you, and moderation alerts sent to us (reporter's address and the reported content).</li>
-  <li><strong>Expo (650 Industries, Inc.)</strong> (USA) — push notification delivery
-    (push token; the notification payload is deleted after delivery).</li>
-  <li><strong>Apple Inc. / Apple Distribution International Ltd.</strong> (USA / Ireland) —
-    App Store, in-app purchases (<em>as an independent controller</em> under its own privacy
-    terms), Sign in with Apple, push delivery (APNs).</li>
-  <li><strong>ImprovMX</strong> (USA; EU customer data stored in France) and
-    <strong>Apple iCloud Mail</strong> — forwarding and receiving the emails you send to
-    support@freshplate.hu.</li>
-  <li><strong>GitHub, Inc.</strong> (USA) — serves the freshplate.hu website (this policy);
-    GitHub Pages processes standard server logs (IP address).</li>
-</ul>
-<p><strong>International transfers:</strong> the US providers above safeguard your data under
-the EU–US Data Privacy Framework certification and/or the European Commission's Standard
-Contractual Clauses (SCCs). Apple Health data and locally computed values never leave your
-device.</p>
-<p>We do <strong>not sell</strong> your data and do <strong>not use it for advertising
-tracking</strong> or third-party advertising purposes. The App contains no advertising or
-social-media SDK.</p>
-
-<h2>4. Data retention</h2>
-<p>Account-linked data is retained while your account is active. When you delete your
-account, the associated personal data is deleted. Password-reset codes expire after
-15 minutes. Support correspondence and moderation reports are kept for at most 1 year after
-the case is closed; anonymous usage statistics are kept in aggregated form. Where a legal
-obligation applies (e.g. accounting retention), the affected data is kept for as long as
-that obligation lasts.</p>
-
-<h2>5. Your rights</h2>
-<p>You can <strong>delete your account</strong> and its data at any time from within
-the App. You can also delete individual posts you shared in the community. Apple Health
-access can be revoked at any time. You may also request access to or correction of your
-data via the contact below.</p>
-
-<h2>6. Community features</h2>
-<p>You can create a username and share content in the Community tab (posts,
-comments, groups) that is visible to other users. This content is stored on
-our server. You can report objectionable content and block other users; we
-review reports and remove violating content within 24 hours. Your posted
-content is deleted when you delete your account.</p>
-
-<h2>7. Age limit</h2>
-<p>The App is <strong>not available to anyone under 16</strong>, and we do not knowingly
-collect data from users under 16. The lowest age you can enter in the App is 16. If we
-learn that we hold data of a user under 16, we delete it without delay — you can report
-this at the address below.</p>
-
-<h2>8. Controller and contact</h2>
-<div class="box">
-<p><strong>Controller:</strong> Movement Lab Kft.<br>
-<strong>Registered seat:</strong> 1038 Budapest, Dűne utca 12. 1. emelet 4., Hungary<br>
-<strong>Company registration number:</strong> 01-09-352058<br>
-<strong>VAT number:</strong> 27286012-2-41<br>
-<strong>Email:</strong> <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
-</div>
-<p>Write to the address above with privacy questions or to exercise your rights of access,
-rectification, erasure, restriction, data portability and objection. We respond within one
-month at the latest.</p>
-<p>If you believe our processing is unlawful, you may lodge a complaint with the Hungarian
-Data Protection Authority (NAIH, 1055 Budapest, Falk Miksa utca 9–11.,
-<a href="https://naih.hu">naih.hu</a>) or go to court.</p>
-<p>See also our <a href="./terms.html">Terms of Use</a>.</p>
-
-<footer>© 2026 Movement Lab Kft. — FreshPlate</footer>
-</div>
+  // --- Várólista: saját backend, csak a hozzájárulással. ---
+  var API = 'https://freshplate-backend-ybm3.onrender.com/api/waitlist';
+  var form = document.getElementById('wl'), msg = document.getElementById('wl-msg'), btn = document.getElementById('wl-btn');
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var email = document.getElementById('wl-email').value.trim();
+    var consent = document.getElementById('wl-consent').checked;
+    msg.className = 'msg';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.className = 'msg err'; msg.textContent = 'Adj meg egy érvényes e-mail-címet.'; return; }
+    if (!consent) { msg.className = 'msg err'; msg.textContent = 'A feliratkozáshoz a hozzájárulás bejelölése szükséges.'; return; }
+    btn.disabled = true; msg.textContent = 'Küldés…';
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ email: email, platform: 'android', consent: true, source: qs.get('from') || 'landing' }) })
+      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
+      .then(function (x) {
+        if (x.ok) { msg.className = 'msg ok'; msg.textContent = 'Köszönjük — szólunk, amint az Android-verzió elérhető.'; form.reset(); }
+        else { msg.className = 'msg err'; msg.textContent = (x.d && x.d.error) || 'A feliratkozás most nem sikerült. Próbáld újra később.'; }
+      })
+      .catch(function () { msg.className = 'msg err'; msg.textContent = 'Nem érjük el a szervert. Próbáld újra egy perc múlva.'; })
+      .finally(function () { btn.disabled = false; });
+  });
+</script>
 </body>
 </html>

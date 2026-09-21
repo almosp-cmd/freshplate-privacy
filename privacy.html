@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="hu">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreshPlate — Adatvédelmi szabályzat / Privacy Policy</title>
+<style>
+  :root { --fg:#1f2a24; --muted:#5c6b62; --bg:#faf8f3; --accent:#2f5741; --line:#e2ddd2; }
+  * { box-sizing:border-box; }
+  body { margin:0; background:var(--bg); color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    line-height:1.6; }
+  .wrap { max-width:760px; margin:0 auto; padding:48px 22px 80px; }
+  h1 { font-size:1.7rem; margin:0 0 4px; color:var(--accent); }
+  h2 { font-size:1.15rem; margin:34px 0 8px; color:var(--accent);
+    border-bottom:1px solid var(--line); padding-bottom:6px; }
+  .updated { color:var(--muted); font-size:.9rem; margin-bottom:26px; }
+  .lang-sep { margin:60px 0 0; border:0; border-top:2px solid var(--line); }
+  a { color:var(--accent); }
+  ul { padding-left:20px; }
+  code { background:#efeadf; padding:1px 5px; border-radius:4px; font-size:.9em; }
+  .box { background:#fff; border:1px solid var(--line); border-radius:10px; padding:14px 18px; margin:14px 0; }
+  footer { margin-top:40px; color:var(--muted); font-size:.85rem; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ================= MAGYAR ================= -->
+<h1>FreshPlate — Adatvédelmi szabályzat</h1>
+<div class="updated">Utolsó frissítés: 2026. szeptember 21.</div>
+
+<p>Ez az adatvédelmi szabályzat ismerteti, hogyan kezeli a FreshPlate alkalmazás
+(„az App") a felhasználók adatait. Az adatkezelő elérhetősége lentebb olvasható.</p>
+
+<h2>1. Milyen adatokat gyűjtünk</h2>
+<ul>
+  <li><strong>E-mail cím</strong> — a felhasználói fiók létrehozásához és bejelentkezéshez.</li>
+  <li><strong>Egészséggel kapcsolatos adatok</strong> — az általad megadott étrendi és
+    allergiás preferenciák (pl. vegetáriánus, gluténmentes), hogy a recepteket ezekhez igazítsuk.</li>
+  <li><strong>Profil-beállítások</strong> — amit az induló kérdéssornál megadsz: nem, életkor,
+    testsúly, testmagasság, célsúly, cél (pl. fogyás, izomépítés), aktivitási szint, napi
+    kalóriacél, nem kedvelt hozzávalók, akadályok, költségkeret, nyelv. Ezeket a
+    készülékeden kívül a szerverünkön is tároljuk, hogy új telefonon bejelentkezve ne kelljen
+    újra megadnod; a testsúly, magasság és cél egészséggel kapcsolatos adatnak minősül.</li>
+  <li><strong>Eszközazonosító</strong> — egy alkalmazás által generált anonim azonosító
+    (<code>device_id</code>), amely az események összegzéséhez szükséges.</li>
+  <li><strong>Használati adatok</strong> — az appon belüli interakciók (pl. recept
+    megnyitása, keresés) anonim statisztikai céllal.</li>
+  <li><strong>Megszólítás</strong> — a regisztrációnál megadott név, amit az appon
+    belüli köszönéshez használunk.</li>
+  <li><strong>Apple Health / Apple Watch adat</strong> — <em>kizárólag</em> a mozgással
+    elégetett energia (aktív energia), és csak akkor, ha ezt te magad bekapcsolod.</li>
+  <li><strong>Push-értesítési token</strong> — ha engedélyezed az értesítéseket, a
+    készülékedhez tartozó, az Expo által kiadott token, amivel értesítést tudunk küldeni.</li>
+  <li><strong>Előfizetés állapota</strong> — hogy Pro előfizető vagy-e, és meddig; ezt
+    az Apple-től és a RevenueCat-től kapjuk, a pszeudonim fiókazonosítódhoz kötve
+    (e-mail-címet nem adunk át nekik).</li>
+  <li><strong>Az AI-receptgenerálás bemenete</strong> (csak Pro) — a megadott hozzávalók,
+    kamratartalom, kalóriakeret, étrendi preferenciák és nem kedvelt hozzávalók, amelyekből
+    a modell receptet készít.</li>
+  <li><strong>Támogatási és moderációs levelezés</strong> — amit a support@freshplate.hu
+    címre írsz, illetve a bejelentéseid tartalma és a bejelentett tartalom.</li>
+  <li><strong>Várólista-feliratkozás a weboldalon</strong> (freshplate.hu) — ha kéred, hogy
+    értesítsünk az Android-verzió megjelenéséről: az e-mail-címed, a kért platform, a
+    feliratkozás időpontja és az, hogy a weboldal melyik részéről iratkoztál fel. Az
+    IP-címedet nem tároljuk.</li>
+</ul>
+
+<h2>1/a. Apple Health és Apple Watch</h2>
+<p>Ha összekötöd az appot az Apple Health-szel, a következők érvényesek:</p>
+<ul>
+  <li>Csak az <strong>aktív energia</strong> (elégetett kalória) értékét olvassuk be.
+    A teljes energiafelhasználást, a pulzust, a lépésszámot és minden más
+    egészségadatot nem kérünk el.</li>
+  <li>Az így beolvasott adat <strong>nem hagyja el a készüléket</strong>: nem küldjük
+    a szerverünkre, és nem tároljuk el. Kizárólag arra használjuk, hogy a napi
+    kalóriacélod a helyi számításban ehhez igazodjon.</li>
+  <li>Egészségadatot <strong>soha nem használunk hirdetési célra</strong>, és nem adjuk
+    át harmadik félnek.</li>
+  <li>Az appba semmit nem <em>írunk</em> az Apple Health-be.</li>
+  <li>A hozzáférést bármikor visszavonhatod az iOS <em>Egészség</em> appban
+    (Megosztás → Appok), vagy az appon belül a Profil fülön.</li>
+</ul>
+
+<h2>2. Miért kezeljük az adatokat, és milyen jogalapon</h2>
+<ul>
+  <li><strong>E-mail cím, megszólítás, fiókadatok</strong> — a fiókod kezeléséhez és a
+    bejelentkezéshez. Jogalap: <em>a veled kötött szerződés teljesítése</em>
+    (GDPR 6. cikk (1) b) pont).</li>
+  <li><strong>Várólista-e-mail-cím</strong> — kizárólag arra, hogy egyszer értesítsünk,
+    amikor a kért platformon (Android) megjelenik az app. Jogalap: <em>a hozzájárulásod</em>
+    (GDPR 6. cikk (1) a) pont; Grt. 6. §), amit a feliratkozáskor a jelölőnégyzettel adsz meg,
+    és bármikor visszavonhatsz a support@freshplate.hu címre írt levéllel — ekkor a címedet
+    töröljük. Hírlevelet vagy más reklámot erre a címre nem küldünk.</li>
+  <li><strong>Étrendi és allergiás preferenciák, testsúly, magasság, cél</strong> — hogy a
+    recepteket, a kalóriacélt és az étrendtervet hozzád igazítsuk. Ezek az adatok
+    <strong>egészségügyi adatnak, azaz különleges kategóriájú személyes adatnak</strong>
+    minősülhetnek, ezért kezelésük jogalapja
+    <strong>a te kifejezett hozzájárulásod</strong> (GDPR 9. cikk (2) a) pont).
+    A megadásuk önkéntes: az App ezek nélkül is használható, csak a személyre szabás
+    lesz pontatlanabb. A hozzájárulásodat bármikor visszavonhatod azzal, hogy az
+    Appban törlöd ezeket a beállításokat, vagy törlöd a fiókodat — a visszavonás nem
+    érinti a visszavonás előtti adatkezelés jogszerűségét.</li>
+  <li><strong>Eszközazonosító és használati adatok</strong> — az App fejlesztését szolgáló
+    összesített, névtelen statisztikához. Jogalap: <em>jogos érdekünk</em> az App
+    működésének mérésében és javításában (GDPR 6. cikk (1) f) pont).</li>
+  <li><strong>Apple Health adat</strong> — kizárólag a saját eszközödön, a napi
+    kalóriacélod pontosításához. Jogalap: <strong>a te kifejezett hozzájárulásod</strong>
+    (GDPR 9. cikk (2) a) pont), amelyet az iOS engedélykérésekor adsz meg, és bármikor
+    visszavonhatsz.</li>
+  <li><strong>Push-értesítések</strong> — emlékeztetők és a csoportod eseményei. Jogalap:
+    <em>hozzájárulás</em> (az iOS értesítési engedélye), amelyet a Beállításokban bármikor
+    visszavonhatsz (GDPR 6. cikk (1) a) pont).</li>
+  <li><strong>AI-receptgenerálás</strong> (Pro) — a kért receptek előállítása. Jogalap:
+    <em>a szerződés teljesítése</em> (GDPR 6. cikk (1) b) pont); az étrendi preferenciák
+    átadására a fenti kifejezett hozzájárulásod terjed ki. A modellhez e-mail-címet vagy
+    fiókazonosítót nem küldünk.</li>
+  <li><strong>Támogatás, panaszok, bejelentések</strong> — a megkeresésed megválaszolása és a
+    közösségi szabályzat érvényesítése. Jogalap: <em>a szerződés teljesítése</em> és <em>jogos
+    érdekünk</em> a biztonságos közösség fenntartásában (GDPR 6. cikk (1) b) és f) pont).</li>
+</ul>
+<p>Automatizált döntéshozatalt vagy profilalkotást, amelynek rád nézve joghatása lenne,
+nem végzünk. A receptajánlások személyre szabása nem tartozik ebbe a körbe.</p>
+
+<h2>3. Adatfeldolgozók, adattovábbítás és tárolás</h2>
+<p>Az adatokat saját háttérrendszerünkben tároljuk. A működéshez az alábbi szolgáltatókat
+vesszük igénybe; ők <strong>adatfeldolgozóként</strong>, a mi utasításunk szerint és
+adatfeldolgozói szerződés alapján kezelik az adatokat — kivéve ahol önálló adatkezelőként
+jelöljük őket:</p>
+<ul>
+  <li><strong>Render Services, Inc.</strong> (USA) — szerver- és PostgreSQL-adatbázis-hosting;
+    minden fiókhoz kötött adat itt tárolódik.</li>
+  <li><strong>Anthropic, PBC</strong> (USA) — a Pro <em>receptgenerálás</em> funkció AI-modellje.
+    Csak a receptkéréshez szükséges adatokat kapja (hozzávalók, kamratartalom, kalóriakeret,
+    étrendi preferenciák, nem kedvelt hozzávalók), e-mail-címet vagy fiókazonosítót nem;
+    az API-n keresztül kapott adatot nem használja modelltanításra.</li>
+  <li><strong>RevenueCat, Inc.</strong> (USA) — az előfizetés állapotának kezelése
+    (pszeudonim fiókazonosító, vásárlási státusz, Apple-tranzakció-azonosító).</li>
+  <li><strong>Resend, Inc.</strong> (USA) — tranzakciós e-mailek küldése: jelszó-visszaállító
+    kód a te címedre, moderációs értesítés nekünk (a bejelentő címe és a bejelentett tartalom).</li>
+  <li><strong>Expo (650 Industries, Inc.)</strong> (USA) — push-értesítések kézbesítése
+    (push-token; az értesítés tartalmát a kézbesítés után törli).</li>
+  <li><strong>Apple Inc. / Apple Distribution International Ltd.</strong> (USA / Írország) —
+    App Store, In-App vásárlás (<em>önálló adatkezelőként</em>, a saját adatvédelmi feltételei
+    szerint), „Bejelentkezés Apple-lel", push-kézbesítés (APNs).</li>
+  <li><strong>ImprovMX</strong> (USA; az EU-s ügyfelek adatait Franciaországban tárolja) és
+    <strong>Apple iCloud Mail</strong> — a support@freshplate.hu címre küldött leveleid
+    továbbítása és fogadása.</li>
+  <li><strong>GitHub, Inc.</strong> (USA) — a freshplate.hu weboldal (ezen tájékoztató)
+    kiszolgálása; a GitHub Pages szokásos szervernaplókat (IP-cím) kezel.</li>
+</ul>
+<p><strong>Harmadik országba továbbítás:</strong> a fenti USA-beli szolgáltatók az
+EU–USA adatvédelmi keret (Data Privacy Framework) tanúsításával, illetve az Európai
+Bizottság általános szerződési feltételeivel (SCC) biztosítják a GDPR szerinti védelmet.
+Az Apple Health-adat és a helyben számított értékek nem hagyják el a készülékedet.</p>
+<p>Az adatokat <strong>nem adjuk el</strong>, és <strong>nem használjuk hirdetési
+követésre</strong> (tracking), sem harmadik felek reklámcéljaira. Az appban nincs
+hirdetési vagy közösségimédia-SDK.</p>
+
+<h2>4. Adatmegőrzés</h2>
+<p>A fiókhoz kötött adatokat addig őrizzük, amíg a fiókod aktív. A fiók törlésekor
+a hozzá tartozó személyes adatokat töröljük. A jelszó-visszaállító kód 15 percig
+érvényes. A támogatási levelezést és a moderációs bejelentéseket a megkeresés
+lezárásától számított legfeljebb 1 évig, az anonim használati statisztikát összesített
+formában őrizzük. Jogszabályi kötelezettség (pl. számviteli megőrzés) esetén az érintett
+adatot a kötelezettség fennállásáig tartjuk meg.</p>
+<p>A várólista-e-mail-címet az értesítés kiküldése után legfeljebb 30 nappal, illetve a
+hozzájárulás visszavonásakor azonnal töröljük.</p>
+
+<h2>5. A te jogaid</h2>
+<p>Az appon belül bármikor <strong>törölheted a fiókodat</strong> és a hozzá tartozó
+adatokat. A közösségi felületen megosztott bejegyzéseidet egyenként is törölheted.
+Az Apple Health-hozzáférést bármikor visszavonhatod. Kérheted továbbá az adataidhoz
+való hozzáférést vagy azok helyesbítését az alábbi elérhetőségen.</p>
+
+<h2>6. Közösségi funkciók</h2>
+<p>Az appban létrehozhatsz felhasználónevet, és a Közösség fülön tartalmat
+oszthatsz meg (bejegyzések, hozzászólások, csoportok), amely más felhasználók
+számára látható. Ezt a tartalmat a szerverünkön tároljuk. A sértő tartalmat
+jelentheted, más felhasználókat letilthatsz; a bejelentéseket ellenőrizzük,
+és a szabályzatot sértő tartalmat 24 órán belül eltávolítjuk. A közzétett
+tartalmad a fiókod törlésekor törlődik.</p>
+
+<h2>7. Korhatár</h2>
+<p>Az App <strong>16 éven aluliak számára nem használható</strong>, és tudatosan nem
+gyűjtünk adatot 16 év alatti felhasználóktól. Az Appban megadható legalacsonyabb
+életkor 16 év. Ha tudomásunkra jut, hogy 16 év alatti felhasználó adatait kezeljük,
+azokat haladéktalanul töröljük — ilyet a lenti címen jelezhetsz.</p>
+
+<h2>8. Az adatkezelő és a kapcsolat</h2>
+<div class="box">
+<p><strong>Adatkezelő:</strong> Movement Lab Kft.<br>
+<strong>Székhely:</strong> 1038 Budapest, Dűne utca 12. 1. emelet 4.<br>
+<strong>Cégjegyzékszám:</strong> 01-09-352058<br>
+<strong>Adószám:</strong> 27286012-2-41<br>
+<strong>E-mail:</strong> <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+</div>
+<p>Adatvédelmi kérdésekben, illetve a hozzáférési, helyesbítési, törlési, korlátozási,
+adathordozhatósági és tiltakozási jogod gyakorlásához írj a fenti címre. A megkeresésedre
+legkésőbb egy hónapon belül válaszolunk.</p>
+<p>Ha úgy érzed, hogy az adatkezelésünk jogsértő, panasszal élhetsz a
+<strong>Nemzeti Adatvédelmi és Információszabadság Hatóságnál</strong>
+(NAIH, 1055 Budapest, Falk Miksa utca 9–11.,
+<a href="https://naih.hu">naih.hu</a>), illetve bírósághoz fordulhatsz.</p>
+<p>Lásd még a <a href="./terms.html">Felhasználási feltételeket</a>.</p>
+
+<hr class="lang-sep">
+
+<!-- ================= ENGLISH ================= -->
+<h1>FreshPlate — Privacy Policy</h1>
+<div class="updated">Last updated: 21 September 2026</div>
+
+<p>This Privacy Policy explains how the FreshPlate app ("the App") handles user data.
+Contact details are provided below.</p>
+
+<h2>1. Data we collect</h2>
+<ul>
+  <li><strong>Email address</strong> — to create your account and sign you in.</li>
+  <li><strong>Health-related data</strong> — the dietary and allergy preferences you
+    provide (e.g. vegetarian, gluten-free), used to tailor recipes to you.</li>
+  <li><strong>Profile settings</strong> — what you enter in the initial questionnaire: gender,
+    age, weight, height, target weight, goal (e.g. weight loss, muscle gain), activity level,
+    daily calorie target, disliked ingredients, obstacles, budget band, language. Besides your
+    device we also store these on our server so you do not have to start over on a new phone;
+    weight, height and goal qualify as health-related data.</li>
+  <li><strong>Device identifier</strong> — an app-generated anonymous identifier
+    (<code>device_id</code>) used to aggregate events.</li>
+  <li><strong>Usage data</strong> — in-app interactions (e.g. opening a recipe,
+    searching) for anonymous statistics.</li>
+  <li><strong>Display name</strong> — the name you provide at sign-up, used to greet
+    you inside the app.</li>
+  <li><strong>Apple Health / Apple Watch data</strong> — <em>only</em> active energy
+    burned, and only if you enable the connection yourself.</li>
+  <li><strong>Push notification token</strong> — if you allow notifications, the
+    device token issued by Expo that lets us deliver notifications to you.</li>
+  <li><strong>Subscription status</strong> — whether and until when you are a Pro
+    subscriber; received from Apple and RevenueCat, linked to your pseudonymous account ID
+    (we do not pass them your email address).</li>
+  <li><strong>AI recipe generation input</strong> (Pro only) — the ingredients, pantry
+    contents, calorie budget, dietary preferences and disliked ingredients you enter, from
+    which the model creates a recipe.</li>
+  <li><strong>Support and moderation correspondence</strong> — what you write to
+    support@freshplate.hu, and the content of your reports and the reported content.</li>
+</ul>
+
+<p><strong>Website waiting list</strong> (freshplate.hu) — if you ask us to notify you when the
+Android version launches: your email address, the requested platform, the time of sign-up and
+which part of the website you signed up from. We do not store your IP address.</p>
+
+<h2>1a. Apple Health and Apple Watch</h2>
+<p>If you connect the app to Apple Health, the following applies:</p>
+<ul>
+  <li>We read <strong>active energy burned only</strong>. We do not request total
+    energy, heart rate, step count or any other health data.</li>
+  <li>This data <strong>never leaves your device</strong>: we do not send it to our
+    server and we do not store it. It is used solely so that your daily calorie
+    goal is adjusted locally.</li>
+  <li>We <strong>never use health data for advertising</strong> and never share it
+    with third parties.</li>
+  <li>We do not <em>write</em> anything back to Apple Health.</li>
+  <li>You can revoke access at any time in the iOS <em>Health</em> app
+    (Sharing → Apps), or on the Profile tab inside the app.</li>
+</ul>
+
+<h2>2. Why we process it, and on what legal basis</h2>
+<ul>
+  <li><strong>Email, display name, account data</strong> — to manage your account and sign
+    you in. Legal basis: <em>performance of our contract with you</em> (GDPR Art. 6(1)(b)).</li>
+  <li><strong>Waiting-list email address</strong> — solely to notify you once when the app
+    launches on the platform you asked for (Android). Legal basis: <em>your consent</em>
+    (GDPR Art. 6(1)(a)), given via the checkbox at sign-up and withdrawable at any time by
+    emailing support@freshplate.hu, after which we delete the address. We do not send
+    newsletters or other advertising to it.</li>
+  <li><strong>Dietary and allergy preferences, weight, height, goal</strong> — to tailor
+    recipes, your calorie target and meal plans to you. This may qualify as <strong>health data, i.e. a special category of personal
+    data</strong>, so we process it on the basis of <strong>your explicit consent</strong>
+    (GDPR Art. 9(2)(a)). Providing it is optional: the App works without it, personalisation
+    is simply less accurate. You may withdraw consent at any time by clearing these settings
+    in the App or deleting your account; withdrawal does not affect the lawfulness of
+    processing before it.</li>
+  <li><strong>Device identifier and usage data</strong> — for aggregated, anonymous
+    statistics used to improve the App. Legal basis: our <em>legitimate interest</em> in
+    measuring and improving the App (GDPR Art. 6(1)(f)).</li>
+  <li><strong>Apple Health data</strong> — only on your own device, to refine your daily
+    calorie target. Legal basis: <strong>your explicit consent</strong> (GDPR Art. 9(2)(a)),
+    given at the iOS permission prompt and revocable at any time.</li>
+  <li><strong>Push notifications</strong> — reminders and your group's events. Legal basis:
+    <em>consent</em> (the iOS notification permission), revocable at any time in Settings
+    (GDPR Art. 6(1)(a)).</li>
+  <li><strong>AI recipe generation</strong> (Pro) — producing the recipes you request. Legal
+    basis: <em>performance of the contract</em> (GDPR Art. 6(1)(b)); the transfer of dietary
+    preferences is covered by your explicit consent above. No email address or account ID is
+    sent to the model.</li>
+  <li><strong>Support, complaints and reports</strong> — answering your request and enforcing
+    the community guidelines. Legal basis: <em>performance of the contract</em> and our
+    <em>legitimate interest</em> in keeping the community safe (GDPR Art. 6(1)(b) and (f)).</li>
+</ul>
+<p>We do not carry out automated decision-making or profiling that produces legal effects
+concerning you. Personalising recipe suggestions does not fall into that category.</p>
+
+<h2>3. Processors, transfers and storage</h2>
+<p>Data is stored in our own backend. We rely on the following providers; they act as
+<strong>data processors</strong> on our instructions under a data processing agreement,
+except where marked as an independent controller:</p>
+<ul>
+  <li><strong>Render Services, Inc.</strong> (USA) — server and PostgreSQL database hosting;
+    all account-linked data is stored here.</li>
+  <li><strong>Anthropic, PBC</strong> (USA) — the AI model behind the Pro <em>recipe
+    generation</em> feature. It receives only what the request needs (ingredients, pantry
+    contents, calorie budget, dietary preferences, disliked ingredients), never your email
+    address or account ID; data received via the API is not used to train models.</li>
+  <li><strong>RevenueCat, Inc.</strong> (USA) — subscription status management (pseudonymous
+    account ID, purchase status, Apple transaction identifier).</li>
+  <li><strong>Resend, Inc.</strong> (USA) — transactional email: the password-reset code sent
+    to you, and moderation alerts sent to us (reporter's address and the reported content).</li>
+  <li><strong>Expo (650 Industries, Inc.)</strong> (USA) — push notification delivery
+    (push token; the notification payload is deleted after delivery).</li>
+  <li><strong>Apple Inc. / Apple Distribution International Ltd.</strong> (USA / Ireland) —
+    App Store, in-app purchases (<em>as an independent controller</em> under its own privacy
+    terms), Sign in with Apple, push delivery (APNs).</li>
+  <li><strong>ImprovMX</strong> (USA; EU customer data stored in France) and
+    <strong>Apple iCloud Mail</strong> — forwarding and receiving the emails you send to
+    support@freshplate.hu.</li>
+  <li><strong>GitHub, Inc.</strong> (USA) — serves the freshplate.hu website (this policy);
+    GitHub Pages processes standard server logs (IP address).</li>
+</ul>
+<p><strong>International transfers:</strong> the US providers above safeguard your data under
+the EU–US Data Privacy Framework certification and/or the European Commission's Standard
+Contractual Clauses (SCCs). Apple Health data and locally computed values never leave your
+device.</p>
+<p>We do <strong>not sell</strong> your data and do <strong>not use it for advertising
+tracking</strong> or third-party advertising purposes. The App contains no advertising or
+social-media SDK.</p>
+
+<h2>4. Data retention</h2>
+<p>Account-linked data is retained while your account is active. When you delete your
+account, the associated personal data is deleted. Password-reset codes expire after
+15 minutes. Support correspondence and moderation reports are kept for at most 1 year after
+the case is closed; anonymous usage statistics are kept in aggregated form. Where a legal
+obligation applies (e.g. accounting retention), the affected data is kept for as long as
+that obligation lasts.</p>
+<p>Waiting-list email addresses are deleted no later than 30 days after the notification is
+sent, or immediately when consent is withdrawn.</p>
+
+<h2>5. Your rights</h2>
+<p>You can <strong>delete your account</strong> and its data at any time from within
+the App. You can also delete individual posts you shared in the community. Apple Health
+access can be revoked at any time. You may also request access to or correction of your
+data via the contact below.</p>
+
+<h2>6. Community features</h2>
+<p>You can create a username and share content in the Community tab (posts,
+comments, groups) that is visible to other users. This content is stored on
+our server. You can report objectionable content and block other users; we
+review reports and remove violating content within 24 hours. Your posted
+content is deleted when you delete your account.</p>
+
+<h2>7. Age limit</h2>
+<p>The App is <strong>not available to anyone under 16</strong>, and we do not knowingly
+collect data from users under 16. The lowest age you can enter in the App is 16. If we
+learn that we hold data of a user under 16, we delete it without delay — you can report
+this at the address below.</p>
+
+<h2>8. Controller and contact</h2>
+<div class="box">
+<p><strong>Controller:</strong> Movement Lab Kft.<br>
+<strong>Registered seat:</strong> 1038 Budapest, Dűne utca 12. 1. emelet 4., Hungary<br>
+<strong>Company registration number:</strong> 01-09-352058<br>
+<strong>VAT number:</strong> 27286012-2-41<br>
+<strong>Email:</strong> <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+</div>
+<p>Write to the address above with privacy questions or to exercise your rights of access,
+rectification, erasure, restriction, data portability and objection. We respond within one
+month at the latest.</p>
+<p>If you believe our processing is unlawful, you may lodge a complaint with the Hungarian
+Data Protection Authority (NAIH, 1055 Budapest, Falk Miksa utca 9–11.,
+<a href="https://naih.hu">naih.hu</a>) or go to court.</p>
+<p>See also our <a href="./terms.html">Terms of Use</a>.</p>
+
+<footer>© 2026 Movement Lab Kft. — FreshPlate</footer>
+</div>
+</body>
+</html>
