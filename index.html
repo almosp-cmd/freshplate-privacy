@@ -87,6 +87,17 @@
   .step p { color:var(--muted); }
   .pro-tag { display:inline-block; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--green-2); background:var(--leaf); border-radius:999px; padding:3px 9px; font-weight:700; }
 
+  /* Szokás és tippek: két nagy blokk, szöveg fent, telefon lent (magasabb színpad) */
+  .duo { display:grid; grid-template-columns:1fr; gap:26px; }
+  .feature { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:28px 26px 0; display:flex; flex-direction:column; gap:12px; overflow:hidden; }
+  .feature h3 { font-size:1.35rem; }
+  .feature p { color:var(--muted); max-width:34rem; }
+  .feature .stage { height:520px; }
+  .feature .stage .device { width:340px; }
+  .feature.dark { background:var(--green); border-color:var(--green); color:#fff; }
+  .feature.dark p, .feature.dark .eyebrow { color:rgba(255,255,255,.8); }
+  .feature.dark .stage::after { background:linear-gradient(to bottom, rgba(31,77,56,0), var(--green) 90%); }
+  .feature.dark .pro-tag { background:rgba(255,255,255,.14); color:#fff; }
   .grid-4 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
   .tile { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:18px; }
   .tile h3 { font-size:1rem; margin-bottom:6px; }
@@ -134,6 +145,7 @@
     .hero { padding:80px 0 40px; }
     .hero-grid { grid-template-columns:1.15fr .85fr; gap:40px; }
     .steps { grid-template-columns:repeat(3,1fr); }
+    .duo { grid-template-columns:1fr 1fr; }
     .grid-4 { grid-template-columns:repeat(4,1fr); }
     .plans { grid-template-columns:1fr 1fr; }
     footer .cols { grid-template-columns:1.2fr 1fr; }
@@ -151,6 +163,7 @@
     </a>
     <nav aria-label="Oldalon belül">
       <a href="#hogyan">Hogyan működik</a>
+      <a href="#szokasok">Szokások</a>
       <a href="#arak">Árak</a>
       <a href="#android">Android</a>
       <a href="privacy.html">Adatvédelem</a>
@@ -217,6 +230,30 @@
     </div>
   </section>
 
+  <section id="szokasok">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Szokás és tippek</div>
+        <h2 class="serif" style="margin-top:10px">Egy szokás, amit végig is csinálsz</h2>
+        <p>Nem tíz fogadalom januárban. Egyetlen fókusz, egy kiváltó pillanathoz kötve — és huszonegy nap, amíg beépül.</p>
+      </div>
+      <div class="duo">
+        <article class="feature">
+          <div class="eyebrow">Fókusz-szokás</div>
+          <h3 class="serif">A kezdőlap végig veled számol</h3>
+          <p>A nap receptje alatt ott a szokásod: napi bejelölés, sorozat, a 7. és a 21. napi mérföldkő. Ha kihagysz egy napot, nem nullázódik — csak folytatod. A főképernyős widgeten az app megnyitása nélkül is bejelölheted.</p>
+          <div class="stage"><img class="device" src="assets/phone-kezdolap.webp" alt="A FreshPlate kezdőlapja: a nap receptje és alatta a fókusz-szokás kártyája 11 napos sorozattal" width="675" height="1200" loading="lazy"></div>
+        </article>
+        <article class="feature dark">
+          <div class="eyebrow">Longevity-tippek <span class="pro-tag">Pro</span></div>
+          <h3 class="serif">Apró dolgok, amik években mérhetők</h3>
+          <p>Rövid, kutatásokon alapuló tippek a mindennapokra — étkezés utáni séta, napi lépésszám, haskörméret a mérleg helyett. Mindegyiknél ott a forrás, hogy utána tudj nézni, és egy koppintással fókusz-szokás lesz belőle. Nem orvosi tanács.</p>
+          <div class="stage"><img class="device" src="assets/phone-tippek.webp" alt="Longevity-tippek listája az appban, forrásmegjelöléssel és „Ez legyen a fókuszom” gombbal" width="675" height="1200" loading="lazy"></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section>
     <div class="wrap">
       <div class="sec-head">
@@ -227,7 +264,7 @@
         <div class="tile"><h3>Heti 30 növény</h3><p>Hét szín, harminc különböző növény hetente — a változatosságot méri, nem csak a kalóriát.</p></div>
         <div class="tile"><h3>Apple Health és Apple Watch</h3><p>Ha bekapcsolod, a napi kalóriacél az elégetett aktív energiához igazodik. Az adat nem hagyja el a telefonodat.</p></div>
         <div class="tile"><h3>Widgetek a főképernyőn</h3><p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül.</p></div>
-        <div class="tile"><h3>Tippek, amiknek ott a forrása</h3><p>Longevity-tippek szakirodalmi hivatkozással. Nem orvosi tanács — de nem is találgatás.</p></div>
+        <div class="tile"><h3>Heti kiértékelés</h3><p>Hétfőn egy oldalon: naplózott napok, átlagok, mit ettél a legtöbbször, hogyan alakult a súlyod.</p></div>
       </div>
     </div>
   </section>
