@@ -2,10 +2,11 @@
 <html lang="hu">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FreshPlate — Heti menü három lépésben</title>
 <meta name="description" content="Nem diéta. Heti menü három lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept, iPhone-ra, ingyenesen letölthető.">
 <link rel="canonical" href="https://freshplate.hu/">
+<meta name="theme-color" content="#FAF9F6">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FreshPlate">
 <meta property="og:title" content="FreshPlate — Heti menü három lépésben">
@@ -15,213 +16,160 @@
 <meta property="og:locale" content="hu_HU">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="apple-itunes-app" content="app-id=6793034579">
+<link rel="icon" href="assets/icon/favicon-48.png" type="image/png">
+<link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&display=swap" rel="stylesheet">
-<style>
-  :root {
-    --bg:#faf8f3; --paper:#ffffff; --ink:#1f2a24; --muted:#5c6b62; --line:#e2ddd2;
-    --green:#1f4d38; --green-2:#2f5741; --leaf:#e3eee6; --leaf-2:#cfe3d4; --terra:#b8654a;
-    --radius:18px;
-  }
-  * { box-sizing:border-box; }
-  html { scroll-behavior:smooth; }
-  body { margin:0; background:var(--bg); color:var(--ink);
-    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    line-height:1.55; -webkit-font-smoothing:antialiased; }
-  .serif { font-family:"Fraunces",Georgia,"Times New Roman",serif; font-weight:500; letter-spacing:-.01em; }
-  a { color:var(--green-2); }
-  .wrap { max-width:1080px; margin:0 auto; padding:0 20px; }
-  .eyebrow { font-size:.78rem; letter-spacing:.14em; text-transform:uppercase; color:var(--green-2); font-weight:600; }
-  h1,h2,h3 { margin:0; }
-  h1 { font-size:clamp(2rem,5.2vw,3.4rem); line-height:1.08; }
-  h2 { font-size:clamp(1.5rem,3.4vw,2.2rem); line-height:1.15; }
-  h3 { font-size:1.15rem; }
-  p { margin:0; }
-  .muted { color:var(--muted); }
-  .small { font-size:.85rem; }
-
-  /* Fejléc */
-  header { position:sticky; top:0; z-index:10; background:rgba(250,248,243,.92); backdrop-filter:saturate(1.3) blur(10px); border-bottom:1px solid var(--line); }
-  .nav { display:flex; align-items:center; justify-content:space-between; height:62px; gap:16px; }
-  .brand { display:flex; align-items:center; gap:10px; text-decoration:none; color:var(--ink); }
-  .brand .mark { width:30px; height:30px; border-radius:9px; background:var(--green); display:grid; place-items:center; }
-  .brand .mark svg { width:18px; height:18px; }
-  .brand .name { font-size:1.15rem; }
-  .nav nav { display:none; gap:22px; font-size:.95rem; }
-  .nav nav a { color:var(--muted); text-decoration:none; }
-  .nav nav a:hover { color:var(--ink); }
-  .btn { display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:12px 18px; border-radius:999px;
-    background:var(--green); color:#fff; text-decoration:none; font-weight:600; font-size:.95rem; border:0; cursor:pointer; white-space:nowrap; }
-  .btn:hover { background:var(--green-2); }
-  .btn.ghost { background:transparent; color:var(--green); border:1.5px solid var(--leaf-2); }
-  .btn.small { padding:9px 14px; font-size:.88rem; }
-
-  /* Hero */
-  .hero { padding:56px 0 24px; }
-  .hero-grid { display:grid; grid-template-columns:1fr; gap:36px; align-items:center; }
-  .hero .lead { font-size:1.15rem; color:var(--muted); max-width:34rem; margin-top:18px; }
-  .cta { display:flex; flex-wrap:wrap; align-items:center; gap:14px; margin-top:26px; }
-  .badge img { height:52px; display:block; }
-  .fine { font-size:.8rem; color:var(--muted); margin-top:12px; max-width:34rem; }
-  .facts { display:flex; flex-wrap:wrap; gap:10px 22px; margin-top:26px; font-size:.9rem; color:var(--muted); }
-  .facts b { color:var(--ink); font-weight:600; }
-
-  /* Készülék-képek: a Store-galéria valósághű keretével renderelve, árnyékkal, átlátszó háttéren
-     (marketing/store-galeria/landing-phones). A képernyő 1:1 a forrással → 230 px-ig retinán éles. */
-  .device { display:block; width:100%; height:auto; }
-  .hero-phone { width:min(100%, 360px); margin:0 auto; }
-  .phone-wrap { display:flex; justify-content:center; }
-
-  /* Szekciók */
-  section { padding:64px 0; }
-  section + section { border-top:1px solid var(--line); }
-  .sec-head { max-width:40rem; margin-bottom:34px; }
-  .sec-head p { margin-top:12px; color:var(--muted); font-size:1.05rem; }
-  .steps { display:grid; grid-template-columns:1fr; gap:26px; }
-  .step { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:26px 22px 0; display:flex; flex-direction:column; gap:14px; overflow:hidden; }
-  .stage { position:relative; height:430px; overflow:hidden; margin-top:auto; }
-  .stage .device { width:300px; margin:12px auto 0; }
-  .stage::after { content:""; position:absolute; left:0; right:0; bottom:0; height:90px; background:linear-gradient(to bottom, rgba(255,255,255,0), var(--paper) 90%); }
-  .step .num { width:34px; height:34px; border-radius:50%; background:var(--leaf); color:var(--green); display:grid; place-items:center; font-weight:700; }
-  .step p { color:var(--muted); }
-  .pro-tag { display:inline-block; font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--green-2); background:var(--leaf); border-radius:999px; padding:3px 9px; font-weight:700; }
-
-  /* Szokás és tippek: két nagy blokk, szöveg fent, telefon lent (magasabb színpad) */
-  .duo { display:grid; grid-template-columns:1fr; gap:26px; }
-  .feature { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:28px 26px 0; display:flex; flex-direction:column; gap:12px; overflow:hidden; }
-  .feature h3 { font-size:1.35rem; }
-  .feature p { color:var(--muted); max-width:34rem; }
-  .feature .stage { height:520px; }
-  .feature .stage .device { width:340px; }
-  .feature.dark { background:var(--green); border-color:var(--green); color:#fff; }
-  .feature.dark p, .feature.dark .eyebrow { color:rgba(255,255,255,.8); }
-  .feature.dark .stage::after { background:linear-gradient(to bottom, rgba(31,77,56,0), var(--green) 90%); }
-  .feature.dark .pro-tag { background:rgba(255,255,255,.14); color:#fff; }
-  .grid-4 { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
-  .tile { background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:18px; }
-  .tile h3 { font-size:1rem; margin-bottom:6px; }
-  .tile p { font-size:.92rem; color:var(--muted); }
-
-  /* Árak */
-  .plans { display:grid; grid-template-columns:1fr; gap:16px; }
-  .plan { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:26px 24px; }
-  .plan.pro { background:var(--green); color:#fff; border-color:var(--green); }
-  .plan.pro .muted, .plan.pro li { color:rgba(255,255,255,.82); }
-  .price { font-size:2rem; margin:8px 0 2px; }
-  .plan ul { list-style:none; padding:0; margin:18px 0 0; display:grid; gap:9px; }
-  .plan li { padding-left:24px; position:relative; color:var(--muted); }
-  .plan li::before { content:""; position:absolute; left:0; top:.55em; width:12px; height:7px; border-left:2px solid currentColor; border-bottom:2px solid currentColor; transform:rotate(-45deg); opacity:.85; }
-  .plan.pro li::before { color:#fff; }
-
-  /* Várólista */
-  .waitlist { background:var(--paper); border:1px solid var(--line); border-radius:var(--radius); padding:30px 24px; }
-  form { margin-top:18px; display:grid; gap:12px; max-width:34rem; }
-  .row { display:flex; flex-wrap:wrap; gap:10px; }
-  input[type=email] { flex:1 1 220px; min-width:0; padding:13px 14px; border:1.5px solid var(--line); border-radius:12px; font-size:1rem; background:#fff; color:var(--ink); }
-  input[type=email]:focus { outline:2px solid var(--leaf-2); border-color:var(--green-2); }
-  label.consent { display:flex; gap:10px; align-items:flex-start; font-size:.85rem; color:var(--muted); }
-  label.consent input { margin-top:3px; accent-color:var(--green); }
-  .msg { font-size:.92rem; min-height:1.4em; }
-  .msg.ok { color:var(--green-2); font-weight:600; }
-  .msg.err { color:var(--terra); }
-
-  /* GYIK */
-  details { border-top:1px solid var(--line); padding:14px 0; }
-  details:last-of-type { border-bottom:1px solid var(--line); }
-  summary { cursor:pointer; font-weight:600; list-style:none; display:flex; justify-content:space-between; align-items:center; gap:12px; }
-  summary::-webkit-details-marker { display:none; }
-  summary::after { content:"+"; color:var(--green-2); font-size:1.3rem; line-height:1; }
-  details[open] summary::after { content:"–"; }
-  details p { margin-top:10px; color:var(--muted); }
-
-  footer { padding:44px 0 60px; border-top:1px solid var(--line); color:var(--muted); font-size:.85rem; }
-  footer .cols { display:grid; grid-template-columns:1fr; gap:22px; }
-  footer a { color:var(--muted); }
-  footer nav { display:flex; flex-wrap:wrap; gap:14px 20px; }
-
-  @media (min-width:720px) {
-    .nav nav { display:flex; }
-    .hero { padding:80px 0 40px; }
-    .hero-grid { grid-template-columns:1.15fr .85fr; gap:40px; }
-    .steps { grid-template-columns:repeat(3,1fr); }
-    .duo { grid-template-columns:1fr 1fr; }
-    .grid-4 { grid-template-columns:repeat(4,1fr); }
-    .plans { grid-template-columns:1fr 1fr; }
-    footer .cols { grid-template-columns:1.2fr 1fr; }
-  }
-  @media (prefers-reduced-motion:no-preference) { .step { transition:transform .25s ease; } .step:hover { transform:translateY(-3px); } }
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Instrument+Sans:ital,wdth,wght@0,85..100,400..700;1,85..100,400..700&display=swap">
+<link rel="stylesheet" href="assets/site.css?v=2">
+<link rel="preload" href="assets/demo/het.json" as="fetch" crossorigin>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "MobileApplication",
+  "name": "FreshPlate",
+  "operatingSystem": "iOS",
+  "applicationCategory": "HealthApplication",
+  "inLanguage": ["hu", "en"],
+  "description": "Heti menü három lépésben, bevásárlólistával, 21 napos szokásépítéssel és csoportokkal. 1300 egészséges recept.",
+  "url": "https://freshplate.hu/",
+  "downloadUrl": "https://apps.apple.com/hu/app/id6793034579",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "HUF" },
+  "publisher": { "@type": "Organization", "name": "Movement Lab Kft.", "email": "support@freshplate.hu" }
+}
+</script>
 </head>
 <body>
 
-<header>
-  <div class="wrap nav">
-    <a class="brand" href="/" aria-label="FreshPlate">
-      <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14c0-4.4 3.6-8 8-8s8 3.6 8 8"/><path d="M2 18h20"/><path d="M12 6V3"/></svg></span>
-      <span class="name serif">FreshPlate</span>
+<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
+
+<header class="hd" id="hd">
+  <div class="wrap hd-in">
+    <a class="brand" href="/" aria-label="FreshPlate – kezdőlap">
+      <img src="assets/icon/icon-96.png" width="36" height="36" alt="">
+      <span>FreshPlate</span>
     </a>
-    <nav aria-label="Oldalon belül">
+    <nav class="hd-nav" aria-label="Fő navigáció">
       <a href="#hogyan">Hogyan működik</a>
       <a href="#szokasok">Szokások</a>
+      <a href="#csapat">Csapat</a>
       <a href="#arak">Árak</a>
-      <a href="#android">Android</a>
-      <a href="privacy.html">Adatvédelem</a>
-      <a href="support.html">Támogatás</a>
+      <a href="#gyik">GYIK</a>
+      <span class="hd-sep" aria-hidden="true"></span>
+      <a class="quiet" href="support.html">Támogatás</a>
+      <a class="quiet" href="privacy.html">Adatvédelem</a>
     </nav>
-    <a class="btn small js-store" data-ct="land_nav" href="https://apps.apple.com/hu/app/id6793034579">Letöltés</a>
+    <div class="hd-right">
+      <a class="btn btn-ink btn-sm js-store" data-ct="land_nav" href="https://apps.apple.com/hu/app/id6793034579">Letöltés</a>
+      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menü megnyitása"><i></i><i></i></button>
+    </div>
+  </div>
+  <div class="menu" id="menu" hidden>
+    <nav aria-label="Mobil navigáció">
+      <a href="#hogyan" style="--i:0">Hogyan működik</a>
+      <a href="#lista" style="--i:1">Bevásárlólista</a>
+      <a href="#szokasok" style="--i:2">Szokások</a>
+      <a href="#csapat" style="--i:3">Csapat</a>
+      <a href="#arak" style="--i:4">Árak</a>
+      <a href="#gyik" style="--i:5">Gyakori kérdések</a>
+      <a href="#android" style="--i:6">Android</a>
+    </nav>
+    <div class="menu-foot">
+      <a class="badge js-store" data-ct="land_menu" href="https://apps.apple.com/hu/app/id6793034579" aria-label="Letöltés az App Store-ból">
+        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="150" height="50">
+      </a>
+      <p><a href="support.html">Támogatás</a> · <a href="privacy.html">Adatvédelem</a> · <a href="terms.html">Feltételek</a></p>
+    </div>
   </div>
 </header>
 
-<main>
+<main id="tartalom">
+
+  <!-- ================= HERO ================= -->
   <section class="hero">
     <div class="wrap hero-grid">
-      <div>
-        <div class="eyebrow">iPhone-ra · ingyenesen letölthető</div>
-        <h1 class="serif" style="margin-top:14px">Nem diéta.<br>Heti menü három lépésben.</h1>
+      <div class="hero-copy">
+        <p class="eyebrow hero-eye"><span class="sprout" aria-hidden="true"></span><span><b>iPhone-ra</b> · ingyenesen letölthető</span></p>
+        <h1 class="display">
+          <span class="ln"><span class="w" style="--i:0">Nem</span> <span class="w" style="--i:1">diéta.</span></span>
+          <span class="ln"><span class="w" style="--i:2">Heti</span> <span class="w" style="--i:3">menü</span></span>
+          <span class="ln em"><span class="w" style="--i:4">három</span> <span class="w" style="--i:5">lépésben.</span><svg class="swash" viewBox="0 0 420 34" preserveAspectRatio="none" aria-hidden="true"><path d="M4 24 C 70 10, 150 8, 236 15 S 360 26, 416 9"/></svg></span>
+        </h1>
         <p class="lead">Bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
         <div class="cta">
           <a class="badge js-store" data-ct="land_hero" href="https://apps.apple.com/hu/app/id6793034579" aria-label="Letöltés az App Store-ból">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="157" height="52">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="165" height="55">
           </a>
-          <a class="btn ghost" href="#hogyan">Hogyan működik?</a>
+          <a class="btn btn-ghost" href="#hogyan">Hogyan működik?</a>
         </div>
         <p class="fine">Az alapverzió ingyenes. A FreshPlate Pro 7 napig ingyen kipróbálható, utána 1 990 Ft/hó vagy 12 990 Ft/év, bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
-        <div class="facts">
-          <span><b>1300</b> recept</span>
-          <span><b>0</b> reklám</span>
-          <span><b>7 nap</b> ingyen Pro</span>
-          <span><b>Magyar</b> és angol</span>
-        </div>
+        <ul class="facts">
+          <li><b>1300</b><span>recept</span></li>
+          <li><b>0</b><span>reklám</span></li>
+          <li><b>7 nap</b><span>ingyen Pro</span></li>
+          <li><b>HU · EN</b><span>magyar és angol</span></li>
+        </ul>
       </div>
-      <div class="phone-wrap">
-        <img class="device hero-phone" src="assets/phone-hero.webp" alt="A FreshPlate Naptár füle iPhone-on: 7 napos heti terv, bevásárlólista 140 tétellel, heti növényfogyasztás" width="675" height="1200" loading="eager" fetchpriority="high">
+
+      <div class="board-wrap">
+        <div class="board" id="board">
+          <div class="bd-top">
+            <span class="bd-tag"><i aria-hidden="true"></i>Minta-hét</span>
+            <button class="bd-shuffle" id="bd-shuffle" type="button">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="M4 4l5 5"/></svg>
+              Keverd újra
+            </button>
+          </div>
+          <h2 class="bd-title">A heted, <em>összerakva.</em></h2>
+          <div class="bd-filters" role="group" aria-label="Szűrés étrend szerint">
+            <button type="button" data-f="" aria-pressed="true">Mind</button>
+            <button type="button" data-f="g" aria-pressed="false">Gluténmentes</button>
+            <button type="button" data-f="l" aria-pressed="false">Laktózmentes</button>
+            <button type="button" data-f="v" aria-pressed="false">Vegán</button>
+          </div>
+          <div class="bd-days" id="bd-days" role="tablist" aria-label="A hét napjai"></div>
+          <ol class="bd-meals" id="bd-meals" aria-live="polite">
+            <li class="meal sk"></li><li class="meal sk"></li><li class="meal sk"></li><li class="meal sk"></li><li class="meal sk"></li>
+          </ol>
+          <div class="bd-foot">
+            <div class="bd-total">
+              <span class="bd-lbl">Napi összesen</span>
+              <span class="bd-sum"><b id="bd-sum">—</b> <small>/ <span id="bd-target">1 900</span> kcal cél</small></span>
+              <span class="bd-bar" aria-hidden="true"><i id="bd-bar"></i></span>
+            </div>
+            <a class="bd-list" href="#lista"><span>Bevásárlólista</span><b><span id="bd-items">—</span> tétel</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          </div>
+        </div>
+        <p class="board-note">Valódi receptek az appból, 1 900 kcal-os napi célra összerakva. Az appban a heti terv a saját célodhoz, ízlésedhez és allergiáidhoz igazodik.</p>
       </div>
     </div>
   </section>
 
-  <section id="hogyan">
+  <div class="marquee-clip" aria-hidden="true"><div class="marquee"><div class="marquee-track" id="marquee"></div></div></div>
+
+  <!-- ================= 01 HOGYAN MŰKÖDIK ================= -->
+  <section class="sec" id="hogyan">
     <div class="wrap">
       <div class="sec-head">
-        <div class="eyebrow">Hogyan működik</div>
-        <h2 class="serif" style="margin-top:10px">Vasárnap este már tudod, mit eszel egész héten</h2>
-        <p>Három kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
+        <p class="eyebrow rv"><b>01</b> / Hogyan működik</p>
+        <h2 class="h2 rv">Vasárnap este<br><em>már tudod,</em> mit eszel egész héten.</h2>
+        <p class="sec-intro rv">Három kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
       </div>
       <div class="steps">
-        <article class="step">
-          <div class="num">1</div>
+        <article class="step rv" style="--d:0">
+          <span class="step-n">Lépés 01</span>
           <h3>Heti terv három lépésben <span class="pro-tag">Pro</span></h3>
           <p>Napok → étkezések → szűrők. A varázsló a saját ízlésedből, allergiáidból és kalóriacélodból rak össze egy hetet — reggelitől vacsoráig, tízóraival és uzsonnával.</p>
           <div class="stage"><img class="device" src="assets/phone-terv.webp" alt="A heti terv varázsló 2. lépése: mely étkezések kellenek – reggeli, tízórai, ebéd, uzsonna, vacsora" width="675" height="1200" loading="lazy"></div>
         </article>
-        <article class="step">
-          <div class="num">2</div>
+        <article class="step rv" style="--d:1">
+          <span class="step-n">Lépés 02</span>
           <h3>Bevásárlólista, ami magától összeáll <span class="pro-tag">Pro</span></h3>
           <p>A hét minden hozzávalója egy listán, polcok szerint rendezve. A boltban csak pipálsz — fejben nem kell tartanod semmit.</p>
           <div class="stage"><img class="device" src="assets/phone-lista.webp" alt="Bevásárlólista polcok szerint, bolti móddal és napi szűrővel" width="675" height="1200" loading="lazy"></div>
         </article>
-        <article class="step">
-          <div class="num">3</div>
+        <article class="step rv" style="--d:2">
+          <span class="step-n">Lépés 03</span>
           <h3>21 nap — egyedül vagy a csapatoddal</h3>
           <p>Egyszerre egy szokás épül. Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p>
           <div class="stage"><img class="device" src="assets/phone-kozosseg.webp" alt="Közösség fül: havi kihívás, napos sorozat, naplózott napok és a nap kérdése" width="675" height="1200" loading="lazy"></div>
@@ -230,91 +178,262 @@
     </div>
   </section>
 
-  <section id="szokasok">
+  <!-- ================= 02 BEVÁSÁRLÓLISTA ================= -->
+  <section class="sec" id="lista">
+    <div class="wrap list-grid">
+      <div class="list-copy">
+        <p class="eyebrow rv"><b>02</b> / Bevásárlólista</p>
+        <h2 class="h2 rv">Egy lista.<br><em>Polcok szerint.</em></h2>
+        <p class="sec-intro rv">A heti terv minden hozzávalója egy listán, összeadva és a bolt bejárási sorrendjében: a zöldségestől a fűszerpolcig egyszer mész végig. A só, az olaj és a fűszerek összecsukva várnak, mert azok otthon is megvannak.</p>
+        <ul class="list-stats rv">
+          <li><b id="ls-items">—</b><span>tétel a héten</span></li>
+          <li><b id="ls-aisles">—</b><span>polc, bolti sorrendben</span></li>
+          <li><b id="ls-meals">35</b><span>étkezés mögötte</span></li>
+        </ul>
+        <p class="list-hint rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Ez a fenti minta-hét listája. Pipáld ki, ami már a kosárban van.</p>
+      </div>
+      <div class="receipt-wrap rv" style="--d:1">
+        <div class="receipt" id="receipt">
+          <div class="rc-head">
+            <img src="assets/icon/icon-96.png" width="30" height="30" alt="">
+            <b>FreshPlate</b>
+            <span>Bevásárlólista</span>
+            <span class="rc-sub" id="rc-sub">7 nap · 35 étkezés</span>
+          </div>
+          <div class="rc-prog"><span id="rc-count">0 / — a kosárban</span><span class="rc-bar" aria-hidden="true"><i id="rc-bar"></i></span></div>
+          <div class="rc-body" id="rc-body" tabindex="0" aria-label="A minta-hét bevásárlólistája"></div>
+          <div class="rc-pantry" id="rc-pantry"></div>
+          <div class="rc-foot">
+            <span>Jó étvágyat a héthez!</span>
+            <i class="barcode" aria-hidden="true"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 03 SZOKÁS ÉS TIPPEK ================= -->
+  <section class="sec" id="szokasok">
     <div class="wrap">
       <div class="sec-head">
-        <div class="eyebrow">Szokás és tippek</div>
-        <h2 class="serif" style="margin-top:10px">Egy szokás, amit végig is csinálsz</h2>
-        <p>Nem tíz fogadalom januárban. Egyetlen fókusz, egy kiváltó pillanathoz kötve — és huszonegy nap, amíg beépül.</p>
+        <p class="eyebrow rv"><b>03</b> / Szokás és tippek</p>
+        <h2 class="h2 rv">Egy szokás.<br><em>Huszonegy nap.</em></h2>
+        <p class="sec-intro rv">Nem tíz fogadalom januárban. Egyetlen fókusz, egy kiváltó pillanathoz kötve — és huszonegy nap, amíg beépül.</p>
       </div>
-      <div class="duo">
-        <article class="feature">
-          <div class="eyebrow">Fókusz-szokás</div>
-          <h3 class="serif">Egyszerre egy szokás épül</h3>
-          <p>Egy fókusz-szokás, egy kiváltó pillanathoz kötve („ebéd után"). Napi bejelölés, sorozat, a 7. és a 21. napi mérföldkő, alatta az utolsó 21 nap naptára. Ha kihagysz egy napot, nem nullázódik — csak folytatod. A kezdőlapon és a főképernyős widgeten is ott van.</p>
-          <div class="stage"><img class="device" src="assets/phone-szokas.webp" alt="Szokásaid: fókusz-szokás 11 napos sorozattal, 11/21 nap beépülés, napi bejelölés és az utolsó 21 nap naptára" width="675" height="1200" loading="lazy"></div>
-        </article>
-        <article class="feature dark">
-          <div class="eyebrow">Longevity-tippek <span class="pro-tag">Pro</span></div>
-          <h3 class="serif">Apró dolgok, amik években mérhetők</h3>
+
+      <div class="habit-grid">
+        <!-- Az app „Szokásaid” lapja (HabitsModal.js), ugyanazokkal a szövegekkel és szabályokkal. -->
+        <div class="habit-demo rv" id="habit">
+          <div class="app fc">
+            <div class="fc-top">
+              <div class="fc-head">
+                <p class="fc-eyebrow">FÓKUSZ-SZOKÁS</p>
+                <p class="fc-title">Étkezés után sétálj</p>
+                <p class="fc-anchor">Kiváltó pillanat: ebéd után</p>
+              </div>
+              <div class="fc-streak"><b id="hb-streak">11</b><small>NAPOS SOROZAT</small></div>
+            </div>
+            <div class="fc-barhead"><span>Beépülés</span><b id="hb-days">11 / 21 nap</b></div>
+            <span class="fc-track" aria-hidden="true"><i id="hb-fill"></i></span>
+            <p class="fc-milestone" id="hb-ms">7. napi mérföldkő teljesítve</p>
+            <div class="fc-actions">
+              <button class="fc-cta" id="hb-do" type="button">Mai bejelölés</button>
+              <span class="fc-more" aria-hidden="true">···</span>
+            </div>
+          </div>
+          <div class="app cal">
+            <div class="cal-head"><span class="cal-title">Utolsó 21 nap</span><span class="cal-meta" id="hb-count">11 bejelölés</span></div>
+            <div class="cal-panel">
+              <div class="cal-dow" aria-hidden="true"><span>H</span><span>K</span><span>Sze</span><span>Cs</span><span>P</span><span>Szo</span><span>V</span></div>
+              <div class="cal-grid" id="hb-grid" aria-hidden="true"></div>
+              <div class="cal-legend" aria-hidden="true"><span><i class="c-done"></i>Kész</span><span><i class="c-miss"></i>Kihagyott</span><span><i class="c-fut"></i>Hátralévő</span></div>
+            </div>
+          </div>
+          <div class="demo-ctl">
+            <span class="demo-k">Próbáld ki</span>
+            <button class="btn btn-ghost btn-sm" id="hb-next" type="button">Következő nap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+            <p class="demo-msg" id="hb-msg" aria-live="polite">Jelöld be a mai napot, vagy lépj tovább bejelölés nélkül — és nézd meg, mi történik a sorozattal.</p>
+          </div>
+        </div>
+        <div class="habit-copy">
+          <h3 class="h3 rv">Egyszerre egy szokás épül</h3>
+          <p class="rv">Egy fókusz-szokás, egy kiváltó pillanathoz kötve („ebéd után”). Napi bejelölés, sorozat, a 7. és a 21. napi mérföldkő, alatta az utolsó 21 nap naptára. Hetente egy kihagyott nap belefér: a sorozat nem nullázódik, csak folytatod. A kezdőlapon és a főképernyős widgeten is ott van.</p>
+          <div class="habit-phone rv" style="--d:1"><img class="device" src="assets/phone-kezdolap.webp" alt="A FreshPlate kezdőlapja: a nap receptje, alatta „A szokásod” kártya – Étkezés után sétálj, 11 napos sorozat" width="675" height="1200" loading="lazy"></div>
+        </div>
+      </div>
+
+      <div class="tips rv">
+        <div class="tips-copy">
+          <p class="eyebrow on-dark">Longevity-tippek <span class="pro-tag">Pro</span></p>
+          <h3 class="h2 small">Apró dolgok, amik <em>években</em> mérhetők.</h3>
           <p>Rövid, kutatásokon alapuló tippek a mindennapokra — étkezés utáni séta, napi lépésszám, haskörméret a mérleg helyett. Mindegyiknél ott a forrás, hogy utána tudj nézni, és egy koppintással fókusz-szokás lesz belőle. Nem orvosi tanács.</p>
-          <div class="stage"><img class="device" src="assets/phone-tippek.webp" alt="Longevity-tippek listája az appban, forrásmegjelöléssel és „Ez legyen a fókuszom” gombbal" width="675" height="1200" loading="lazy"></div>
+        </div>
+        <div class="tips-phone"><img class="device" src="assets/phone-tippek.webp" alt="Longevity-tippek listája az appban, forrásmegjelöléssel és „Ez legyen a fókuszom” gombbal" width="675" height="1200" loading="lazy"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 04 CSAPAT ================= -->
+  <section class="sec" id="csapat">
+    <div class="wrap team-grid">
+      <div class="team-copy">
+        <p class="eyebrow rv"><b>04</b> / Csapat</p>
+        <h2 class="h2 rv">Nem hagy kiszállni<br><em>a negyedik napon.</em></h2>
+        <p class="sec-intro rv">Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal. Közös napi szokás, közös huszonegy nap: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p>
+        <ul class="team-points rv">
+          <li><b>Kettő elég.</b> A közös nap akkor van meg, ha legalább két tag bejelöli — egy beteg tag nem töri meg a csoport sorozatát.</li>
+          <li><b>Biztatás, nem figyelmeztetés.</b> Akinek ma még nincs meg, annak egy koppintással küldhetsz egy „Hajrá!”-t.</li>
+          <li><b>Huszonegy közös nap</b> után a szokás beépült. Utána tarthatjátok tovább, vagy választhattok újat.</li>
+          <li><b>Csapatcél</b> a hétre: nem egymás ellen versenyeztek, hanem együtt haladtok.</li>
+        </ul>
+      </div>
+
+      <!-- Az app csoport-képernyőjének közös szokás kártyája (GroupHabitCard.js), ugyanazokkal a szövegekkel és szabályokkal. -->
+      <div class="team-demo rv" style="--d:1">
+        <p class="app gh-sec">A CSOPORT KÖZÖS SZOKÁSA</p>
+        <div class="app gh" id="team">
+          <p class="gh-eyebrow">MINDENNAP, EGYÜTT</p>
+          <div class="gh-habit">
+            <span class="gh-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7 V12 L15.5 14.5"/></svg></span>
+            <div>
+              <p class="gh-title">Étkezés után sétálj</p>
+              <p class="gh-lead">A vércukor legegyszerűbb természetes szabályozója: 10 perc séta.</p>
+              <p class="gh-setby">Beállította: Anna</p>
+            </div>
+          </div>
+          <div class="gh-today" aria-live="polite">
+            <span class="gh-big"><b id="tm-n">2</b><small id="tm-tot">/4</small></span>
+            <div>
+              <p class="gh-line" id="tm-state">Megvan a mai közös nap</p>
+              <p class="gh-hint" id="tm-names">Ma már megvan: Anna, Kata</p>
+            </div>
+          </div>
+          <button class="gh-btn" id="tm-me" type="button" aria-pressed="false">Ma megcsináltam</button>
+          <p class="gh-undo" id="tm-undo" hidden>Koppints újra, ha mégsem.</p>
+          <div class="gh-build">
+            <div class="gh-build-row">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22 a6 6 0 0 0 6 -6 c0 -5 -4 -7 -5 -10 c-2 2 -3 4 -3 6 c-1 -0.8 -1.5 -1.8 -1.5 -3 c-2 1.5 -3.5 4 -3.5 7 a6 6 0 0 0 6 6 Z"/></svg>
+              <span class="gh-build-label">KÖZÖS ÉPÍTÉS</span>
+              <b>9 / 21 nap</b>
+            </div>
+            <span class="gh-bar" aria-hidden="true"><i style="width:43%"></i></span>
+            <p class="gh-build-hint">21 egymást követő közös nap után beépült a szokás. Még 12 nap.</p>
+          </div>
+          <p class="gh-need">A közös nap akkor van meg, ha legalább 2 tag bejelöli – így egy kihagyott nap nem visz mindenkit magával.</p>
+          <p class="gh-board">AZ ELMÚLT 7 NAP</p>
+          <ul class="gh-members" id="tm-members"></ul>
+          <div class="gh-foot" aria-hidden="true">
+            <span class="gh-why">Miért működik? <i>PRO</i></span>
+            <span class="gh-change">Másik szokás</span>
+          </div>
+        </div>
+        <div class="toast" id="tm-toast" role="status" aria-live="polite"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= 05 AMIT MÉG TUD ================= -->
+  <section class="sec" id="tobb">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow rv"><b>05</b> / Amit még tud</p>
+        <h2 class="h2 rv">Nem csak azt nézi,<br><em>mennyit eszel.</em></h2>
+      </div>
+      <div class="more">
+        <article class="mo rv" style="--d:0">
+          <div class="mo-vis" aria-hidden="true"><svg class="plants" id="plants" viewBox="0 0 120 120"></svg><b class="mo-center">19<small>/30</small></b></div>
+          <h3>Heti 30 növény</h3>
+          <p>Hét szín, harminc különböző növény hetente — a változatosságot méri, nem csak a kalóriát.</p>
+        </article>
+        <article class="mo rv" style="--d:1">
+          <div class="mo-vis" aria-hidden="true">
+            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="trk"/><circle cx="60" cy="60" r="52" class="arc terra" stroke-dasharray="326.7" stroke-dashoffset="91.5"/><circle cx="60" cy="60" r="40" class="trk"/><circle cx="60" cy="60" r="40" class="arc green" stroke-dasharray="251.3" stroke-dashoffset="113.1"/></svg>
+            <b class="mo-center sm">+320<small>aktív kcal</small></b>
+          </div>
+          <h3>Apple Health és Apple Watch</h3>
+          <p>Ha bekapcsolod, a napi kalóriacél az elégetett aktív energiához igazodik. Az adat nem hagyja el a telefonodat.</p>
+        </article>
+        <article class="mo rv" style="--d:2">
+          <div class="mo-vis widgets" aria-hidden="true">
+            <span class="wg wg-a"><i class="wg-ring"></i><b>11/21</b><small>szokás</small></span>
+            <span class="wg wg-b"><small>Ma</small><b>3/5</b><small>étkezés</small><i class="wg-dots"><u></u><u></u><u></u><u class="o"></u><u class="o"></u></i></span>
+          </div>
+          <h3>Widgetek a főképernyőn</h3>
+          <p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül.</p>
+        </article>
+        <article class="mo rv" style="--d:3">
+          <div class="mo-vis bars" aria-hidden="true">
+            <span style="--h:.62"><i></i>H</span><span style="--h:.8"><i></i>K</span><span style="--h:.45"><i></i>Sz</span><span style="--h:.9"><i></i>Cs</span><span style="--h:.7"><i></i>P</span><span style="--h:.3" class="o"><i></i>Sz</span><span style="--h:.55"><i></i>V</span>
+          </div>
+          <h3>Heti kiértékelés</h3>
+          <p>Hétfőn egy oldalon: naplózott napok, átlagok, mit ettél a legtöbbször, hogyan alakult a súlyod.</p>
         </article>
       </div>
     </div>
   </section>
 
-  <section>
+  <!-- ================= 06 ÁRAK ================= -->
+  <section class="sec" id="arak">
     <div class="wrap">
       <div class="sec-head">
-        <div class="eyebrow">Amit még tud</div>
-        <h2 class="serif" style="margin-top:10px">Nem csak azt nézi, mennyit eszel</h2>
-      </div>
-      <div class="grid-4">
-        <div class="tile"><h3>Heti 30 növény</h3><p>Hét szín, harminc különböző növény hetente — a változatosságot méri, nem csak a kalóriát.</p></div>
-        <div class="tile"><h3>Apple Health és Apple Watch</h3><p>Ha bekapcsolod, a napi kalóriacél az elégetett aktív energiához igazodik. Az adat nem hagyja el a telefonodat.</p></div>
-        <div class="tile"><h3>Widgetek a főképernyőn</h3><p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül.</p></div>
-        <div class="tile"><h3>Heti kiértékelés</h3><p>Hétfőn egy oldalon: naplózott napok, átlagok, mit ettél a legtöbbször, hogyan alakult a súlyod.</p></div>
-      </div>
-    </div>
-  </section>
-
-  <section id="arak">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow">Árak</div>
-        <h2 class="serif" style="margin-top:10px">Ingyenes alapverzió, Pro annak, aki minden nap használja</h2>
+        <p class="eyebrow rv"><b>06</b> / Árak</p>
+        <h2 class="h2 rv">Ingyenes alap.<br><em>Pro</em> minden napra.</h2>
+        <p class="sec-intro rv">Letöltés után minden alapfunkció azonnal a tiéd, reklám nélkül. A heti tervet és a bevásárlólistát 7 napig ingyen kipróbálhatod.</p>
       </div>
       <div class="plans">
-        <div class="plan">
-          <div class="eyebrow">Ingyenes</div>
-          <div class="price serif">0 Ft</div>
-          <p class="muted">Letöltés után azonnal.</p>
-          <ul>
+        <div class="plan free rv" style="--d:0">
+          <p class="plan-k">Ingyenes</p>
+          <div class="price"><b>0 Ft</b></div>
+          <p class="plan-sub">Letöltés után azonnal.</p>
+          <ul class="checks">
             <li>Receptböngészés és keresés</li>
             <li>Napi naplózás, heti haladás</li>
             <li>Szokások, 21 napos építés</li>
             <li>Csoportok, csapatcél, biztatás</li>
             <li>Widgetek, Apple Health</li>
           </ul>
+          <a class="btn btn-ghost js-store" data-ct="land_free" href="https://apps.apple.com/hu/app/id6793034579">Letöltés ingyen</a>
         </div>
-        <div class="plan pro">
-          <div class="eyebrow" style="color:#cfe3d4">FreshPlate Pro</div>
-          <div class="price serif">1 990 Ft<span style="font-size:1rem;font-weight:400;opacity:.8"> / hó</span></div>
-          <p class="muted">vagy 12 990 Ft / év · az első 7 nap ingyen</p>
-          <ul>
+        <div class="plan pro rv" style="--d:1">
+          <div class="pro-top">
+            <p class="plan-k">FreshPlate <span class="gold">Pro</span></p>
+            <span class="trial">Az első 7 nap ingyen</span>
+          </div>
+          <div class="seg" role="radiogroup" aria-label="Számlázási időszak">
+            <button type="button" role="radio" aria-checked="true" data-plan="ho">Havi</button>
+            <button type="button" role="radio" aria-checked="false" data-plan="ev">Éves</button>
+            <i aria-hidden="true"></i>
+          </div>
+          <div class="price"><b id="pr-amt">1 990 Ft</b><span id="pr-per">/ hó</span></div>
+          <p class="plan-sub" id="pr-note">vagy 12 990 Ft / év · az első 7 nap ingyen</p>
+          <ul class="checks">
             <li>Heti terv varázsló, 3 lépésben</li>
             <li>Bevásárlólista polcok szerint</li>
             <li>Heti 30 növény követése, tenyér-adagok</li>
             <li>A teljes recepttár és a bővített ízlésprofil</li>
             <li>Longevity tippek forrással</li>
           </ul>
-          <p class="small" style="margin-top:18px;color:rgba(255,255,255,.75)">A próba után az előfizetés automatikusan megújul, az App Store beállításaiban bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
+          <a class="btn btn-gold js-store" data-ct="land_pro" href="https://apps.apple.com/hu/app/id6793034579">Letöltés — 7 nap ingyen Pro</a>
+          <p class="plan-fine">A próba után az előfizetés automatikusan megújul, az App Store beállításaiban bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="android">
+  <!-- ================= ANDROID ================= -->
+  <section class="sec" id="android">
     <div class="wrap">
-      <div class="waitlist">
-        <div class="eyebrow">Android</div>
-        <h2 class="serif" style="margin-top:10px">Androidon van a telefonod?</h2>
-        <p class="muted" style="margin-top:10px;max-width:36rem">A FreshPlate ma iPhone-on érhető el. Az Android-verzió készül — hagyd itt az e-mail-címed, és egyszer szólunk, amikor megjelent. Mást nem küldünk.</p>
+      <div class="waitlist rv">
+        <div class="wl-copy">
+          <p class="eyebrow">Android</p>
+          <h2 class="h2 small">Androidon van<br><em>a telefonod?</em></h2>
+          <p>A FreshPlate ma iPhone-on érhető el. Az Android-verzió készül — hagyd itt az e-mail-címed, és egyszer szólunk, amikor megjelent. Mást nem küldünk.</p>
+        </div>
         <form id="wl" novalidate>
-          <div class="row">
+          <label class="sr" for="wl-email">E-mail-cím</label>
+          <div class="wl-row">
             <input type="email" name="email" id="wl-email" placeholder="e-mail-címed" autocomplete="email" required inputmode="email">
-            <button class="btn" type="submit" id="wl-btn">Értesíts</button>
+            <button class="btn btn-ink" type="submit" id="wl-btn">Értesíts</button>
           </div>
           <label class="consent"><input type="checkbox" id="wl-consent" required>
             <span>Hozzájárulok, hogy a Movement Lab Kft. az e-mail-címemet az Android-verzió megjelenéséről szóló egyszeri értesítéshez kezelje. A hozzájárulást bármikor visszavonhatom a support@freshplate.hu címen. <a href="privacy.html">Adatkezelési tájékoztató</a></span>
@@ -325,75 +444,81 @@
     </div>
   </section>
 
-  <section id="gyik">
-    <div class="wrap">
-      <div class="sec-head">
-        <div class="eyebrow">Gyakori kérdések</div>
-        <h2 class="serif" style="margin-top:10px">Mielőtt letöltöd</h2>
+  <!-- ================= 07 GYIK ================= -->
+  <section class="sec" id="gyik">
+    <div class="wrap faq-grid">
+      <div>
+        <p class="eyebrow rv"><b>07</b> / Gyakori kérdések</p>
+        <h2 class="h2 rv faq-h">Mielőtt<br><em>letöltöd.</em></h2>
+        <p class="faq-more rv">Más kérdés? Írj a <a href="mailto:support@freshplate.hu">support@freshplate.hu</a> címre, vagy nézd meg a <a href="support.html">támogatási oldalt</a>.</p>
       </div>
-      <details><summary>Tényleg ingyenes?</summary><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></details>
-      <details><summary>Kell fiókot létrehoznom?</summary><p>Az alapfunkciókhoz nem. Fiók a csoportokhoz és a barátokhoz kell — e-mail-címmel vagy Bejelentkezés az Apple-lel.</p></details>
-      <details><summary>Ez egy fogyókúrás app?</summary><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></details>
-      <details><summary>Milyen adatot lát az app az Apple Healthből?</summary><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></details>
-      <details><summary>Hogyan mondom le a Pro-t?</summary><p>Az iPhone Beállítások → Apple-fiók → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></details>
-      <details><summary>Mikor jön Androidra?</summary><p>Készül. Iratkozz fel fent, és szólunk, amint elérhető.</p></details>
+      <div class="faq rv">
+        <details><summary>Tényleg ingyenes?<i aria-hidden="true"></i></summary><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></details>
+        <details><summary>Kell fiókot létrehoznom?<i aria-hidden="true"></i></summary><p>Az alapfunkciókhoz nem. Fiók a csoportokhoz és a barátokhoz kell — e-mail-címmel vagy Bejelentkezés az Apple-lel.</p></details>
+        <details><summary>Ez egy fogyókúrás app?<i aria-hidden="true"></i></summary><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></details>
+        <details><summary>Milyen adatot lát az app az Apple Healthből?<i aria-hidden="true"></i></summary><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></details>
+        <details><summary>Hogyan mondom le a Pro-t?<i aria-hidden="true"></i></summary><p>Az iPhone Beállítások → Apple-fiók → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></details>
+        <details><summary>Mikor jön Androidra?<i aria-hidden="true"></i></summary><p>Készül. Iratkozz fel a <a href="#android">várólistára</a>, és szólunk, amint elérhető.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ZÁRÓ CTA ================= -->
+  <section class="final" id="letoltes">
+    <div class="wrap final-grid">
+      <div class="final-copy">
+        <h2 class="display-2 rv">Vasárnap este<br><em>pár perc.</em></h2>
+        <p class="rv">Utána egész héten tudod, mit eszel — és azt is, mit kell venni hozzá.</p>
+        <div class="final-cta rv">
+          <a class="badge js-store" data-ct="land_final" href="https://apps.apple.com/hu/app/id6793034579" aria-label="Letöltés az App Store-ból">
+            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="165" height="55" loading="lazy">
+          </a>
+          <div class="qr">
+            <img src="assets/qr-app.svg" width="92" height="92" alt="QR-kód: FreshPlate letöltése iPhone-ra">
+            <span>Gépen olvasod?<br><b>Szkenneld be</b> az iPhone kamerájával.</span>
+          </div>
+        </div>
+      </div>
+      <div class="final-phone rv" style="--d:1"><img class="device" src="assets/phone-hero.webp" alt="A FreshPlate Naptár füle iPhone-on: 7 napos heti terv, bevásárlólista 140 tétellel, heti növényfogyasztás" width="675" height="1200" loading="lazy"></div>
     </div>
   </section>
 </main>
 
-<footer>
-  <div class="wrap cols">
-    <div>
-      <div class="serif" style="font-size:1.1rem;color:var(--ink)">FreshPlate</div>
-      <p style="margin-top:8px">Üzemeltető: Movement Lab Kft. · 1038 Budapest, Dűne utca 12. 1. em. 4. · Cégjegyzékszám: 01-09-352058 · Adószám: 27286012-2-41 · <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
-      <p style="margin-top:8px">Az Apple, az App Store és az Apple Health az Apple Inc. védjegyei. A tápérték-adatok tájékoztató jellegűek; az app nem nyújt orvosi tanácsot.</p>
+<footer class="ft">
+  <div class="wrap">
+    <div class="ft-top">
+      <div class="ft-brand">
+        <a class="brand inv" href="/" aria-label="FreshPlate – kezdőlap"><img src="assets/icon/icon-96.png" width="36" height="36" alt=""><span>FreshPlate</span></a>
+        <p>Heti menü három lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon.</p>
+      </div>
+      <nav class="ft-col" aria-label="Az oldalon">
+        <h4>Az appról</h4>
+        <a href="#hogyan">Hogyan működik</a>
+        <a href="#szokasok">Szokások</a>
+        <a href="#arak">Árak</a>
+        <a href="#gyik">Gyakori kérdések</a>
+        <a href="#android">Android</a>
+      </nav>
+      <nav class="ft-col" aria-label="Jogi oldalak">
+        <h4>Jogi</h4>
+        <a href="privacy.html">Adatvédelmi szabályzat</a>
+        <a href="terms.html">Felhasználási feltételek</a>
+        <a href="support.html">Támogatás</a>
+        <a href="https://apps.apple.com/hu/app/id6793034579">App Store</a>
+      </nav>
+      <div class="ft-col">
+        <h4>Kapcsolat</h4>
+        <a href="mailto:support@freshplate.hu">support@freshplate.hu</a>
+      </div>
     </div>
-    <nav aria-label="Jogi oldalak">
-      <a href="privacy.html">Adatvédelmi szabályzat</a>
-      <a href="terms.html">Felhasználási feltételek</a>
-      <a href="support.html">Támogatás</a>
-      <a href="https://apps.apple.com/hu/app/id6793034579">App Store</a>
-    </nav>
+    <div class="ft-word" aria-hidden="true">FreshPlate</div>
+    <div class="ft-legal">
+      <p>Üzemeltető: Movement Lab Kft. · 1038 Budapest, Dűne utca 12. 1. em. 4. · Cégjegyzékszám: 01-09-352058 · Adószám: 27286012-2-41 · <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+      <p>Az Apple, az App Store és az Apple Health az Apple Inc. védjegyei. A tápérték-adatok tájékoztató jellegűek; az app nem nyújt orvosi tanácsot.</p>
+    </div>
   </div>
 </footer>
 
-<script>
-  // --- App Store kampánylinkek (ASC App Analytics → Campaigns). ---
-  // A PT a fejlesztői fiók „provider token"-je az App Store Connect kampánylink-generátorából.
-  // Amíg üres, a linkek sima Store-linkek maradnak (működnek, csak nem mérhetők).
-  var PT = '';
-  var APP_ID = '6793034579';
-  function storeLink(ct) {
-    if (!PT) return 'https://apps.apple.com/hu/app/id' + APP_ID;
-    return 'https://apps.apple.com/app/apple-store/id' + APP_ID + '?pt=' + encodeURIComponent(PT) + '&ct=' + encodeURIComponent(ct) + '&mt=8';
-  }
-  document.querySelectorAll('.js-store').forEach(function (a) { a.href = storeLink(a.getAttribute('data-ct') || 'land'); });
-
-  // A /go/ átirányító oldalakról nem-iPhone-nal érkezők ide jönnek: az Android-blokkhoz görgetünk.
-  var qs = new URLSearchParams(location.search);
-  if (qs.get('from')) { setTimeout(function () { document.getElementById('android').scrollIntoView({ behavior: 'smooth' }); }, 300); }
-
-  // --- Várólista: saját backend, csak a hozzájárulással. ---
-  var API = 'https://freshplate-backend-ybm3.onrender.com/api/waitlist';
-  var form = document.getElementById('wl'), msg = document.getElementById('wl-msg'), btn = document.getElementById('wl-btn');
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    var email = document.getElementById('wl-email').value.trim();
-    var consent = document.getElementById('wl-consent').checked;
-    msg.className = 'msg';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.className = 'msg err'; msg.textContent = 'Adj meg egy érvényes e-mail-címet.'; return; }
-    if (!consent) { msg.className = 'msg err'; msg.textContent = 'A feliratkozáshoz a hozzájárulás bejelölése szükséges.'; return; }
-    btn.disabled = true; msg.textContent = 'Küldés…';
-    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ email: email, platform: 'android', consent: true, source: qs.get('from') || 'landing' }) })
-      .then(function (r) { return r.json().then(function (d) { return { ok: r.ok, d: d }; }); })
-      .then(function (x) {
-        if (x.ok) { msg.className = 'msg ok'; msg.textContent = 'Köszönjük — szólunk, amint az Android-verzió elérhető.'; form.reset(); }
-        else { msg.className = 'msg err'; msg.textContent = (x.d && x.d.error) || 'A feliratkozás most nem sikerült. Próbáld újra később.'; }
-      })
-      .catch(function () { msg.className = 'msg err'; msg.textContent = 'Nem érjük el a szervert. Próbáld újra egy perc múlva.'; })
-      .finally(function () { btn.disabled = false; });
-  });
-</script>
+<script src="assets/site.js?v=2"></script>
 </body>
 </html>
