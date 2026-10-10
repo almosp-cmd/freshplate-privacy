@@ -28,7 +28,7 @@
 
 <!-- ================= MAGYAR ================= -->
 <h1>FreshPlate — Adatvédelmi szabályzat</h1>
-<div class="updated">Utolsó frissítés: 2026. szeptember 21.</div>
+<div class="updated">Utolsó frissítés: 2026. [[ÉLESÍTÉS NAPJA]]</div>
 
 <p>Ez az adatvédelmi szabályzat ismerteti, hogyan kezeli a FreshPlate alkalmazás
 („az App") a felhasználók adatait. Az adatkezelő elérhetősége lentebb olvasható.</p>
@@ -40,9 +40,19 @@
     allergiás preferenciák (pl. vegetáriánus, gluténmentes), hogy a recepteket ezekhez igazítsuk.</li>
   <li><strong>Profil-beállítások</strong> — amit az induló kérdéssornál megadsz: nem, életkor,
     testsúly, testmagasság, célsúly, cél (pl. fogyás, izomépítés), aktivitási szint, napi
-    kalóriacél, nem kedvelt hozzávalók, akadályok, költségkeret, nyelv. Ezeket a
-    készülékeden kívül a szerverünkön is tároljuk, hogy új telefonon bejelentkezve ne kelljen
-    újra megadnod; a testsúly, magasság és cél egészséggel kapcsolatos adatnak minősül.</li>
+    kalóriacél, nem kedvelt hozzávalók, akadályok, költségkeret, nyelv. A testsúly, a
+    magasság és a cél egészséggel kapcsolatos adatnak minősül. Ezeket alapból csak a
+    készülékeden tároljuk; a szerverünkre akkor kerülnek, ha bejelentkezel, és hozzájárulsz a
+    fiókba mentéshez (lásd lent: <em>Napló és tervek</em>).</li>
+  <li><strong>Napló és tervek (fiókba mentés)</strong> — ha bejelentkezel, és az Appban
+    kifejezetten hozzájárulsz, a következőket is a fiókodhoz kötve a szerverünkön tároljuk,
+    hogy új telefonon vagy újratelepítés után is megmaradjanak: az étkezési naplód (mit, melyik
+    napon, melyik étkezésre és mekkora adagban ettél, a kézzel felvett ételek), a napi kalória-
+    és makró-összesítők, a testsúlynaplód, a heti étrendterved, a mentett, saját és AI-val
+    generált receptjeid, a szokásaid teljesítési napjai, a havi kihívás állapota, az otthoni
+    alapanyagaid (a megadott lejárati dátummal), a bevásárlólista-kiegészítéseid és a recept-
+    értékeléseid. Az étkezési és a testsúlynapló egészségügyi adatnak minősül. Hozzájárulás
+    nélkül, illetve kijelentkezve ezek <strong>csak a készülékeden</strong> maradnak.</li>
   <li><strong>Eszközazonosító</strong> — egy alkalmazás által generált anonim azonosító
     (<code>device_id</code>), amely az események összegzéséhez szükséges.</li>
   <li><strong>Használati adatok</strong> — az appon belüli interakciók (pl. recept
@@ -52,7 +62,10 @@
   <li><strong>Apple Health / Apple Watch adat</strong> — <em>kizárólag</em> a mozgással
     elégetett energia (aktív energia), és csak akkor, ha ezt te magad bekapcsolod.</li>
   <li><strong>Push-értesítési token</strong> — ha engedélyezed az értesítéseket, a
-    készülékedhez tartozó, az Expo által kiadott token, amivel értesítést tudunk küldeni.</li>
+    készülékedhez tartozó, az Expo által kiadott token, amivel értesítést tudunk küldeni.
+    A <em>helyi emlékeztetőket</em> (a próbaidőszak végéről, illetve egy otthoni alapanyag
+    közelgő lejáratáról) az App a készülékeden ütemezi; ehhez semmilyen adat nem kerül a
+    szerverünkre.</li>
   <li><strong>Előfizetés állapota</strong> — hogy Pro előfizető vagy-e, és meddig; ezt
     az Apple-től és a RevenueCat-től kapjuk, a pszeudonim fiókazonosítódhoz kötve
     (e-mail-címet nem adunk át nekik).</li>
@@ -102,6 +115,16 @@
     lesz pontatlanabb. A hozzájárulásodat bármikor visszavonhatod azzal, hogy az
     Appban törlöd ezeket a beállításokat, vagy törlöd a fiókodat — a visszavonás nem
     érinti a visszavonás előtti adatkezelés jogszerűségét.</li>
+  <li><strong>Napló és tervek fiókba mentése</strong> — hogy az adataid ne vesszenek el, és
+    egy másik telefonon is folytathasd. Mivel az étkezési és a testsúlynapló egészségügyi
+    adat, a fiókba mentés jogalapja <strong>a te kifejezett hozzájárulásod</strong> (GDPR 9.
+    cikk (2) a) pont, illetve a többi adatnál 6. cikk (1) a) pont), amelyet bejelentkezéskor
+    egy külön lépésben, az erre vonatkozó nyilatkozat elfogadásával adsz meg. A hozzájárulás
+    önkéntes: nélküle az App teljes értékűen használható, az adataid a készülékeden
+    maradnak. Bármikor visszavonhatod az Appban (Profil → Fiók → <em>Mentés a fiókba</em>
+    kikapcsolása) — ekkor a szerveren tárolt másolatot töröljük, a készülékeden lévő adatok
+    megmaradnak. A hozzájárulás tényét és idejét a fiókodnál rögzítjük, hogy igazolni
+    tudjuk.</li>
   <li><strong>Eszközazonosító és használati adatok</strong> — az App fejlesztését szolgáló
     összesített, névtelen statisztikához. Jogalap: <em>jogos érdekünk</em> az App
     működésének mérésében és javításában (GDPR 6. cikk (1) f) pont).</li>
@@ -165,14 +188,20 @@ a hozzá tartozó személyes adatokat töröljük. A jelszó-visszaállító kó
 lezárásától számított legfeljebb 1 évig, az anonim használati statisztikát összesített
 formában őrizzük. Jogszabályi kötelezettség (pl. számviteli megőrzés) esetén az érintett
 adatot a kötelezettség fennállásáig tartjuk meg.</p>
+<p>A fiókba mentett naplót és terveket addig őrizzük, amíg a fiókod aktív és a
+hozzájárulásod fennáll. A fiók törlésekor vagy a hozzájárulás visszavonásakor azonnal
+töröljük őket; a tárhelyszolgáltató biztonsági mentéseiből legfeljebb
+[[BIZTONSÁGI MENTÉS MEGŐRZÉSE — Render-csomag szerint, pl. 7]] napon belül tűnnek el.</p>
 <p>A várólista-e-mail-címet az értesítés kiküldése után legfeljebb 30 nappal, illetve a
 hozzájárulás visszavonásakor azonnal töröljük.</p>
 
 <h2>5. A te jogaid</h2>
 <p>Az appon belül bármikor <strong>törölheted a fiókodat</strong> és a hozzá tartozó
 adatokat. A közösségi felületen megosztott bejegyzéseidet egyenként is törölheted.
-Az Apple Health-hozzáférést bármikor visszavonhatod. Kérheted továbbá az adataidhoz
-való hozzáférést vagy azok helyesbítését az alábbi elérhetőségen.</p>
+Az Apple Health-hozzáférést és a fiókba mentést bármikor visszavonhatod. Kérheted továbbá
+az adataidhoz való hozzáférést, azok helyesbítését, illetve a fiókba mentett adataid
+gépi úton olvasható (JSON) formátumban való kiadását (adathordozhatóság) az alábbi
+elérhetőségen.</p>
 
 <h2>6. Közösségi funkciók</h2>
 <p>Az appban létrehozhatsz felhasználónevet, és a Közösség fülön tartalmat
@@ -209,7 +238,7 @@ legkésőbb egy hónapon belül válaszolunk.</p>
 
 <!-- ================= ENGLISH ================= -->
 <h1>FreshPlate — Privacy Policy</h1>
-<div class="updated">Last updated: 21 September 2026</div>
+<div class="updated">Last updated: [[GO-LIVE DATE]] 2026</div>
 
 <p>This Privacy Policy explains how the FreshPlate app ("the App") handles user data.
 Contact details are provided below.</p>
@@ -221,9 +250,19 @@ Contact details are provided below.</p>
     provide (e.g. vegetarian, gluten-free), used to tailor recipes to you.</li>
   <li><strong>Profile settings</strong> — what you enter in the initial questionnaire: gender,
     age, weight, height, target weight, goal (e.g. weight loss, muscle gain), activity level,
-    daily calorie target, disliked ingredients, obstacles, budget band, language. Besides your
-    device we also store these on our server so you do not have to start over on a new phone;
-    weight, height and goal qualify as health-related data.</li>
+    daily calorie target, disliked ingredients, obstacles, budget band, language. Weight,
+    height and goal qualify as health-related data. By default these are stored on your device
+    only; they reach our server only if you sign in and consent to saving to your account (see
+    <em>Log and plans</em> below).</li>
+  <li><strong>Log and plans (saving to your account)</strong> — if you sign in and explicitly
+    consent in the App, we also store the following on our server, linked to your account, so
+    they survive a new phone or reinstall: your food log (what you ate, on which day, for which
+    meal and in what portion, including manually added foods), daily calorie and macro totals,
+    your weight log, your weekly meal plan, your saved, own and AI-generated recipes, the days
+    you completed your habits, your monthly challenge status, the ingredients you have at home
+    (with the expiry date you set), your shopping-list additions and your recipe ratings. The
+    food log and weight log qualify as health data. Without consent, or when signed out, this
+    data stays <strong>on your device only</strong>.</li>
   <li><strong>Device identifier</strong> — an app-generated anonymous identifier
     (<code>device_id</code>) used to aggregate events.</li>
   <li><strong>Usage data</strong> — in-app interactions (e.g. opening a recipe,
@@ -233,7 +272,9 @@ Contact details are provided below.</p>
   <li><strong>Apple Health / Apple Watch data</strong> — <em>only</em> active energy
     burned, and only if you enable the connection yourself.</li>
   <li><strong>Push notification token</strong> — if you allow notifications, the
-    device token issued by Expo that lets us deliver notifications to you.</li>
+    device token issued by Expo that lets us deliver notifications to you. <em>Local
+    reminders</em> (the end of your free trial, an ingredient at home about to expire) are
+    scheduled by the App on your device; no data is sent to our server for them.</li>
   <li><strong>Subscription status</strong> — whether and until when you are a Pro
     subscriber; received from Apple and RevenueCat, linked to your pseudonymous account ID
     (we do not pass them your email address).</li>
@@ -279,6 +320,15 @@ which part of the website you signed up from. We do not store your IP address.</
     is simply less accurate. You may withdraw consent at any time by clearing these settings
     in the App or deleting your account; withdrawal does not affect the lawfulness of
     processing before it.</li>
+  <li><strong>Saving your log and plans to your account</strong> — so your data is not lost
+    and you can continue on another phone. As the food log and weight log are health data,
+    the legal basis is <strong>your explicit consent</strong> (GDPR Art. 9(2)(a), and
+    Art. 6(1)(a) for the other data), given in a separate step when you sign in by accepting
+    the corresponding statement. Consent is optional: the App is fully usable without it and
+    your data stays on your device. You can withdraw it at any time in the App (Profile →
+    Account → turn off <em>Save to account</em>), after which we delete the copy on our server;
+    the data on your device is kept. We record the fact and time of your consent with your
+    account so that we can demonstrate it.</li>
   <li><strong>Device identifier and usage data</strong> — for aggregated, anonymous
     statistics used to improve the App. Legal basis: our <em>legitimate interest</em> in
     measuring and improving the App (GDPR Art. 6(1)(f)).</li>
@@ -340,14 +390,18 @@ account, the associated personal data is deleted. Password-reset codes expire af
 the case is closed; anonymous usage statistics are kept in aggregated form. Where a legal
 obligation applies (e.g. accounting retention), the affected data is kept for as long as
 that obligation lasts.</p>
+<p>Your saved log and plans are kept while your account is active and your consent stands.
+They are deleted immediately when you delete your account or withdraw consent; they disappear
+from the hosting provider's backups within [[BACKUP RETENTION, e.g. 7]] days.</p>
 <p>Waiting-list email addresses are deleted no later than 30 days after the notification is
 sent, or immediately when consent is withdrawn.</p>
 
 <h2>5. Your rights</h2>
 <p>You can <strong>delete your account</strong> and its data at any time from within
 the App. You can also delete individual posts you shared in the community. Apple Health
-access can be revoked at any time. You may also request access to or correction of your
-data via the contact below.</p>
+access and saving to your account can be revoked at any time. You may also request access to
+or correction of your data, or a copy of the data saved to your account in a machine-readable
+(JSON) format (data portability), via the contact below.</p>
 
 <h2>6. Community features</h2>
 <p>You can create a username and share content in the Community tab (posts,
