@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="hu">
 <head>
-<meta charset="UTF-8">
+<meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FreshPlate — Heti menü három lépésben</title>
-<meta name="description" content="Nem diéta. Heti menü három lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept, iPhone-ra, ingyenesen letölthető.">
+<meta name="description" content="Nem diéta. Heti menü három lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon.">
 <link rel="canonical" href="https://freshplate.hu/">
-<meta name="theme-color" content="#FAF9F6">
+<meta name="theme-color" content="#0A0E09">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FreshPlate">
 <meta property="og:title" content="FreshPlate — Heti menü három lépésben">
@@ -18,11 +18,9 @@
 <meta name="apple-itunes-app" content="app-id=6793034579">
 <link rel="icon" href="assets/icon/favicon-48.png" type="image/png">
 <link rel="apple-touch-icon" href="assets/icon/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Fraunces:ital,opsz,wght,SOFT,WONK@0,9..144,300..800,0..100,0..1;1,9..144,300..800,0..100,0..1&family=Instrument+Sans:ital,wdth,wght@0,85..100,400..700;1,85..100,400..700&display=swap">
-<link rel="stylesheet" href="assets/site.css?v=2">
-<link rel="preload" href="assets/demo/het.json" as="fetch" crossorigin>
+<!-- Betűk és szkriptek saját tárhelyről: a látogató IP-címe nem megy harmadik félhez (Google, Cloudflare). -->
+<link rel="preload" href="assets/fonts/BricolageGrotesque-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/fonts/fonts.css">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -38,487 +36,1974 @@
   "publisher": { "@type": "Organization", "name": "Movement Lab Kft.", "email": "support@freshplate.hu" }
 }
 </script>
+<style>
+:root{
+  --ink:#0A0E09; --ink2:#10160F; --ink3:#182017; --ink4:#222B20;
+  --cream:#F3F0E7; --mute:rgba(243,240,231,.64); --faint:rgba(243,240,231,.13); --hair:rgba(243,240,231,.09);
+  --lime:#7DED4D; --lime-d:#5FD02F; --green:#14834A; --gold:#F2C14E; --paprika:#FF6A3D;
+  --pad:clamp(16px,4.2vw,64px);
+  --disp:'Bricolage Grotesque',ui-sans-serif,system-ui,sans-serif;
+  --mono:'Martian Mono',ui-monospace,Menlo,monospace;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*{box-sizing:border-box}
+html{background:var(--ink);color:var(--cream);overflow-x:clip;scrollbar-color:var(--ink4) var(--ink)}
+body{margin:0;font-family:var(--disp);font-size:17px;line-height:1.55;font-variation-settings:'opsz' 14;overflow-x:clip;background:var(--ink);-webkit-font-smoothing:antialiased}
+img{display:block;max-width:100%}
+a{color:inherit}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;padding:0}
+::selection{background:var(--lime);color:var(--ink)}
+.mono{font-family:var(--mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;font-variation-settings:'wdth' 90}
+.lime{color:var(--lime)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+
+/* grain + cursor */
+body::after{content:"";position:fixed;inset:-50%;z-index:90;pointer-events:none;opacity:.075;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-3%)}60%{transform:translate(-2%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}}
+.cursor{position:fixed;left:0;top:0;z-index:95;pointer-events:none;width:10px;height:10px;margin:-5px 0 0 -5px;border-radius:50%;background:var(--lime);
+  transition:width .35s var(--ease),height .35s var(--ease),margin .35s var(--ease),background .3s;display:grid;place-items:center;mix-blend-mode:normal}
+.cursor span{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink);opacity:0;transition:opacity .2s;white-space:nowrap}
+.cursor.big{width:74px;height:74px;margin:-37px 0 0 -37px}
+.cursor.big span{opacity:1}
+.cursor.ring{width:44px;height:44px;margin:-22px 0 0 -22px;background:transparent;box-shadow:inset 0 0 0 1.5px var(--lime)}
+@media (pointer:coarse),(hover:none){.cursor{display:none}}
+
+/* progress + nav */
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;transform-origin:0 50%;transform:scaleX(0);background:var(--lime);z-index:80}
+.nav{position:fixed;z-index:70;top:14px;left:0;right:0;margin:0 auto;width:min(1180px,calc(100% - 24px));display:flex;align-items:center;gap:20px;
+  padding:9px 9px 9px 18px;border-radius:999px;background:rgba(16,22,15,.62);backdrop-filter:blur(18px) saturate(1.4);-webkit-backdrop-filter:blur(18px) saturate(1.4);
+  box-shadow:inset 0 0 0 1px var(--hair),0 20px 40px -20px rgba(0,0,0,.6);transition:transform .5s var(--ease)}
+.nav.hide{transform:translateY(-130%)}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:18px;letter-spacing:-.02em;font-variation-settings:'opsz' 30}
+.brand svg{width:28px;height:28px;color:var(--lime)}
+.nav ul{display:flex;gap:4px;list-style:none;margin:0 auto;padding:0}
+.nav ul a{display:block;padding:8px 11px;border-radius:999px;text-decoration:none;font-size:14px;color:var(--mute);transition:color .2s,background .2s}
+.nav ul a:hover{color:var(--cream);background:var(--faint)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;height:52px;padding:0 24px;border-radius:999px;font-weight:650;font-size:16px;text-decoration:none;white-space:nowrap;
+  transition:background .25s,color .25s,box-shadow .25s;will-change:transform}
+.btn-lime{background:var(--lime);color:var(--ink);box-shadow:0 0 0 0 rgba(125,237,77,.5),0 14px 40px -12px rgba(125,237,77,.55)}
+.btn-lime:hover{background:#97F56C}
+.btn-ghost{box-shadow:inset 0 0 0 1.5px var(--faint);color:var(--cream)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 1.5px var(--cream)}
+.btn-sm{height:40px;padding:0 18px;font-size:14.5px}
+.btn svg{width:18px;height:18px}
+@media (max-width:1100px){.nav ul{display:none}.nav .btn{margin-left:auto}}
+
+/* loader */
+.loader{position:fixed;inset:0;z-index:100;background:var(--ink);display:grid;place-items:center;clip-path:circle(150% at 50% 50%)}
+.loader-in{display:grid;justify-items:center;gap:22px}
+.loader svg{width:92px;height:92px;color:var(--lime);overflow:visible}
+.loader svg *{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.loader-word{font-family:var(--mono);font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--mute);overflow:hidden}
+.loader-word span{display:inline-block;transform:translateY(110%)}
+.no-js .loader,.rm .loader{display:none}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;min-height:100svh;display:grid;align-items:center;overflow:hidden;padding:120px var(--pad) 120px;isolation:isolate}
+.hero::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:
+  radial-gradient(60% 70% at 78% 50%,rgba(125,237,77,.10),transparent 60%),
+  linear-gradient(90deg,var(--ink) 26%,rgba(10,14,9,.55) 44%,rgba(10,14,9,0) 60%)}
+.wheel-wrap{--W:min(118vh,1180px);position:absolute;z-index:-2;width:var(--W);height:var(--W);right:calc(var(--W) * -.3);top:50%;margin-top:calc(var(--W) / -2)}
+.wheel{--R:calc(var(--W) * .37);--P:calc(var(--W) * .25);position:absolute;inset:0;transform:rotate(var(--r,0deg))}
+.wheel::before{content:"";position:absolute;inset:calc(var(--W) * .13);border-radius:50%;border:1px dashed rgba(243,240,231,.14)}
+.plate{position:absolute;left:50%;top:50%;width:var(--P);height:var(--P);margin:calc(var(--P) / -2) 0 0 calc(var(--P) / -2);
+  transform:rotate(var(--a)) translateY(calc(var(--R) * -1)) rotate(calc(var(--a) * -1))}
+.plate-in{width:100%;height:100%;position:relative;cursor:pointer;transition:scale .5s var(--ease)}
+.plate-in:hover{scale:1.06}
+.plate:focus-visible{outline:none}.plate:focus-visible .ph{box-shadow:0 0 0 3px var(--lime)}
+.plate.on .ph{box-shadow:0 0 0 3px var(--lime),0 30px 70px -18px rgba(0,0,0,.85)}
+.plate img{width:100%;height:100%;border-radius:50%;object-fit:cover;scale:1.12;box-shadow:0 40px 60px -20px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.04)}
+.plate .ph{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-shadow:0 30px 70px -18px rgba(0,0,0,.85)}
+.plate .tag{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(calc(var(--r,0deg) * -1))}
+.plate .tag b{position:absolute;left:calc(var(--P) * .26);top:calc(var(--P) * -.5);display:grid;place-items:center;min-width:44px;height:44px;padding:0 10px;border-radius:999px;
+  background:var(--ink);color:var(--cream);font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.04em;box-shadow:inset 0 0 0 1px var(--faint);transition:background .4s,color .4s}
+.plate.on .tag b{background:var(--lime);color:var(--ink)}
+.core{position:absolute;left:50%;top:50%;width:calc(var(--W) * .42);height:calc(var(--W) * .42);translate:-50% -50%;border-radius:50%;display:grid;place-items:center;text-align:center}
+.core svg{position:absolute;inset:0;width:100%;height:100%;rotate:-90deg}
+.core .core-txt{width:72%;display:grid;gap:6px;justify-items:center}
+.core .core-day{color:var(--lime)}
+.core .core-name{font-size:clamp(16px,1.5vw,22px);font-weight:650;line-height:1.15;letter-spacing:-.01em;font-variation-settings:'opsz' 40;min-height:2.3em;display:grid;place-items:center}
+.core .core-kcal{font-family:var(--mono);font-size:12px;color:var(--mute)}
+.hero-copy{max-width:780px;position:relative;pointer-events:none}
+.hero-copy a,.hero-copy button{pointer-events:auto}
+.hero-stats{pointer-events:none}
+.eyebrow{display:inline-flex;align-items:center;gap:10px;color:var(--mute);margin:0 0 26px}
+.eyebrow i{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 0 0 rgba(125,237,77,.6);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(125,237,77,.55)}80%,100%{box-shadow:0 0 0 12px rgba(125,237,77,0)}}
+h1{margin:0;font-weight:800;font-size:clamp(56px,8.4vw,142px);line-height:.88;letter-spacing:-.032em;word-spacing:.04em;font-variation-settings:'opsz' 96,'wdth' 84}
+h1 .ln{display:block;overflow:hidden;padding-bottom:.06em;margin-bottom:-.06em}
+h1 .ln>span{display:inline-block;position:relative}
+h1 .lime{color:var(--lime)}
+.strike{position:relative;display:inline-block}
+.strike svg{position:absolute;left:-4%;top:46%;width:108%;height:.5em;overflow:visible;color:var(--paprika);pointer-events:none}
+.strike path{stroke-dasharray:1;stroke-dashoffset:1;opacity:0}
+.hero-sub{margin:30px 0 0;max-width:540px;font-size:clamp(17px,1.35vw,20px);color:var(--mute);line-height:1.5}
+.hero-sub b{color:var(--cream);font-weight:600}
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:34px}
+.hero-stats{position:absolute;left:var(--pad);right:var(--pad);bottom:28px;display:flex;gap:clamp(18px,4vw,56px);flex-wrap:wrap;align-items:baseline}
+.stat{display:flex;align-items:baseline;gap:9px}
+.stat b{font-weight:700;font-size:clamp(22px,2.2vw,32px);letter-spacing:-.03em;font-variation-settings:'opsz' 60}
+.stat span{color:var(--mute)}
+.scrollhint{position:absolute;right:var(--pad);bottom:30px;display:flex;align-items:center;gap:10px;color:var(--mute)}
+.scrollhint i{width:1px;height:42px;background:linear-gradient(var(--lime),transparent);animation:drip 1.8s var(--ease) infinite;transform-origin:top}
+@keyframes drip{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+@media (max-width:820px){
+  .hero{align-items:end;padding-top:46svh;padding-bottom:150px}
+  .hero::before{background:radial-gradient(80% 50% at 80% 18%,rgba(125,237,77,.12),transparent 70%),linear-gradient(180deg,rgba(10,14,9,0) 8%,rgba(10,14,9,.75) 42%,var(--ink) 58%)}
+  .wheel-wrap{--W:148vw;right:-62vw;top:2svh;margin-top:0}
+  .core{display:none}
+  .plate .tag b{min-width:34px;height:34px;font-size:10.5px}
+  .scrollhint{display:none}
+  .hero-stats{bottom:24px;gap:14px 22px}
+}
+
+/* ---------- MARQUEE ---------- */
+.bands{position:relative;height:clamp(220px,26vw,360px);overflow:hidden;display:grid;place-items:center;margin:20px 0}
+.band{position:absolute;left:-5%;width:110%;white-space:nowrap;display:flex;overflow:hidden}
+.band-a{background:var(--lime);color:var(--ink);rotate:-4deg;z-index:2;padding:14px 0;box-shadow:0 30px 60px -20px rgba(0,0,0,.7)}
+.band-b{background:var(--ink3);rotate:3deg;padding:12px 0}
+.band .track{display:flex;align-items:center;gap:28px;padding-right:28px;flex:none;will-change:transform}
+.band-a .track span{font-weight:800;font-size:clamp(34px,5.4vw,84px);letter-spacing:-.03em;line-height:1;font-variation-settings:'opsz' 96,'wdth' 78;text-transform:uppercase}
+.band-a .track i{width:.5em;height:.5em;font-size:clamp(34px,5.4vw,84px);flex:none;background:var(--ink);mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20'%3E%3Cpath d='M10 0l2.4 7.6L20 10l-7.6 2.4L10 20l-2.4-7.6L0 10l7.6-2.4z'/%3E%3C/svg%3E") center/contain no-repeat}
+.band-b .track span{font-weight:600;font-size:clamp(22px,2.6vw,38px);letter-spacing:-.02em;color:transparent;-webkit-text-stroke:1px rgba(243,240,231,.55);font-variation-settings:'opsz' 60}
+.band-b .track img{width:clamp(44px,4.6vw,66px);height:clamp(44px,4.6vw,66px);border-radius:50%;object-fit:cover;scale:1.1}
+
+/* ---------- SECTION base ---------- */
+section{position:relative}
+.sec{padding:clamp(90px,12vw,170px) var(--pad)}
+.wrap{max-width:1240px;margin:0 auto}
+.kicker{display:flex;align-items:center;gap:12px;color:var(--lime);margin:0 0 22px}
+.kicker::before{content:"";width:28px;height:1px;background:currentColor}
+h2{margin:0;font-weight:780;font-size:clamp(40px,6.4vw,104px);line-height:.94;letter-spacing:-.03em;font-variation-settings:'opsz' 96,'wdth' 84}
+h2 .soft{color:var(--mute)}
+.lead{font-size:clamp(17px,1.4vw,20px);color:var(--mute);max-width:560px;margin:26px 0 0}
+.w{display:inline-block;overflow:hidden;vertical-align:top;padding-bottom:.08em;margin-bottom:-.08em}
+.w>span{display:inline-block}
+
+/* ---------- STEPS (pinned) ---------- */
+.steps-intro{padding:clamp(90px,10vw,150px) var(--pad) 40px}
+.stage{position:relative;isolation:isolate;height:100svh;overflow:hidden;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:clamp(20px,4vw,70px);padding:90px var(--pad) 40px}
+.ghost{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none;z-index:-1}
+.ghost span{grid-area:1/1;font-weight:800;font-size:clamp(120px,24vw,420px);letter-spacing:-.06em;line-height:1;color:transparent;-webkit-text-stroke:1px rgba(243,240,231,.07);font-variation-settings:'opsz' 96,'wdth' 75;text-transform:uppercase}
+.s-copy{position:relative;align-self:stretch;display:flex;flex-direction:column;justify-content:center}
+.num{height:clamp(110px,13vw,200px);overflow:hidden;font-weight:800;font-size:clamp(110px,13vw,200px);line-height:1;letter-spacing:-.06em;font-variation-settings:'opsz' 96,'wdth' 75;color:var(--lime);margin-bottom:10px}
+.num-strip{display:flex;flex-direction:column}
+.num-strip span{height:clamp(110px,13vw,200px)}
+.arts{position:relative;min-height:260px}
+.art{position:absolute;inset:0}
+.art h3{margin:0 0 14px;font-size:clamp(26px,2.6vw,40px);line-height:1.02;letter-spacing:-.025em;font-weight:720;font-variation-settings:'opsz' 60}
+.art p{margin:0;color:var(--mute);max-width:430px}
+.pro{display:inline-flex;align-items:center;height:22px;padding:0 9px;border-radius:999px;font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--ink);background:var(--gold);vertical-align:middle;margin-left:8px;translate:0 -3px}
+.s-dots{display:flex;gap:8px;margin-top:30px}
+.s-dots i{width:34px;height:3px;border-radius:2px;background:var(--faint);overflow:hidden;position:relative}
+.s-dots i b{position:absolute;inset:0;background:var(--lime);transform-origin:0 50%;transform:scaleX(0)}
+.s-phone{position:relative;height:min(78svh,760px);aspect-ratio:675/1200;perspective:1400px}
+.s-phone img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 50px 60px rgba(0,0,0,.7))}
+.s-phone::before{content:"";position:absolute;inset:12% -30%;border-radius:50%;background:radial-gradient(closest-side,rgba(125,237,77,.22),transparent);filter:blur(30px);z-index:-1}
+.s-decor{position:relative;align-self:stretch}
+.dg{position:absolute;inset:0}
+.chip{position:absolute;display:inline-flex;align-items:center;gap:8px;height:42px;padding:0 16px;border-radius:999px;background:var(--ink3);box-shadow:inset 0 0 0 1px var(--faint),0 20px 40px -18px rgba(0,0,0,.8);
+  font-size:15px;font-weight:550;white-space:nowrap;animation:bob 5s ease-in-out infinite}
+.chip.l{background:var(--lime);color:var(--ink);box-shadow:0 20px 40px -18px rgba(125,237,77,.6)}
+.chip.g{background:var(--gold);color:var(--ink)}
+.chip small{font-family:var(--mono);font-size:10.5px;color:var(--mute);letter-spacing:.04em}
+.chip.l small{color:rgba(10,14,9,.6)}
+.chip .av{width:26px;height:26px;margin-left:-10px;border-radius:50%;display:grid;place-items:center;background:var(--green);color:#fff;font-size:12px;font-weight:700}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-10px)}}
+@media (max-width:900px){
+  .stage{grid-template-columns:1fr;grid-template-rows:auto 1fr;align-items:start;padding:76px var(--pad) 24px;gap:14px}
+  .s-phone{grid-row:1;justify-self:center;height:min(52svh,500px)}
+  .s-copy{grid-row:2;justify-content:flex-start}
+  .num{height:64px;font-size:64px;margin-bottom:6px;position:absolute;right:0;top:0}
+  .num-strip span{height:64px}
+  .art h3{font-size:24px;padding-right:70px}
+  .art p{font-size:15.5px}
+  .s-decor{display:none}
+  .s-dots{position:absolute;bottom:0;margin:0}
+  .arts{min-height:200px}
+}
+
+/* ---------- EXPLODE ---------- */
+.ex{--px:58%;--py:54%;position:relative;height:100svh;overflow:hidden}
+.ex-head{position:absolute;left:var(--pad);top:clamp(96px,13svh,140px);z-index:3;max-width:440px}
+.ex-head h2{font-size:clamp(38px,4.6vw,74px)}
+.ex-plate{position:absolute;left:var(--px);top:var(--py);width:min(40vw,52svh);aspect-ratio:1;transform:translate(-50%,-50%)}
+.ex-plate .disc{position:absolute;inset:0;border-radius:50%;overflow:hidden;box-shadow:0 60px 90px -30px rgba(0,0,0,.9)}
+.ex-plate img{width:100%;height:100%;object-fit:cover;scale:1.1}
+.ex-plate .meta{position:absolute;left:50%;bottom:-54px;translate:-50% 0;text-align:center;white-space:nowrap}
+.ex-plate .meta b{display:block;font-size:17px;font-weight:650}
+.ex-plate .meta span{color:var(--mute)}
+.ex-list{position:absolute;right:var(--pad);top:50%;translate:0 -42%;width:min(440px,36vw);display:grid;gap:18px}
+.aisle h4{margin:0 0 8px;display:flex;justify-content:space-between;color:var(--mute);font-weight:400}
+.aisle .slots{display:grid;gap:8px;justify-items:start}
+.slot{height:42px;width:100%}
+.ex-chips{position:absolute;inset:0;pointer-events:none}
+.ing{position:absolute;left:var(--px);top:var(--py);transform:translate(-50%,-50%);pointer-events:auto;display:inline-flex;align-items:center;gap:10px;height:42px;padding:0 18px 0 8px;border-radius:999px;
+  background:var(--cream);color:var(--ink);font-weight:600;font-size:15.5px;white-space:nowrap;box-shadow:0 18px 30px -14px rgba(0,0,0,.7);transition:background .3s,color .3s}
+.ing .ck{width:26px;height:26px;border-radius:50%;box-shadow:inset 0 0 0 1.5px rgba(10,14,9,.3);display:grid;place-items:center;transition:background .3s,box-shadow .3s}
+.ing .ck svg{width:14px;height:14px;opacity:0;transform:scale(.4);transition:.35s var(--ease)}
+.ing small{font-family:var(--mono);font-size:11px;font-weight:400;color:rgba(10,14,9,.55)}
+.ing.done{background:var(--ink4);color:var(--mute)}
+.ing.done .ck{background:var(--lime);box-shadow:none}
+.ing.done .ck svg{opacity:1;transform:none}
+.ing.done .t{text-decoration:line-through;text-decoration-color:var(--lime);text-decoration-thickness:2px}
+.ing.done small{color:var(--mute)}
+.ex-foot{position:absolute;left:var(--pad);bottom:clamp(26px,6svh,60px);max-width:440px;color:var(--mute);margin:0}
+.ex-count{display:flex;gap:28px;margin-bottom:14px}
+.ex-count b{display:block;font-size:clamp(30px,3vw,46px);line-height:1;color:var(--cream);font-weight:750;letter-spacing:-.03em}
+@media (max-width:900px){
+  .ex{--px:50%;--py:50%}
+  .ex-head{top:84px;right:var(--pad)}
+  .ex-head h2{font-size:38px}
+  .ex-plate{width:min(62vw,40svh);top:50%}
+  .ex-list{left:var(--pad);right:var(--pad);top:auto;bottom:4svh;translate:none;width:auto;grid-template-columns:1fr 1fr;gap:12px 10px}
+  .aisle h4{font-size:9.5px}
+  .slot{height:34px}.aisle .slots{gap:6px}
+  .ing{height:34px;font-size:13px;padding:0 12px 0 5px;gap:6px}
+  .ing .ck{width:22px;height:22px}
+  .ing small{display:none}
+  .ex-foot{display:none}
+}
+
+/* ---------- HABIT ---------- */
+.habit-sec .wrap{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(30px,6vw,100px);align-items:center}
+.big21{position:relative;display:inline-block;font-weight:800;font-size:clamp(220px,30vw,470px);line-height:.8;letter-spacing:-.07em;font-variation-settings:'opsz' 96,'wdth' 75;color:transparent;-webkit-text-stroke:2px rgba(125,237,77,.5);margin:30px 0 0 -.04em;user-select:none}
+.big21::after{content:"21";position:absolute;inset:0;color:var(--lime);-webkit-text-stroke:0;clip-path:inset(calc(100% - var(--f,0%)) 0 0 0);transition:clip-path .9s var(--ease)}
+.big21 small{position:absolute;left:100%;margin-left:.08em;top:.12em;font-size:.09em;letter-spacing:.06em;font-family:var(--mono);font-weight:400;-webkit-text-stroke:0;color:var(--mute);text-transform:uppercase}
+.habit{background:var(--ink2);border-radius:28px;padding:clamp(20px,2.6vw,32px);box-shadow:inset 0 0 0 1px var(--hair),0 60px 100px -50px rgba(0,0,0,.9);position:relative}
+.h-top{display:flex;justify-content:space-between;gap:16px;align-items:flex-start}
+.h-top h3{margin:8px 0 4px;font-size:clamp(24px,2.2vw,32px);line-height:1.05;letter-spacing:-.02em;font-weight:720}
+.h-top p{margin:0;color:var(--mute);font-size:15px}
+.streak{text-align:center;min-width:86px}
+.streak b{display:block;font-size:56px;line-height:.9;font-weight:800;letter-spacing:-.05em;color:var(--lime);font-variation-settings:'opsz' 96,'wdth' 80}
+.streak span{color:var(--mute);font-size:10px}
+.hbar{margin:22px 0 6px;height:8px;border-radius:8px;background:var(--ink4);overflow:hidden}
+.hbar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--green),var(--lime));border-radius:8px;transition:width .8s var(--ease)}
+.hbar-l{display:flex;justify-content:space-between;color:var(--mute);font-size:14px}
+.hbar-l b{color:var(--cream)}
+.grid21{display:grid;grid-template-columns:repeat(7,1fr);gap:7px;margin-top:24px}
+.grid21 .dl{text-align:center;color:var(--mute);font-size:10px;padding-bottom:2px}
+.cell{aspect-ratio:1;border-radius:10px;display:grid;place-items:center;font-family:var(--mono);font-size:11px;color:var(--mute);background:var(--ink3);transition:background .35s,color .35s,box-shadow .35s}
+.cell.done{background:var(--lime);color:var(--ink);font-weight:600}
+.cell.miss{background:transparent;box-shadow:inset 0 0 0 1.5px rgba(255,106,61,.55);color:var(--paprika)}
+.cell.today{box-shadow:inset 0 0 0 2px var(--cream);color:var(--cream)}
+.cell.today.done{box-shadow:0 0 0 3px rgba(125,237,77,.3)}
+.cell.pop{animation:pop .55s var(--ease)}
+@keyframes pop{0%{transform:scale(.6)}60%{transform:scale(1.15)}100%{transform:scale(1)}}
+.legend{display:flex;gap:16px;margin-top:14px;color:var(--mute);font-size:10px}
+.legend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.h-act{display:flex;gap:10px;margin-top:22px;flex-wrap:wrap}
+.h-act .btn{height:48px;flex:1}
+.h-msg{margin:14px 0 0;min-height:1.5em;color:var(--lime);font-size:14.5px}
+@media (max-width:900px){.habit-sec .wrap{grid-template-columns:1fr}.big21{font-size:52vw;margin-top:20px}}
+
+
+/* ---------- LONGEVITY-TIPPEK: világos sáv, lapozható pakli ---------- */
+.tipsx{position:relative;max-width:1240px;margin:clamp(70px,9vw,130px) auto 0;border-radius:34px;background:var(--cream);color:var(--ink);padding:clamp(26px,4.4vw,64px);
+  display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,80px);align-items:center;overflow:hidden;isolation:isolate}
+.tipsx::before{content:"";position:absolute;width:560px;height:560px;right:-140px;top:-200px;border-radius:50%;background:radial-gradient(closest-side,rgba(125,237,77,.5),transparent);z-index:-1}
+.tipsx::after{content:"";position:absolute;width:420px;height:420px;left:-160px;bottom:-220px;border-radius:50%;background:radial-gradient(closest-side,rgba(242,193,78,.4),transparent);z-index:-1}
+.tx-copy .kicker{color:var(--green)}
+.tx-copy h3{margin:0;font-size:clamp(34px,4.2vw,62px);line-height:.98;letter-spacing:-.035em;font-weight:790;font-variation-settings:'opsz' 96,'wdth' 86}
+.tx-copy .tl{margin:20px 0 0;color:rgba(10,14,9,.68);font-size:17px;line-height:1.5;max-width:460px}
+.tx-nav{display:flex;align-items:center;gap:14px;margin-top:30px}
+.tx-nav button{width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--cream);display:grid;place-items:center;transition:transform .3s var(--ease),background .2s}
+.tx-nav button:hover{transform:scale(1.07);background:#1d2619}
+.tx-nav button:active{transform:scale(.94)}
+.tx-nav svg{width:18px;height:18px}
+.tx-nav .nx svg{transform:rotate(180deg)}
+.tx-count{font-family:var(--mono);font-size:13px;color:rgba(10,14,9,.55);min-width:70px;text-align:center}
+.tx-count b{color:var(--ink);font-size:24px;font-weight:600}
+.tx-hint{margin:14px 0 0;font-size:13px;color:rgba(10,14,9,.5)}
+.tf .sk{display:block;height:13px;border-radius:7px;margin-top:12px;background:linear-gradient(90deg,rgba(10,14,9,.1),rgba(10,14,9,.17),rgba(10,14,9,.1));background-size:200% 100%;animation:sk 2.4s linear infinite;position:relative}
+.tf .sk:first-of-type{margin-top:16px}
+@keyframes sk{to{background-position:-200% 0}}
+.tcard.locked .tf h4{margin-top:auto}
+.tcard.locked .t-foot .pro{margin-left:0;translate:none}
+.tcard .tb-pro{background:var(--ink);color:var(--cream)}
+.tcard .tb-pro .t-ic{background:var(--gold);color:var(--ink)}
+.tcard .tb-pro p{color:rgba(243,240,231,.75)}
+.tcard .tb-pro .t-back{box-shadow:inset 0 0 0 1.5px rgba(243,240,231,.3);color:var(--cream)}
+.t-dl{flex:1;padding:0 14px;display:inline-flex;align-items:center;justify-content:center;height:42px;border-radius:999px;font-size:13.5px;font-weight:650;text-decoration:none;background:var(--lime)!important;color:var(--ink)!important}
+.deck{position:relative;height:470px;perspective:1600px;touch-action:pan-y;outline:none}
+.tcard{position:absolute;left:50%;top:6px;width:min(430px,100%);height:430px;margin-left:calc(min(430px,100%) / -2);
+  transform:translate(calc(var(--d,0) * 18px),calc(var(--d,0) * 14px)) rotate(calc(var(--r,0) * 1deg)) scale(calc(1 - var(--d,0) * .045));
+  transition:transform .65s var(--ease),opacity .45s;cursor:grab;user-select:none;-webkit-user-select:none}
+.tcard.drag,.tcard.jump{transition:none}
+.tcard.drag{cursor:grabbing}
+.tin{position:relative;width:100%;height:100%;transform-style:preserve-3d;transition:transform .8s var(--ease)}
+.tcard.flip .tin{transform:rotateY(180deg)}
+.tf,.tb{position:absolute;inset:0;border-radius:28px;padding:26px;backface-visibility:hidden;-webkit-backface-visibility:hidden;background:var(--bg);
+  box-shadow:0 34px 60px -30px rgba(10,14,9,.5),inset 0 0 0 1px rgba(10,14,9,.06);display:flex;flex-direction:column;overflow:hidden}
+.tb{transform:rotateY(180deg)}
+.t-top{display:flex;justify-content:space-between;align-items:center}
+.t-ic{width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--bg);display:grid;place-items:center;flex:none}
+.t-ic svg{width:25px;height:25px}
+.t-no{font-family:var(--mono);font-size:11px;letter-spacing:.08em;color:rgba(10,14,9,.55);text-transform:uppercase}
+.tf .big-ic{position:absolute;right:-30px;bottom:40px;width:210px;height:210px;color:rgba(10,14,9,.06);pointer-events:none}
+.tf h4{margin:auto 0 0;font-size:clamp(28px,2.7vw,38px);line-height:1;letter-spacing:-.03em;font-weight:790;font-variation-settings:'opsz' 96,'wdth' 88;position:relative}
+.tf .tl2{margin:14px 0 0;font-size:16.5px;line-height:1.45;color:rgba(10,14,9,.74);position:relative}
+.t-foot{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-top:22px;padding-top:16px;border-top:1px solid rgba(10,14,9,.14);font-size:13px;color:rgba(10,14,9,.6);position:relative}
+.t-more{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border-radius:999px;background:var(--ink);color:var(--cream);font-size:13.5px;font-weight:650;transition:transform .25s var(--ease)}
+.t-more:hover{transform:scale(1.04)}
+.t-more svg{width:14px;height:14px}
+.tb h5{margin:16px 0 8px;font-size:19px;line-height:1.15;font-weight:740;letter-spacing:-.015em}
+.tb p{margin:0;font-size:14.5px;line-height:1.5;color:rgba(10,14,9,.8);flex:1 1 auto;min-height:0;overflow:auto}
+.t-src{margin-top:12px;padding-top:12px;border-top:1px solid rgba(10,14,9,.14);font-family:var(--mono);font-size:10px;line-height:1.5;color:rgba(10,14,9,.6)}
+.t-src a{color:var(--ink);text-decoration-color:rgba(10,14,9,.3)}
+.t-acts{display:flex;gap:8px;margin-top:14px}
+.t-acts button{height:42px;border-radius:999px;font-size:13.5px;font-weight:650;padding:0 14px;transition:background .3s,color .3s}
+.t-back{box-shadow:inset 0 0 0 1.5px rgba(10,14,9,.25)}
+.t-focus{flex:1;background:var(--ink);color:var(--cream)}
+.t-focus.on{background:var(--green);color:#fff}
+@media (max-width:900px){.tipsx{grid-template-columns:minmax(0,1fr)}.deck{height:470px}}
+@media (max-width:420px){.tf,.tb{padding:22px}.tcard{height:440px}}
+
+/* ---------- TEAM ---------- */
+.team .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,6vw,100px);align-items:center}
+.rules{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:0;counter-reset:r}
+.rules li{counter-increment:r;display:grid;grid-template-columns:44px 1fr;gap:10px;padding:18px 0;border-top:1px solid var(--hair);color:var(--mute);font-size:15.5px}
+.rules li::before{content:"0" counter(r);font-family:var(--mono);font-size:11px;color:var(--lime);padding-top:4px}
+.rules li b{color:var(--cream);font-weight:620}
+.orbit{position:relative;width:min(560px,100%);aspect-ratio:1;margin:0 auto;container-type:inline-size}
+.orbit svg.ring{position:absolute;inset:14%;width:72%;height:72%;rotate:-90deg}
+.o-core{position:absolute;inset:30%;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(closest-side,var(--ink3),var(--ink2));box-shadow:inset 0 0 0 1px var(--hair)}
+.o-core b{display:block;font-size:clamp(56px,7vw,92px);line-height:.85;font-weight:800;letter-spacing:-.05em;font-variation-settings:'opsz' 96,'wdth' 80}
+.o-core b small{font-size:.38em;color:var(--mute);font-weight:600;letter-spacing:0}
+.o-core p{margin:8px 0 0;font-size:13px;color:var(--lime);max-width:150px}
+.o-rot{position:absolute;inset:0;animation:spin 70s linear infinite}
+.orbit:hover .o-rot,.orbit:hover .mate-in{animation-play-state:paused}
+@keyframes spin{to{rotate:360deg}}
+.mate{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(var(--a)) translateY(-41cqw) rotate(calc(var(--a) * -1))}
+.mate-in{position:absolute;left:0;top:0;translate:-50% -50%;animation:spin 70s linear infinite reverse;display:grid;justify-items:center;gap:8px}
+.mate .av{width:clamp(58px,7vw,78px);height:clamp(58px,7vw,78px);border-radius:50%;display:grid;place-items:center;font-size:clamp(22px,2.4vw,28px);font-weight:750;
+  background:var(--ink3);box-shadow:inset 0 0 0 2px rgba(243,240,231,.25);border:0;transition:background .4s,box-shadow .4s,transform .4s var(--ease);position:relative}
+.mate .av::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1.5px dashed rgba(243,240,231,.25);animation:spin 12s linear infinite}
+.mate.done .av{background:var(--lime);color:var(--ink);box-shadow:0 0 0 6px rgba(125,237,77,.14)}
+.mate.done .av::after{display:none}
+.mate .av:hover{transform:scale(1.08)}
+.mate .nm{font-size:13.5px;font-weight:600;white-space:nowrap}
+.mate .st{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
+.mate.done .st{color:var(--lime)}
+.bubble{position:absolute;z-index:5;pointer-events:none;padding:8px 14px;border-radius:16px 16px 16px 4px;background:var(--lime);color:var(--ink);font-weight:750;font-size:15px;white-space:nowrap}
+.team-foot{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:18px;flex-wrap:wrap}
+.tbar{width:min(420px,100%);margin:26px auto 0}
+.tbar .hbar{margin:8px 0}
+@media (max-width:900px){.team .wrap{grid-template-columns:1fr}.o-core{inset:33%}.mate .st{font-size:8.5px}.mate .nm{font-size:12.5px}}
+.team-hint{text-align:center;color:var(--mute);font-size:14px;margin:14px 0 0}
+
+/* ---------- BENTO ---------- */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:clamp(40px,6vw,70px)}
+.tile{--mx:50%;--my:50%;position:relative;overflow:hidden;border-radius:26px;background:var(--ink2);box-shadow:inset 0 0 0 1px var(--hair);padding:clamp(22px,2.4vw,32px);min-height:340px;display:flex;flex-direction:column;justify-content:space-between}
+.tile::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx) var(--my),rgba(125,237,77,.10),transparent 40%);opacity:0;transition:opacity .4s;pointer-events:none}
+.tile:hover::before{opacity:1}
+.tile h3{margin:0 0 8px;font-size:clamp(22px,2vw,28px);letter-spacing:-.02em;line-height:1.05;font-weight:700}
+.tile p{margin:0;color:var(--mute);font-size:15px;max-width:380px}
+.t1{grid-column:span 7}.t2{grid-column:span 5}.t3{grid-column:span 5}.t4{grid-column:span 7}
+.plants{display:grid;grid-template-columns:repeat(10,1fr);gap:9px;max-width:420px}
+.plants i{aspect-ratio:1;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--faint);transform:scale(.6);transition:transform .5s var(--ease),background .5s}
+.plants i.on{transform:scale(1);box-shadow:none}
+.pcount{display:flex;align-items:baseline;gap:6px;margin-bottom:22px}
+.pcount b{font-size:clamp(54px,6vw,84px);line-height:.9;font-weight:800;letter-spacing:-.05em;font-variation-settings:'opsz' 96,'wdth' 80}
+.pcount span{color:var(--mute);font-size:22px;font-weight:600}
+.energy{position:relative}
+.energy svg{width:100%;height:120px;overflow:visible;display:block;margin-top:14px}
+.energy .val{display:flex;align-items:baseline;gap:10px;flex-wrap:wrap}
+.energy .val b{display:block;font-size:clamp(34px,3.4vw,48px);font-weight:800;letter-spacing:-.04em;line-height:1;color:var(--lime)}
+.widgets{display:flex;gap:14px;perspective:900px;margin-bottom:20px}
+.wdg{width:150px;aspect-ratio:1;border-radius:30px;padding:16px;background:linear-gradient(160deg,#1C251A,#121811);box-shadow:inset 0 0 0 1px rgba(255,255,255,.07),0 30px 50px -20px rgba(0,0,0,.8);display:flex;flex-direction:column;justify-content:space-between;transition:transform .6s var(--ease)}
+.wdg:nth-child(1){transform:rotateY(14deg) rotateX(6deg)}
+.wdg:nth-child(2){transform:rotateY(-10deg) rotateX(-4deg) translateY(16px)}
+.tile:hover .wdg{transform:none}
+.wdg .mono{font-size:9px;color:var(--mute)}
+.wdg b{font-size:36px;font-weight:800;letter-spacing:-.04em;line-height:.9}
+.wdg b small{font-size:.5em;color:var(--mute)}
+.wdg .mini{display:flex;gap:4px}
+.wdg .mini i{flex:1;height:6px;border-radius:3px;background:var(--ink4)}
+.wdg .mini i.on{background:var(--lime)}
+.ring-s{width:62px;height:62px}
+.week{display:flex;align-items:flex-end;gap:10px;height:150px;margin-bottom:20px}
+.week div{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:8px;height:100%}
+.week i{display:block;width:100%;max-width:48px;border-radius:10px 10px 4px 4px;background:var(--ink4);height:var(--h);transform-origin:bottom;transform:scaleY(0);transition:transform 1s var(--ease)}
+.week div.hi i{background:var(--lime)}
+.week span{font-family:var(--mono);font-size:10px;color:var(--mute)}
+.week.on i{transform:scaleY(1)}
+@media (max-width:900px){.t1,.t2,.t3,.t4{grid-column:1/-1}.tile{min-height:300px}}
+
+/* ---------- PRICING ---------- */
+.price-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:16px;margin-top:clamp(40px,6vw,70px);align-items:stretch}
+.plan{position:relative;border-radius:30px;padding:clamp(24px,3vw,40px);background:var(--ink2);box-shadow:inset 0 0 0 1px var(--hair);display:flex;flex-direction:column}
+.plan h3{margin:0;font-size:22px;font-weight:700}
+.plan .sub{color:var(--mute);margin:4px 0 0}
+.plan .amt{display:flex;align-items:baseline;gap:10px;margin:30px 0 4px;font-weight:800;letter-spacing:-.05em;font-variation-settings:'opsz' 96,'wdth' 80}
+.plan .amt .big{font-size:clamp(64px,7.4vw,112px);line-height:.85}
+.plan .amt .unit{font-size:20px;letter-spacing:-.01em;color:var(--mute);font-weight:600}
+.plan ul{list-style:none;padding:0;margin:26px 0 30px;display:grid;gap:12px}
+.plan li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px}
+.plan li svg{flex:none;width:20px;height:20px;color:var(--lime);margin-top:2px}
+.plan .btn{margin-top:auto}
+.plan.p2{background:linear-gradient(165deg,#17220F,#0E140C 60%);box-shadow:none;isolation:isolate}
+.plan.p2::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1.5px;z-index:-1;
+  background:conic-gradient(from var(--ang,0deg),var(--lime),var(--green) 25%,transparent 40%,transparent 60%,var(--gold) 80%,var(--lime));
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;mask-composite:exclude;animation:ang 6s linear infinite}
+@property --ang{syntax:'<angle>';inherits:false;initial-value:0deg}
+@keyframes ang{to{--ang:360deg}}
+.toggle{display:inline-grid;grid-template-columns:1fr 1fr;position:relative;padding:4px;border-radius:999px;background:rgba(243,240,231,.07);margin-top:22px;width:220px}
+.toggle button{position:relative;z-index:1;height:38px;border-radius:999px;font-size:14.5px;font-weight:600;color:var(--mute);transition:color .3s}
+.toggle button[aria-pressed=true]{color:var(--ink)}
+.toggle i{position:absolute;top:4px;bottom:4px;left:4px;width:calc(50% - 4px);border-radius:999px;background:var(--lime);transition:transform .5s var(--ease)}
+.toggle.y i{transform:translateX(100%)}
+.odo{display:inline-flex;overflow:hidden;height:.92em;line-height:.92}
+.odo .d{display:inline-block;overflow:hidden;height:.92em;width:.53em;transition:width .6s var(--ease)}
+.odo .col{display:flex;flex-direction:column;transition:transform .9s var(--ease)}
+.odo .col span{height:.92em;display:block;text-align:center}
+.odo .sp{width:.22em}
+.alt{color:var(--mute);margin:0}
+.fine{margin:18px 0 0;color:var(--mute);font-size:13px;line-height:1.5}
+@media (max-width:900px){.price-grid{grid-template-columns:1fr}.plan.p2{order:-1}}
+
+
+/* ---------- HETI TERV: kipróbálható varázsló ---------- */
+.try{display:inline-flex;align-items:center;gap:8px;margin-top:18px;color:var(--lime);font-weight:650;text-decoration:none;font-size:15px}
+.try:hover{text-decoration:underline}
+.plan-head{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(20px,5vw,80px);align-items:end}
+.plan-head .lead{margin:0}
+.planner{display:grid;grid-template-columns:minmax(290px,350px) minmax(0,1fr);gap:clamp(12px,1.6vw,20px);margin:clamp(36px,5vw,60px) auto 0;max-width:1400px;align-items:start}
+.wiz{position:sticky;top:88px;background:var(--ink2);border-radius:28px;padding:20px;box-shadow:inset 0 0 0 1px var(--hair);display:flex;flex-direction:column;min-height:650px}
+.wiz-top{display:flex;align-items:center;gap:12px}
+.wiz-back{width:34px;height:34px;flex:none;border-radius:50%;display:grid;place-items:center;box-shadow:inset 0 0 0 1.5px var(--faint);transition:opacity .3s,box-shadow .2s}
+.wiz-back:hover{box-shadow:inset 0 0 0 1.5px var(--cream)}
+.wiz-back[disabled]{opacity:.25;cursor:default;box-shadow:inset 0 0 0 1.5px var(--faint)}
+.wiz-back svg{width:15px;height:15px}
+.wiz-track{flex:1;height:6px;border-radius:6px;background:var(--ink4);overflow:hidden}
+.wiz-track i{display:block;height:100%;width:33.3%;background:linear-gradient(90deg,var(--green),var(--lime));border-radius:6px;transition:width .55s var(--ease)}
+.wiz-count{color:var(--mute);min-width:30px;text-align:right}
+.wsteps{display:grid;margin-top:20px;flex:1}
+.wstep{grid-area:1/1;min-width:0;opacity:0;visibility:hidden;transform:translateX(34px);transition:opacity .35s,transform .5s var(--ease),visibility 0s .5s}
+.wstep.past{transform:translateX(-34px)}
+.wstep.on{opacity:1;visibility:visible;transform:none;transition:opacity .4s .06s,transform .55s var(--ease) .06s,visibility 0s}
+.wicon{width:46px;height:46px;border-radius:50%;display:grid;place-items:center;background:rgba(125,237,77,.12);color:var(--lime)}
+.wicon svg{width:22px;height:22px}
+.wstep h3{margin:14px 0 6px;font-size:23px;line-height:1.1;letter-spacing:-.02em;font-weight:720}
+.wstep>p{margin:0 0 18px;color:var(--mute);font-size:14.5px;line-height:1.45}
+.d7{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:5px}
+.d7 button{display:grid;justify-items:center;gap:3px;padding:10px 0 9px;border-radius:14px;background:var(--ink3);color:var(--mute);transition:background .25s,color .25s,transform .25s var(--ease)}
+.d7 button small{font-family:var(--mono);font-size:9.5px;letter-spacing:.04em;text-transform:uppercase}
+.d7 button b{font-size:18px;font-weight:700;color:var(--cream);line-height:1}
+.d7 button[aria-pressed=true]{background:var(--lime);color:rgba(10,14,9,.62)}
+.d7 button[aria-pressed=true] b{color:var(--ink)}
+.d7 button:active,.mrow:active,.avoid button:active,.dpills button:active{transform:scale(.95)}
+.quick{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.quick button{height:34px;padding:0 13px;border-radius:999px;font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1.5px var(--faint);transition:box-shadow .2s,background .2s}
+.quick button:hover{box-shadow:inset 0 0 0 1.5px var(--lime)}
+.countline{margin:16px 0 0;color:var(--lime);font-size:14px}
+.mrows{display:grid;gap:7px}
+.mrow{display:flex;align-items:center;gap:12px;padding:9px 12px 9px 9px;border-radius:16px;background:var(--ink3);text-align:left;transition:background .25s,transform .25s var(--ease)}
+.mrow .mi{width:38px;height:38px;flex:none;border-radius:12px;display:grid;place-items:center;background:var(--ink4);color:var(--lime);transition:background .25s,color .25s}
+.mrow .mi svg{width:20px;height:20px}
+.mrow b{display:block;font-size:15.5px;font-weight:650;line-height:1.2}
+.mrow small{color:var(--mute);font-size:12.5px}
+.mrow .ck,.cbox{margin-left:auto;flex:none;width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--faint);display:grid;place-items:center;transition:background .25s,box-shadow .25s}
+.mrow .ck svg,.cbox svg{width:13px;height:13px;color:var(--ink);opacity:0;transform:scale(.4);transition:.3s var(--ease)}
+.mrow[aria-pressed=true]{background:rgba(125,237,77,.13)}
+.mrow[aria-pressed=true] .mi{background:var(--lime);color:var(--ink)}
+.mrow[aria-pressed=true] .ck{background:var(--lime);box-shadow:none}
+.mrow[aria-pressed=true] .ck svg{opacity:1;transform:none}
+.mrow[aria-pressed=false] small{color:rgba(243,240,231,.4)}
+.avoid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px}
+.avoid button{height:40px;padding:0 6px;border-radius:12px;background:var(--ink3);font-size:13.5px;font-weight:600;transition:background .25s,color .25s,transform .25s var(--ease)}
+.avoid button[aria-pressed=true]{background:rgba(255,106,61,.14);color:var(--paprika);text-decoration:line-through;text-decoration-thickness:2px}
+.glabel{margin:18px 0 8px;color:var(--mute)}
+.dpills{display:flex;flex-wrap:wrap;gap:6px}
+.dpills button{height:36px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1.5px var(--faint);transition:background .25s,color .25s,box-shadow .25s,transform .25s var(--ease)}
+.dpills button[aria-pressed=true]{background:var(--lime);color:var(--ink);box-shadow:none}
+.wiz-err{min-height:1.4em;margin:12px 0 0;color:var(--paprika);font-size:13.5px}
+.wiz-next{width:100%;margin-top:4px}
+.wiz-next[hidden]{display:none}
+.wiz-next svg{width:18px;height:18px}
+.dstats{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 16px}
+.dstats div{padding:14px;border-radius:16px;background:var(--ink3)}
+.dstats b{display:block;font-size:30px;line-height:1;font-weight:800;letter-spacing:-.03em;font-variation-settings:'opsz' 96,'wdth' 84}
+.dstats span{display:block;margin-top:6px;color:var(--mute);font-size:9.5px}
+.wdone .btn{width:100%;margin-top:8px;height:48px}
+.wnote{margin:14px 0 0;color:var(--mute);font-size:12.5px;line-height:1.45}
+.board{background:var(--ink2);border-radius:28px;padding:16px;box-shadow:inset 0 0 0 1px var(--hair);min-width:0;position:relative;overflow:hidden}
+.btop{display:flex;justify-content:space-between;align-items:flex-end;gap:12px;padding:4px 6px 14px;flex-wrap:wrap}
+.btop .mono{color:var(--mute)}
+.btop b{display:block;font-size:20px;font-weight:720;letter-spacing:-.02em;margin-top:4px}
+.btop .tgt{color:var(--mute);font-size:13px;text-align:right}
+.btop .tgt b{display:inline;font-size:13px;color:var(--cream)}
+.ribbon{height:0;overflow:hidden;opacity:0;transition:height .4s var(--ease),opacity .3s,margin .4s var(--ease);margin:0 -16px;-webkit-mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent);mask:linear-gradient(90deg,transparent,#000 8%,#000 92%,transparent)}
+.ribbon.on{height:32px;opacity:1;margin:0 -16px 12px}
+.ribbon .rt{display:flex;gap:8px;width:max-content;animation:ribbon 9s linear infinite}
+.ribbon span{height:30px;padding:0 13px;border-radius:999px;display:inline-flex;align-items:center;background:rgba(125,237,77,.12);color:var(--lime);font-size:13px;font-weight:600;white-space:nowrap}
+@keyframes ribbon{to{transform:translateX(-50%)}}
+.gw{--lw:86px;--ch:146px;display:grid;grid-template-columns:var(--lw) repeat(var(--n),minmax(0,1fr));gap:7px}
+.gcol{display:grid;grid-template-rows:46px repeat(var(--s),var(--ch)) 54px;gap:7px;min-width:0}
+.gh{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;border-radius:14px;background:var(--ink3)}
+.gh b{font-size:15px;font-weight:700;line-height:1}
+.gh small{font-family:var(--mono);font-size:9.5px;color:var(--mute)}
+.labels .gh,.labels .gt{background:none}
+.gl{display:flex;flex-direction:column;justify-content:center;gap:4px;padding:0 4px}
+.gl b{font-size:14px;font-weight:650;line-height:1.1}
+.gl small{font-family:var(--mono);font-size:9.5px;color:var(--mute)}
+.gt{display:flex;flex-direction:column;justify-content:center;gap:6px;padding:0 8px;border-radius:14px;background:var(--ink3)}
+.gt span{font-size:12px;color:var(--mute);white-space:nowrap}
+.gt span b{font-size:15px;color:var(--cream);font-weight:750}
+.gt i{display:block;height:4px;border-radius:4px;background:var(--ink4);overflow:hidden}
+.gt i em{display:block;height:100%;width:0;background:var(--lime);border-radius:4px;transition:width .9s var(--ease)}
+.labels .gt{color:var(--mute);font-size:12px;padding:0 4px}
+.pcell{position:relative;min-width:0;border-radius:14px;overflow:hidden;background:var(--ink3);text-align:left;display:flex;flex-direction:column;border:1.5px dashed transparent;transition:border-color .25s,background .25s}
+.pcell.empty{background:transparent;border-color:rgba(243,240,231,.14);align-items:center;justify-content:center;color:rgba(243,240,231,.22);cursor:default}
+.pcell.empty svg{width:22px;height:22px}
+.cimg{position:relative;display:block;height:50%;flex:none;background:var(--ink4);overflow:hidden}
+.cimg img{width:100%;height:100%;object-fit:cover;scale:1.18;transition:opacity .3s}
+.cimg.ph{display:grid;place-items:center;color:rgba(125,237,77,.55);background:radial-gradient(circle at 50% 40%,#25311f,#161d14)}
+.cimg.ph svg{width:26px;height:26px}
+.ctx{display:flex;flex-direction:column;gap:3px;padding:7px 8px 8px;min-width:0;flex:1}
+.cs{display:none;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--lime)}
+.cn{font-size:11.5px;line-height:1.22;font-weight:600;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.ck2{margin-top:auto;font-family:var(--mono);font-size:9.5px;color:var(--mute);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ck2 em{font-style:normal;color:var(--gold)}
+.pcell.spin .cimg img{filter:blur(2.5px) saturate(1.2);transform:translateY(-4%)}
+.pcell.spin .cn{opacity:.55;filter:blur(.6px)}
+.pcell.land{animation:land .6s var(--ease)}
+@keyframes land{0%{transform:scale(.9)}55%{transform:scale(1.05)}100%{transform:none}}
+.bfoot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding:14px 6px 2px}
+.bfoot .mono{color:var(--mute)}
+.bfoot .mono b{color:var(--cream)}
+.bfoot .btn[disabled]{opacity:.35;pointer-events:none}
+.shop{display:grid;grid-template-rows:0fr;transition:grid-template-rows .6s var(--ease)}
+.shop.open{grid-template-rows:1fr}
+.shop>div{overflow:hidden}
+.shop-in{margin-top:12px;padding:18px;border-radius:20px;background:var(--ink3);columns:3 220px;column-gap:28px}
+.shop-in .ai{break-inside:avoid;margin-bottom:16px}
+.shop-in h5{margin:0 0 6px;display:flex;justify-content:space-between;font-family:var(--mono);font-weight:400;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:var(--lime)}
+.shop-in button{display:flex;align-items:center;gap:10px;width:100%;padding:6px 0;text-align:left;font-size:14px;border-bottom:1px solid var(--hair)}
+.shop-in button .q{margin-left:auto;font-family:var(--mono);font-size:11px;color:var(--mute);white-space:nowrap}
+.shop-in button.on .t{text-decoration:line-through;text-decoration-color:var(--lime);color:var(--mute)}
+.shop-in button.on .cbox{background:var(--lime);box-shadow:none}
+.shop-in button.on .cbox svg{opacity:1;transform:none}
+.shop-in .cbox{margin-left:0;width:20px;height:20px}
+.pantry{break-inside:avoid;margin:4px 0 0;color:var(--mute);font-size:13px;line-height:1.5}
+.pantry b{display:block;color:var(--cream);font-weight:600;margin-bottom:2px}
+.demo-note{margin:12px 6px 0;color:var(--mute);font-size:12.5px}
+@media (max-width:1100px){.plan-head{grid-template-columns:1fr}.planner{grid-template-columns:minmax(0,1fr)}.wiz{position:relative;top:0;min-height:0}}
+@media (max-width:700px){
+  .board{padding:14px}
+  .btop .tgt{text-align:left}
+  .gw{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;gap:10px;margin:0 -14px;padding:0 14px 8px;scrollbar-width:none}
+  .gw::-webkit-scrollbar{display:none}
+  .gcol.labels{display:none}
+  .gcol{flex:0 0 84%;scroll-snap-align:start;grid-template-rows:46px repeat(var(--s),78px) 54px}
+  .pcell{flex-direction:row;align-items:center}
+  .pcell.empty{flex-direction:row}
+  .cimg{width:62px;height:62px;margin:0 0 0 7px;border-radius:12px}
+  .cs{display:block}
+  .cn{font-size:13.5px;-webkit-line-clamp:2}
+  .shop-in{columns:1}
+}
+
+/* havi bajnok: -25% */
+.champ-chip{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(125,237,77,.12);color:var(--lime);font-size:14px;font-weight:600;text-decoration:none;transition:opacity .4s,transform .4s var(--ease),background .25s;width:max-content;max-width:100%}
+.champ-chip b{display:grid;place-items:center;height:24px;padding:0 8px;border-radius:999px;background:var(--lime);color:var(--ink);font-size:12.5px;font-weight:800;flex:none}
+.champ-chip:hover{background:rgba(125,237,77,.2)}
+.champ-chip.off{opacity:0;transform:translateY(-6px);pointer-events:none}
+.champ{margin-top:16px;border-radius:30px;padding:clamp(24px,3.4vw,44px);position:relative;overflow:hidden;isolation:isolate;
+  background:radial-gradient(90% 120% at 0% 0%,rgba(125,237,77,.16),transparent 55%),var(--ink2);box-shadow:inset 0 0 0 1px var(--hair);
+  display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4.4vw,64px);align-items:center;scroll-margin-top:90px}
+.stamp{position:relative;width:clamp(180px,19vw,240px);aspect-ratio:1;display:grid;place-items:center}
+.stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 20s linear infinite;overflow:visible}
+.stamp text{font-family:var(--mono);font-size:7.4px;letter-spacing:.18em;fill:var(--lime);text-transform:uppercase}
+.stamp .sd{position:absolute;inset:17%;border-radius:50%;background:var(--ink3);box-shadow:inset 0 0 0 1.5px rgba(125,237,77,.35);transition:background .5s,box-shadow .5s,transform .6s var(--ease)}
+.stamp b{position:relative;font-weight:800;font-size:clamp(54px,5.6vw,76px);letter-spacing:-.04em;line-height:1;color:var(--lime);font-variation-settings:'opsz' 96,'wdth' 80;transition:color .5s}
+.champ.got .stamp .sd{background:var(--lime);box-shadow:0 0 0 10px rgba(125,237,77,.12),0 0 60px rgba(125,237,77,.45);transform:scale(1.04)}
+.champ.got .stamp b{color:var(--ink)}
+.champ h3{margin:0;font-size:clamp(28px,3vw,46px);line-height:1;letter-spacing:-.03em;font-weight:780;font-variation-settings:'opsz' 96,'wdth' 86}
+.champ .cp{margin:14px 0 0;color:var(--mute);max-width:600px}
+.c-prog{display:flex;align-items:center;gap:14px;margin-top:22px}
+.c-prog .hbar{flex:1;margin:0}
+.c-prog span{font-family:var(--mono);font-size:11px;color:var(--mute);white-space:nowrap}
+.c-prog span b{color:var(--cream)}
+.tasks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
+.task{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:16px;background:var(--ink3);text-align:left;font-size:14px;line-height:1.25;transition:background .35s,color .35s}
+.task .ck{flex:none;width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--faint);display:grid;place-items:center;transition:background .3s,box-shadow .3s}
+.task .ck svg{width:13px;height:13px;color:var(--ink);opacity:0;transform:scale(.4);transition:.35s var(--ease)}
+.task.on{background:rgba(125,237,77,.11)}
+.task.on .ck{background:var(--lime);box-shadow:none}
+.task.on .ck svg{opacity:1;transform:none}
+.task.nudge{animation:nudge 1.6s ease-in-out infinite}
+@keyframes nudge{0%,100%{box-shadow:inset 0 0 0 1px transparent}50%{box-shadow:inset 0 0 0 1.5px var(--lime)}}
+.c-msg{margin:14px 0 0;min-height:1.5em;color:var(--lime);font-size:14.5px}
+.c-fine{margin:10px 0 0;color:var(--mute);font-size:12.5px;line-height:1.5;max-width:640px}
+@media (max-width:900px){.champ{grid-template-columns:minmax(0,1fr);justify-items:center}.champ>div:last-child{width:100%}.tasks{grid-template-columns:repeat(2,minmax(0,1fr))}.task{font-size:13px;padding:10px;gap:8px}}
+
+/* ---------- FAQ ---------- */
+.faq{margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--faint)}
+.qa{border-bottom:1px solid var(--faint)}
+.qa button{width:100%;display:flex;justify-content:space-between;align-items:center;gap:20px;text-align:left;padding:26px 0;font-size:clamp(20px,2vw,28px);font-weight:650;letter-spacing:-.02em;line-height:1.15}
+.qa button:hover{color:var(--lime)}
+.qa .pm{flex:none;width:44px;height:44px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--faint);position:relative;transition:transform .5s var(--ease),background .3s}
+.qa .pm::before,.qa .pm::after{content:"";position:absolute;left:50%;top:50%;width:14px;height:1.5px;background:currentColor;translate:-50% -50%}
+.qa .pm::after{rotate:90deg;transition:rotate .5s var(--ease)}
+.qa[data-open] .pm{transform:rotate(180deg);background:var(--lime);color:var(--ink)}
+.qa[data-open] .pm::after{rotate:0deg}
+.qa .ans{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s var(--ease)}
+.qa[data-open] .ans{grid-template-rows:1fr}
+.qa .ans>div{overflow:hidden}
+.qa .ans p{margin:0 0 26px;color:var(--mute);max-width:720px;font-size:17px}
+.faq-grid{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(30px,6vw,100px)}
+@media (max-width:900px){.faq-grid{grid-template-columns:1fr}}
+
+/* ---------- ANDROID ---------- */
+.droid{margin:0 var(--pad);border-radius:34px;background:var(--cream);color:var(--ink);padding:clamp(28px,5vw,70px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center;overflow:hidden;position:relative}
+.droid h2{font-size:clamp(36px,4.6vw,72px)}
+.droid p{color:rgba(10,14,9,.66);margin:18px 0 0;max-width:460px}
+.droid form{display:grid;gap:12px}
+.field{display:flex;gap:8px;padding:6px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(10,14,9,.12)}
+.field input{flex:1;min-width:0;width:100%;border:0;outline:0;background:none;font:inherit;padding:0 16px;color:var(--ink)}
+.field .btn{background:var(--ink);color:var(--cream);height:48px}
+.consent{display:flex;gap:10px;align-items:flex-start;font-size:13px;color:rgba(10,14,9,.66);line-height:1.45}
+.consent input{margin-top:3px;accent-color:var(--green)}
+.wl-msg{margin:0;min-height:1.4em;font-size:14px;font-weight:600;color:var(--green)}
+.wl-msg.err{color:#C4391F}
+.droid .robot{position:absolute;right:-40px;top:-60px;font-weight:800;font-size:240px;line-height:1;letter-spacing:-.06em;color:rgba(10,14,9,.05);pointer-events:none;font-variation-settings:'opsz' 96,'wdth' 75}
+@media (max-width:900px){.droid{grid-template-columns:minmax(0,1fr)}}
+
+/* ---------- FINAL ---------- */
+.final{padding:clamp(110px,14vw,200px) var(--pad) 40px;overflow:hidden}
+.scrub{max-width:1100px;margin:0 auto;font-size:clamp(32px,4.6vw,72px);line-height:1.04;letter-spacing:-.035em;font-weight:720;font-variation-settings:'opsz' 96,'wdth' 86}
+.scrub .sw{opacity:.13;transition:none}
+.scrub .lime{color:var(--lime)}
+.mega{margin:clamp(60px,8vw,110px) 0 0;text-align:center;font-weight:800;font-size:clamp(84px,19vw,320px);line-height:.82;letter-spacing:-.035em;font-variation-settings:'opsz' 96,'wdth' 75;
+  background:url(img/strip.webp) 0 50%/auto 100% repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pan 40s linear infinite;
+  filter:saturate(1.15) contrast(1.05);padding-bottom:.08em}
+@keyframes pan{to{background-position-x:-4320px}}
+.final-cta{display:flex;justify-content:center;align-items:center;gap:clamp(18px,4vw,40px);margin-top:clamp(40px,5vw,60px);flex-wrap:wrap}
+.qr{display:flex;align-items:center;gap:14px;color:var(--mute);font-size:14px}
+.qr img{width:86px;height:86px;border-radius:14px;background:#fff;padding:8px}
+@media (max-width:820px){.qr{display:none}.mega{font-size:33vw;line-height:.8}.mega span{display:block}}
+.mega{-webkit-text-stroke:1px rgba(243,240,231,.18)}
+.badge{display:inline-flex;align-items:center;border-radius:10px;will-change:transform}
+.badge img{display:block;height:auto}
+.ft-legal{flex-basis:100%;display:grid;gap:6px;font-size:12.5px;color:rgba(243,240,231,.5);line-height:1.5}
+footer{padding:50px var(--pad) 40px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:var(--mute);font-size:14px;border-top:1px solid var(--hair);margin-top:60px}
+footer nav{display:flex;gap:18px;flex-wrap:wrap}
+footer a{text-decoration:none}footer a:hover{color:var(--lime)}
+
+/* draft badge + toast */
+.draft{display:inline-flex;align-items:center;height:24px;padding:0 10px;border-radius:999px;background:var(--paprika);color:#fff;font-size:9.5px;white-space:nowrap}
+.toast{position:fixed;left:50%;bottom:24px;z-index:99;translate:-50% calc(100% + 40px);visibility:hidden;padding:14px 20px;border-radius:16px;background:var(--cream);color:var(--ink);font-weight:600;transition:translate .5s var(--ease);max-width:calc(100% - 32px)}
+.toast.on{translate:-50% 0;visibility:visible}
+.burst{position:fixed;z-index:96;pointer-events:none;width:8px;height:8px;border-radius:2px}
+
+/* reduced motion */
+.rm *,.rm *::before,.rm *::after{animation:none!important;transition:none!important}
+.rm .plants i{transform:none}
+.rm .week i{transform:none}
+.rm .scrub .sw{opacity:1}
+</style>
 </head>
-<body>
+<body class="no-js">
+<script>document.body.classList.remove('no-js');if(matchMedia('(prefers-reduced-motion: reduce)').matches)document.body.classList.add('rm')</script>
 
-<a class="skip" href="#tartalom">Ugrás a tartalomra</a>
+<!-- ikon: tányér + villa + levél -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="mark" viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="20" cy="20" r="17"/>
+    <path d="M13.2 10.5v5.2M16.2 10.5v5.2M19.2 10.5v5.2M13.2 15.7a3 3 0 0 0 6 0M16.2 18.7v11"/>
+    <path d="M26.4 9.6c3.1 2.8 3.1 7.6 0 10.6-3.1-3-3.1-7.8 0-10.6zM26.4 20.2c0 3.6-.9 7-2.3 9.6"/>
+  </symbol>
+  <symbol id="apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></symbol>
 
-<header class="hd" id="hd">
-  <div class="wrap hd-in">
-    <a class="brand" href="/" aria-label="FreshPlate – kezdőlap">
-      <img src="assets/icon/icon-96.png" width="36" height="36" alt="">
-      <span>FreshPlate</span>
-    </a>
-    <nav class="hd-nav" aria-label="Fő navigáció">
-      <a href="#hogyan">Hogyan működik</a>
-      <a href="#szokasok">Szokások</a>
-      <a href="#csapat">Csapat</a>
-      <a href="#arak">Árak</a>
-      <a href="#gyik">GYIK</a>
-      <span class="hd-sep" aria-hidden="true"></span>
-      <a class="quiet" href="support.html">Támogatás</a>
-      <a class="quiet" href="privacy.html">Adatvédelem</a>
-    </nav>
-    <div class="hd-right">
-      <a class="btn btn-ink btn-sm js-store" data-ct="land_nav" href="https://apps.apple.com/hu/app/id6793034579">Letöltés</a>
-      <button class="burger" id="burger" type="button" aria-expanded="false" aria-controls="menu" aria-label="Menü megnyitása"><i></i><i></i></button>
-    </div>
+  <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
+  <symbol id="i-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 20h8M9 7c0-1.5 1-2 1-3.5M13 7c0-1.5 1-2 1-3.5"/></symbol>
+  <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
+  <symbol id="i-sunrise" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6.5 16a5.5 5.5 0 0 1 11 0M3 19.5h18M12 4v3M4.8 9.2l2 1.6M19.2 9.2l-2 1.6"/></symbol>
+  <symbol id="i-apple" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 8.5c-1.2-1-4.8-1.8-6.4 1.2-1.7 3.2.4 8.3 2.6 9.6 1.4.8 2.4.2 3.8.2s2.4.6 3.8-.2c2.2-1.3 4.3-6.4 2.6-9.6-1.6-3-5.2-2.2-6.4-1.2z"/><path d="M12 8.5c0-2 .8-3.6 2.6-4.5"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M2.5 12h2.2M19.3 12h2.2M5.3 5.3l1.6 1.6M17.1 17.1l1.6 1.6M5.3 18.7l1.6-1.6M17.1 6.9l1.6-1.6"/></symbol>
+  <symbol id="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M19.5 14.5A8 8 0 0 1 9.5 4.5a8 8 0 1 0 10 10z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.9 6.1L20 10l-6.1 1.9L12 18l-1.9-6.1L4 10l6.1-1.9z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></symbol>
+  <symbol id="i-swap" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 11a8 8 0 0 0-14.6-4.5M4 13a8 8 0 0 0 14.6 4.5"/><path d="M5 3v4h4M19 21v-4h-4"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+
+  <symbol id="i-walk" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="13.5" cy="4.2" r="1.9"/><path d="M12.5 8.2l-2.2 5.3 3 2.6.9 5.4M10.3 13.5L8 21M12.5 8.2l3.2 3 2.8.8M12.5 8.2L9 9.8 7.6 13"/></symbol>
+  <symbol id="i-tape" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 15.5L15.5 3.5l5 5-12 12z"/><path d="M7.5 11.5l2 2M10.5 8.5l2 2M13.5 5.5l2 2"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></symbol>
+  <symbol id="i-pulse" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12h4l2.2-5.5 4.4 11 2.4-5.5h6"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></symbol>
+  <symbol id="i-wave" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 15c2.5-9 5-9 7.5 0s5 9 7.5 0 3.5-6 5-6"/></symbol>
+  <symbol id="i-egg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c3.6 0 6.5 6.2 6.5 10.6S15.6 21 12 21s-6.5-3-6.5-7.4S8.4 3 12 3z"/></symbol>
+  <symbol id="i-snow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5v19M3.8 7.2l16.4 9.6M20.2 7.2L3.8 16.8M9.5 4l2.5 2 2.5-2M9.5 20l2.5-2 2.5 2"/></symbol>
+  <symbol id="i-flip" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 0 1 13.7-5.6M20 12a8 8 0 0 1-13.7 5.6"/><path d="M18 3v4h-4M6 21v-4h4"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.5a3.5 3.5 0 0 1 7 0v3"/></symbol>
+  <symbol id="check" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 10.5l3.6 3.5 7.4-8"/></symbol>
+</svg>
+
+<div class="loader" aria-hidden="true">
+  <div class="loader-in">
+    <svg viewBox="0 0 40 40" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <circle cx="20" cy="20" r="17" pathLength="1"/>
+      <path d="M13.2 10.5v5.2" pathLength="1"/><path d="M16.2 10.5v5.2" pathLength="1"/><path d="M19.2 10.5v5.2" pathLength="1"/>
+      <path d="M13.2 15.7a3 3 0 0 0 6 0" pathLength="1"/><path d="M16.2 18.7v11" pathLength="1"/>
+      <path d="M26.4 9.6c3.1 2.8 3.1 7.6 0 10.6-3.1-3-3.1-7.8 0-10.6z" pathLength="1"/><path d="M26.4 20.2c0 3.6-.9 7-2.3 9.6" pathLength="1"/>
+    </svg>
+    <div class="loader-word"><span>FreshPlate</span></div>
   </div>
-  <div class="menu" id="menu" hidden>
-    <nav aria-label="Mobil navigáció">
-      <a href="#hogyan" style="--i:0">Hogyan működik</a>
-      <a href="#lista" style="--i:1">Bevásárlólista</a>
-      <a href="#szokasok" style="--i:2">Szokások</a>
-      <a href="#csapat" style="--i:3">Csapat</a>
-      <a href="#arak" style="--i:4">Árak</a>
-      <a href="#gyik" style="--i:5">Gyakori kérdések</a>
-      <a href="#android" style="--i:6">Android</a>
-    </nav>
-    <div class="menu-foot">
-      <a class="badge js-store" data-ct="land_menu" href="https://apps.apple.com/hu/app/id6793034579" aria-label="Letöltés az App Store-ból">
-        <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="150" height="50">
-      </a>
-      <p><a href="support.html">Támogatás</a> · <a href="privacy.html">Adatvédelem</a> · <a href="terms.html">Feltételek</a></p>
-    </div>
-  </div>
+</div>
+
+<div class="cursor" aria-hidden="true"><span></span></div>
+<div class="progress" aria-hidden="true"></div>
+<div class="toast" role="status"></div>
+
+<header class="nav" id="nav">
+  <a class="brand" href="#top" aria-label="FreshPlate – az oldal teteje"><svg><use href="#mark"/></svg>FreshPlate</a>
+  <ul>
+    <li><a href="#hogyan">Hogyan működik</a></li>
+    <li><a href="#terv">Heti terv</a></li>
+    <li><a href="#lista">Bevásárlólista</a></li>
+    <li><a href="#szokas">Szokások</a></li>
+    <li><a href="#csapat">Csapat</a></li>
+    <li><a href="#arak">Árak</a></li>
+    <li><a href="#gyik">GYIK</a></li>
+  </ul>
+  <a class="btn btn-lime btn-sm magnet js-store" data-ct="land_menu" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store">Letöltés</a>
 </header>
 
-<main id="tartalom">
+<main id="top">
+<!-- HERO -->
+<section class="hero">
+  <div class="wheel-wrap">
+    <div class="wheel" id="wheel">
+      <div class="plate" data-day="Hétfő" data-n="Csicseriborsós-spenótos curry rizzsel" data-k="580"><div class="plate-in"><div class="ph"><img src="img/r/1168.webp" alt=""></div><div class="tag"><b>H</b></div></div></div>
+      <div class="plate" data-day="Kedd" data-n="Chimichurri steak tál sült zöldségekkel" data-k="650"><div class="plate-in"><div class="ph"><img src="img/r/996.webp" alt=""></div><div class="tag"><b>K</b></div></div></div>
+      <div class="plate" data-day="Szerda" data-n="Sült falafel tál házi hummusszal" data-k="480"><div class="plate-in"><div class="ph"><img src="img/r/22.webp" alt=""></div><div class="tag"><b>Sze</b></div></div></div>
+      <div class="plate" data-day="Csütörtök" data-n="Zöld spenótos-mangós protein smoothie bowl" data-k="400"><div class="plate-in"><div class="ph"><img src="img/r/454.webp" alt=""></div><div class="tag"><b>Cs</b></div></div></div>
+      <div class="plate" data-day="Péntek" data-n="Bibimbap tál marhával és tükörtojással" data-k="430"><div class="plate-in"><div class="ph"><img src="img/r/558.webp" alt=""></div><div class="tag"><b>P</b></div></div></div>
+      <div class="plate" data-day="Szombat" data-n="Görögdinnyés-fetás nyári saláta pisztáciával" data-k="540"><div class="plate-in"><div class="ph"><img src="img/r/578.webp" alt=""></div><div class="tag"><b>Szo</b></div></div></div>
+      <div class="plate" data-day="Vasárnap" data-n="Vegán buddha bowl krémes tahini öntettel" data-k="525"><div class="plate-in"><div class="ph"><img src="img/r/17.webp" alt=""></div><div class="tag"><b>V</b></div></div></div>
+    </div>
+    <div class="core">
+      <svg viewBox="0 0 100 100"><circle cx="50" cy="50" r="47" fill="none" stroke="rgba(243,240,231,.1)" stroke-width="1"/><circle id="coreArc" cx="50" cy="50" r="47" fill="none" stroke="#7DED4D" stroke-width="1.6" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100"/></svg>
+      <div class="core-txt">
+        <span class="mono core-day" id="coreDay">Hétfő · ebéd</span>
+        <span class="core-name" id="coreName">Csicseriborsós-spenótos curry rizzsel</span>
+        <span class="core-kcal" id="coreKcal">580 kcal · 1 900 kcal-os napi célból</span>
+      </div>
+    </div>
+  </div>
 
-  <!-- ================= HERO ================= -->
-  <section class="hero">
-    <div class="wrap hero-grid">
-      <div class="hero-copy">
-        <p class="eyebrow hero-eye"><span class="sprout" aria-hidden="true"></span><span><b>iPhone-ra</b> · ingyenesen letölthető</span></p>
-        <h1 class="display">
-          <span class="ln"><span class="w" style="--i:0">Nem</span> <span class="w" style="--i:1">diéta.</span></span>
-          <span class="ln"><span class="w" style="--i:2">Heti</span> <span class="w" style="--i:3">menü</span></span>
-          <span class="ln em"><span class="w" style="--i:4">három</span> <span class="w" style="--i:5">lépésben.</span><svg class="swash" viewBox="0 0 420 34" preserveAspectRatio="none" aria-hidden="true"><path d="M4 24 C 70 10, 150 8, 236 15 S 360 26, 416 9"/></svg></span>
-        </h1>
-        <p class="lead">Bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
-        <div class="cta">
-          <a class="badge js-store" data-ct="land_hero" href="https://apps.apple.com/hu/app/id6793034579" aria-label="Letöltés az App Store-ból">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/black/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="165" height="55">
-          </a>
-          <a class="btn btn-ghost" href="#hogyan">Hogyan működik?</a>
+  <div class="hero-copy">
+    <p class="eyebrow mono hero-in"><i></i>iPhone-ra · ingyenesen letölthető</p>
+    <h1 aria-label="Nem diéta. Heti menü három lépésben.">
+      <span class="ln"><span>Nem <span class="strike">diéta.<svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M4 26C40 14 90 30 130 18S186 12 196 16" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" pathLength="1"/></svg></span></span></span>
+      <span class="ln"><span>Heti menü</span></span>
+      <span class="ln"><span><span class="lime">három</span> lépésben.</span></span>
+    </h1>
+    <p class="hero-sub hero-in">Bevásárlólistával — és egy csapattal, amelyik <b>nem hagy kiszállni a negyedik napon.</b> 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
+    <div class="hero-cta hero-in">
+      <a class="badge magnet js-store" data-ct="land_hero" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store"><img src="assets/appstore-badge.svg" alt="Letöltés az App Store-ból" width="165" height="44"></a>
+      <a class="btn btn-ghost magnet" href="#hogyan">Hogyan működik?</a>
+    </div>
+  </div>
+
+  <div class="hero-stats hero-in">
+    <div class="stat"><b data-count="1300">0</b><span>recept</span></div>
+    <div class="stat"><b data-count="0">0</b><span>reklám</span></div>
+    <div class="stat"><b data-count="7">0</b><span>nap ingyen Pro</span></div>
+    <div class="stat"><b>HU · EN</b><span>magyar és angol</span></div>
+  </div>
+  <div class="scrollhint mono" aria-hidden="true">Görgess<i></i></div>
+</section>
+
+<!-- MARQUEE -->
+<div class="bands" aria-hidden="true">
+  <div class="band band-b"><div class="track" data-speed="-0.6">
+    <span>Csicseriborsós-spenótos curry</span><img src="img/r/1168.webp" alt=""><span>Chimichurri steak tál</span><img src="img/r/996.webp" alt=""><span>Sült falafel hummusszal</span><img src="img/r/22.webp" alt=""><span>Bibimbap tükörtojással</span><img src="img/r/558.webp" alt=""><span>Sült tőkehal céklás salátával</span><img src="img/r/1189.webp" alt=""><span>Görögdinnyés-fetás saláta</span><img src="img/r/578.webp" alt=""><span>Teriyakis tofu-tempeh bowl</span><img src="img/r/1027.webp" alt="">
+  </div></div>
+  <div class="band band-a"><div class="track" data-speed="1">
+    <span>1300 recept</span><i></i><span>Magyarul</span><i></i><span>A te ízlésedre</span><i></i><span>Polcok szerint</span><i></i><span>21 nap</span><i></i><span>Reklám nélkül</span><i></i>
+  </div></div>
+</div>
+
+<!-- HOGYAN MŰKÖDIK -->
+<section id="hogyan">
+  <div class="steps-intro wrap">
+    <p class="kicker mono">01 / Hogyan működik</p>
+    <h2 data-split>Vasárnap este már tudod, <span class="soft">mit eszel egész héten.</span></h2>
+    <p class="lead" data-reveal>Három kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
+  </div>
+  <div class="stage" id="steps">
+    <div class="ghost" aria-hidden="true"><span>Terv</span><span>Lista</span><span>21 nap</span></div>
+    <div class="s-copy">
+      <div class="num" aria-hidden="true"><div class="num-strip"><span>01</span><span>02</span><span>03</span></div></div>
+      <div class="arts">
+        <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 01</p><h3>Heti terv három lépésben<span class="pro">PRO</span></h3><p>Napok → étkezések → szűrők. A varázsló a saját ízlésedből, allergiáidból és kalóriacélodból rak össze egy hetet — reggelitől vacsoráig, tízóraival és uzsonnával.</p><a class="try" href="#terv">Próbáld ki lent →</a></article>
+        <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 02</p><h3>Bevásárlólista, ami magától összeáll<span class="pro">PRO</span></h3><p>A hét minden hozzávalója egy listán, polcok szerint rendezve. A boltban csak pipálsz — fejben nem kell tartanod semmit.</p></article>
+        <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 03</p><h3>21 nap — egyedül vagy a csapatoddal</h3><p>Egyszerre egy szokás épül. Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p></article>
+      </div>
+      <div class="s-dots" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
+    </div>
+    <div class="s-phone">
+      <img src="img/phone-terv.webp" alt="A heti terv varázsló: Mely étkezések kellenek?">
+      <img src="img/phone-lista.webp" alt="A bevásárlólista polcok szerint">
+      <img src="img/phone-szokas.webp" alt="A Szokásaid képernyő 21 napos sorozattal">
+    </div>
+    <div class="s-decor" aria-hidden="true">
+      <div class="dg">
+        <span class="chip l" style="left:4%;top:20%">Napok <small>7 / 7</small></span>
+        <span class="chip" style="left:22%;top:36%;animation-delay:-1.2s">Étkezések <small>5 / nap</small></span>
+        <span class="chip" style="left:2%;top:53%;animation-delay:-2.4s">Gluténmentes</span>
+        <span class="chip" style="left:30%;top:68%;animation-delay:-3.1s">1 900 kcal <small>cél</small></span>
+      </div>
+      <div class="dg">
+        <span class="chip" style="left:6%;top:22%">Zöldség, gyümölcs <small>14</small></span>
+        <span class="chip l" style="left:26%;top:40%;animation-delay:-1.4s">Boltba indulás</span>
+        <span class="chip" style="left:0%;top:58%;animation-delay:-2.2s">200 g spenót</span>
+        <span class="chip" style="left:24%;top:72%;animation-delay:-3.3s">Fűszer <small>összecsukva</small></span>
+      </div>
+      <div class="dg">
+        <span class="chip" style="left:6%;top:22%"><span class="av">A</span>Anna <small>kész</small></span>
+        <span class="chip" style="left:28%;top:38%;animation-delay:-1.6s"><span class="av" style="background:#6B4BC4">K</span>Kata <small>kész</small></span>
+        <span class="chip l" style="left:2%;top:56%;animation-delay:-2.6s">Hajrá!</span>
+        <span class="chip g" style="left:26%;top:71%;animation-delay:-3.4s">7. nap · mérföldkő</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HETI TERV – kipróbálható varázsló -->
+<section class="sec plan-sec" id="terv">
+  <div class="wrap plan-head">
+    <div>
+      <p class="kicker mono">02 / Heti terv <span class="pro">PRO</span></p>
+      <h2 data-split>Rakd össze a heted. <span class="soft">Itt, most, három lépésben.</span></h2>
+    </div>
+    <p class="lead" data-reveal>Ugyanaz a három kérdés, mint az appban: napok, étkezések, szűrők. Utána valódi receptekből áll össze a menü — próbáld ki.</p>
+  </div>
+  <div class="planner" id="planner">
+    <aside class="wiz" aria-label="Heti terv varázsló">
+      <div class="wiz-top">
+        <button class="wiz-back" id="wBack" aria-label="Vissza" disabled><svg><use href="#i-back"/></svg></button>
+        <div class="wiz-track"><i id="wTrack"></i></div>
+        <span class="mono wiz-count" id="wCount">1/3</span>
+      </div>
+      <div class="wsteps">
+        <div class="wstep on" data-step="0">
+          <span class="wicon"><svg><use href="#i-cal"/></svg></span>
+          <h3>Mely napokra tervezünk?</h3>
+          <p>Koppints a napokra. Csak azokra állítunk össze menüt, amiket kijelölsz.</p>
+          <div class="d7" id="wDays"></div>
+          <div class="quick">
+            <button data-q="all">Következő 7 nap</button><button data-q="work">Csak hétköznap</button><button data-q="end">Hétvége</button>
+          </div>
+          <p class="countline" id="wDayCount">7 nap kijelölve</p>
         </div>
-        <p class="fine">Az alapverzió ingyenes. A FreshPlate Pro 7 napig ingyen kipróbálható, utána 1 990 Ft/hó vagy 12 990 Ft/év, bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
-        <ul class="facts">
-          <li><b>1300</b><span>recept</span></li>
-          <li><b>0</b><span>reklám</span></li>
-          <li><b>7 nap</b><span>ingyen Pro</span></li>
-          <li><b>HU · EN</b><span>magyar és angol</span></li>
+        <div class="wstep" data-step="1">
+          <span class="wicon"><svg><use href="#i-bowl"/></svg></span>
+          <h3>Mely étkezések kellenek?</h3>
+          <p>Csak azt tervezzük be, amit tényleg megeszel – a napi kalóriakeret ehhez igazodik.</p>
+          <div class="mrows" id="wMeals"></div>
+        </div>
+        <div class="wstep" data-step="2">
+          <span class="wicon"><svg><use href="#i-sliders"/></svg></span>
+          <h3>Van, amit kihagynánk?</h3>
+          <p>Amit itt kipipálsz, az ki is marad a hét minden fogásából.</p>
+          <div class="avoid" id="wAvoid"></div>
+          <p class="glabel mono">Étrend</p>
+          <div class="dpills" id="wDiets"></div>
+        </div>
+        <div class="wstep wdone" data-step="3">
+          <span class="wicon"><svg><use href="#check"/></svg></span>
+          <h3>Kész a heted!</h3>
+          <p id="dSub">7 nap · 35 étkezés</p>
+          <div class="dstats">
+            <div><b id="dAvg">0</b><span class="mono">kcal / nap átlag</span></div>
+            <div><b id="dItems">0</b><span class="mono">tétel a listán</span></div>
+          </div>
+          <button class="btn btn-lime" id="dShop">Bevásárlólista megnyitása</button>
+          <button class="btn btn-ghost" id="dEdit">Beállítások módosítása</button>
+          <p class="wnote">Az appban a saját kalóriacélodra, a teljes recepttárból áll össze, és egyből a naptáradba kerül. Pro-funkció — 7 napig ingyen kipróbálható.</p>
+        </div>
+      </div>
+      <p class="wiz-err" id="wErr" aria-live="polite"></p>
+      <button class="btn btn-lime wiz-next" id="wNext">Tovább</button>
+    </aside>
+
+    <div class="board" aria-live="polite">
+      <div class="btop">
+        <div><span class="mono" id="bKick">Előnézet</span><b id="bTitle">7 nap · 35 étkezés</b></div>
+        <div class="tgt">Napi cél: <b>1 900 kcal</b><br><span class="mono">mintacél</span></div>
+      </div>
+      <div class="ribbon" id="ribbon"><div class="rt" id="ribbonIn"></div></div>
+      <div class="gw" id="gw"></div>
+      <div class="bfoot">
+        <span class="mono" id="bSum">Állítsd be balra, és rakd össze.</span>
+        <button class="btn btn-ghost btn-sm" id="bShop" aria-expanded="false" aria-controls="shop" disabled>Bevásárlólista</button>
+      </div>
+      <div class="shop" id="shop"><div><div class="shop-in" id="shopIn"></div></div></div>
+      <p class="demo-note">A bemutató az app receptjeinek egy mintájából válogat, 1 900 kcal-os mintacélra. Az appban a teljes recepttárból, a saját célodra és ízlésedre.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BEVÁSÁRLÓLISTA – szétszedett tányér -->
+<section id="lista">
+  <div class="ex" id="ex">
+    <header class="ex-head">
+      <p class="kicker mono">03 / Bevásárlólista</p>
+      <h2>Egy tányér.<br><span class="lime">Egy lista.</span></h2>
+    </header>
+    <div class="ex-plate">
+      <div class="disc"><img src="img/r/17.webp" alt="Vegán buddha bowl krémes tahini öntettel"></div>
+      <div class="meta"><b>Vegán buddha bowl</b><span class="mono">525 kcal · 8 hozzávaló</span></div>
+    </div>
+    <div class="ex-list" aria-label="Bevásárlólista polcok szerint">
+      <div class="aisle"><h4 class="mono"><span>Zöldség, gyümölcs</span><span>4</span></h4><div class="slots"><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div></div></div>
+      <div class="aisle"><h4 class="mono"><span>Alapvető, száraz áru</span><span>2</span></h4><div class="slots"><div class="slot"></div><div class="slot"></div></div></div>
+      <div class="aisle"><h4 class="mono"><span>Olaj, ecet, szósz</span><span>1</span></h4><div class="slots"><div class="slot"></div></div></div>
+      <div class="aisle"><h4 class="mono"><span>Fűszer</span><span>1</span></h4><div class="slots"><div class="slot"></div></div></div>
+    </div>
+    <div class="ex-chips">
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">avokádó</span><small>½ db</small></button>
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">sárgarépa</span><small>½ db</small></button>
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">uborka</span><small>¼ db</small></button>
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">citrom</span><small>¼ db</small></button>
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">quinoa</span><small>40 g</small></button>
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">csicseriborsó</span><small>100 g</small></button>
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">tahini</span><small>1 evőkanál</small></button>
+      <button class="ing" data-cursor="Pipáld"><span class="ck"><svg><use href="#check"/></svg></span><span class="t">füstölt paprika</span><small>¼ teáskanál</small></button>
+    </div>
+    <div class="ex-foot">
+      <div class="ex-count"><div><b>35</b><span class="mono">étkezés a héten</span></div><div><b>1</b><span class="mono">lista</span></div><div><b>0</b><span class="mono">fejben tartott tétel</span></div></div>
+      A heti terv minden hozzávalója így áll össze: összeadva, a bolt bejárási sorrendjében. A só, az olaj és a fűszerek összecsukva várnak, mert azok otthon is megvannak.
+    </div>
+  </div>
+</section>
+
+<!-- SZOKÁS -->
+<section class="sec habit-sec" id="szokas">
+  <div class="wrap">
+    <div>
+      <p class="kicker mono">04 / Szokás és tippek <span class="pro">PRO</span></p>
+      <h2 data-split>Egy szokás. <span class="soft">Huszonegy nap.</span></h2>
+      <p class="lead" data-reveal>Nem tíz fogadalom januárban. Egyetlen fókusz, egy kiváltó pillanathoz kötve — és huszonegy nap, amíg beépül. Hetente egy kihagyott nap belefér: a sorozat nem nullázódik, csak folytatod.</p>
+      <div class="big21" id="big21" aria-hidden="true">21<small>nap</small></div>
+    </div>
+    <div class="habit" data-reveal>
+      <div class="h-top">
+        <div><span class="mono lime">Fókusz-szokás</span><h3>Étkezés után sétálj</h3><p>Kiváltó pillanat: ebéd után</p></div>
+        <div class="streak"><b id="streakN">11</b><span class="mono">napos<br>sorozat</span></div>
+      </div>
+      <div class="hbar"><i id="hbar"></i></div>
+      <div class="hbar-l"><span>Beépülés</span><span><b id="buildN">11</b> / 21 nap</span></div>
+      <div class="grid21" id="grid21"></div>
+      <div class="legend mono"><span><i style="background:var(--lime)"></i>Kész</span><span><i style="box-shadow:inset 0 0 0 1.5px var(--paprika)"></i>Kihagyott</span><span><i style="background:var(--ink3)"></i>Hátralévő</span></div>
+      <div class="h-act">
+        <button class="btn btn-lime" id="doneBtn" data-cursor="Kész">Ma megcsináltam</button>
+        <button class="btn btn-ghost" id="nextBtn">Következő nap</button>
+      </div>
+      <p class="h-msg" id="hMsg" aria-live="polite">Próbáld ki: jelöld be a mai napot, vagy lépj tovább bejelölés nélkül.</p>
+    </div>
+  </div>
+  <div class="tipsx" id="tippek">
+    <div class="tx-copy">
+      <p class="kicker mono">Longevity-tippek <span class="pro">PRO</span></p>
+      <h3>Apró dolgok, amik években mérhetők.</h3>
+      <p class="tl">Rövid, kutatásokon alapuló tippek a mindennapokra, mindegyik forrással. Egy koppintással fókusz-szokás lesz belőlük. Hármat itt is elolvashatsz — a többi a Pro-ban vár. Nem orvosi tanács.</p>
+      <div class="tx-nav">
+        <button class="pv" id="txPrev" aria-label="Előző tipp"><svg><use href="#i-back"/></svg></button>
+        <span class="tx-count" aria-live="polite"><b id="txN">01</b> / <span id="txT">10</span></span>
+        <button class="nx" id="txNext" aria-label="Következő tipp"><svg><use href="#i-back"/></svg></button>
+      </div>
+      <p class="tx-hint">Húzd félre a kártyát, vagy lapozz a nyilakkal.</p>
+    </div>
+    <div class="deck" id="deck" tabindex="0" aria-label="Longevity-tippek kártyapakli – a nyilakkal lapozhatsz"></div>
+  </div>
+</section>
+
+<!-- CSAPAT -->
+<section class="sec team" id="csapat">
+  <div class="wrap">
+    <div>
+      <p class="kicker mono">05 / Csapat</p>
+      <h2 data-split>Nem hagy kiszállni <span class="lime">a negyedik napon.</span></h2>
+      <p class="lead" data-reveal>Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal. Közös napi szokás, közös huszonegy nap.</p>
+      <ol class="rules">
+        <li data-reveal><span><b>Kettő elég.</b> A közös nap akkor van meg, ha legalább két tag bejelöli — egy beteg tag nem töri meg a csoport sorozatát.</span></li>
+        <li data-reveal><span><b>Biztatás, nem figyelmeztetés.</b> Akinek ma még nincs meg, annak egy koppintással küldhetsz egy „Hajrá!”-t.</span></li>
+        <li data-reveal><span><b>Huszonegy közös nap</b> után a szokás beépült. Utána tarthatjátok tovább, vagy választhattok újat.</span></li>
+        <li data-reveal><span><b>Csapatcél a hétre:</b> nem egymás ellen versenyeztek, hanem együtt haladtok.</span></li>
+      </ol>
+    </div>
+    <div data-reveal>
+      <div class="orbit" id="orbit">
+        <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(243,240,231,.08)" stroke-width="1.2"/><circle id="teamArc" cx="50" cy="50" r="48" fill="none" stroke="#7DED4D" stroke-width="2" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" style="transition:stroke-dasharray 1s var(--ease)"/></svg>
+        <div class="o-core"><div><span class="mono" style="color:var(--mute)">Ma</span><b><span id="teamN">2</span><small>/4</small></b><p id="teamMsg">Megvan a mai közös nap</p></div></div>
+        <div class="o-rot">
+          <div class="mate done" style="--a:0deg"><div class="mate-in"><button class="av" data-cursor="Kész">A</button><span class="nm">Anna</span><span class="st">Kész</span></div></div>
+          <div class="mate done" style="--a:90deg"><div class="mate-in"><button class="av" data-cursor="Kész">K</button><span class="nm">Kata</span><span class="st">Kész</span></div></div>
+          <div class="mate" style="--a:180deg" data-hajra><div class="mate-in"><button class="av" data-cursor="Hajrá!">B</button><span class="nm">Bence</span><span class="st">Még nincs meg</span></div></div>
+          <div class="mate" style="--a:270deg" data-me><div class="mate-in"><button class="av" data-cursor="Bejelölöm">Te</button><span class="nm">Te</span><span class="st">Még nincs meg</span></div></div>
+        </div>
+      </div>
+      <p class="team-hint">Koppints Bencére egy „Hajrá!”-ért — vagy jelöld be magad.</p>
+      <div class="tbar">
+        <div class="hbar-l mono"><span>Közös építés</span><span><b id="teamDays">9</b> / 21 nap</span></div>
+        <div class="hbar"><i id="teamBar" style="width:0"></i></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AMIT MÉG TUD -->
+<section class="sec" id="tobb">
+  <div class="wrap">
+    <p class="kicker mono">06 / Amit még tud</p>
+    <h2 data-split>Nem csak azt nézi, <span class="soft">mennyit eszel.</span></h2>
+    <div class="bento">
+      <div class="tile t1" data-tile="plants">
+        <div><div class="pcount"><b id="plantN">0</b><span>/ 30</span></div><div class="plants" id="plants"></div></div>
+        <div style="margin-top:26px"><h3>Heti 30 féle növény<span class="pro">PRO</span></h3><p>Hét szín, harmincféle növény egy héten — a változatosságot méri, nem csak a kalóriát.</p></div>
+      </div>
+      <div class="tile t2" data-tile="energy">
+        <div class="energy">
+          <div class="val"><b>+<span id="kcalN">0</span></b><span class="mono" style="color:var(--mute)">aktív kcal ma</span></div>
+          <svg viewBox="0 0 300 150" preserveAspectRatio="none"><defs><linearGradient id="eg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7DED4D" stop-opacity=".35"/><stop offset="1" stop-color="#7DED4D" stop-opacity="0"/></linearGradient></defs>
+            <path id="eFill" d="M0 130 C30 126 45 110 70 112 S110 70 140 84 S190 40 215 52 S265 24 300 18 V150 H0Z" fill="url(#eg)" opacity="0"/>
+            <path id="eLine" d="M0 130 C30 126 45 110 70 112 S110 70 140 84 S190 40 215 52 S265 24 300 18" fill="none" stroke="#7DED4D" stroke-width="2.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg>
+        </div>
+        <div><h3>Apple Health és Apple Watch</h3><p>Ha bekapcsolod, a napi kalóriacél az elégetett aktív energiához igazodik. Az adat nem hagyja el a telefonodat.</p></div>
+      </div>
+      <div class="tile t3" data-tile="widgets">
+        <div class="widgets">
+          <div class="wdg"><span class="mono">Szokás</span><svg class="ring-s" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#222B20" stroke-width="5"/><circle cx="20" cy="20" r="16" fill="none" stroke="#7DED4D" stroke-width="5" stroke-linecap="round" pathLength="21" stroke-dasharray="11 21" transform="rotate(-90 20 20)"/></svg><b>11<small>/21</small></b></div>
+          <div class="wdg"><span class="mono">Ma</span><b>3<small>/5</small></b><div class="mini"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="mono">étkezés</span></div>
+        </div>
+        <div><h3>Widgetek a főképernyőn</h3><p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül.</p></div>
+      </div>
+      <div class="tile t4" data-tile="week">
+        <div class="week" id="week">
+          <div><i style="--h:62%"></i><span>H</span></div><div><i style="--h:78%"></i><span>K</span></div><div class="hi"><i style="--h:92%"></i><span>Sze</span></div><div><i style="--h:70%"></i><span>Cs</span></div><div><i style="--h:84%"></i><span>P</span></div><div><i style="--h:48%"></i><span>Szo</span></div><div><i style="--h:66%"></i><span>V</span></div>
+        </div>
+        <div><h3>Heti kiértékelés<span class="pro">PRO</span></h3><p>Hétfőn egy oldalon: naplózott napok, átlagok, mit ettél a legtöbbször, hogyan alakult a súlyod.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ÁRAK -->
+<section class="sec" id="arak">
+  <div class="wrap">
+    <p class="kicker mono">07 / Árak</p>
+    <h2 data-split>Ingyenes alap. <span class="lime">Pro minden napra.</span></h2>
+    <p class="lead" data-reveal>Letöltés után minden alapfunkció azonnal a tiéd, reklám nélkül. A heti tervet és a bevásárlólistát 7 napig ingyen kipróbálhatod.</p>
+    <div class="price-grid">
+      <div class="plan" data-reveal>
+        <h3>Ingyenes</h3><p class="sub">Letöltés után azonnal.</p>
+        <div class="amt"><span class="big">0</span><span class="unit">Ft</span></div>
+        <ul>
+          <li><svg><use href="#check"/></svg>Receptböngészés és keresés</li>
+          <li><svg><use href="#check"/></svg>Napi naplózás, heti haladás</li>
+                    <li><svg><use href="#check"/></svg>Csoportok közös napi szokással, csapatcél, biztatás</li>
+          <li><svg><use href="#check"/></svg>Widgetek, Apple Health</li>
         </ul>
+        <a class="btn btn-ghost magnet js-store" data-ct="land_free" href="https://apps.apple.com/hu/app/id6793034579">Letöltés ingyen</a>
       </div>
-
-      <div class="board-wrap">
-        <div class="board" id="board">
-          <div class="bd-top">
-            <span class="bd-tag"><i aria-hidden="true"></i>Minta-hét</span>
-            <button class="bd-shuffle" id="bd-shuffle" type="button">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 3h5v5"/><path d="M4 20 21 3"/><path d="M21 16v5h-5"/><path d="m15 15 6 6"/><path d="M4 4l5 5"/></svg>
-              Keverd újra
-            </button>
-          </div>
-          <h2 class="bd-title">A heted, <em>összerakva.</em></h2>
-          <div class="bd-filters" role="group" aria-label="Szűrés étrend szerint">
-            <button type="button" data-f="" aria-pressed="true">Mind</button>
-            <button type="button" data-f="g" aria-pressed="false">Gluténmentes</button>
-            <button type="button" data-f="l" aria-pressed="false">Laktózmentes</button>
-            <button type="button" data-f="v" aria-pressed="false">Vegán</button>
-          </div>
-          <div class="bd-days" id="bd-days" role="tablist" aria-label="A hét napjai"></div>
-          <ol class="bd-meals" id="bd-meals" aria-live="polite">
-            <li class="meal sk"></li><li class="meal sk"></li><li class="meal sk"></li><li class="meal sk"></li><li class="meal sk"></li>
-          </ol>
-          <div class="bd-foot">
-            <div class="bd-total">
-              <span class="bd-lbl">Napi összesen</span>
-              <span class="bd-sum"><b id="bd-sum">—</b> <small>/ <span id="bd-target">1 900</span> kcal cél</small></span>
-              <span class="bd-bar" aria-hidden="true"><i id="bd-bar"></i></span>
-            </div>
-            <a class="bd-list" href="#lista"><span>Bevásárlólista</span><b><span id="bd-items">—</span> tétel</b><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-          </div>
+      <div class="plan p2" data-reveal>
+        <div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;align-items:flex-start">
+          <div><h3>FreshPlate Pro</h3><p class="sub">Az első 7 nap ingyen</p></div>
+          <div class="toggle" id="toggle" role="group" aria-label="Számlázás"><i></i><button aria-pressed="true" data-p="m">Havi</button><button aria-pressed="false" data-p="y">Éves</button></div>
         </div>
-        <p class="board-note">Valódi receptek az appból, 1 900 kcal-os napi célra összerakva. Az appban a heti terv a saját célodhoz, ízlésedhez és allergiáidhoz igazodik.</p>
-      </div>
-    </div>
-  </section>
-
-  <div class="marquee-clip" aria-hidden="true"><div class="marquee"><div class="marquee-track" id="marquee"></div></div></div>
-
-  <!-- ================= 01 HOGYAN MŰKÖDIK ================= -->
-  <section class="sec" id="hogyan">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow rv"><b>01</b> / Hogyan működik</p>
-        <h2 class="h2 rv">Vasárnap este<br><em>már tudod,</em> mit eszel egész héten.</h2>
-        <p class="sec-intro rv">Három kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
-      </div>
-      <div class="steps">
-        <article class="step rv" style="--d:0">
-          <span class="step-n">Lépés 01</span>
-          <h3>Heti terv három lépésben <span class="pro-tag">Pro</span></h3>
-          <p>Napok → étkezések → szűrők. A varázsló a saját ízlésedből, allergiáidból és kalóriacélodból rak össze egy hetet — reggelitől vacsoráig, tízóraival és uzsonnával.</p>
-          <div class="stage"><img class="device" src="assets/phone-terv.webp" alt="A heti terv varázsló 2. lépése: mely étkezések kellenek – reggeli, tízórai, ebéd, uzsonna, vacsora" width="675" height="1200" loading="lazy"></div>
-        </article>
-        <article class="step rv" style="--d:1">
-          <span class="step-n">Lépés 02</span>
-          <h3>Bevásárlólista, ami magától összeáll <span class="pro-tag">Pro</span></h3>
-          <p>A hét minden hozzávalója egy listán, polcok szerint rendezve. A boltban csak pipálsz — fejben nem kell tartanod semmit.</p>
-          <div class="stage"><img class="device" src="assets/phone-lista.webp" alt="Bevásárlólista polcok szerint, bolti móddal és napi szűrővel" width="675" height="1200" loading="lazy"></div>
-        </article>
-        <article class="step rv" style="--d:2">
-          <span class="step-n">Lépés 03</span>
-          <h3>21 nap — egyedül vagy a csapatoddal</h3>
-          <p>Egyszerre egy szokás épül. Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p>
-          <div class="stage"><img class="device" src="assets/phone-kozosseg.webp" alt="Közösség fül: havi kihívás, napos sorozat, naplózott napok és a nap kérdése" width="675" height="1200" loading="lazy"></div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 02 BEVÁSÁRLÓLISTA ================= -->
-  <section class="sec" id="lista">
-    <div class="wrap list-grid">
-      <div class="list-copy">
-        <p class="eyebrow rv"><b>02</b> / Bevásárlólista</p>
-        <h2 class="h2 rv">Egy lista.<br><em>Polcok szerint.</em></h2>
-        <p class="sec-intro rv">A heti terv minden hozzávalója egy listán, összeadva és a bolt bejárási sorrendjében: a zöldségestől a fűszerpolcig egyszer mész végig. A só, az olaj és a fűszerek összecsukva várnak, mert azok otthon is megvannak.</p>
-        <ul class="list-stats rv">
-          <li><b id="ls-items">—</b><span>tétel a héten</span></li>
-          <li><b id="ls-aisles">—</b><span>polc, bolti sorrendben</span></li>
-          <li><b id="ls-meals">35</b><span>étkezés mögötte</span></li>
+        <div class="amt"><span class="big odo" id="odo" aria-hidden="true"></span><span class="unit" id="unit">Ft / hó</span><span class="sr" id="priceSr">1 990 Ft / hó</span></div>
+        <p class="alt" id="alt">vagy 12 990 Ft / év · az első 7 nap ingyen</p>
+        <a class="champ-chip" id="champChip" href="#bajnok" data-cursor="Hogyan?"><b>−25%</b>minden hónapban megszerezhető a havi csomagra</a>
+        <ul>
+          <li><svg><use href="#check"/></svg>Heti terv varázsló, 3 lépésben</li>
+          <li><svg><use href="#check"/></svg>Bevásárlólista polcok szerint</li>
+          <li><svg><use href="#check"/></svg>Saját szokások, 21 napos építés, widget</li>
+          <li><svg><use href="#check"/></svg>Heti kiértékelés minden hétfőn</li>
+          <li><svg><use href="#check"/></svg>Heti növényfogyasztás követése, tenyér-adagok</li>
+          <li><svg><use href="#check"/></svg>A teljes recepttár és a bővített ízlésprofil</li>
+          <li><svg><use href="#check"/></svg>Longevity tippek forrással</li>
         </ul>
-        <p class="list-hint rv"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Ez a fenti minta-hét listája. Pipáld ki, ami már a kosárban van.</p>
-      </div>
-      <div class="receipt-wrap rv" style="--d:1">
-        <div class="receipt" id="receipt">
-          <div class="rc-head">
-            <img src="assets/icon/icon-96.png" width="30" height="30" alt="">
-            <b>FreshPlate</b>
-            <span>Bevásárlólista</span>
-            <span class="rc-sub" id="rc-sub">7 nap · 35 étkezés</span>
-          </div>
-          <div class="rc-prog"><span id="rc-count">0 / — a kosárban</span><span class="rc-bar" aria-hidden="true"><i id="rc-bar"></i></span></div>
-          <div class="rc-body" id="rc-body" tabindex="0" aria-label="A minta-hét bevásárlólistája"></div>
-          <div class="rc-pantry" id="rc-pantry"></div>
-          <div class="rc-foot">
-            <span>Jó étvágyat a héthez!</span>
-            <i class="barcode" aria-hidden="true"></i>
-          </div>
-        </div>
+        <a class="btn btn-lime magnet js-store" data-ct="land_pro" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="7 nap ingyen">Letöltés — 7 nap ingyen Pro</a>
+        <p class="fine">A próba után az előfizetés automatikusan megújul, az App Store beállításaiban bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
       </div>
     </div>
-  </section>
-
-  <!-- ================= 03 SZOKÁS ÉS TIPPEK ================= -->
-  <section class="sec" id="szokasok">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow rv"><b>03</b> / Szokás és tippek</p>
-        <h2 class="h2 rv">Egy szokás.<br><em>Huszonegy nap.</em></h2>
-        <p class="sec-intro rv">Nem tíz fogadalom januárban. Egyetlen fókusz, egy kiváltó pillanathoz kötve — és huszonegy nap, amíg beépül.</p>
+    <div class="champ" id="bajnok" data-reveal>
+      <div class="stamp" aria-hidden="true">
+        <svg viewBox="0 0 100 100"><defs><path id="cpath" d="M50 50m-41 0a41 41 0 1 1 82 0a41 41 0 1 1-82 0"/></defs>
+          <text><textPath href="#cpath" textLength="255" lengthAdjust="spacing">Havi bajnok · minden hónapban · havi bajnok · minden hónapban ·</textPath></text></svg>
+        <span class="sd"></span><b>−25%</b>
       </div>
-
-      <div class="habit-grid">
-        <!-- Az app „Szokásaid” lapja (HabitsModal.js), ugyanazokkal a szövegekkel és szabályokkal. -->
-        <div class="habit-demo rv" id="habit">
-          <div class="app fc">
-            <div class="fc-top">
-              <div class="fc-head">
-                <p class="fc-eyebrow">FÓKUSZ-SZOKÁS</p>
-                <p class="fc-title">Étkezés után sétálj</p>
-                <p class="fc-anchor">Kiváltó pillanat: ebéd után</p>
-              </div>
-              <div class="fc-streak"><b id="hb-streak">11</b><small>NAPOS SOROZAT</small></div>
-            </div>
-            <div class="fc-barhead"><span>Beépülés</span><b id="hb-days">11 / 21 nap</b></div>
-            <span class="fc-track" aria-hidden="true"><i id="hb-fill"></i></span>
-            <p class="fc-milestone" id="hb-ms">7. napi mérföldkő teljesítve</p>
-            <div class="fc-actions">
-              <button class="fc-cta" id="hb-do" type="button">Mai bejelölés</button>
-              <span class="fc-more" aria-hidden="true">···</span>
-            </div>
-          </div>
-          <div class="app cal">
-            <div class="cal-head"><span class="cal-title">Utolsó 21 nap</span><span class="cal-meta" id="hb-count">11 bejelölés</span></div>
-            <div class="cal-panel">
-              <div class="cal-dow" aria-hidden="true"><span>H</span><span>K</span><span>Sze</span><span>Cs</span><span>P</span><span>Szo</span><span>V</span></div>
-              <div class="cal-grid" id="hb-grid" aria-hidden="true"></div>
-              <div class="cal-legend" aria-hidden="true"><span><i class="c-done"></i>Kész</span><span><i class="c-miss"></i>Kihagyott</span><span><i class="c-fut"></i>Hátralévő</span></div>
-            </div>
-          </div>
-          <div class="demo-ctl">
-            <span class="demo-k">Próbáld ki</span>
-            <button class="btn btn-ghost btn-sm" id="hb-next" type="button">Következő nap <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
-            <p class="demo-msg" id="hb-msg" aria-live="polite">Jelöld be a mai napot, vagy lépj tovább bejelölés nélkül — és nézd meg, mi történik a sorozattal.</p>
-          </div>
-        </div>
-        <div class="habit-copy">
-          <h3 class="h3 rv">Egyszerre egy szokás épül</h3>
-          <p class="rv">Egy fókusz-szokás, egy kiváltó pillanathoz kötve („ebéd után”). Napi bejelölés, sorozat, a 7. és a 21. napi mérföldkő, alatta az utolsó 21 nap naptára. Hetente egy kihagyott nap belefér: a sorozat nem nullázódik, csak folytatod. A kezdőlapon és a főképernyős widgeten is ott van.</p>
-          <div class="habit-phone rv" style="--d:1"><img class="device" src="assets/phone-kezdolap.webp" alt="A FreshPlate kezdőlapja: a nap receptje, alatta „A szokásod” kártya – Étkezés után sétálj, 11 napos sorozat" width="675" height="1200" loading="lazy"></div>
-        </div>
-      </div>
-
-      <div class="tips rv">
-        <div class="tips-copy">
-          <p class="eyebrow on-dark">Longevity-tippek <span class="pro-tag">Pro</span></p>
-          <h3 class="h2 small">Apró dolgok, amik <em>években</em> mérhetők.</h3>
-          <p>Rövid, kutatásokon alapuló tippek a mindennapokra — étkezés utáni séta, napi lépésszám, haskörméret a mérleg helyett. Mindegyiknél ott a forrás, hogy utána tudj nézni, és egy koppintással fókusz-szokás lesz belőle. Nem orvosi tanács.</p>
-        </div>
-        <div class="tips-phone"><img class="device" src="assets/phone-tippek.webp" alt="Longevity-tippek listája az appban, forrásmegjelöléssel és „Ez legyen a fókuszom” gombbal" width="675" height="1200" loading="lazy"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 04 CSAPAT ================= -->
-  <section class="sec" id="csapat">
-    <div class="wrap team-grid">
-      <div class="team-copy">
-        <p class="eyebrow rv"><b>04</b> / Csapat</p>
-        <h2 class="h2 rv">Nem hagy kiszállni<br><em>a negyedik napon.</em></h2>
-        <p class="sec-intro rv">Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal. Közös napi szokás, közös huszonegy nap: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p>
-        <ul class="team-points rv">
-          <li><b>Kettő elég.</b> A közös nap akkor van meg, ha legalább két tag bejelöli — egy beteg tag nem töri meg a csoport sorozatát.</li>
-          <li><b>Biztatás, nem figyelmeztetés.</b> Akinek ma még nincs meg, annak egy koppintással küldhetsz egy „Hajrá!”-t.</li>
-          <li><b>Huszonegy közös nap</b> után a szokás beépült. Utána tarthatjátok tovább, vagy választhattok újat.</li>
-          <li><b>Csapatcél</b> a hétre: nem egymás ellen versenyeztek, hanem együtt haladtok.</li>
-        </ul>
-      </div>
-
-      <!-- Az app csoport-képernyőjének közös szokás kártyája (GroupHabitCard.js), ugyanazokkal a szövegekkel és szabályokkal. -->
-      <div class="team-demo rv" style="--d:1">
-        <p class="app gh-sec">A CSOPORT KÖZÖS SZOKÁSA</p>
-        <div class="app gh" id="team">
-          <p class="gh-eyebrow">MINDENNAP, EGYÜTT</p>
-          <div class="gh-habit">
-            <span class="gh-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"/><path d="M12 7 V12 L15.5 14.5"/></svg></span>
-            <div>
-              <p class="gh-title">Étkezés után sétálj</p>
-              <p class="gh-lead">A vércukor legegyszerűbb természetes szabályozója: 10 perc séta.</p>
-              <p class="gh-setby">Beállította: Anna</p>
-            </div>
-          </div>
-          <div class="gh-today" aria-live="polite">
-            <span class="gh-big"><b id="tm-n">2</b><small id="tm-tot">/4</small></span>
-            <div>
-              <p class="gh-line" id="tm-state">Megvan a mai közös nap</p>
-              <p class="gh-hint" id="tm-names">Ma már megvan: Anna, Kata</p>
-            </div>
-          </div>
-          <button class="gh-btn" id="tm-me" type="button" aria-pressed="false">Ma megcsináltam</button>
-          <p class="gh-undo" id="tm-undo" hidden>Koppints újra, ha mégsem.</p>
-          <div class="gh-build">
-            <div class="gh-build-row">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22 a6 6 0 0 0 6 -6 c0 -5 -4 -7 -5 -10 c-2 2 -3 4 -3 6 c-1 -0.8 -1.5 -1.8 -1.5 -3 c-2 1.5 -3.5 4 -3.5 7 a6 6 0 0 0 6 6 Z"/></svg>
-              <span class="gh-build-label">KÖZÖS ÉPÍTÉS</span>
-              <b>9 / 21 nap</b>
-            </div>
-            <span class="gh-bar" aria-hidden="true"><i style="width:43%"></i></span>
-            <p class="gh-build-hint">21 egymást követő közös nap után beépült a szokás. Még 12 nap.</p>
-          </div>
-          <p class="gh-need">A közös nap akkor van meg, ha legalább 2 tag bejelöli – így egy kihagyott nap nem visz mindenkit magával.</p>
-          <p class="gh-board">AZ ELMÚLT 7 NAP</p>
-          <ul class="gh-members" id="tm-members"></ul>
-          <div class="gh-foot" aria-hidden="true">
-            <span class="gh-why">Miért működik? <i>PRO</i></span>
-            <span class="gh-change">Másik szokás</span>
-          </div>
-        </div>
-        <div class="toast" id="tm-toast" role="status" aria-live="polite"></div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 05 AMIT MÉG TUD ================= -->
-  <section class="sec" id="tobb">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow rv"><b>05</b> / Amit még tud</p>
-        <h2 class="h2 rv">Nem csak azt nézi,<br><em>mennyit eszel.</em></h2>
-      </div>
-      <div class="more">
-        <article class="mo rv" style="--d:0">
-          <div class="mo-vis" aria-hidden="true"><svg class="plants" id="plants" viewBox="0 0 120 120"></svg><b class="mo-center">19<small>/30</small></b></div>
-          <h3>Heti 30 növény</h3>
-          <p>Hét szín, harminc különböző növény hetente — a változatosságot méri, nem csak a kalóriát.</p>
-        </article>
-        <article class="mo rv" style="--d:1">
-          <div class="mo-vis" aria-hidden="true">
-            <svg viewBox="0 0 120 120"><circle cx="60" cy="60" r="52" class="trk"/><circle cx="60" cy="60" r="52" class="arc terra" stroke-dasharray="326.7" stroke-dashoffset="91.5"/><circle cx="60" cy="60" r="40" class="trk"/><circle cx="60" cy="60" r="40" class="arc green" stroke-dasharray="251.3" stroke-dashoffset="113.1"/></svg>
-            <b class="mo-center sm">+320<small>aktív kcal</small></b>
-          </div>
-          <h3>Apple Health és Apple Watch</h3>
-          <p>Ha bekapcsolod, a napi kalóriacél az elégetett aktív energiához igazodik. Az adat nem hagyja el a telefonodat.</p>
-        </article>
-        <article class="mo rv" style="--d:2">
-          <div class="mo-vis widgets" aria-hidden="true">
-            <span class="wg wg-a"><i class="wg-ring"></i><b>11/21</b><small>szokás</small></span>
-            <span class="wg wg-b"><small>Ma</small><b>3/5</b><small>étkezés</small><i class="wg-dots"><u></u><u></u><u></u><u class="o"></u><u class="o"></u></i></span>
-          </div>
-          <h3>Widgetek a főképernyőn</h3>
-          <p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül.</p>
-        </article>
-        <article class="mo rv" style="--d:3">
-          <div class="mo-vis bars" aria-hidden="true">
-            <span style="--h:.62"><i></i>H</span><span style="--h:.8"><i></i>K</span><span style="--h:.45"><i></i>Sz</span><span style="--h:.9"><i></i>Cs</span><span style="--h:.7"><i></i>P</span><span style="--h:.3" class="o"><i></i>Sz</span><span style="--h:.55"><i></i>V</span>
-          </div>
-          <h3>Heti kiértékelés</h3>
-          <p>Hétfőn egy oldalon: naplózott napok, átlagok, mit ettél a legtöbbször, hogyan alakult a súlyod.</p>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 06 ÁRAK ================= -->
-  <section class="sec" id="arak">
-    <div class="wrap">
-      <div class="sec-head">
-        <p class="eyebrow rv"><b>06</b> / Árak</p>
-        <h2 class="h2 rv">Ingyenes alap.<br><em>Pro</em> minden napra.</h2>
-        <p class="sec-intro rv">Letöltés után minden alapfunkció azonnal a tiéd, reklám nélkül. A heti tervet és a bevásárlólistát 7 napig ingyen kipróbálhatod.</p>
-      </div>
-      <div class="plans">
-        <div class="plan free rv" style="--d:0">
-          <p class="plan-k">Ingyenes</p>
-          <div class="price"><b>0 Ft</b></div>
-          <p class="plan-sub">Letöltés után azonnal.</p>
-          <ul class="checks">
-            <li>Receptböngészés és keresés</li>
-            <li>Napi naplózás, heti haladás</li>
-            <li>Szokások, 21 napos építés</li>
-            <li>Csoportok, csapatcél, biztatás</li>
-            <li>Widgetek, Apple Health</li>
-          </ul>
-          <a class="btn btn-ghost js-store" data-ct="land_free" href="https://apps.apple.com/hu/app/id6793034579">Letöltés ingyen</a>
-        </div>
-        <div class="plan pro rv" style="--d:1">
-          <div class="pro-top">
-            <p class="plan-k">FreshPlate <span class="gold">Pro</span></p>
-            <span class="trial">Az első 7 nap ingyen</span>
-          </div>
-          <div class="seg" role="radiogroup" aria-label="Számlázási időszak">
-            <button type="button" role="radio" aria-checked="true" data-plan="ho">Havi</button>
-            <button type="button" role="radio" aria-checked="false" data-plan="ev">Éves</button>
-            <i aria-hidden="true"></i>
-          </div>
-          <div class="price"><b id="pr-amt">1 990 Ft</b><span id="pr-per">/ hó</span></div>
-          <p class="plan-sub" id="pr-note">vagy 12 990 Ft / év · az első 7 nap ingyen</p>
-          <ul class="checks">
-            <li>Heti terv varázsló, 3 lépésben</li>
-            <li>Bevásárlólista polcok szerint</li>
-            <li>Heti 30 növény követése, tenyér-adagok</li>
-            <li>A teljes recepttár és a bővített ízlésprofil</li>
-            <li>Longevity tippek forrással</li>
-          </ul>
-          <a class="btn btn-gold js-store" data-ct="land_pro" href="https://apps.apple.com/hu/app/id6793034579">Letöltés — 7 nap ingyen Pro</a>
-          <p class="plan-fine">A próba után az előfizetés automatikusan megújul, az App Store beállításaiban bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ANDROID ================= -->
-  <section class="sec" id="android">
-    <div class="wrap">
-      <div class="waitlist rv">
-        <div class="wl-copy">
-          <p class="eyebrow">Android</p>
-          <h2 class="h2 small">Androidon van<br><em>a telefonod?</em></h2>
-          <p>A FreshPlate ma iPhone-on érhető el. Az Android-verzió készül — hagyd itt az e-mail-címed, és egyszer szólunk, amikor megjelent. Mást nem küldünk.</p>
-        </div>
-        <form id="wl" novalidate>
-          <label class="sr" for="wl-email">E-mail-cím</label>
-          <div class="wl-row">
-            <input type="email" name="email" id="wl-email" placeholder="e-mail-címed" autocomplete="email" required inputmode="email">
-            <button class="btn btn-ink" type="submit" id="wl-btn">Értesíts</button>
-          </div>
-          <label class="consent"><input type="checkbox" id="wl-consent" required>
-            <span>Hozzájárulok, hogy a Movement Lab Kft. az e-mail-címemet az Android-verzió megjelenéséről szóló egyszeri értesítéshez kezelje. A hozzájárulást bármikor visszavonhatom a support@freshplate.hu címen. <a href="privacy.html">Adatkezelési tájékoztató</a></span>
-          </label>
-          <div class="msg" id="wl-msg" aria-live="polite"></div>
-        </form>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= 07 GYIK ================= -->
-  <section class="sec" id="gyik">
-    <div class="wrap faq-grid">
       <div>
-        <p class="eyebrow rv"><b>07</b> / Gyakori kérdések</p>
-        <h2 class="h2 rv faq-h">Mielőtt<br><em>letöltöd.</em></h2>
-        <p class="faq-more rv">Más kérdés? Írj a <a href="mailto:support@freshplate.hu">support@freshplate.hu</a> címre, vagy nézd meg a <a href="support.html">támogatási oldalt</a>.</p>
-      </div>
-      <div class="faq rv">
-        <details><summary>Tényleg ingyenes?<i aria-hidden="true"></i></summary><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></details>
-        <details><summary>Kell fiókot létrehoznom?<i aria-hidden="true"></i></summary><p>Az alapfunkciókhoz nem. Fiók a csoportokhoz és a barátokhoz kell — e-mail-címmel vagy Bejelentkezés az Apple-lel.</p></details>
-        <details><summary>Ez egy fogyókúrás app?<i aria-hidden="true"></i></summary><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></details>
-        <details><summary>Milyen adatot lát az app az Apple Healthből?<i aria-hidden="true"></i></summary><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></details>
-        <details><summary>Hogyan mondom le a Pro-t?<i aria-hidden="true"></i></summary><p>Az iPhone Beállítások → Apple-fiók → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></details>
-        <details><summary>Mikor jön Androidra?<i aria-hidden="true"></i></summary><p>Készül. Iratkozz fel a <a href="#android">várólistára</a>, és szólunk, amint elérhető.</p></details>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= ZÁRÓ CTA ================= -->
-  <section class="final" id="letoltes">
-    <div class="wrap final-grid">
-      <div class="final-copy">
-        <h2 class="display-2 rv">Vasárnap este<br><em>pár perc.</em></h2>
-        <p class="rv">Utána egész héten tudod, mit eszel — és azt is, mit kell venni hozzá.</p>
-        <div class="final-cta rv">
-          <a class="badge js-store" data-ct="land_final" href="https://apps.apple.com/hu/app/id6793034579" aria-label="Letöltés az App Store-ból">
-            <img src="https://tools.applemediaservices.com/api/badges/download-on-the-app-store/white/hu-hu?size=250x83" alt="Letöltés az App Store-ból" width="165" height="55" loading="lazy">
-          </a>
-          <div class="qr">
-            <img src="assets/qr-app.svg" width="92" height="92" alt="QR-kód: FreshPlate letöltése iPhone-ra">
-            <span>Gépen olvasod?<br><b>Szkenneld be</b> az iPhone kamerájával.</span>
-          </div>
+        <p class="mono lime" style="margin:0 0 12px">Havi kihívás · havi bajnok</p>
+        <h3>Minden hónapban megszerezhető 25% kedvezmény a havi csomagra.</h3>
+        <p class="cp">Teljesítsd a havi kihívás hat feladatát az appban, és egy hónap havi Pro 25%-kal olcsóbb. A következő hónapban újra kezdődik — és újra megszerezheted.</p>
+        <div class="c-prog"><div class="hbar"><i id="cBar"></i></div><span><b id="cN">0</b> / 6 feladat</span></div>
+        <div class="tasks" id="tasks">
+          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Értékelj legalább 1 receptet</button>
+          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Oszd meg egy receptedet</button>
+          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Adj hozzá egy barátot</button>
+          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Naplózz 10 napot ebben a hónapban</button>
+          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Próbálj ki egy új receptet</button>
+          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Jelölj be egy szokást 5 napon</button>
         </div>
+        <p class="c-msg" id="cMsg" aria-live="polite"></p>
+        <p class="c-fine">A kedvezményt egyszer használható App Store-beváltókóddal adjuk; az App Store-ban váltod be, egy hónapra szól, és havonta egyszer szerezhető meg. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
       </div>
-      <div class="final-phone rv" style="--d:1"><img class="device" src="assets/phone-hero.webp" alt="A FreshPlate Naptár füle iPhone-on: 7 napos heti terv, bevásárlólista 140 tétellel, heti növényfogyasztás" width="675" height="1200" loading="lazy"></div>
     </div>
-  </section>
+  </div>
+</section>
+
+<!-- GYIK -->
+<section class="sec" id="gyik" style="padding-top:40px">
+  <div class="wrap faq-grid">
+    <div>
+      <p class="kicker mono">08 / Gyakori kérdések</p>
+      <h2 data-split>Mielőtt <span class="soft">letöltöd.</span></h2>
+      <p class="lead" data-reveal>Más kérdés? Írj a <a href="mailto:support@freshplate.hu" class="lime">support@freshplate.hu</a> címre.</p>
+    </div>
+    <div class="faq" id="faq">
+      <div class="qa"><button aria-expanded="false">Tényleg ingyenes?<span class="pm"></span></button><div class="ans"><div><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Van kedvezmény a havi csomagra?<span class="pm"></span></button><div class="ans"><div><p>Igen: minden hónapban megszerezhető 25% kedvezmény. Teljesítsd a havi kihívás hat feladatát az appban, és kapsz egy beváltókódot, amellyel egy hónap havi Pro 25%-kal olcsóbb. A következő hónapban újra megszerezheted.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Kell fiókot létrehoznom?<span class="pm"></span></button><div class="ans"><div><p>Az alapfunkciókhoz nem. Fiók a csoportokhoz és a barátokhoz kell — e-mail-címmel vagy Bejelentkezés az Apple-lel.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Ez egy fogyókúrás app?<span class="pm"></span></button><div class="ans"><div><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Milyen adatot lát az app az Apple Healthből?<span class="pm"></span></button><div class="ans"><div><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Hogyan mondom le a Pro-t?<span class="pm"></span></button><div class="ans"><div><p>Az iPhone Beállítások → Apple-fiók → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Mikor jön Androidra?<span class="pm"></span></button><div class="ans"><div><p>Készül. Iratkozz fel a várólistára, és szólunk, amint elérhető.</p></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ANDROID -->
+<section id="android">
+  <div class="droid" data-reveal>
+    <span class="robot" aria-hidden="true">Android</span>
+    <div>
+      <p class="mono" style="margin:0 0 16px;color:var(--green)">Android</p>
+      <h2>Androidon van a telefonod?</h2>
+      <p>A FreshPlate ma iPhone-on érhető el. Az Android-verzió készül — hagyd itt az e-mail-címed, és egyszer szólunk, amikor megjelent. Mást nem küldünk.</p>
+    </div>
+    <form id="droidForm" novalidate>
+      <label class="sr" for="em">E-mail-cím</label>
+      <div class="field"><input id="em" type="email" placeholder="E-mail-cím" autocomplete="email" inputmode="email" required><button class="btn" type="submit" id="wlBtn">Értesíts</button></div>
+      <label class="consent"><input type="checkbox" id="wlConsent" required> <span>Hozzájárulok, hogy a Movement Lab Kft. az e-mail-címemet az Android-verzió megjelenéséről szóló egyszeri értesítéshez kezelje. A hozzájárulást bármikor visszavonhatom a support@freshplate.hu címen. <a href="privacy.html">Adatkezelési tájékoztató</a></span></label>
+      <p class="wl-msg" id="wlMsg" aria-live="polite"></p>
+    </form>
+  </div>
+</section>
+
+<!-- ZÁRÁS -->
+<section class="final">
+  <p class="scrub" id="scrub">Vasárnap este már tudod, mit eszel egész héten. Három kérdés, egy lista, és <span class="lime">egy csapat, aki holnap is rákérdez.</span></p>
+  <div class="mega" aria-hidden="true"><span>Fresh</span><span>Plate</span></div>
+  <div class="final-cta">
+    <a class="badge magnet js-store" data-ct="land_final" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store"><img src="assets/appstore-badge.svg" alt="Letöltés az App Store-ból" width="200" height="53"></a>
+    <div class="qr"><img src="img/qr-app.svg" alt="QR-kód az App Store-oldalhoz"><span>Gépen vagy?<br>Olvasd be a telefonoddal.</span></div>
+  </div>
+</section>
 </main>
 
-<footer class="ft">
-  <div class="wrap">
-    <div class="ft-top">
-      <div class="ft-brand">
-        <a class="brand inv" href="/" aria-label="FreshPlate – kezdőlap"><img src="assets/icon/icon-96.png" width="36" height="36" alt=""><span>FreshPlate</span></a>
-        <p>Heti menü három lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon.</p>
-      </div>
-      <nav class="ft-col" aria-label="Az oldalon">
-        <h4>Az appról</h4>
-        <a href="#hogyan">Hogyan működik</a>
-        <a href="#szokasok">Szokások</a>
-        <a href="#arak">Árak</a>
-        <a href="#gyik">Gyakori kérdések</a>
-        <a href="#android">Android</a>
-      </nav>
-      <nav class="ft-col" aria-label="Jogi oldalak">
-        <h4>Jogi</h4>
-        <a href="privacy.html">Adatvédelmi szabályzat</a>
-        <a href="terms.html">Felhasználási feltételek</a>
-        <a href="support.html">Támogatás</a>
-        <a href="https://apps.apple.com/hu/app/id6793034579">App Store</a>
-      </nav>
-      <div class="ft-col">
-        <h4>Kapcsolat</h4>
-        <a href="mailto:support@freshplate.hu">support@freshplate.hu</a>
-      </div>
-    </div>
-    <div class="ft-word" aria-hidden="true">FreshPlate</div>
-    <div class="ft-legal">
-      <p>Üzemeltető: Movement Lab Kft. · 1038 Budapest, Dűne utca 12. 1. em. 4. · Cégjegyzékszám: 01-09-352058 · Adószám: 27286012-2-41 · <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
-      <p>Az Apple, az App Store és az Apple Health az Apple Inc. védjegyei. A tápérték-adatok tájékoztató jellegűek; az app nem nyújt orvosi tanácsot.</p>
-    </div>
+<footer>
+  <span>© 2026 Movement Lab Kft. · <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></span>
+  <nav><a href="support.html">Támogatás</a><a href="privacy.html">Adatvédelem</a><a href="terms.html">Feltételek</a></nav>
+  <div class="ft-legal">
+    <p style="margin:0">Üzemeltető: Movement Lab Kft. · 1038 Budapest, Dűne utca 12. 1. em. 4. · Cégjegyzékszám: 01-09-352058 · Adószám: 27286012-2-41 · <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
+    <p style="margin:0">Az Apple, az App Store és az Apple Health az Apple Inc. védjegyei. A tápérték-adatok tájékoztató jellegűek; az app nem nyújt orvosi tanácsot.</p>
   </div>
 </footer>
 
-<script src="assets/site.js?v=2"></script>
+<script src="data/terv.js"></script>
+<script src="assets/js/gsap.min.js"></script>
+<script src="assets/js/ScrollTrigger.min.js"></script>
+<script>
+(() => {
+const RM = document.body.classList.contains('rm');
+const $ = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const hasGsap = typeof gsap !== 'undefined';
+if (hasGsap) gsap.registerPlugin(ScrollTrigger);
+const fine = matchMedia('(pointer:fine)').matches;
+
+/* ---------- toast ---------- */
+const toastEl = $('.toast'); let toastT;
+const toast = (msg) => { toastEl.textContent = msg; toastEl.classList.add('on'); clearTimeout(toastT); toastT = setTimeout(() => toastEl.classList.remove('on'), 2600); };
+
+/* ---------- confetti burst ---------- */
+function burst(x, y, n = 18, colors = ['#7DED4D', '#F3F0E7', '#14834A', '#F2C14E']) {
+  if (RM || !hasGsap) return;
+  for (let i = 0; i < n; i++) {
+    const p = document.createElement('i'); p.className = 'burst';
+    p.style.background = colors[i % colors.length]; p.style.left = x + 'px'; p.style.top = y + 'px';
+    document.body.appendChild(p);
+    const a = Math.random() * Math.PI * 2, d = 50 + Math.random() * 110;
+    gsap.to(p, { x: Math.cos(a) * d, y: Math.sin(a) * d - 30, rotation: Math.random() * 540, opacity: 0, scale: .4 + Math.random(), duration: .9 + Math.random() * .5, ease: 'power3.out', onComplete: () => p.remove() });
+  }
+}
+
+/* ---------- word split ---------- */
+function splitWords(el) {
+  const walk = (node) => {
+    [...node.childNodes].forEach(ch => {
+      if (ch.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        ch.textContent.split(/(\s+)/).forEach(part => {
+          if (!part) return;
+          if (/^\s+$/.test(part)) { frag.appendChild(document.createTextNode(' ')); return; }
+          const w = document.createElement('span'); w.className = 'w';
+          const inner = document.createElement('span'); inner.textContent = part; w.appendChild(inner); frag.appendChild(w);
+        });
+        ch.replaceWith(frag);
+      } else if (ch.nodeType === 1 && ch.tagName !== 'BR') walk(ch);
+    });
+  };
+  walk(el);
+}
+
+/* ---------- hero wheel ---------- */
+const wheel = $('#wheel'), plates = $$('.plate', wheel), N = plates.length;
+plates.forEach((p, i) => p.style.setProperty('--a', (i * 360 / N) + 'deg'));
+let rot = 200, idle = 200, mx = 0, my = 0, pmx = 0, pmy = 0, curOn = -1, holdUntil = 0;
+const wrapEl = $('.wheel-wrap');
+const coreDay = $('#coreDay'), coreName = $('#coreName'), coreKcal = $('#coreKcal'), coreArc = $('#coreArc');
+function setCore(i) {
+  if (i === curOn) return; curOn = i;
+  plates.forEach((p, k) => p.classList.toggle('on', k === i));
+  const d = plates[i].dataset;
+  const apply = () => { coreDay.textContent = d.day + ' · ebéd'; coreName.textContent = d.n; coreKcal.textContent = d.k + ' kcal · 1 900 kcal-os napi célból'; coreArc.setAttribute('stroke-dasharray', (d.k / 1900 * 100).toFixed(1) + ' 100'); };
+  if (hasGsap && !RM) gsap.timeline().to('.core-txt', { opacity: 0, y: 6, duration: .18 }).add(apply).to('.core-txt', { opacity: 1, y: 0, duration: .35, ease: 'power2.out' });
+  else apply();
+}
+addEventListener('mousemove', e => { mx = e.clientX / innerWidth - .5; my = e.clientY / innerHeight - .5; }, { passive: true });
+function wheelLoop() {
+  if (!RM && performance.now() > holdUntil) idle += .035;
+  const target = idle + scrollY * .06;
+  rot += (target - rot) * .07;
+  wheel.style.setProperty('--r', rot.toFixed(2) + 'deg');
+  pmx += (mx - pmx) * .05; pmy += (my - pmy) * .05;
+  wrapEl.style.translate = `${(pmx * -26).toFixed(1)}px ${(pmy * -18).toFixed(1)}px`;
+  // a bal oldalra (270°) forduló tányér a „mai”
+  let best = 0, bd = 999;
+  plates.forEach((p, i) => { const a = ((i * 360 / N + rot) % 360 + 360) % 360; const dd = Math.abs(a - 270); if (dd < bd) { bd = dd; best = i; } });
+  setCore(best);
+  requestAnimationFrame(wheelLoop);
+}
+requestAnimationFrame(wheelLoop);
+// koppintásra az adott tányér fordul a kiemelt (bal) helyre, és középen az ő receptje látszik
+plates.forEach((p, i) => {
+  p.setAttribute('role', 'button'); p.tabIndex = 0;
+  p.setAttribute('aria-label', `${p.dataset.day}: ${p.dataset.n}, ${p.dataset.k} kcal`);
+  const pick = () => {
+    const now = ((i * 360 / N + idle + scrollY * .06) % 360 + 360) % 360;
+    const d = ((270 - now) % 360 + 540) % 360 - 180;
+    idle += d; holdUntil = performance.now() + 7000;
+    if (RM) rot = idle + scrollY * .06;
+  };
+  p.addEventListener('click', pick);
+  p.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); pick(); } });
+});
+
+/* ---------- counters ---------- */
+function countUp(el, to, dur = 1.6) {
+  if (!hasGsap || RM) { el.textContent = to; return; }
+  const o = { v: 0 }; gsap.to(o, { v: to, duration: dur, ease: 'power3.out', onUpdate: () => el.textContent = Math.round(o.v) });
+}
+
+/* ---------- intro (loader -> hero) ---------- */
+function heroIn() {
+  $$('[data-count]').forEach(el => countUp(el, +el.dataset.count));
+  if (!hasGsap || RM) { $$('.strike path').forEach(p => { p.style.strokeDashoffset = 0; p.style.opacity = 1; }); return; }
+  const tl = gsap.timeline({ defaults: { ease: 'expo.out' } });
+  tl.from('h1 .ln>span', { yPercent: 115, rotate: 4, duration: 1.3, stagger: .09 })
+    .from('.hero-in', { y: 24, opacity: 0, duration: 1, stagger: .08 }, .25)
+    .from('.wheel-wrap', { scale: .55, rotate: -50, opacity: 0, duration: 1.8 }, 0)
+    .from('.plate-in', { scale: 0, duration: 1.1, stagger: .06, ease: 'back.out(1.6)' }, .2)
+    .set('.strike path', { opacity: 1 }, .95).to('.strike path', { strokeDashoffset: 0, duration: .7, ease: 'power2.inOut' }, .95)
+    .from('.nav', { y: -80, opacity: 0, duration: 1, clearProps: 'transform,opacity' }, .4);
+}
+function runLoader() {
+  const L = $('.loader');
+  if (RM || !hasGsap) { L && L.remove(); heroIn(); return; }
+  const tl = gsap.timeline({ onComplete: () => L.remove() });
+  tl.set('.loader svg *', { opacity: 1 }).to('.loader svg *', { strokeDashoffset: 0, duration: .7, stagger: .07, ease: 'power2.inOut' })
+    .to('.loader-word span', { y: 0, duration: .6, ease: 'expo.out' }, .3)
+    .to('.loader-in', { scale: .9, opacity: 0, duration: .35, ease: 'power2.in' }, '+=.15')
+    .to(L, { clipPath: 'circle(0% at 50% 50%)', duration: .9, ease: 'expo.inOut' }, '-=.1')
+    .add(heroIn, '-=.65');
+  L.addEventListener('click', () => tl.progress(1));
+}
+
+/* ---------- marquee ---------- */
+const tracks = $$('.band .track');
+tracks.forEach(t => { t.parentElement.appendChild(t.cloneNode(true)); });
+let vel = 0, lastY = scrollY, dir = 1;
+const offs = tracks.map(() => 0);
+function marq() {
+  const y = scrollY, dy = y - lastY; lastY = y;
+  if (dy) dir = dy > 0 ? 1 : -1;
+  vel += (Math.min(Math.abs(dy), 60) - vel) * .1;
+  tracks.forEach((t, i) => {
+    const w = t.offsetWidth; if (!w) return;
+    const sp = +t.dataset.speed;
+    if (!RM) offs[i] -= (0.6 + vel * .25) * sp * dir;
+    offs[i] = ((offs[i] % w) - w) % w;
+    t.style.transform = t.nextElementSibling.style.transform = `translate3d(${offs[i].toFixed(1)}px,0,0)`;
+  });
+  requestAnimationFrame(marq);
+}
+requestAnimationFrame(marq);
+
+/* ---------- reveals + split headings ---------- */
+$$('[data-split]').forEach(splitWords);
+if (hasGsap && !RM) {
+  $$('[data-split]').forEach(h => gsap.from($$('.w>span', h), { yPercent: 110, duration: 1.1, ease: 'expo.out', stagger: .045, scrollTrigger: { trigger: h, start: 'top 85%' } }));
+  gsap.set('[data-reveal]', { y: 50, opacity: 0 });
+  ScrollTrigger.batch('[data-reveal]', { start: 'top 90%', once: true, onEnter: b => gsap.to(b, { y: 0, opacity: 1, duration: 1.1, ease: 'expo.out', stagger: .08 }) });
+  gsap.to('.progress', { scaleX: 1, ease: 'none', scrollTrigger: { start: 0, end: 'max', scrub: true } });
+}
+
+/* ---------- steps (pinned) ---------- */
+const arts = $$('.art'), phones = $$('.s-phone img'), dgs = $$('.dg'), ghosts = $$('.ghost span'), dots = $$('.s-dots b');
+if (hasGsap && !RM) {
+  gsap.set([...arts.slice(1), ...phones.slice(1), ...dgs.slice(1), ...ghosts.slice(1)], { autoAlpha: 0 });
+  gsap.set(dots[0], { scaleX: 1 });
+  const tl = gsap.timeline({ scrollTrigger: { trigger: '#steps', start: 'top top', end: '+=240%', pin: true, scrub: .7, snap: { snapTo: [0, .5, 1], duration: { min: .2, max: .6 }, delay: .05, ease: 'power2.inOut' } } });
+  const sw = (a, b, t) => {
+    tl.to(arts[a], { autoAlpha: 0, y: -40, duration: .3 }, t)
+      .fromTo(arts[b], { autoAlpha: 0, y: 50 }, { autoAlpha: 1, y: 0, duration: .3 }, t + .15)
+      .to(phones[a], { autoAlpha: 0, xPercent: -30, rotateY: -35, scale: .9, duration: .4 }, t)
+      .fromTo(phones[b], { autoAlpha: 0, xPercent: 30, rotateY: 35, scale: .9 }, { autoAlpha: 1, xPercent: 0, rotateY: 0, scale: 1, duration: .4 }, t + .1)
+      .to(dgs[a], { autoAlpha: 0, y: -30, duration: .25 }, t)
+      .fromTo(dgs[b], { autoAlpha: 0, y: 40 }, { autoAlpha: 1, y: 0, duration: .3 }, t + .2)
+      .to(ghosts[a], { autoAlpha: 0, scale: 1.1, duration: .35 }, t)
+      .fromTo(ghosts[b], { autoAlpha: 0, scale: .9 }, { autoAlpha: 1, scale: 1, duration: .35 }, t + .15)
+      .to('.num-strip', { yPercent: -100 / 3 * b, duration: .45, ease: 'expo.inOut' }, t)
+      .to(dots[b], { scaleX: 1, duration: .3 }, t + .1);
+  };
+  sw(0, 1, .35); sw(1, 2, 1.35);
+  tl.to({}, { duration: .3 }, 1.7);
+} else {
+  // statikus: mind a három lépés egymás alatt
+  $('#steps').style.cssText = 'height:auto;display:block';
+  arts.forEach(a => { a.style.position = 'static'; a.style.marginBottom = '40px'; });
+  $('.s-phone').style.display = 'none'; $('.s-decor').style.display = 'none'; $('.ghost').style.display = 'none'; $('.num').style.display = 'none';
+}
+
+/* ---------- explode (bevásárlólista) ---------- */
+const ex = $('#ex'), ings = $$('.ing'), slots = $$('.slot'), plateEl = $('.ex-plate');
+ings.forEach(b => b.addEventListener('click', e => {
+  b.classList.toggle('done');
+  if (b.classList.contains('done')) { const r = b.getBoundingClientRect(); burst(r.left + 20, r.top + r.height / 2, 10); }
+  const left = ings.filter(x => !x.classList.contains('done')).length;
+  if (!left) toast('Jó étvágyat a héthez!');
+}));
+function slotDelta(i) {
+  // a chip alaphelyzete (transzform nélkül) a szakaszon belül: offsetLeft/offsetTop = a középpontja
+  const st = ex.getBoundingClientRect(), sl = slots[i].getBoundingClientRect(), c = ings[i];
+  return { x: sl.left + c.offsetWidth / 2 - (st.left + c.offsetLeft), y: sl.top + sl.height / 2 - (st.top + c.offsetTop) };
+}
+function radial(i) {
+  const n = ings.length, a = -Math.PI / 2 + i * Math.PI * 2 / n + .2;
+  const w = plateEl.offsetWidth, mob = innerWidth < 900;
+  const rx = w * (mob ? .5 : .78), ry = w * (mob ? .66 : .62);
+  return { x: Math.cos(a) * rx, y: Math.sin(a) * ry };
+}
+if (hasGsap && !RM) {
+  gsap.set([plateEl, ...ings], { xPercent: -50, yPercent: -50, x: 0, y: 0 });
+  gsap.set(ings, { scale: .3, autoAlpha: 0 });
+  gsap.set('.aisle h4', { autoAlpha: 0, x: -10 });
+  const tl = gsap.timeline({ scrollTrigger: { trigger: ex, start: 'top top', end: '+=210%', pin: true, scrub: .8, invalidateOnRefresh: true } });
+  tl.to(plateEl, { scale: .82, duration: 1, ease: 'power2.out' }, .1)
+    .to('.ex-plate .disc', { rotate: 40, duration: 1, ease: 'power2.out' }, .1)
+    .to('.ex-plate .meta', { autoAlpha: 0, y: 10, duration: .3 }, .1)
+    .to(ings, { autoAlpha: 1, scale: 1, x: i => radial(i).x, y: i => radial(i).y, rotate: i => (i % 2 ? 1 : -1) * (4 + i % 3 * 3), duration: 1, ease: 'back.out(1.4)', stagger: .04 }, .15)
+    .to(plateEl, { x: () => innerWidth < 900 ? 0 : -innerWidth * .2, y: () => innerWidth < 900 ? -innerHeight * .09 : 0, scale: () => innerWidth < 900 ? .62 : .7, duration: 1, ease: 'power3.inOut' }, 1.6)
+    .to('.ex-plate .disc', { rotate: 120, duration: 1, ease: 'power3.inOut' }, 1.6)
+    .to(ings, { x: i => slotDelta(i).x, y: i => slotDelta(i).y, rotate: 0, duration: 1, ease: 'power3.inOut', stagger: .03 }, 1.6)
+    .to('.aisle h4', { autoAlpha: 1, x: 0, duration: .4, stagger: .08 }, 2.3)
+    .fromTo('.ex-foot', { autoAlpha: 0, y: 30 }, { autoAlpha: 1, y: 0, duration: .4, immediateRender: true }, 2.4)
+    .to({}, { duration: .4 });
+}
+
+/* ---------- habit (interaktív 21 nap) ---------- */
+const grid = $('#grid21'), DAYS = ['H', 'K', 'Sze', 'Cs', 'P', 'Szo', 'V'];
+let days = Array(21).fill(null); for (let i = 0; i < 12; i++) days[i] = i === 5 ? 'miss' : 'done';
+let today = 12, celebrated = false;
+function streakOf() {
+  const upto = days[today] === 'done' ? today : today - 1;
+  let s = 0, lastMiss = -99; const wk = new Set();
+  for (let i = upto; i >= 0; i--) {
+    if (days[i] === 'done') s++;
+    else if (days[i] === 'miss') { const w = Math.floor(i / 7); if (lastMiss === i + 1 || wk.has(w)) break; wk.add(w); lastMiss = i; }
+    else break;
+  }
+  return s;
+}
+function renderHabit(popIdx) {
+  while (days.length < Math.min(35, today + 2) || days.length % 7) days.push(null);
+  grid.innerHTML = DAYS.map(d => `<span class="dl mono">${d}</span>`).join('') +
+    days.map((d, i) => `<span class="cell ${d || ''} ${i === today ? 'today' : ''} ${i === popIdx ? 'pop' : ''}">${i + 1}</span>`).join('');
+  const s = streakOf();
+  $('#streakN').textContent = s; $('#buildN').textContent = Math.min(s, 21);
+  $('#hbar').style.width = Math.min(s / 21 * 100, 100) + '%';
+  $('#big21').style.setProperty('--f', Math.min(s / 21 * 100, 100) + '%');
+  const db = $('#doneBtn'); db.textContent = days[today] === 'done' ? 'Kész — koppints, ha mégsem' : 'Ma megcsináltam';
+  return s;
+}
+let habitShown = false;
+renderHabit();
+$('#big21').style.setProperty('--f', '0%');
+if (hasGsap && !RM) ScrollTrigger.create({ trigger: '#szokas', start: 'top 60%', once: true, onEnter: () => { habitShown = true; renderHabit(); gsap.from('#grid21 .cell', { scale: .3, opacity: 0, duration: .6, stagger: .025, ease: 'back.out(2)' }); } });
+else renderHabit();
+$('#doneBtn').addEventListener('click', e => {
+  if (today >= 35) return;
+  days[today] = days[today] === 'done' ? null : 'done';
+  const s = renderHabit(today);
+  const msg = $('#hMsg');
+  if (days[today] === 'done') {
+    burst(e.clientX, e.clientY);
+    if (s >= 21 && !celebrated) { celebrated = true; msg.textContent = 'Huszonegy nap. A szokás beépült.'; burst(innerWidth / 2, innerHeight / 2, 70); }
+    else if (s === 7) msg.textContent = '7. napi mérföldkő teljesítve';
+    else msg.textContent = `${s} napos sorozat. Holnap folytatod?`;
+  } else msg.textContent = 'Visszavonva.';
+});
+$('#nextBtn').addEventListener('click', () => {
+  if (today >= 34) { toast('A bemutató itt véget ér.'); return; }
+  const msg = $('#hMsg');
+  if (!days[today]) days[today] = 'miss';
+  const wasMiss = days[today] === 'miss';
+  today++;
+  const s = renderHabit(today);
+  const prevMiss = days[today - 2] === 'miss';
+  msg.textContent = !wasMiss ? 'Új nap. Jelöld be, ha megvolt.'
+    : s > 0 ? 'Egy kihagyott nap belefér — a sorozat megmaradt.'
+    : prevMiss ? 'Két kihagyás egymás után: a sorozat újraindul.'
+    : 'A héten ez már a második kihagyás: a sorozat újraindul.';
+});
+
+/* ---------- longevity-tippek pakli ---------- */
+(function tipsDeck() {
+  // Csak a cím + az első 3 tipp rövid leadje kerül az oldalba; a kifejtés és a források az appban vannak.
+  const TIPS = [{"id": "steps", "ic": "i-walk", "t": "Emeld a napi aktivitásod", "l": "Nem kell 10 000 lépés – a napi 7000 is bőven megéri."}, {"id": "waist", "ic": "i-tape", "t": "Ne a súlyodat mérd, hanem a haskörméreted", "l": "A haskörméret pontosabb képet ad az egészségedről, mint a BMI."}, {"id": "postmeal_walk", "ic": "i-clock", "t": "Étkezés után sétálj", "l": "A vércukor legegyszerűbb természetes szabályozója: 10 perc séta."}, {"id": "vilpa", "ic": "i-pulse", "t": "Kapkodd a levegőt!", "lock": 1}, {"id": "thirty_plants", "ic": "i-bowl", "t": "Egyél hetente 30 féle növényt!", "lock": 1}, {"id": "morning_move", "ic": "i-sunrise", "t": "Kezdd a napot mozgással!", "lock": 1}, {"id": "carbs_smart", "ic": "i-chart", "t": "Nem minden szénhidrát egyforma", "lock": 1}, {"id": "blood_sugar_stable", "ic": "i-wave", "t": "Ismerd fel a vércukor-hullámvasutat", "lock": 1}, {"id": "protein_complete", "ic": "i-egg", "t": "A fehérjéhez nem kell egyetlen forrás", "lock": 1}, {"id": "produce_forms", "ic": "i-snow", "t": "A fagyasztott zöldség nem 'második osztályú'", "lock": 1}];
+  const deck = $('#deck'); if (!deck) return;
+  const PAL = ['#DDF5C9', '#F7E3A6', '#FFD3C2', '#CBEBDD', '#E2D8F5'];
+  const ROT = [-5, 4, -3, 5, -4];
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const N = TIPS.length, pad = (n) => String(n).padStart(2, '0');
+  $('#txT').textContent = pad(N);
+  deck.innerHTML = TIPS.map((t, i) => `<article class="tcard${t.lock ? ' locked' : ''}" data-i="${i}" data-r="${ROT[i % 5]}" style="--bg:${PAL[i % 5]}" aria-label="${i + 1}. tipp: ${esc(t.t)}">
+    <div class="tin">
+      <div class="tf">
+        <svg class="big-ic" aria-hidden="true"><use href="#${t.ic}"/></svg>
+        <div class="t-top"><span class="t-ic"><svg><use href="#${t.ic}"/></svg></span><span class="t-no">Tipp ${pad(i + 1)} / ${pad(N)}</span></div>
+        <h4>${esc(t.t)}</h4>
+        ${t.lock ? '<span class="sk" style="width:92%"></span><span class="sk" style="width:64%"></span>' : `<p class="tl2">${esc(t.l)}</p>`}
+        <div class="t-foot">${t.lock
+          ? '<span class="pro">PRO</span><button class="t-more" data-flip>Feloldás<svg><use href="#i-lock"/></svg></button>'
+: '<span>Forrással, az appban</span>'}</div>
+      </div>
+      ${t.lock ? `<div class="tb tb-pro">
+        <div class="t-top"><span class="t-ic"><svg><use href="#i-lock"/></svg></span><span class="pro">PRO</span></div>
+        <h5>${esc(t.t)}</h5>
+        <p>Ez a tipp — a kifejtéssel és a forrásokkal együtt — a FreshPlate Pro-ban olvasható, a további hattal együtt. Az első 7 nap ingyen.</p>
+        <div class="t-acts"><button class="t-back" data-unflip>Vissza</button><a class="t-dl js-store" data-ct="land_tipp" href="https://apps.apple.com/hu/app/id6793034579">Letöltés — 7 nap ingyen</a></div>
+      </div>` : ''}
+    </div>
+  </article>`).join('');
+  const cards = $$('.tcard', deck);
+  let order = cards.map((_, i) => i), busy = false;
+  function layout() {
+    order.forEach((ci, pos) => {
+      const c = cards[ci];
+      c.style.setProperty('--d', Math.min(pos, 3));
+      c.style.setProperty('--r', pos === 0 ? 0 : c.dataset.r);
+      c.style.zIndex = 50 - pos;
+      c.style.opacity = pos > 3 ? 0 : 1;
+      c.inert = pos !== 0;
+    });
+    $('#txN').textContent = pad(order[0] + 1);
+  }
+  function throwTop(dir = 1) {
+    if (busy) return; busy = true;
+    const c = cards[order[0]];
+    c.classList.remove('flip', 'drag');
+    c.style.transition = 'transform .45s cubic-bezier(.5,0,.75,0), opacity .45s';
+    c.style.transform = `translate(${dir * 130}%, -6%) rotate(${dir * 22}deg)`;
+    c.style.opacity = 0;
+    setTimeout(() => {
+      c.classList.add('jump'); c.style.transition = ''; c.style.transform = '';
+      order.push(order.shift()); layout();
+      void c.offsetWidth; c.classList.remove('jump'); busy = false;
+    }, RM ? 0 : 430);
+  }
+  function bringBack() {
+    if (busy) return; busy = true;
+    order.unshift(order.pop());
+    const c = cards[order[0]];
+    c.classList.add('jump'); c.style.transform = 'translate(-130%, -6%) rotate(-22deg)'; c.style.opacity = 0;
+    void c.offsetWidth;
+    c.classList.remove('jump'); c.style.transform = ''; layout();
+    setTimeout(() => { busy = false; }, RM ? 0 : 450);
+  }
+  $('#txNext').addEventListener('click', () => throwTop(1));
+  $('#txPrev').addEventListener('click', () => bringBack());
+  deck.addEventListener('keydown', (e) => { if (e.key === 'ArrowRight') { e.preventDefault(); throwTop(1); } if (e.key === 'ArrowLeft') { e.preventDefault(); bringBack(); } });
+  deck.addEventListener('click', (e) => {
+    const c = e.target.closest('.tcard'); if (!c) return;
+    if (e.target.closest('[data-flip]')) c.classList.add('flip');
+    if (e.target.closest('[data-unflip]')) c.classList.remove('flip');
+    const f = e.target.closest('.t-focus');
+    if (f) {
+      const on = !f.classList.contains('on');
+      $$('.t-focus', deck).forEach((b) => { b.classList.remove('on'); b.textContent = 'Legyen ez a fókusz-szokásom'; });
+      if (on) { f.classList.add('on'); f.textContent = 'Ez a fókusz-szokásod ✓'; toast('Az appban egy koppintással ez lenne a fókusz-szokásod.'); const r = f.getBoundingClientRect(); burst(r.left + r.width / 2, r.top, 14); }
+    }
+  });
+  // húzás: a felső kártyát félre lehet dobni (mindkét irányba = következő)
+  let sx = 0, sy = 0, dx = 0, dragging = null;
+  deck.addEventListener('pointerdown', (e) => {
+    const c = e.target.closest('.tcard');
+    if (!c || c !== cards[order[0]] || c.classList.contains('flip') || e.target.closest('button,a') || busy) return;
+    dragging = c; sx = e.clientX; sy = e.clientY; dx = 0; c.classList.add('drag'); c.setPointerCapture(e.pointerId);
+  });
+  deck.addEventListener('pointermove', (e) => {
+    if (!dragging) return;
+    dx = e.clientX - sx; const dy = (e.clientY - sy) * .25;
+    dragging.style.transform = `translate(${dx}px, ${dy}px) rotate(${dx * .06}deg)`;
+  });
+  const end = () => {
+    if (!dragging) return;
+    const c = dragging; dragging = null; c.classList.remove('drag');
+    if (Math.abs(dx) > 90) throwTop(Math.sign(dx)); else c.style.transform = '';
+  };
+  deck.addEventListener('pointerup', end); deck.addEventListener('pointercancel', end);
+  layout();
+  // egyszeri „húzz meg” jelzés, amikor a pakli látótérbe ér
+  if (hasGsap && !RM) ScrollTrigger.create({ trigger: deck, start: 'top 70%', once: true, onEnter: () => {
+    const c = cards[order[0]];
+    gsap.timeline({ delay: .4 }).to(c, { x: -26, rotation: -3, duration: .35, ease: 'power2.out' }).to(c, { x: 0, rotation: 0, duration: .7, ease: 'elastic.out(1,.45)', clearProps: 'transform' });
+  } });
+})();
+
+/* ---------- team ---------- */
+const teamN = $('#teamN'), teamMsg = $('#teamMsg'), teamArc = $('#teamArc');
+let teamDone = 2;
+function renderTeam() {
+  teamN.textContent = teamDone;
+  teamArc.setAttribute('stroke-dasharray', `${teamDone / 4 * 100} 100`);
+  teamMsg.textContent = teamDone >= 2 ? 'Megvan a mai közös nap' : 'Még kell egy tag';
+}
+if (hasGsap && !RM) ScrollTrigger.create({ trigger: '#orbit', start: 'top 75%', once: true, onEnter: () => { renderTeam(); $('#teamBar').style.width = (9 / 21 * 100) + '%'; } });
+else { renderTeam(); $('#teamBar').style.width = (9 / 21 * 100) + '%'; }
+function bubble(fromEl, text) {
+  const r = fromEl.getBoundingClientRect();
+  const b = document.createElement('div'); b.className = 'bubble'; b.textContent = text; document.body.appendChild(b);
+  b.style.position = 'fixed'; b.style.left = r.left + r.width / 2 + 'px'; b.style.top = r.top - 10 + 'px';
+  if (!hasGsap || RM) { setTimeout(() => b.remove(), 1400); return; }
+  gsap.fromTo(b, { xPercent: -50, yPercent: -50, scale: .3, opacity: 0 }, { scale: 1, opacity: 1, y: -40, duration: .5, ease: 'back.out(2)' });
+  gsap.to(b, { y: -90, opacity: 0, duration: .6, delay: 1.1, ease: 'power2.in', onComplete: () => b.remove() });
+}
+$$('.mate').forEach(m => {
+  const av = $('.av', m);
+  av.addEventListener('click', e => {
+    if (m.hasAttribute('data-hajra')) { bubble(av, 'Hajrá!'); $('.st', m).textContent = 'Hajrá elküldve'; burst(e.clientX, e.clientY, 10); }
+    else if (m.hasAttribute('data-me')) {
+      const on = m.classList.toggle('done');
+      teamDone += on ? 1 : -1; $('.st', m).textContent = on ? 'Kész' : 'Még nincs meg';
+      renderTeam(); if (on) burst(e.clientX, e.clientY);
+    } else bubble(av, 'Ma már megvan');
+  });
+});
+
+/* ---------- bento ---------- */
+const plantsEl = $('#plants'), PC = ['#E5483B', '#F28C38', '#F2C14E', '#7DED4D', '#14834A', '#8E5BD9', '#E8D9B5'];
+plantsEl.innerHTML = Array.from({ length: 30 }, () => '<i></i>').join('');
+const pDots = $$('i', plantsEl);
+function plantsOn() {
+  pDots.slice(0, 19).forEach((d, i) => setTimeout(() => { d.classList.add('on'); d.style.background = PC[i % 7]; }, RM ? 0 : 200 + i * 70));
+  countUp($('#plantN'), 19, 2);
+}
+function energyOn() { countUp($('#kcalN'), 320, 1.8); if (hasGsap && !RM) { gsap.to('#eLine', { strokeDashoffset: 0, duration: 1.8, ease: 'power2.inOut' }); gsap.to('#eFill', { opacity: 1, duration: 1, delay: 1 }); } else { $('#eLine').style.strokeDashoffset = 0; $('#eFill').setAttribute('opacity', 1); } }
+function weekOn() { $('#week').classList.add('on'); $$('#week i').forEach((b, i) => b.style.transitionDelay = (i * .08) + 's'); }
+if (hasGsap && !RM) {
+  ScrollTrigger.create({ trigger: '[data-tile=plants]', start: 'top 75%', once: true, onEnter: plantsOn });
+  ScrollTrigger.create({ trigger: '[data-tile=energy]', start: 'top 75%', once: true, onEnter: energyOn });
+  ScrollTrigger.create({ trigger: '[data-tile=week]', start: 'top 80%', once: true, onEnter: weekOn });
+  gsap.from('.tile', { y: 70, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.bento', start: 'top 80%' } });
+} else { plantsOn(); energyOn(); weekOn(); }
+$$('.tile').forEach(t => t.addEventListener('pointermove', e => { const r = t.getBoundingClientRect(); t.style.setProperty('--mx', e.clientX - r.left + 'px'); t.style.setProperty('--my', e.clientY - r.top + 'px'); }));
+
+/* ---------- pricing odometer ---------- */
+const odo = $('#odo');
+function buildOdo(len) {
+  odo.innerHTML = '';
+  for (let i = 0; i < len; i++) {
+    const d = document.createElement('span'); d.className = 'd';
+    d.innerHTML = '<span class="col">' + Array.from({ length: 10 }, (_, k) => `<span>${k}</span>`).join('') + '</span>';
+    odo.appendChild(d);
+  }
+}
+buildOdo(6);
+const digW = .53;
+function setOdo(str) {
+  const s = str.replace(/\s/g, '').padStart(5, ' '); // 5 jegy: " 1990" / "12990"
+  const cells = $$('.d', odo);
+  // 6 cella: [d0][d1] [sp] [d2][d3][d4]
+  const map = [s[0], s[1], ' sp', s[2], s[3], s[4]];
+  cells.forEach((c, i) => {
+    const ch = map[i];
+    if (ch === ' sp') { c.className = 'd sp'; c.style.width = '.22em'; c.firstChild.style.visibility = 'hidden'; return; }
+    if (ch === ' ') { c.style.width = '0em'; return; }
+    c.style.width = digW + 'em';
+    c.firstChild.style.transform = `translateY(${-ch * 10}%)`;
+  });
+}
+setOdo('1 990');
+const toggle = $('#toggle');
+$$('button', toggle).forEach(b => b.addEventListener('click', () => {
+  const y = b.dataset.p === 'y';
+  toggle.classList.toggle('y', y);
+  $$('button', toggle).forEach(x => x.setAttribute('aria-pressed', x === b));
+  setOdo(y ? '12 990' : '1 990');
+  $('#unit').textContent = y ? 'Ft / év' : 'Ft / hó';
+  $('#champChip').classList.toggle('off', y);
+  $('#priceSr').textContent = y ? '12 990 Ft / év' : '1 990 Ft / hó';
+  $('#alt').textContent = y ? 'vagy 1 990 Ft / hó · az első 7 nap ingyen' : 'vagy 12 990 Ft / év · az első 7 nap ingyen';
+}));
+
+/* ---------- heti terv varázsló (kipróbálható) ---------- */
+(function planner() {
+  const DATA = window.FP_TERV, root = $('#planner');
+  if (!DATA || !root) { root && (root.style.display = 'none'); return; }
+  const NB = ' ';
+  const fmt = (n) => String(Math.round(n)).replace(/\B(?=(\d{3})+(?!\d))/g, NB);
+  const esc = (t) => String(t).replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const TARGET = 1900;
+  // Az app helpers.js-éből: MEAL_SLOTS, SLOT_SHARE, poolOf
+  const SLOTS = [['reggeli', 'Reggeli', 'i-sunrise'], ['tízórai', 'Tízórai', 'i-apple'], ['ebéd', 'Ebéd', 'i-sun'], ['uzsonna', 'Uzsonna', 'i-apple'], ['vacsora', 'Vacsora', 'i-moon']];
+  const SHARE = { reggeli: 0.22, 'tízórai': 0.1, 'ebéd': 0.3, uzsonna: 0.1, vacsora: 0.28 };
+  const POOL = { reggeli: 'reggeli', 'tízórai': 'snack', 'ebéd': 'fo', uzsonna: 'snack', vacsora: 'fo' };
+  const DIETS = [['g', 'Gluténmentes'], ['l', 'Laktózmentes'], ['c', 'Cukormentes'], ['v', 'Vegán']];
+  const DSHORT = ['V', 'H', 'K', 'Sze', 'Cs', 'P', 'Szo'], DLONG = ['vasárnap', 'hétfő', 'kedd', 'szerda', 'csütörtök', 'péntek', 'szombat'];
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const DAYS = Array.from({ length: 7 }, (_, i) => { const d = new Date(today); d.setDate(today.getDate() + i); return d; });
+  const st = { step: 0, days: new Set(DAYS.map((_, i) => i)), slots: new Set(SLOTS.map((s) => s[0])), avoid: new Set(), diets: new Set(), plan: null, busy: false };
+
+  const selDays = () => DAYS.map((_, i) => i).filter((i) => st.days.has(i));
+  const selSlots = () => SLOTS.filter((s) => st.slots.has(s[0]));
+  const shareTotal = () => selSlots().reduce((a, s) => a + SHARE[s[0]], 0) || 1;
+  const budget = (slot) => Math.round(TARGET * SHARE[slot] / shareTotal());
+  const hint = (slot) => st.slots.has(slot) ? `kb. ${fmt(Math.round(budget(slot) / 10) * 10)} kcal` : 'Kihagyva';
+
+  // Az app matchesTaste/filterTaste szabálya: minden étrend kell, egyik kihagyott se; ha semmi nem marad, szűretlen.
+  const matches = (r) => [...st.diets].every((f) => r.d.includes(f)) && ![...st.avoid].some((l) => r.x.includes(l));
+  function poolFor(slot) { const list = DATA[POOL[slot]], f = list.filter(matches); return f.length ? f : list; }
+  // Az app pickMeal-je: keret körüli merítés (≥8, a készlet 40%-a), ismétlés nélkül, fotós előnyben, adagszorzó 0,5/1/1,5.
+  function bestPortion(cal, b) {
+    const best = [0.5, 1, 1.5].reduce((x, f) => (Math.abs(cal * f - b) < Math.abs(cal * x - b) ? f : x), 1);
+    return Math.abs(cal * best - b) < Math.abs(cal - b) * 0.85 ? best : 1;
+  }
+  function pickMeal(slot, used) {
+    const b = budget(slot);
+    let pool = poolFor(slot).slice().sort((x, y) => Math.abs(x.k - b) - Math.abs(y.k - b));
+    pool = pool.slice(0, Math.max(8, Math.ceil(pool.length * 0.4)));
+    let fresh = pool.filter((r) => !used.has(r.id)); if (!fresh.length) fresh = pool;
+    const ph = fresh.filter((r) => r.img); if (ph.length) fresh = ph;
+    const r = fresh[Math.floor(Math.random() * fresh.length)];
+    return { r, portion: bestPortion(r.k, b) };
+  }
+  function buildPlan() {
+    const used = new Set(), plan = {};
+    selDays().forEach((d) => { plan[d] = {}; selSlots().forEach(([slot]) => { const m = pickMeal(slot, used); plan[d][slot] = m; used.add(m.r.id); }); });
+    return plan;
+  }
+  function countTo(el, to) {
+    if (RM || !hasGsap) { el.textContent = fmt(to); return; }
+    const o = { v: 0 }; gsap.to(o, { v: to, duration: .9, ease: 'power3.out', onUpdate: () => { el.textContent = fmt(o.v); } });
+  }
+  const dayKcal = (d) => Object.values(st.plan[d] || {}).reduce((a, m) => a + m.r.k * m.portion, 0);
+
+  // --- bevásárlólista (a régi landing app-hű összevonása + adagszorzó) ---
+  const DISCRETE = ['db', 'gerezd', 'szelet', 'fej', 'szál', 'lap', 'rúd', 'tábla', 'karika', 'konzerv', 'csomag', 'doboz', 'zacskó'];
+  const SHORT_UNIT = { 'evőkanál': 'ek', 'teáskanál': 'tk' };
+  const roundAmount = (v) => v >= 100 ? Math.round(v / 5) * 5 : v >= 10 ? Math.round(v) : Math.round(v * 4) / 4;
+  const num = (v) => String(Math.round(v * 100) / 100).replace('.', ',');
+  function fmtQty(q, u) {
+    if (q == null) return '';
+    let v = q, unit = u;
+    if (unit === 'g' && v >= 1000) { v /= 1000; unit = 'kg'; }
+    if (unit === 'ml' && v >= 1000) { v /= 1000; unit = 'l'; }
+    v = DISCRETE.includes(unit) ? Math.ceil(v) : roundAmount(v);
+    if (!v) v = 0.25;
+    if (unit === 'kg' || unit === 'l') v = Math.round(q / 100) / 10;
+    return num(v) + NB + (SHORT_UNIT[unit] || unit);
+  }
+  function shopping() {
+    const map = {}, order = [];
+    Object.values(st.plan).forEach((day) => Object.values(day).forEach(({ r, portion }) => r.i.forEach(([q, u, n, a]) => {
+      const key = (q == null ? 'raw' : u) + '|' + n.toLowerCase();
+      if (!map[key]) { map[key] = { q: q == null ? null : 0, u, n, a }; order.push(key); }
+      if (q != null) map[key].q += q * portion;
+    })));
+    const named = {}; order.forEach((k) => { if (!k.startsWith('raw|')) named[k.split('|')[1]] = 1; });
+    const items = order.filter((k) => !k.startsWith('raw|') || !named[k.slice(4)]).map((k) => map[k]);
+    const aisles = DATA.aisles.map((label, idx) => ({ idx, label, items: [] }));
+    items.forEach((it) => aisles[it.a] && aisles[it.a].items.push(it));
+    aisles.forEach((a) => a.items.sort((x, y) => x.n.localeCompare(y.n, 'hu')));
+    return { main: aisles.filter((a) => a.items.length && !DATA.pantry.includes(a.idx)), pantry: aisles.filter((a) => a.items.length && DATA.pantry.includes(a.idx)) };
+  }
+
+  // --- wizard ---
+  const wDays = $('#wDays'), wMeals = $('#wMeals'), wAvoid = $('#wAvoid'), wDiets = $('#wDiets');
+  wDays.innerHTML = DAYS.map((d, i) => `<button aria-pressed="true" data-i="${i}" aria-label="${DLONG[d.getDay()]}, ${d.getMonth() + 1}. ${d.getDate()}."><small>${DSHORT[d.getDay()]}</small><b>${d.getDate()}</b></button>`).join('');
+  wMeals.innerHTML = SLOTS.map(([id, label, ic]) => `<button class="mrow" aria-pressed="true" data-s="${id}"><span class="mi"><svg><use href="#${ic}"/></svg></span><span><b>${label}</b><small data-h="${id}"></small></span><span class="ck"><svg><use href="#check"/></svg></span></button>`).join('');
+  wAvoid.innerHTML = DATA.avoid.map((o) => `<button aria-pressed="false" data-l="${o.l}">${esc(o.label)}</button>`).join('');
+  wDiets.innerHTML = DIETS.map(([f, l]) => `<button aria-pressed="false" data-f="${f}">${l}</button>`).join('');
+
+  const steps = $$('.wstep', root), wNext = $('#wNext'), wBack = $('#wBack'), wErr = $('#wErr');
+  function renderWizard() {
+    steps.forEach((s, i) => { s.classList.toggle('on', i === st.step); s.classList.toggle('past', i < st.step); });
+    $('#wTrack').style.width = (st.step >= 3 ? 100 : (st.step + 1) / 3 * 100) + '%';
+    $('#wCount').textContent = st.step >= 3 ? 'Kész' : `${st.step + 1}/3`;
+    wBack.disabled = st.step === 0 || st.busy;
+    wNext.hidden = st.step >= 3;
+    wNext.innerHTML = st.step === 2 ? '<svg><use href="#i-spark"/></svg>Terv összeállítása' : 'Tovább';
+    $$('button', wDays).forEach((b) => b.setAttribute('aria-pressed', st.days.has(+b.dataset.i)));
+    $$('.mrow', wMeals).forEach((b) => b.setAttribute('aria-pressed', st.slots.has(b.dataset.s)));
+    $$('[data-h]', wMeals).forEach((el) => el.textContent = hint(el.dataset.h));
+    $$('button', wAvoid).forEach((b) => b.setAttribute('aria-pressed', st.avoid.has(b.dataset.l)));
+    $$('button', wDiets).forEach((b) => b.setAttribute('aria-pressed', st.diets.has(b.dataset.f)));
+    const n = st.days.size;
+    $('#wDayCount').textContent = n ? `${n} nap kijelölve` : 'Még nincs kijelölt nap';
+  }
+  // Ha a beállítás változik, a kész terv a beállítások szerinti előnézetre áll vissza.
+  function changed() { wErr.textContent = ''; if (st.plan) { st.plan = null; closeShop(); } renderWizard(); renderBoard(); }
+  wDays.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i; st.days.has(i) ? st.days.delete(i) : st.days.add(i); changed(); });
+  $$('.quick button', root).forEach((b) => b.addEventListener('click', () => {
+    const q = b.dataset.q;
+    st.days = new Set(DAYS.map((d, i) => [d, i]).filter(([d]) => q === 'all' || (q === 'work' ? d.getDay() >= 1 && d.getDay() <= 5 : d.getDay() === 0 || d.getDay() === 6)).map(([, i]) => i));
+    changed();
+  }));
+  wMeals.addEventListener('click', (e) => { const b = e.target.closest('.mrow'); if (!b) return; const s = b.dataset.s; st.slots.has(s) ? st.slots.delete(s) : st.slots.add(s); changed(); });
+  wAvoid.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const l = b.dataset.l; st.avoid.has(l) ? st.avoid.delete(l) : st.avoid.add(l); changed(); });
+  wDiets.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const f = b.dataset.f; st.diets.has(f) ? st.diets.delete(f) : st.diets.add(f); changed(); });
+  wNext.addEventListener('click', () => {
+    if (st.busy) return;
+    if (st.step === 0 && !st.days.size) { wErr.textContent = 'Jelölj ki legalább egy napot!'; return; }
+    if (st.step === 1 && !st.slots.size) { wErr.textContent = 'Válassz legalább egy étkezést!'; return; }
+    wErr.textContent = '';
+    if (st.step < 2) { st.step++; renderWizard(); return; }
+    generate();
+  });
+  wBack.addEventListener('click', () => { if (st.step > 0 && !st.busy) { st.step = Math.min(st.step, 3) - 1; wErr.textContent = ''; renderWizard(); } });
+  $('#dEdit').addEventListener('click', () => { st.step = 0; renderWizard(); });
+  $('#dShop').addEventListener('click', () => { openShop(); $('#shop').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'center' }); });
+
+  // --- board ---
+  const gw = $('#gw');
+  const thumb = (r) => r.img ? `<img src="img/t/${r.id}.webp" alt="" decoding="async">` : '<svg><use href="#i-bowl"/></svg>';
+  function cellInner(m, slotLabel) {
+    const r = m.r, por = m.portion !== 1 ? ` · <em>${num(m.portion)} adag</em>` : '';
+    return `<span class="cimg${r.img ? '' : ' ph'}">${thumb(r)}</span><span class="ctx"><span class="cs">${slotLabel}</span><span class="cn">${esc(r.n)}</span><span class="ck2">${fmt(r.k * m.portion)} kcal${por}</span></span>`;
+  }
+  function renderBoard() {
+    const days = selDays(), slots = selSlots();
+    gw.style.setProperty('--n', days.length || 1); gw.style.setProperty('--s', slots.length || 1);
+    let html = '<div class="gcol labels" aria-hidden="true"><div class="gh"></div>' + slots.map(([id, label]) => `<div class="gl"><b>${label}</b><small>${hint(id)}</small></div>`).join('') + '<div class="gt">Napi összesen</div></div>';
+    days.forEach((d) => {
+      const dt = DAYS[d];
+      html += `<div class="gcol" data-d="${d}"><div class="gh"><b>${DSHORT[dt.getDay()]}</b><small>${dt.getMonth() + 1}.${String(dt.getDate()).padStart(2, '0')}.</small></div>`;
+      slots.forEach(([id, label, ic]) => {
+        const m = st.plan && st.plan[d] && st.plan[d][id];
+        html += m
+          ? `<div class="pcell full" title="${esc(m.r.n)}" data-d="${d}" data-s="${id}">${cellInner(m, label)}</div>`
+          : `<div class="pcell empty" aria-label="${label}: még üres" data-d="${d}" data-s="${id}"><svg><use href="#${ic}"/></svg></div>`;
+      });
+      const kc = st.plan ? dayKcal(d) : 0;
+      html += `<div class="gt"><span><b data-kc="${d}">${st.plan ? fmt(kc) : '—'}</b> kcal</span><i><em style="width:${st.plan ? Math.min(100, kc / TARGET * 100) : 0}%"></em></i></div></div>`;
+    });
+    gw.innerHTML = html;
+    const nd = days.length, ns = slots.length;
+    $('#bTitle').textContent = `${nd} nap · ${nd * ns} étkezés`;
+    $('#bKick').textContent = st.plan ? 'A heted' : 'Előnézet';
+    renderSummary();
+  }
+  function renderSummary() {
+    const has = !!st.plan;
+    $('#bShop').disabled = !has;
+    if (!has) { $('#bSum').textContent = 'Állítsd be balra, és rakd össze.'; return; }
+    const days = selDays(), avg = days.reduce((a, d) => a + dayKcal(d), 0) / (days.length || 1);
+    const s = shopping(), items = s.main.reduce((a, x) => a + x.items.length, 0);
+    $('#bSum').innerHTML = `átlag <b>${fmt(avg)} kcal</b> / nap · <b>${items}</b> tétel, <b>${s.main.length}</b> polcon`;
+    $('#dAvg').textContent = fmt(avg); $('#dItems').textContent = items;
+    $('#dSub').textContent = `${days.length} nap · ${days.length * selSlots().length} étkezés`;
+    renderShop(s);
+  }
+  function renderShop(s) {
+    let html = '';
+    s.main.forEach((a) => {
+      html += `<div class="ai"><h5><span>${esc(a.label)}</span><span>${a.items.length}</span></h5>` +
+        a.items.map((it) => `<button><span class="cbox"><svg><use href="#check"/></svg></span><span class="t">${esc(it.n)}</span><span class="q">${fmtQty(it.q, it.u)}</span></button>`).join('') + '</div>';
+    });
+    const pn = []; s.pantry.forEach((a) => a.items.forEach((it) => { if (!pn.includes(it.n)) pn.push(it.n); }));
+    if (pn.length) html += `<p class="pantry"><b>Alapkészlet · összecsukva</b>${esc(pn.slice(0, 12).join(', '))}${pn.length > 12 ? ` és még ${pn.length - 12}` : ''} — ezek otthon általában megvannak.</p>`;
+    $('#shopIn').innerHTML = html;
+  }
+  $('#shopIn').addEventListener('click', (e) => { const b = e.target.closest('button'); if (b) b.classList.toggle('on'); });
+  const shopEl = $('#shop'), bShop = $('#bShop');
+  function openShop() { shopEl.classList.add('open'); bShop.setAttribute('aria-expanded', 'true'); bShop.textContent = 'Lista elrejtése'; }
+  function closeShop() { shopEl.classList.remove('open'); bShop.setAttribute('aria-expanded', 'false'); bShop.textContent = 'Bevásárlólista'; }
+  bShop.addEventListener('click', () => shopEl.classList.contains('open') ? closeShop() : openShop());
+
+  // --- összeállítás: pörgő cellák, mint egy félkarú rabló ---
+  const decoys = {};
+  function preloadDecoys() {
+    if (decoys.ready) return; decoys.ready = 1;
+    ['reggeli', 'fo', 'snack'].forEach((k) => { decoys[k] = DATA[k].filter((r) => r.img).slice(0, 14); decoys[k].forEach((r) => { const im = new Image(); im.src = `img/t/${r.id}.webp`; }); });
+  }
+  function spin(pcell, m, label, dur) {
+    return new Promise((res) => {
+      if (RM) { pcell.className = 'pcell full'; pcell.innerHTML = cellInner(m, label); return res(); }
+      const pool = decoys[POOL[pcell.dataset.s]] && decoys[POOL[pcell.dataset.s]].length ? decoys[POOL[pcell.dataset.s]] : DATA[POOL[pcell.dataset.s]];
+      pcell.className = 'pcell full spin';
+      const t0 = performance.now();
+      (function tick() {
+        if (performance.now() - t0 >= dur) {
+          pcell.className = 'pcell full land'; pcell.innerHTML = cellInner(m, label);
+          pcell.title = m.r.n;
+          return res();
+        }
+        const r = pool[Math.floor(Math.random() * pool.length)];
+        pcell.innerHTML = cellInner({ r, portion: 1 }, label);
+        setTimeout(tick, 75);
+      })();
+    });
+  }
+  function ribbon(on) {
+    const chips = [...DIETS.filter(([f]) => st.diets.has(f)).map(([, l]) => l.toLowerCase()),
+      ...DATA.avoid.filter((o) => st.avoid.has(o.l)).map((o) => 'nincs ' + o.label.toLowerCase()),
+      ...selSlots().map(([, l]) => l.toLowerCase()), `${st.days.size} nap`, `${fmt(TARGET)} kcal / nap`];
+    $('#ribbonIn').innerHTML = [...chips, ...chips, ...chips, ...chips].map((c) => `<span>${esc(c)}</span>`).join('');
+    $('#ribbon').classList.toggle('on', on);
+  }
+  async function generate() {
+    if (st.busy) return;
+    st.busy = true; preloadDecoys(); closeShop();
+    st.plan = buildPlan();
+    Object.values(st.plan).forEach((day) => Object.values(day).forEach(({ r }) => { if (r.img) { const im = new Image(); im.src = `img/t/${r.id}.webp`; } }));
+    const plan = st.plan; st.plan = null; renderBoard(); st.plan = plan; // üres rács, erre pörög rá
+    renderWizard(); ribbon(true);
+    $('#bKick').textContent = 'Összeállítás…';
+    const jobs = [];
+    selDays().forEach((d, di) => selSlots().forEach(([slot, label], si) => {
+      const pcell = gw.querySelector(`.pcell[data-d="${d}"][data-s="${slot}"]`);
+      jobs.push(new Promise((res) => setTimeout(() => spin(pcell, plan[d][slot], label, 520 + si * 90).then(res), RM ? 0 : di * 150 + si * 40)));
+    }));
+    await Promise.all(jobs);
+    selDays().forEach((d) => {
+      const kc = dayKcal(d), el = gw.querySelector(`[data-kc="${d}"]`);
+      el && countTo(el, kc);
+      const bar = el && el.closest('.gt').querySelector('em'); if (bar) bar.style.width = Math.min(100, kc / TARGET * 100) + '%';
+    });
+    $('#bKick').textContent = 'A heted';
+    ribbon(false); renderSummary();
+    st.busy = false; st.step = 3; renderWizard();
+    const r = gw.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + Math.min(r.height / 2, innerHeight / 2), 40);
+  }
+  renderWizard(); renderBoard();
+  if (hasGsap && !RM) ScrollTrigger.create({ trigger: root, start: 'top 90%', once: true, onEnter: preloadDecoys });
+})();
+
+/* ---------- havi bajnok (-25%) ---------- */
+const tasks = $$('#tasks .task'), champ = $('#bajnok'), cMsg = $('#cMsg');
+function renderChamp() {
+  const n = tasks.filter(t => t.classList.contains('on')).length;
+  $('#cN').textContent = n; $('#cBar').style.width = (n / 6 * 100) + '%';
+  const got = n === 6, was = champ.classList.contains('got');
+  champ.classList.toggle('got', got);
+  tasks.forEach(t => t.classList.remove('nudge'));
+  if (got) {
+    cMsg.textContent = 'Havi bajnok! A 25% kedvezmény a havi csomagra a Pro ablakban vár.';
+    if (!was) { const r = $('.stamp', champ).getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 46); }
+  } else if (n === 5) {
+    tasks.find(t => !t.classList.contains('on')).classList.add('nudge');
+    cMsg.textContent = 'Még egy feladat a −25%-ig. Koppints rá!';
+  } else cMsg.textContent = n ? `Még ${6 - n} feladat a −25%-ig.` : '';
+}
+tasks.forEach(t => t.addEventListener('click', e => { t.classList.toggle('on'); if (t.classList.contains('on')) burst(e.clientX, e.clientY, 8); renderChamp(); }));
+function champIn() { tasks.slice(0, 5).forEach((t, i) => setTimeout(() => { t.classList.add('on'); renderChamp(); }, RM ? 0 : 300 + i * 320)); }
+if (hasGsap && !RM) ScrollTrigger.create({ trigger: champ, start: 'top 70%', once: true, onEnter: champIn });
+else champIn();
+
+/* ---------- FAQ ---------- */
+$$('.qa').forEach(q => $('button', q).addEventListener('click', () => {
+  const open = q.hasAttribute('data-open');
+  $$('.qa').forEach(o => { o.removeAttribute('data-open'); $('button', o).setAttribute('aria-expanded', 'false'); });
+  if (!open) { q.setAttribute('data-open', ''); $('button', q).setAttribute('aria-expanded', 'true'); }
+}));
+
+/* ---------- android form (terv: nem küld semmit) ---------- */
+// Várólista: saját backend, csak a hozzájárulással (az élő oldallal azonos végpont és szöveg).
+(function () {
+  const API = 'https://freshplate-backend-ybm3.onrender.com/api/waitlist';
+  const form = $('#droidForm'), msg = $('#wlMsg'), btn = $('#wlBtn'), from = new URLSearchParams(location.search).get('from');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const email = $('#em').value.trim(), consent = $('#wlConsent').checked;
+    msg.className = 'wl-msg';
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.className = 'wl-msg err'; msg.textContent = 'Adj meg egy érvényes e-mail-címet.'; return; }
+    if (!consent) { msg.className = 'wl-msg err'; msg.textContent = 'A feliratkozáshoz a hozzájárulás bejelölése szükséges.'; return; }
+    btn.disabled = true; msg.textContent = 'Küldés…';
+    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, platform: 'android', consent: true, source: from || 'landing' }) })
+      .then((r) => r.json().then((d) => ({ ok: r.ok, d })))
+      .then((x) => { if (x.ok) { msg.textContent = 'Köszönjük — szólunk, amint az Android-verzió elérhető.'; form.reset(); } else { msg.className = 'wl-msg err'; msg.textContent = (x.d && x.d.error) || 'A feliratkozás most nem sikerült. Próbáld újra később.'; } })
+      .catch(() => { msg.className = 'wl-msg err'; msg.textContent = 'Nem érjük el a szervert. Próbáld újra egy perc múlva.'; })
+      .finally(() => { btn.disabled = false; });
+  });
+  // A /go/ átirányítókról nem-iPhone-nal érkezők az Android-blokkhoz jutnak.
+  if (from) setTimeout(() => $('#android').scrollIntoView({ behavior: 'smooth' }), 600);
+})();
+// App Store kampánylinkek (ASC → Campaigns). Amíg a PT üres, sima Store-linkek (működnek, csak nem mérhetők).
+(function () {
+  const PT = '', APP_ID = '6793034579';
+  $$('.js-store').forEach((a) => { if (PT) a.href = 'https://apps.apple.com/app/apple-store/id' + APP_ID + '?pt=' + encodeURIComponent(PT) + '&ct=' + encodeURIComponent(a.dataset.ct || 'land') + '&mt=8'; });
+})();
+
+/* ---------- final scrub ---------- */
+const sc = $('#scrub');
+(function splitScrub(node) { [...node.childNodes].forEach(ch => { if (ch.nodeType === 3) { const f = document.createDocumentFragment(); ch.textContent.split(/(\s+)/).forEach(p => { if (!p) return; if (/^\s+$/.test(p)) f.appendChild(document.createTextNode(' ')); else { const s = document.createElement('span'); s.className = 'sw'; s.textContent = p; f.appendChild(s); } }); ch.replaceWith(f); } else if (ch.nodeType === 1) splitScrub(ch); }); })(sc);
+if (hasGsap && !RM) {
+  gsap.to('#scrub .sw', { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: sc, start: 'top 80%', end: 'bottom 45%', scrub: true } });
+  gsap.from('.mega', { yPercent: 40, opacity: 0, scale: .92, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: '.mega', start: 'top 92%' } });
+}
+
+/* ---------- nav hide ---------- */
+const nav = $('#nav'); let ly = scrollY;
+addEventListener('scroll', () => { const y = scrollY; nav.classList.toggle('hide', y > ly && y > 300); ly = y; }, { passive: true });
+
+/* ---------- cursor + magnet ---------- */
+if (fine && !RM) {
+  const c = $('.cursor'), cl = $('span', c); let cx = -100, cy = -100, tx = cx, ty = cy;
+  addEventListener('mousemove', e => { tx = e.clientX; ty = e.clientY; }, { passive: true });
+  (function cur() { cx += (tx - cx) * .2; cy += (ty - cy) * .2; c.style.transform = `translate3d(${cx}px,${cy}px,0)`; requestAnimationFrame(cur); })();
+  document.addEventListener('mouseover', e => {
+    const t = e.target.closest('[data-cursor]'); const l = e.target.closest('a,button');
+    c.classList.toggle('big', !!t); c.classList.toggle('ring', !t && !!l); cl.textContent = t ? t.dataset.cursor : '';
+  });
+  $$('.magnet').forEach(m => {
+    m.addEventListener('mousemove', e => { const r = m.getBoundingClientRect(); gsap.to(m, { x: (e.clientX - r.left - r.width / 2) * .25, y: (e.clientY - r.top - r.height / 2) * .35, duration: .4, ease: 'power3.out' }); });
+    m.addEventListener('mouseleave', () => gsap.to(m, { x: 0, y: 0, duration: .7, ease: 'elastic.out(1,.4)' }));
+  });
+} else { const c = $('.cursor'); c && c.remove(); }
+
+/* ---------- start ---------- */
+const start = () => { runLoader(); if (hasGsap) ScrollTrigger.refresh(); };
+if (document.fonts && document.fonts.ready) document.fonts.ready.then(start); else addEventListener('load', start);
+})();
+</script>
 </body>
 </html>
