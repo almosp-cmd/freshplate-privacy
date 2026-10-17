@@ -433,7 +433,7 @@ h2 .soft{color:var(--mute)}
 @media (max-width:900px){.t1,.t2,.t3,.t4{grid-column:1/-1}.tile{min-height:300px}}
 
 /* ---------- PRICING ---------- */
-.price-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:16px;margin-top:clamp(40px,6vw,70px);align-items:stretch}
+.price-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px;margin-top:clamp(40px,6vw,70px);align-items:stretch}
 .plan{position:relative;border-radius:30px;padding:clamp(24px,3vw,40px);background:var(--ink2);box-shadow:inset 0 0 0 1px var(--hair);display:flex;flex-direction:column}
 .plan h3{margin:0;font-size:22px;font-weight:700}
 .plan .sub{color:var(--mute);margin:4px 0 0}
@@ -462,7 +462,7 @@ h2 .soft{color:var(--mute)}
 .odo .sp{width:.22em}
 .alt{color:var(--mute);margin:0}
 .fine{margin:18px 0 0;color:var(--mute);font-size:13px;line-height:1.5}
-@media (max-width:900px){.price-grid{grid-template-columns:1fr}.plan.p2{order:-1}}
+@media (max-width:900px){.price-grid{grid-template-columns:minmax(0,1fr)}.plan.p2{order:-1}.plan .btn{white-space:normal;text-align:center;height:auto;min-height:52px;padding:12px 20px}}
 
 
 /* ---------- HETI TERV: kipróbálható varázsló ---------- */
@@ -607,7 +607,7 @@ h2 .soft{color:var(--mute)}
 }
 
 /* havi bajnok: -25% */
-.champ-chip{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(125,237,77,.12);color:var(--lime);font-size:14px;font-weight:600;text-decoration:none;transition:opacity .4s,transform .4s var(--ease),background .25s;width:max-content;max-width:100%}
+.champ-chip{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(125,237,77,.12);color:var(--lime);font-size:14px;font-weight:600;text-decoration:none;transition:opacity .4s,transform .4s var(--ease),background .25s;width:fit-content;max-width:100%;line-height:1.3}
 .champ-chip b{display:grid;place-items:center;height:24px;padding:0 8px;border-radius:999px;background:var(--lime);color:var(--ink);font-size:12.5px;font-weight:800;flex:none}
 .champ-chip:hover{background:rgba(125,237,77,.2)}
 .champ-chip.off{opacity:0;transform:translateY(-6px);pointer-events:none}
@@ -680,6 +680,7 @@ h2 .soft{color:var(--mute)}
 .mega{margin:clamp(60px,8vw,110px) 0 0;text-align:center;font-weight:800;font-size:clamp(84px,19vw,320px);line-height:.82;letter-spacing:-.035em;font-variation-settings:'opsz' 96,'wdth' 75;
   background:url(img/strip.webp) 0 50%/auto 100% repeat-x;-webkit-background-clip:text;background-clip:text;color:transparent;animation:pan 40s linear infinite;
   filter:saturate(1.15) contrast(1.05);padding-bottom:.08em}
+.mega.js-pan{animation:none}
 @keyframes pan{to{background-position-x:-4320px}}
 .final-cta{display:flex;justify-content:center;align-items:center;gap:clamp(18px,4vw,40px);margin-top:clamp(40px,5vw,60px);flex-wrap:wrap}
 .qr{display:flex;align-items:center;gap:14px;color:var(--mute);font-size:14px}
@@ -1980,6 +1981,22 @@ if (hasGsap && !RM) {
   gsap.to('#scrub .sw', { opacity: 1, stagger: .1, ease: 'none', scrollTrigger: { trigger: sc, start: 'top 80%', end: 'bottom 45%', scrub: true } });
   gsap.from('.mega', { yPercent: 40, opacity: 0, scale: .92, duration: 1.4, ease: 'expo.out', scrollTrigger: { trigger: '.mega', start: 'top 92%' } });
 }
+
+/* ---------- óriás felirat: a fotócsík a képernyőhöz arányos tempóban, pontos körrel ---------- */
+(function megaPan() {
+  const el = $('.mega'); if (!el || RM) return;
+  el.classList.add('js-pan');
+  let anim = null;
+  const STRIP_W = 4320, STRIP_H = 360; // img/strip.webp
+  function start() {
+    if (anim) anim.cancel();
+    const w = STRIP_W * el.clientHeight / STRIP_H;     // egy teljes csík a megjelenített magasságon
+    const speed = Math.max(innerWidth * .07, 26);        // px/mp – keskeny kijelzőn lassabb
+    anim = el.animate([{ backgroundPositionX: '0px' }, { backgroundPositionX: -w + 'px' }], { duration: w / speed * 1000, iterations: Infinity });
+  }
+  start();
+  let t; addEventListener('resize', () => { clearTimeout(t); t = setTimeout(start, 200); });
+})();
 
 /* ---------- nav hide ---------- */
 const nav = $('#nav'); let ly = scrollY;
