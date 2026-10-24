@@ -431,6 +431,33 @@ h2 .soft{color:var(--mute)}
 .week span{font-family:var(--mono);font-size:10px;color:var(--mute)}
 .week.on i{transform:scaleY(1)}
 @media (max-width:900px){.t1,.t2,.t3,.t4{grid-column:1/-1}.tile{min-height:300px}}
+/* edzés körül: széles csempe idővonallal (az app lib/workout.js ablakai) */
+.t5{grid-column:1/-1;min-height:0;gap:clamp(30px,3.4vw,46px)}
+.wk-head{display:flex;justify-content:space-between;align-items:flex-end;gap:24px 40px;flex-wrap:wrap}
+.wk-head p{max-width:540px}
+.wk-when{display:flex;flex-direction:column;gap:10px}
+.wk-when>.mono{font-size:10.5px;color:var(--mute);letter-spacing:.08em;text-transform:uppercase}
+.wk-pills{display:flex;gap:6px;flex-wrap:wrap}
+.wk-pills button{height:38px;padding:0 15px;border-radius:999px;background:var(--ink3);box-shadow:inset 0 0 0 1px var(--faint);font-size:14px;font-weight:600;transition:background .3s,color .3s,box-shadow .3s}
+.wk-pills button[aria-pressed=true]{background:var(--lime);color:var(--ink);box-shadow:none}
+.wk-line{position:relative;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:18px}
+.wk-line::before{content:"";position:absolute;left:0;right:0;top:7px;height:2px;border-radius:2px;background:linear-gradient(90deg,var(--ink4),var(--lime) 50%,var(--ink4));transform-origin:left center;transform:scaleX(var(--wkp,1));pointer-events:none}
+.wk-line li{position:relative;display:flex;flex-direction:column;gap:6px;padding-top:32px}
+.wk-line li>i{position:absolute;top:0;left:0;width:16px;height:16px;border-radius:50%;background:var(--ink2);box-shadow:inset 0 0 0 2px rgba(243,240,231,.28)}
+.wk-line li.go>i{background:var(--lime);box-shadow:0 0 0 6px rgba(125,237,77,.18)}
+.wk-time{font-size:11px;letter-spacing:.04em;color:var(--lime);min-height:1.3em}
+.wk-line b{font-size:clamp(17px,1.5vw,20px);font-weight:700;letter-spacing:-.01em;line-height:1.1}
+.wk-line li.go b{color:var(--lime)}
+.wk-line small{color:var(--mute);font-size:13.5px;line-height:1.4}
+@media (max-width:760px){
+  .wk-line{grid-template-columns:minmax(0,1fr);gap:20px}
+  .wk-line::before{left:7px;right:auto;top:8px;bottom:8px;width:2px;height:auto;background:linear-gradient(180deg,var(--ink4),var(--lime) 50%,var(--ink4));transform-origin:center top;transform:scaleY(var(--wkp,1))}
+  .wk-line li{padding:0 0 0 34px}
+  .wk-line li>i{top:1px}
+  .wk-when{width:100%}
+  .wk-pills{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+  .wk-pills button{padding:0 4px;font-size:13.5px}
+}
 
 /* ---------- PRICING ---------- */
 .price-grid{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:16px;margin-top:clamp(40px,6vw,70px);align-items:stretch}
@@ -1065,6 +1092,21 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
     <p class="kicker mono">06 / Amit még tud</p>
     <h2 data-split>Nem csak azt nézi, <span class="soft">mennyit eszel.</span></h2>
     <div class="bento">
+      <div class="tile t5" data-tile="workout">
+        <div class="wk-head">
+          <div><h3>Edzés körül<span class="pro">PRO</span></h3><p>Megadod, mikor edzel, és megmutatja, mit egyél előtte, közben és utána — dietetikussal közösen összeállított receptekkel. Az edzésnapjaidon a heti terv és a bevásárlólista is ehhez igazodik.</p></div>
+          <div class="wk-when"><span class="mono">Mikor edzel?</span>
+            <div class="wk-pills" id="wkPills" role="group" aria-label="Mikor edzel?"><button aria-pressed="false" data-t="420">Reggel</button><button aria-pressed="false" data-t="720">Délben</button><button aria-pressed="false" data-t="1020">Délután</button><button aria-pressed="true" data-t="1140">Este</button></div>
+          </div>
+        </div>
+        <ol class="wk-line" id="wkLine" aria-live="polite">
+          <li><i></i><span class="mono wk-time" id="wkPreT">16:00–17:00</span><b id="wkPreB">Főétkezés</b><small id="wkPreS">2–3 órával előtte · szénhidrát, kevés zsír és rost</small></li>
+          <li><i></i><span class="mono wk-time" id="wkSnackT">18:00–18:30</span><b>Kis snack</b><small>30–60 perccel előtte · könnyen emészthető szénhidrát</small></li>
+          <li class="go"><i></i><span class="mono wk-time" id="wkGoT">19:00</span><b>Edzés</b></li>
+          <li><i></i><span class="mono wk-time">közben</span><b>Ha hosszú</b><small>60 percnél hosszabb edzésnél · szénhidrát, sok folyadékkal</small></li>
+          <li><i></i><span class="mono wk-time">0–2 órán belül</span><b>Utána</b><small>Főétkezés vagy kisétkezés · fehérje és szénhidrát</small></li>
+        </ol>
+      </div>
       <div class="tile t1" data-tile="plants">
         <div><div class="pcount"><b id="plantN">0</b><span>/ 30</span></div><div class="plants" id="plants"></div></div>
         <div style="margin-top:26px"><h3>Heti 30 féle növény<span class="pro">PRO</span></h3><p>Hét szín, harmincféle növény egy héten — a változatosságot méri, nem csak a kalóriát.</p></div>
@@ -1124,6 +1166,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
         <ul>
           <li><svg><use href="#check"/></svg>Heti terv varázsló, 3 lépésben</li>
           <li><svg><use href="#check"/></svg>Bevásárlólista polcok szerint</li>
+          <li><svg><use href="#check"/></svg>Edzés körüli étkezések, dietetikussal összeállítva</li>
           <li><svg><use href="#check"/></svg>Saját szokások, 21 napos építés, widget</li>
           <li><svg><use href="#check"/></svg>Heti kiértékelés minden hétfőn</li>
           <li><svg><use href="#check"/></svg>Heti növényfogyasztás követése, tenyér-adagok</li>
@@ -1636,6 +1679,33 @@ if (hasGsap && !RM) {
   ScrollTrigger.create({ trigger: '[data-tile=week]', start: 'top 80%', once: true, onEnter: weekOn });
   gsap.from('.tile', { y: 70, opacity: 0, duration: 1.1, ease: 'expo.out', stagger: .1, scrollTrigger: { trigger: '.bento', start: 'top 80%' } });
 } else { plantsOn(); energyOn(); weekOn(); }
+/* edzés körül – az ablakok az app lib/workout.js-éből (perc a kezdéshez képest);
+   10:00 előtti kezdésnél a főétkezés helyén a reggeli, 1,5–2 órával előtte */
+const wkClock = m => { const v = ((m % 1440) + 1440) % 1440; return Math.floor(v / 60) + ':' + String(v % 60).padStart(2, '0'); };
+const wkRange = (t, a, b) => wkClock(t + a) + '–' + wkClock(t + b);
+function wkSet(t, anim) {
+  const morning = t < 600;
+  $('#wkPreT').textContent = morning ? wkRange(t, -120, -90) : wkRange(t, -180, -120);
+  $('#wkPreB').textContent = morning ? 'Reggeli' : 'Főétkezés';
+  $('#wkPreS').textContent = morning ? '1,5–2 órával előtte · szénhidrát, kevés zsír' : '2–3 órával előtte · szénhidrát, kevés zsír és rost';
+  $('#wkSnackT').textContent = wkRange(t, -60, -30);
+  $('#wkGoT').textContent = wkClock(t);
+  if (anim && hasGsap && !RM) {
+    gsap.fromTo(['#wkPreT', '#wkPreB', '#wkSnackT', '#wkGoT'], { y: 8, opacity: 0 }, { y: 0, opacity: 1, duration: .5, ease: 'expo.out', stagger: .05 });
+    gsap.fromTo('#wkLine .go > i', { scale: .6 }, { scale: 1, duration: .7, ease: 'elastic.out(1,.5)' });
+  }
+}
+$$('button', $('#wkPills')).forEach(b => b.addEventListener('click', () => {
+  $$('button', $('#wkPills')).forEach(x => x.setAttribute('aria-pressed', x === b));
+  wkSet(+b.dataset.t, true);
+}));
+wkSet(1140, false);
+if (hasGsap && !RM) {
+  ScrollTrigger.create({ trigger: '[data-tile=workout]', start: 'top 75%', once: true, onEnter: () => {
+    gsap.fromTo('#wkLine', { '--wkp': 0 }, { '--wkp': 1, duration: 1.4, ease: 'power2.inOut' });
+    gsap.fromTo('#wkLine li', { y: 18, opacity: 0 }, { y: 0, opacity: 1, duration: .8, ease: 'expo.out', stagger: .12, delay: .2, clearProps: 'transform,opacity' });
+  } });
+}
 $$('.tile').forEach(t => t.addEventListener('pointermove', e => { const r = t.getBoundingClientRect(); t.style.setProperty('--mx', e.clientX - r.left + 'px'); t.style.setProperty('--my', e.clientY - r.top + 'px'); }));
 
 /* ---------- pricing odometer ---------- */
