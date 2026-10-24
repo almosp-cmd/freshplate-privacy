@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>FreshPlate — Heti menü három lépésben</title>
-<meta name="description" content="Nem diéta. Heti menü három lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon.">
+<title>FreshPlate — Heti menü négy lépésben</title>
+<meta name="description" content="Nem diéta. Heti menü négy lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon.">
 <link rel="canonical" href="https://freshplate.hu/">
 <meta name="theme-color" content="#0A0E09">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FreshPlate">
-<meta property="og:title" content="FreshPlate — Heti menü három lépésben">
+<meta property="og:title" content="FreshPlate — Heti menü négy lépésben">
 <meta property="og:description" content="Nem diéta. Heti menü, bevásárlólista és egy csapat, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept.">
 <meta property="og:url" content="https://freshplate.hu/">
 <meta property="og:image" content="https://freshplate.hu/assets/og.png">
@@ -29,7 +29,7 @@
   "operatingSystem": "iOS",
   "applicationCategory": "HealthApplication",
   "inLanguage": ["hu", "en"],
-  "description": "Heti menü három lépésben, bevásárlólistával, 21 napos szokásépítéssel és csoportokkal. 1300 egészséges recept.",
+  "description": "Heti menü négy lépésben, bevásárlólistával, 21 napos szokásépítéssel és csoportokkal. 1300 egészséges recept.",
   "url": "https://freshplate.hu/",
   "downloadUrl": "https://apps.apple.com/hu/app/id6793034579",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "HUF" },
@@ -505,7 +505,7 @@ h2 .soft{color:var(--mute)}
 .wiz-back[disabled]{opacity:.25;cursor:default;box-shadow:inset 0 0 0 1.5px var(--faint)}
 .wiz-back svg{width:15px;height:15px}
 .wiz-track{flex:1;height:6px;border-radius:6px;background:var(--ink4);overflow:hidden}
-.wiz-track i{display:block;height:100%;width:33.3%;background:linear-gradient(90deg,var(--green),var(--lime));border-radius:6px;transition:width .55s var(--ease)}
+.wiz-track i{display:block;height:100%;width:25%;background:linear-gradient(90deg,var(--green),var(--lime));border-radius:6px;transition:width .55s var(--ease)}
 .wiz-count{color:var(--mute);min-width:30px;text-align:right}
 .wsteps{display:grid;margin-top:20px;flex:1}
 .wstep{grid-area:1/1;min-width:0;opacity:0;visibility:hidden;transform:translateX(34px);transition:opacity .35s,transform .5s var(--ease),visibility 0s .5s}
@@ -546,6 +546,23 @@ h2 .soft{color:var(--mute)}
 .dpills{display:flex;flex-wrap:wrap;gap:6px}
 .dpills button{height:36px;padding:0 14px;border-radius:999px;font-size:13.5px;font-weight:600;box-shadow:inset 0 0 0 1.5px var(--faint);transition:background .25s,color .25s,box-shadow .25s,transform .25s var(--ease)}
 .dpills button[aria-pressed=true]{background:var(--lime);color:var(--ink);box-shadow:none}
+/* „Edzel a héten?” lépés (az app PlanWizard workout-lépése) */
+.wk-skip{display:inline-flex;align-items:center;gap:7px;margin-top:12px;height:34px;padding:0 13px;border-radius:999px;font-size:13.5px;font-weight:600;color:var(--mute);box-shadow:inset 0 0 0 1.5px var(--faint);transition:box-shadow .2s,color .2s}
+.wk-skip:hover{color:var(--cream);box-shadow:inset 0 0 0 1.5px var(--cream)}
+.wk-skip svg{width:12px;height:12px}
+.wk-more[hidden]{display:none}
+.wk-hint{margin:8px 0 0;color:var(--mute);font-size:13px;line-height:1.4}
+.wk-map{margin-top:12px}
+.wk-map>p{margin:0;color:var(--mute);font-size:13px;line-height:1.4}
+.wkrow{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--hair)}
+.wkrow .mi{width:28px;height:28px;flex:none;border-radius:50%;display:grid;place-items:center;background:rgba(125,237,77,.12);color:var(--lime)}
+.wkrow .mi svg{width:15px;height:15px}
+.wkrow b{width:66px;flex:none;font-size:14px;font-weight:700}
+.wkrow small{min-width:0;color:var(--mute);font-size:13px;line-height:1.3}
+.gh b{display:inline-flex;align-items:center;gap:4px}
+.gh .gwk{width:13px;height:13px;color:var(--lime)}
+.gh.wkday{box-shadow:inset 0 0 0 1.5px rgba(125,237,77,.45)}
+.cwk{position:absolute;left:6px;bottom:6px;z-index:1;padding:3px 6px;border-radius:6px;background:var(--lime);color:var(--ink);font-family:var(--mono);font-size:8px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap}
 .wiz-err{min-height:1.4em;margin:12px 0 0;color:var(--paprika);font-size:13.5px}
 .wiz-next{width:100%;margin-top:4px}
 .wiz-next[hidden]{display:none}
@@ -629,6 +646,7 @@ h2 .soft{color:var(--mute)}
   .pcell.empty{flex-direction:row}
   .cimg{width:62px;height:62px;margin:0 0 0 7px;border-radius:12px}
   .cs{display:block}
+  .cwk{display:none}
   .cn{font-size:13.5px;-webkit-line-clamp:2}
   .shop-in{columns:1}
 }
@@ -746,6 +764,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   </symbol>
   <symbol id="apple" viewBox="0 0 24 24"><path fill="currentColor" d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.1-1.7-2.9-1.9-3.5-1.9-1.5-.2-2.9.9-3.7.9-.8 0-1.9-.9-3.2-.8-1.6 0-3.1 1-4 2.4-1.7 3-.4 7.4 1.2 9.8.8 1.2 1.8 2.5 3 2.4 1.2 0 1.7-.8 3.1-.8 1.5 0 1.9.8 3.2.8 1.3 0 2.2-1.2 3-2.4.9-1.4 1.3-2.7 1.3-2.8 0 0-2.5-1-2.5-3.9zM14 5.4c.7-.8 1.1-1.9 1-3-1 0-2.1.7-2.8 1.5-.6.7-1.2 1.8-1 2.9 1.1.1 2.1-.6 2.8-1.4z"/></symbol>
 
+  <symbol id="i-dumbbell" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 9.5v5M6 7v10M6 12h12M18 7v10M21 9.5v5"/></symbol>
   <symbol id="i-cal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3.5" y="5" width="17" height="15.5" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></symbol>
   <symbol id="i-bowl" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11h18a9 9 0 0 1-18 0z"/><path d="M8 20h8M9 7c0-1.5 1-2 1-3.5M13 7c0-1.5 1-2 1-3.5"/></symbol>
   <symbol id="i-sliders" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h9M17 7h3M4 17h3M11 17h9"/><circle cx="15" cy="7" r="2"/><circle cx="9" cy="17" r="2"/></symbol>
@@ -825,10 +844,10 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
 
   <div class="hero-copy">
     <p class="eyebrow mono hero-in"><i></i>iPhone-ra · ingyenesen letölthető</p>
-    <h1 aria-label="Nem diéta. Heti menü három lépésben.">
+    <h1 aria-label="Nem diéta. Heti menü négy lépésben.">
       <span class="ln"><span>Nem <span class="strike">diéta.<svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M4 26C40 14 90 30 130 18S186 12 196 16" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" pathLength="1"/></svg></span></span></span>
       <span class="ln"><span>Heti menü</span></span>
-      <span class="ln"><span><span class="lime">három</span> lépésben.</span></span>
+      <span class="ln"><span><span class="lime">négy</span> lépésben.</span></span>
     </h1>
     <p class="hero-sub hero-in">Bevásárlólistával — és egy csapattal, amelyik <b>nem hagy kiszállni a negyedik napon.</b> 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
     <div class="hero-cta hero-in">
@@ -861,14 +880,14 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   <div class="steps-intro wrap">
     <p class="kicker mono">01 / Hogyan működik</p>
     <h2 data-split>Vasárnap este már tudod, <span class="soft">mit eszel egész héten.</span></h2>
-    <p class="lead" data-reveal>Három kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
+    <p class="lead" data-reveal>Négy kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
   </div>
   <div class="stage" id="steps">
     <div class="ghost" aria-hidden="true"><span>Terv</span><span>Lista</span><span>21 nap</span></div>
     <div class="s-copy">
       <div class="num" aria-hidden="true"><div class="num-strip"><span>01</span><span>02</span><span>03</span></div></div>
       <div class="arts">
-        <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 01</p><h3>Heti terv három lépésben<span class="pro">PRO</span></h3><p>Napok → étkezések → szűrők. A varázsló a saját ízlésedből, allergiáidból és kalóriacélodból rak össze egy hetet — reggelitől vacsoráig, tízóraival és uzsonnával.</p><a class="try" href="#terv">Próbáld ki lent →</a></article>
+        <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 01</p><h3>Heti terv négy lépésben<span class="pro">PRO</span></h3><p>Napok → étkezések → edzés → szűrők. A varázsló a saját ízlésedből, allergiáidból és kalóriacélodból rak össze egy hetet — reggelitől vacsoráig, tízóraival és uzsonnával, edzésnapokon az edzéshez igazítva.</p><a class="try" href="#terv">Próbáld ki lent →</a></article>
         <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 02</p><h3>Bevásárlólista, ami magától összeáll<span class="pro">PRO</span></h3><p>A hét minden hozzávalója egy listán, polcok szerint rendezve. A boltban csak pipálsz — fejben nem kell tartanod semmit.</p></article>
         <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 03</p><h3>21 nap — egyedül vagy a csapatoddal</h3><p>Egyszerre egy szokás épül. Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p></article>
       </div>
@@ -907,16 +926,16 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   <div class="wrap plan-head">
     <div>
       <p class="kicker mono">02 / Heti terv <span class="pro">PRO</span></p>
-      <h2 data-split>Rakd össze a heted. <span class="soft">Itt, most, három lépésben.</span></h2>
+      <h2 data-split>Rakd össze a heted. <span class="soft">Itt, most, négy lépésben.</span></h2>
     </div>
-    <p class="lead" data-reveal>Ugyanaz a három kérdés, mint az appban: napok, étkezések, szűrők. Utána valódi receptekből áll össze a menü — próbáld ki.</p>
+    <p class="lead" data-reveal>Ugyanaz a négy kérdés, mint az appban: napok, étkezések, edzés, szűrők. Utána valódi receptekből áll össze a menü — próbáld ki.</p>
   </div>
   <div class="planner" id="planner">
     <aside class="wiz" aria-label="Heti terv varázsló">
       <div class="wiz-top">
         <button class="wiz-back" id="wBack" aria-label="Vissza" disabled><svg><use href="#i-back"/></svg></button>
         <div class="wiz-track"><i id="wTrack"></i></div>
-        <span class="mono wiz-count" id="wCount">1/3</span>
+        <span class="mono wiz-count" id="wCount">1/4</span>
       </div>
       <div class="wsteps">
         <div class="wstep on" data-step="0">
@@ -936,6 +955,20 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
           <div class="mrows" id="wMeals"></div>
         </div>
         <div class="wstep" data-step="2">
+          <span class="wicon"><svg><use href="#i-dumbbell"/></svg></span>
+          <h3>Edzel a héten?</h3>
+          <p>Jelöld be az edzésnapjaidat – ezekre a dietetikussal összeállított edzés körüli ételek kerülnek, és a bevásárlólista is ezekkel készül. Ha nem edzel, lépj tovább.</p>
+          <div class="d7" id="wWkDays"></div>
+          <button class="wk-skip" id="wWkSkip"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>Ezen a héten nem edzek</button>
+          <div class="wk-more" id="wWkMore">
+            <p class="glabel mono">Mikor kezdesz?</p>
+            <div class="dpills" id="wWkTime"></div>
+            <p class="wk-hint">Ebből tudjuk, melyik étkezés kerül edzés elé és mögé.</p>
+            <div class="wk-map" id="wWkMap"></div>
+          </div>
+          <p class="countline" id="wWkCount"></p>
+        </div>
+        <div class="wstep" data-step="3">
           <span class="wicon"><svg><use href="#i-sliders"/></svg></span>
           <h3>Van, amit kihagynánk?</h3>
           <p>Amit itt kipipálsz, az ki is marad a hét minden fogásából.</p>
@@ -943,7 +976,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
           <p class="glabel mono">Étrend</p>
           <div class="dpills" id="wDiets"></div>
         </div>
-        <div class="wstep wdone" data-step="3">
+        <div class="wstep wdone" data-step="4">
           <span class="wicon"><svg><use href="#check"/></svg></span>
           <h3>Kész a heted!</h3>
           <p id="dSub">7 nap · 35 étkezés</p>
@@ -1164,7 +1197,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
         <p class="alt" id="alt">vagy 12 990 Ft / év · az első 7 nap ingyen</p>
         <a class="champ-chip" id="champChip" href="#bajnok" data-cursor="Hogyan?"><b>−25%</b>minden hónapban megszerezhető a havi csomagra</a>
         <ul>
-          <li><svg><use href="#check"/></svg>Heti terv varázsló, 3 lépésben</li>
+          <li><svg><use href="#check"/></svg>Heti terv varázsló, 4 lépésben</li>
           <li><svg><use href="#check"/></svg>Bevásárlólista polcok szerint</li>
           <li><svg><use href="#check"/></svg>Edzés körüli étkezések, dietetikussal összeállítva</li>
           <li><svg><use href="#check"/></svg>Saját szokások, 21 napos építés, widget</li>
@@ -1243,7 +1276,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
 
 <!-- ZÁRÁS -->
 <section class="final">
-  <p class="scrub" id="scrub">Vasárnap este már tudod, mit eszel egész héten. Három kérdés, egy lista, és <span class="lime">egy csapat, aki holnap is rákérdez.</span></p>
+  <p class="scrub" id="scrub">Vasárnap este már tudod, mit eszel egész héten. Négy kérdés, egy lista, és <span class="lime">egy csapat, aki holnap is rákérdez.</span></p>
   <div class="mega" aria-hidden="true"><span>Fresh</span><span>Plate</span></div>
   <div class="final-cta">
     <a class="badge magnet js-store" data-ct="land_final" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store"><img src="assets/appstore-badge.svg" alt="Letöltés az App Store-ból" width="200" height="53"></a>
@@ -1763,6 +1796,23 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const DAYS = Array.from({ length: 7 }, (_, i) => { const d = new Date(today); d.setDate(today.getDate() + i); return d; });
   const st = { step: 0, days: new Set(DAYS.map((_, i) => i)), slots: new Set(SLOTS.map((s) => s[0])), avoid: new Set(), diets: new Set(), plan: null, busy: false };
+  // „Edzel a héten?” – mintának előre kijelölve: hétfő, szerda, péntek, délután 17:00.
+  st.wk = new Set(DAYS.map((d, i) => [d, i]).filter(([d]) => [1, 3, 5].includes(d.getDay())).map(([, i]) => i));
+  st.wkT = 17 * 60;
+  // Az app lib/workout.js-éből: TIME_PRESETS, bandOf, PLAN_MAP (étkezés → szakasz) és a szakaszcímek.
+  const WK_TIMES = [['Reggel', 7 * 60], ['Délben', 12 * 60], ['Délután', 17 * 60], ['Este', 19 * 60]];
+  const bandOf = (t) => (t < 10 * 60 ? 0 : t < 14 * 60 ? 1 : t < 18 * 60 ? 2 : 3);
+  const PLAN_MAP = [
+    { reggeli: 'pre-breakfast', 'tízórai': 'post-snack' },
+    { reggeli: 'pre-breakfast', 'tízórai': 'pre-snack', 'ebéd': 'post-meal' },
+    { 'ebéd': 'pre-meal', uzsonna: 'pre-snack', vacsora: 'post-meal' },
+    { uzsonna: 'pre-snack', vacsora: 'post-meal' },
+  ];
+  const WK_T = { 'pre-meal': 'Edzés előtt 2–3 órával', 'pre-breakfast': 'Reggeli edzés előtt', 'pre-snack': 'Edzés előtt 30–60 perccel', 'post-meal': 'Edzés után 0–2 órán belül', 'post-snack': 'Edzés után' };
+  const wkPhase = (sec) => (sec.startsWith('post') ? 'Edzés után' : 'Edzés előtt');
+  const wkClock = (m) => Math.floor(m / 60) + ':' + String(m % 60).padStart(2, '0');
+  const wkSel = () => DAYS.map((_, i) => i).filter((i) => st.days.has(i) && st.wk.has(i));
+  const wkMap = (d) => (st.wk.has(d) && st.days.has(d) ? PLAN_MAP[bandOf(st.wkT)] : {});
 
   const selDays = () => DAYS.map((_, i) => i).filter((i) => st.days.has(i));
   const selSlots = () => SLOTS.filter((s) => st.slots.has(s[0]));
@@ -1787,9 +1837,21 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
     const r = fresh[Math.floor(Math.random() * fresh.length)];
     return { r, portion: bestPortion(r.k, b) };
   }
+  // Az app pickWorkoutMeal-je: a szakasz jóváhagyott receptjei közül, ízlés szerint szűrve, ismétlés
+  // nélkül, fotós előnyben; ha a szűrés után nem marad, sima recept jön. Adagszorzót nem kap.
+  function pickWorkout(sec, used) {
+    const list = (DATA.wk && DATA.wk[sec] || []).filter(matches);
+    if (!list.length) return null;
+    let fresh = list.filter((r) => !used.has(r.id)); if (!fresh.length) fresh = list;
+    const ph = fresh.filter((r) => r.img); if (ph.length) fresh = ph;
+    return { r: fresh[Math.floor(Math.random() * fresh.length)], portion: 1, wk: sec };
+  }
   function buildPlan() {
     const used = new Set(), plan = {};
-    selDays().forEach((d) => { plan[d] = {}; selSlots().forEach(([slot]) => { const m = pickMeal(slot, used); plan[d][slot] = m; used.add(m.r.id); }); });
+    selDays().forEach((d) => {
+      plan[d] = {}; const map = wkMap(d);
+      selSlots().forEach(([slot]) => { const m = (map[slot] && pickWorkout(map[slot], used)) || pickMeal(slot, used); plan[d][slot] = m; used.add(m.r.id); });
+    });
     return plan;
   }
   function countTo(el, to) {
@@ -1834,15 +1896,28 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
   wMeals.innerHTML = SLOTS.map(([id, label, ic]) => `<button class="mrow" aria-pressed="true" data-s="${id}"><span class="mi"><svg><use href="#${ic}"/></svg></span><span><b>${label}</b><small data-h="${id}"></small></span><span class="ck"><svg><use href="#check"/></svg></span></button>`).join('');
   wAvoid.innerHTML = DATA.avoid.map((o) => `<button aria-pressed="false" data-l="${o.l}">${esc(o.label)}</button>`).join('');
   wDiets.innerHTML = DIETS.map(([f, l]) => `<button aria-pressed="false" data-f="${f}">${l}</button>`).join('');
+  const wWkDays = $('#wWkDays'), wWkTime = $('#wWkTime');
+  wWkTime.innerHTML = WK_TIMES.map(([l, t]) => `<button aria-pressed="false" data-t="${t}">${l} <small class="mono">${wkClock(t)}</small></button>`).join('');
+  function renderWk() {
+    wWkDays.innerHTML = selDays().map((i) => { const d = DAYS[i]; return `<button aria-pressed="${st.wk.has(i)}" data-i="${i}" aria-label="${DLONG[d.getDay()]}, edzésnap"><small>${DSHORT[d.getDay()]}</small><b>${d.getDate()}</b></button>`; }).join('');
+    $$('button', wWkTime).forEach((b) => b.setAttribute('aria-pressed', +b.dataset.t === st.wkT));
+    const n = wkSel().length, map = PLAN_MAP[bandOf(st.wkT)];
+    $('#wWkMore').hidden = !n;
+    const rows = selSlots().filter(([slot]) => map[slot]);
+    $('#wWkMap').innerHTML = rows.length
+      ? '<p class="glabel mono">Ezeken a napokon</p>' + rows.map(([slot, label, ic]) => `<div class="wkrow"><span class="mi"><svg><use href="#${ic}"/></svg></span><b>${label}</b><small>${WK_T[map[slot]]}</small></div>`).join('')
+      : '<p>A kijelölt étkezések között nincs olyan, ami ehhez az időponthoz illene – vegyél vissza egy étkezést az előző lépésben.</p>';
+    $('#wWkCount').textContent = n ? `${n} edzésnap` : 'Nincs edzésnap – sima heti terv készül.';
+  }
 
   const steps = $$('.wstep', root), wNext = $('#wNext'), wBack = $('#wBack'), wErr = $('#wErr');
   function renderWizard() {
     steps.forEach((s, i) => { s.classList.toggle('on', i === st.step); s.classList.toggle('past', i < st.step); });
-    $('#wTrack').style.width = (st.step >= 3 ? 100 : (st.step + 1) / 3 * 100) + '%';
-    $('#wCount').textContent = st.step >= 3 ? 'Kész' : `${st.step + 1}/3`;
+    $('#wTrack').style.width = (st.step >= 4 ? 100 : (st.step + 1) / 4 * 100) + '%';
+    $('#wCount').textContent = st.step >= 4 ? 'Kész' : `${st.step + 1}/4`;
     wBack.disabled = st.step === 0 || st.busy;
-    wNext.hidden = st.step >= 3;
-    wNext.innerHTML = st.step === 2 ? '<svg><use href="#i-spark"/></svg>Terv összeállítása' : 'Tovább';
+    wNext.hidden = st.step >= 4;
+    wNext.innerHTML = st.step === 3 ? '<svg><use href="#i-spark"/></svg>Terv összeállítása' : 'Tovább';
     $$('button', wDays).forEach((b) => b.setAttribute('aria-pressed', st.days.has(+b.dataset.i)));
     $$('.mrow', wMeals).forEach((b) => b.setAttribute('aria-pressed', st.slots.has(b.dataset.s)));
     $$('[data-h]', wMeals).forEach((el) => el.textContent = hint(el.dataset.h));
@@ -1850,6 +1925,7 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
     $$('button', wDiets).forEach((b) => b.setAttribute('aria-pressed', st.diets.has(b.dataset.f)));
     const n = st.days.size;
     $('#wDayCount').textContent = n ? `${n} nap kijelölve` : 'Még nincs kijelölt nap';
+    renderWk();
   }
   // Ha a beállítás változik, a kész terv a beállítások szerinti előnézetre áll vissza.
   function changed() { wErr.textContent = ''; if (st.plan) { st.plan = null; closeShop(); } renderWizard(); renderBoard(); }
@@ -1862,15 +1938,19 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
   wMeals.addEventListener('click', (e) => { const b = e.target.closest('.mrow'); if (!b) return; const s = b.dataset.s; st.slots.has(s) ? st.slots.delete(s) : st.slots.add(s); changed(); });
   wAvoid.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const l = b.dataset.l; st.avoid.has(l) ? st.avoid.delete(l) : st.avoid.add(l); changed(); });
   wDiets.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const f = b.dataset.f; st.diets.has(f) ? st.diets.delete(f) : st.diets.add(f); changed(); });
+  wWkDays.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; const i = +b.dataset.i; st.wk.has(i) ? st.wk.delete(i) : st.wk.add(i); changed(); });
+  wWkTime.addEventListener('click', (e) => { const b = e.target.closest('button'); if (!b) return; st.wkT = +b.dataset.t; changed(); });
+  // „Ezen a héten nem edzek”: kiüríti a kijelölést, és továbblép a szűrőkre (mint az appban).
+  $('#wWkSkip').addEventListener('click', () => { if (st.busy) return; st.wk.clear(); st.step = 3; changed(); });
   wNext.addEventListener('click', () => {
     if (st.busy) return;
     if (st.step === 0 && !st.days.size) { wErr.textContent = 'Jelölj ki legalább egy napot!'; return; }
     if (st.step === 1 && !st.slots.size) { wErr.textContent = 'Válassz legalább egy étkezést!'; return; }
     wErr.textContent = '';
-    if (st.step < 2) { st.step++; renderWizard(); return; }
+    if (st.step < 3) { st.step++; renderWizard(); return; }
     generate();
   });
-  wBack.addEventListener('click', () => { if (st.step > 0 && !st.busy) { st.step = Math.min(st.step, 3) - 1; wErr.textContent = ''; renderWizard(); } });
+  wBack.addEventListener('click', () => { if (st.step > 0 && !st.busy) { st.step = Math.min(st.step, 4) - 1; wErr.textContent = ''; renderWizard(); } });
   $('#dEdit').addEventListener('click', () => { st.step = 0; renderWizard(); });
   $('#dShop').addEventListener('click', () => { openShop(); $('#shop').scrollIntoView({ behavior: RM ? 'auto' : 'smooth', block: 'center' }); });
 
@@ -1879,7 +1959,8 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
   const thumb = (r) => r.img ? `<img src="img/t/${r.id}.webp" alt="" decoding="async">` : '<svg><use href="#i-bowl"/></svg>';
   function cellInner(m, slotLabel) {
     const r = m.r, por = m.portion !== 1 ? ` · <em>${num(m.portion)} adag</em>` : '';
-    return `<span class="cimg${r.img ? '' : ' ph'}">${thumb(r)}</span><span class="ctx"><span class="cs">${slotLabel}</span><span class="cn">${esc(r.n)}</span><span class="ck2">${fmt(r.k * m.portion)} kcal${por}</span></span>`;
+    const tag = m.wk ? `<span class="cwk">${wkPhase(m.wk)}</span>` : '';
+    return `<span class="cimg${r.img ? '' : ' ph'}">${thumb(r)}${tag}</span><span class="ctx"><span class="cs">${slotLabel}${m.wk ? ' · ' + wkPhase(m.wk).toLowerCase() : ''}</span><span class="cn">${esc(r.n)}</span><span class="ck2">${fmt(r.k * m.portion)} kcal${por}</span></span>`;
   }
   function renderBoard() {
     const days = selDays(), slots = selSlots();
@@ -1887,7 +1968,8 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
     let html = '<div class="gcol labels" aria-hidden="true"><div class="gh"></div>' + slots.map(([id, label]) => `<div class="gl"><b>${label}</b><small>${hint(id)}</small></div>`).join('') + '<div class="gt">Napi összesen</div></div>';
     days.forEach((d) => {
       const dt = DAYS[d];
-      html += `<div class="gcol" data-d="${d}"><div class="gh"><b>${DSHORT[dt.getDay()]}</b><small>${dt.getMonth() + 1}.${String(dt.getDate()).padStart(2, '0')}.</small></div>`;
+      const wkd = st.wk.has(d);
+      html += `<div class="gcol" data-d="${d}"><div class="gh${wkd ? ' wkday' : ''}"${wkd ? ` title="Edzésnap · ${wkClock(st.wkT)}"` : ''}><b>${DSHORT[dt.getDay()]}${wkd ? '<svg class="gwk"><use href="#i-dumbbell"/></svg>' : ''}</b><small>${dt.getMonth() + 1}.${String(dt.getDate()).padStart(2, '0')}.</small></div>`;
       slots.forEach(([id, label, ic]) => {
         const m = st.plan && st.plan[d] && st.plan[d][id];
         html += m
@@ -1911,7 +1993,7 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
     const s = shopping(), items = s.main.reduce((a, x) => a + x.items.length, 0);
     $('#bSum').innerHTML = `átlag <b>${fmt(avg)} kcal</b> / nap · <b>${items}</b> tétel, <b>${s.main.length}</b> polcon`;
     $('#dAvg').textContent = fmt(avg); $('#dItems').textContent = items;
-    $('#dSub').textContent = `${days.length} nap · ${days.length * selSlots().length} étkezés`;
+    $('#dSub').textContent = `${days.length} nap · ${days.length * selSlots().length} étkezés` + (wkSel().length ? ` · ${wkSel().length} edzésnap` : '');
     renderShop(s);
   }
   function renderShop(s) {
@@ -1957,7 +2039,7 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
   function ribbon(on) {
     const chips = [...DIETS.filter(([f]) => st.diets.has(f)).map(([, l]) => l.toLowerCase()),
       ...DATA.avoid.filter((o) => st.avoid.has(o.l)).map((o) => 'nincs ' + o.label.toLowerCase()),
-      ...selSlots().map(([, l]) => l.toLowerCase()), `${st.days.size} nap`, `${fmt(TARGET)} kcal / nap`];
+      ...selSlots().map(([, l]) => l.toLowerCase()), `${st.days.size} nap`, ...(wkSel().length ? [`${wkSel().length} edzésnap · ${wkClock(st.wkT)}`] : []), `${fmt(TARGET)} kcal / nap`];
     $('#ribbonIn').innerHTML = [...chips, ...chips, ...chips, ...chips].map((c) => `<span>${esc(c)}</span>`).join('');
     $('#ribbon').classList.toggle('on', on);
   }
@@ -1982,7 +2064,7 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
     });
     $('#bKick').textContent = 'A heted';
     ribbon(false); renderSummary();
-    st.busy = false; st.step = 3; renderWizard();
+    st.busy = false; st.step = 4; renderWizard();
     const r = gw.getBoundingClientRect(); burst(r.left + r.width / 2, r.top + Math.min(r.height / 2, innerHeight / 2), 40);
   }
   renderWizard(); renderBoard();
