@@ -28,7 +28,7 @@
 
 <!-- ================= MAGYAR ================= -->
 <h1>FreshPlate — Adatvédelmi szabályzat</h1>
-<div class="updated">Utolsó frissítés: 2026. október 12.</div>
+<div class="updated">Utolsó frissítés: 2026. október 28.</div>
 
 <p>Ez az adatvédelmi szabályzat ismerteti, hogyan kezeli a FreshPlate alkalmazás
 („az App") a felhasználók adatait. Az adatkezelő elérhetősége lentebb olvasható.</p>
@@ -36,6 +36,12 @@
 <h2>1. Milyen adatokat gyűjtünk</h2>
 <ul>
   <li><strong>E-mail cím</strong> — a felhasználói fiók létrehozásához és bejelentkezéshez.</li>
+  <li><strong>Bejelentkezés Apple-lel vagy Google-lel</strong> — ha ezt választod, az Apple,
+    illetve a Google egy aláírt azonosítót küld nekünk, amelyből a fiókodhoz ezeket tároljuk:
+    a szolgáltatónál használt egyedi felhasználói azonosítódat, az e-mail-címedet (Apple-nél ez
+    lehet a „Saját e-mail elrejtése” álcím is) és a nevedet, ha a szolgáltató átadja. Jelszót,
+    profilképet, névjegyeket vagy más adatot nem tárolunk tőlük. Ha ugyanazzal az igazolt
+    e-mail-címmel már van fiókod, a kettőt összekötjük, hogy ne legyen két fiókod.</li>
   <li><strong>Egészséggel kapcsolatos adatok</strong> — az általad megadott étrendi és
     allergiás preferenciák (pl. vegetáriánus, gluténmentes), hogy a recepteket ezekhez igazítsuk.</li>
   <li><strong>Profil-beállítások</strong> — amit az induló kérdéssornál megadsz: nem, életkor,
@@ -72,8 +78,11 @@
   <li><strong>Az AI-receptgenerálás bemenete</strong> (csak Pro) — a megadott hozzávalók,
     kamratartalom, kalóriakeret, étrendi preferenciák és nem kedvelt hozzávalók, amelyekből
     a modell receptet készít.</li>
-  <li><strong>Támogatási és moderációs levelezés</strong> — amit a support@freshplate.hu
-    címre írsz, illetve a bejelentéseid tartalma és a bejelentett tartalom.</li>
+  <li><strong>Támogatási és moderációs levelezés, visszajelzések</strong> — amit a
+    support@freshplate.hu címre írsz; amit az App <em>Visszajelzés küldése</em> űrlapján
+    küldesz (az üzenet és a típusa, a megadott válaszcím – bejelentkezve, ha nem adsz meg
+    mást, a fiókod e-mail-címe –, a fiókazonosítód, az App verziója, a platform és a nyelv);
+    illetve a bejelentéseid tartalma és a bejelentett tartalom.</li>
   <li><strong>Várólista-feliratkozás a weboldalon</strong> (freshplate.hu) — ha kéred, hogy
     értesítsünk az Android-verzió megjelenéséről: az e-mail-címed, a kért platform, a
     feliratkozás időpontja és az, hogy a weboldal melyik részéről iratkoztál fel. Az
@@ -98,8 +107,8 @@
 
 <h2>2. Miért kezeljük az adatokat, és milyen jogalapon</h2>
 <ul>
-  <li><strong>E-mail cím, megszólítás, fiókadatok</strong> — a fiókod kezeléséhez és a
-    bejelentkezéshez. Jogalap: <em>a veled kötött szerződés teljesítése</em>
+  <li><strong>E-mail cím, megszólítás, fiókadatok</strong> (ideértve az Apple-lel vagy
+    Google-lel való bejelentkezés adatait) — a fiókod kezeléséhez és a bejelentkezéshez. Jogalap: <em>a veled kötött szerződés teljesítése</em>
     (GDPR 6. cikk (1) b) pont).</li>
   <li><strong>Várólista-e-mail-cím</strong> — kizárólag arra, hogy egyszer értesítsünk,
     amikor a kért platformon (Android) megjelenik az app. Jogalap: <em>a hozzájárulásod</em>
@@ -140,8 +149,9 @@
     <em>a szerződés teljesítése</em> (GDPR 6. cikk (1) b) pont); az étrendi preferenciák
     átadására a fenti kifejezett hozzájárulásod terjed ki. A modellhez e-mail-címet vagy
     fiókazonosítót nem küldünk.</li>
-  <li><strong>Támogatás, panaszok, bejelentések</strong> — a megkeresésed megválaszolása és a
-    közösségi szabályzat érvényesítése. Jogalap: <em>a szerződés teljesítése</em> és <em>jogos
+  <li><strong>Támogatás, visszajelzések, panaszok, bejelentések</strong> — a megkeresésed
+    megválaszolása, a visszajelzésed alapján az App javítása és a közösségi szabályzat
+    érvényesítése. Jogalap: <em>a szerződés teljesítése</em> és <em>jogos
     érdekünk</em> a biztonságos közösség fenntartásában (GDPR 6. cikk (1) b) és f) pont).</li>
 </ul>
 <p>Automatizált döntéshozatalt vagy profilalkotást, amelynek rád nézve joghatása lenne,
@@ -162,12 +172,16 @@ jelöljük őket:</p>
   <li><strong>RevenueCat, Inc.</strong> (USA) — az előfizetés állapotának kezelése
     (pszeudonim fiókazonosító, vásárlási státusz, Apple-tranzakció-azonosító).</li>
   <li><strong>Resend, Inc.</strong> (USA) — tranzakciós e-mailek küldése: jelszó-visszaállító
-    kód a te címedre, moderációs értesítés nekünk (a bejelentő címe és a bejelentett tartalom).</li>
+    kód a te címedre, moderációs értesítés nekünk (a bejelentő címe és a bejelentett tartalom),
+    valamint az appbeli visszajelzésed továbbítása nekünk (az üzenet és a válaszcímed).</li>
   <li><strong>Expo (650 Industries, Inc.)</strong> (USA) — push-értesítések kézbesítése
     (push-token; az értesítés tartalmát a kézbesítés után törli).</li>
   <li><strong>Apple Inc. / Apple Distribution International Ltd.</strong> (USA / Írország) —
     App Store, In-App vásárlás (<em>önálló adatkezelőként</em>, a saját adatvédelmi feltételei
     szerint), „Bejelentkezés Apple-lel", push-kézbesítés (APNs).</li>
+  <li><strong>Google LLC / Google Ireland Ltd.</strong> (USA / Írország) — „Bejelentkezés
+    Google-lel” (<em>önálló adatkezelőként</em>, a saját adatvédelmi feltételei szerint);
+    tőle csak a fent leírt azonosítót, e-mail-címet és nevet kapjuk.</li>
   <li><strong>ImprovMX</strong> (USA; az EU-s ügyfelek adatait Franciaországban tárolja) és
     <strong>Apple iCloud Mail</strong> — a support@freshplate.hu címre küldött leveleid
     továbbítása és fogadása.</li>
@@ -185,7 +199,7 @@ hirdetési vagy közösségimédia-SDK.</p>
 <h2>4. Adatmegőrzés</h2>
 <p>A fiókhoz kötött adatokat addig őrizzük, amíg a fiókod aktív. A fiók törlésekor
 a hozzá tartozó személyes adatokat töröljük. A jelszó-visszaállító kód 15 percig
-érvényes. A támogatási levelezést és a moderációs bejelentéseket a megkeresés
+érvényes. A támogatási levelezést, az appbeli visszajelzéseket és a moderációs bejelentéseket a megkeresés
 lezárásától számított legfeljebb 1 évig, az anonim használati statisztikát összesített
 formában őrizzük. Jogszabályi kötelezettség (pl. számviteli megőrzés) esetén az érintett
 adatot a kötelezettség fennállásáig tartjuk meg.</p>
@@ -239,7 +253,7 @@ legkésőbb egy hónapon belül válaszolunk.</p>
 
 <!-- ================= ENGLISH ================= -->
 <h1>FreshPlate — Privacy Policy</h1>
-<div class="updated">Last updated: 12 October 2026</div>
+<div class="updated">Last updated: 28 October 2026</div>
 
 <p>This Privacy Policy explains how the FreshPlate app ("the App") handles user data.
 Contact details are provided below.</p>
@@ -247,6 +261,12 @@ Contact details are provided below.</p>
 <h2>1. Data we collect</h2>
 <ul>
   <li><strong>Email address</strong> — to create your account and sign you in.</li>
+  <li><strong>Sign in with Apple or Google</strong> — if you choose this, Apple or Google sends
+    us a signed token, from which we store with your account: your unique user ID at that
+    provider, your email address (with Apple this may be a “Hide My Email” relay address) and
+    your name, if the provider shares it. We do not store passwords, profile pictures, contacts
+    or any other data from them. If you already have an account with the same verified email
+    address, we link the two so that you don’t end up with two accounts.</li>
   <li><strong>Health-related data</strong> — the dietary and allergy preferences you
     provide (e.g. vegetarian, gluten-free), used to tailor recipes to you.</li>
   <li><strong>Profile settings</strong> — what you enter in the initial questionnaire: gender,
@@ -282,8 +302,11 @@ Contact details are provided below.</p>
   <li><strong>AI recipe generation input</strong> (Pro only) — the ingredients, pantry
     contents, calorie budget, dietary preferences and disliked ingredients you enter, from
     which the model creates a recipe.</li>
-  <li><strong>Support and moderation correspondence</strong> — what you write to
-    support@freshplate.hu, and the content of your reports and the reported content.</li>
+  <li><strong>Support and moderation correspondence, feedback</strong> — what you write to
+    support@freshplate.hu; what you send through the in-app <em>Send feedback</em> form (the
+    message and its type, the reply address you give – when signed in and you give none, your
+    account email –, your account ID, the app version, platform and language); and the content
+    of your reports and the reported content.</li>
 </ul>
 
 <p><strong>Website waiting list</strong> (freshplate.hu) — if you ask us to notify you when the
@@ -307,8 +330,8 @@ which part of the website you signed up from. We do not store your IP address.</
 
 <h2>2. Why we process it, and on what legal basis</h2>
 <ul>
-  <li><strong>Email, display name, account data</strong> — to manage your account and sign
-    you in. Legal basis: <em>performance of our contract with you</em> (GDPR Art. 6(1)(b)).</li>
+  <li><strong>Email, display name, account data</strong> (including Sign in with Apple or
+    Google) — to manage your account and sign you in. Legal basis: <em>performance of our contract with you</em> (GDPR Art. 6(1)(b)).</li>
   <li><strong>Waiting-list email address</strong> — solely to notify you once when the app
     launches on the platform you asked for (Android). Legal basis: <em>your consent</em>
     (GDPR Art. 6(1)(a)), given via the checkbox at sign-up and withdrawable at any time by
@@ -344,8 +367,8 @@ which part of the website you signed up from. We do not store your IP address.</
     basis: <em>performance of the contract</em> (GDPR Art. 6(1)(b)); the transfer of dietary
     preferences is covered by your explicit consent above. No email address or account ID is
     sent to the model.</li>
-  <li><strong>Support, complaints and reports</strong> — answering your request and enforcing
-    the community guidelines. Legal basis: <em>performance of the contract</em> and our
+  <li><strong>Support, feedback, complaints and reports</strong> — answering your request,
+    improving the app based on your feedback, and enforcing the community guidelines. Legal basis: <em>performance of the contract</em> and our
     <em>legitimate interest</em> in keeping the community safe (GDPR Art. 6(1)(b) and (f)).</li>
 </ul>
 <p>We do not carry out automated decision-making or profiling that produces legal effects
@@ -365,12 +388,16 @@ except where marked as an independent controller:</p>
   <li><strong>RevenueCat, Inc.</strong> (USA) — subscription status management (pseudonymous
     account ID, purchase status, Apple transaction identifier).</li>
   <li><strong>Resend, Inc.</strong> (USA) — transactional email: the password-reset code sent
-    to you, and moderation alerts sent to us (reporter's address and the reported content).</li>
+    to you, moderation alerts sent to us (reporter's address and the reported content), and
+    forwarding your in-app feedback to us (the message and your reply address).</li>
   <li><strong>Expo (650 Industries, Inc.)</strong> (USA) — push notification delivery
     (push token; the notification payload is deleted after delivery).</li>
   <li><strong>Apple Inc. / Apple Distribution International Ltd.</strong> (USA / Ireland) —
     App Store, in-app purchases (<em>as an independent controller</em> under its own privacy
     terms), Sign in with Apple, push delivery (APNs).</li>
+  <li><strong>Google LLC / Google Ireland Ltd.</strong> (USA / Ireland) — Sign in with Google
+    (<em>as an independent controller</em> under its own privacy terms); we receive only the ID,
+    email address and name described above.</li>
   <li><strong>ImprovMX</strong> (USA; EU customer data stored in France) and
     <strong>Apple iCloud Mail</strong> — forwarding and receiving the emails you send to
     support@freshplate.hu.</li>
@@ -388,7 +415,7 @@ social-media SDK.</p>
 <h2>4. Data retention</h2>
 <p>Account-linked data is retained while your account is active. When you delete your
 account, the associated personal data is deleted. Password-reset codes expire after
-15 minutes. Support correspondence and moderation reports are kept for at most 1 year after
+15 minutes. Support correspondence, in-app feedback and moderation reports are kept for at most 1 year after
 the case is closed; anonymous usage statistics are kept in aggregated form. Where a legal
 obligation applies (e.g. accounting retention), the affected data is kept for as long as
 that obligation lasts.</p>
