@@ -4,13 +4,13 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>FreshPlate — Heti menü négy lépésben</title>
-<meta name="description" content="Nem diéta. Heti menü négy lépésben, bevásárlólistával — és egy csapattal, amelyik nem hagy kiszállni a negyedik napon.">
+<meta name="description" content="Nem diéta. Heti menü négy lépésben, bevásárlólistával, a célodhoz igazítva: fogyás, izomépítés vagy formában maradni.">
 <link rel="canonical" href="https://freshplate.hu/">
 <meta name="theme-color" content="#0A0E09">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="FreshPlate">
 <meta property="og:title" content="FreshPlate — Heti menü négy lépésben">
-<meta property="og:description" content="Nem diéta. Heti menü, bevásárlólista és egy csapat, amelyik nem hagy kiszállni a negyedik napon. 1300 egészséges recept.">
+<meta property="og:description" content="Nem diéta. Heti menü és bevásárlólista a célodhoz igazítva: fogyás, izomépítés vagy formában maradni. 1300 egészséges recept.">
 <meta property="og:url" content="https://freshplate.hu/">
 <meta property="og:image" content="https://freshplate.hu/assets/og.png">
 <meta property="og:locale" content="hu_HU">
@@ -29,7 +29,7 @@
   "operatingSystem": "iOS",
   "applicationCategory": "HealthApplication",
   "inLanguage": ["hu", "en"],
-  "description": "Heti menü négy lépésben, bevásárlólistával, 21 napos szokásépítéssel és csoportokkal. 1300 egészséges recept.",
+  "description": "Heti menü négy lépésben, bevásárlólistával, célhoz igazított napi kalória- és makrócéllal és 21 napos szokásépítéssel. 1300 egészséges recept.",
   "url": "https://freshplate.hu/",
   "downloadUrl": "https://apps.apple.com/hu/app/id6793034579",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "HUF" },
@@ -361,38 +361,37 @@ h2 .soft{color:var(--mute)}
 @media (max-width:900px){.tipsx{grid-template-columns:minmax(0,1fr)}.deck{height:470px}}
 @media (max-width:420px){.tf,.tb{padding:22px}.tcard{height:440px}}
 
-/* ---------- TEAM ---------- */
+/* ---------- CÉL ---------- */
 .team .wrap{display:grid;grid-template-columns:.95fr 1.05fr;gap:clamp(30px,6vw,100px);align-items:center}
 .rules{list-style:none;margin:36px 0 0;padding:0;display:grid;gap:0;counter-reset:r}
 .rules li{counter-increment:r;display:grid;grid-template-columns:44px 1fr;gap:10px;padding:18px 0;border-top:1px solid var(--hair);color:var(--mute);font-size:15.5px}
 .rules li::before{content:"0" counter(r);font-family:var(--mono);font-size:11px;color:var(--lime);padding-top:4px}
 .rules li b{color:var(--cream);font-weight:620}
-.orbit{position:relative;width:min(560px,100%);aspect-ratio:1;margin:0 auto;container-type:inline-size}
-.orbit svg.ring{position:absolute;inset:14%;width:72%;height:72%;rotate:-90deg}
-.o-core{position:absolute;inset:30%;border-radius:50%;display:grid;place-items:center;text-align:center;background:radial-gradient(closest-side,var(--ink3),var(--ink2));box-shadow:inset 0 0 0 1px var(--hair)}
-.o-core b{display:block;font-size:clamp(56px,7vw,92px);line-height:.85;font-weight:800;letter-spacing:-.05em;font-variation-settings:'opsz' 96,'wdth' 80}
-.o-core b small{font-size:.38em;color:var(--mute);font-weight:600;letter-spacing:0}
-.o-core p{margin:8px 0 0;font-size:13px;color:var(--lime);max-width:150px}
-.o-rot{position:absolute;inset:0;animation:spin 70s linear infinite}
-.orbit:hover .o-rot,.orbit:hover .mate-in{animation-play-state:paused}
 @keyframes spin{to{rotate:360deg}}
-.mate{position:absolute;left:50%;top:50%;width:0;height:0;transform:rotate(var(--a)) translateY(-41cqw) rotate(calc(var(--a) * -1))}
-.mate-in{position:absolute;left:0;top:0;translate:-50% -50%;animation:spin 70s linear infinite reverse;display:grid;justify-items:center;gap:8px}
-.mate .av{width:clamp(58px,7vw,78px);height:clamp(58px,7vw,78px);border-radius:50%;display:grid;place-items:center;font-size:clamp(22px,2.4vw,28px);font-weight:750;
-  background:var(--ink3);box-shadow:inset 0 0 0 2px rgba(243,240,231,.25);border:0;transition:background .4s,box-shadow .4s,transform .4s var(--ease);position:relative}
-.mate .av::after{content:"";position:absolute;inset:-7px;border-radius:50%;border:1.5px dashed rgba(243,240,231,.25);animation:spin 12s linear infinite}
-.mate.done .av{background:var(--lime);color:var(--ink);box-shadow:0 0 0 6px rgba(125,237,77,.14)}
-.mate.done .av::after{display:none}
-.mate .av:hover{transform:scale(1.08)}
-.mate .nm{font-size:13.5px;font-weight:600;white-space:nowrap}
-.mate .st{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--mute);white-space:nowrap}
-.mate.done .st{color:var(--lime)}
-.bubble{position:absolute;z-index:5;pointer-events:none;padding:8px 14px;border-radius:16px 16px 16px 4px;background:var(--lime);color:var(--ink);font-weight:750;font-size:15px;white-space:nowrap}
-.team-foot{display:flex;gap:10px;align-items:center;justify-content:center;margin-top:18px;flex-wrap:wrap}
-.tbar{width:min(420px,100%);margin:26px auto 0}
-.tbar .hbar{margin:8px 0}
-@media (max-width:900px){.team .wrap{grid-template-columns:1fr}.o-core{inset:33%}.mate .st{font-size:8.5px}.mate .nm{font-size:12.5px}}
-.team-hint{text-align:center;color:var(--mute);font-size:14px;margin:14px 0 0}
+.gcard{border-radius:30px;padding:clamp(22px,3vw,38px);background:radial-gradient(90% 120% at 100% 0%,rgba(125,237,77,.12),transparent 55%),var(--ink2);box-shadow:inset 0 0 0 1px var(--hair)}
+.gopts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}
+.gopt{display:grid;gap:6px;align-content:start;text-align:left;padding:14px;border-radius:18px;background:var(--ink3);transition:background .35s,box-shadow .35s,transform .35s var(--ease)}
+.gopt b{font-size:16.5px;font-weight:700;letter-spacing:-.01em}
+.gopt span{font-size:13px;line-height:1.3;color:var(--mute)}
+.gopt:hover{transform:translateY(-2px)}
+.gopt[aria-checked="true"]{background:rgba(125,237,77,.13);box-shadow:inset 0 0 0 1.5px var(--lime)}
+.gopt[aria-checked="true"] b{color:var(--lime)}
+.glead{margin:18px 0 0;min-height:3em;font-size:16px;line-height:1.45}
+.gweek-h{display:flex;justify-content:space-between;gap:10px;margin-top:20px;font-size:11px;color:var(--mute)}
+.gweek-h #gwN{color:var(--lime)}
+.gweek{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:8px;margin-top:12px}
+.gday{display:grid;justify-items:center;gap:8px;padding:10px 0 9px;border-radius:16px;background:var(--ink3);transition:background .3s,box-shadow .3s}
+.gday.wk{background:rgba(242,193,78,.1);box-shadow:inset 0 0 0 1.5px rgba(242,193,78,.55)}
+.gbar{height:150px;width:clamp(14px,2.2vw,24px);display:flex;flex-direction:column-reverse;border-radius:8px;overflow:hidden;background:rgba(243,240,231,.04)}
+.gbar i{display:block;width:100%;transition:height .6s var(--ease)}
+.gday .dl{font-family:var(--mono);font-size:11px;font-weight:600}
+.gday .wl{font-family:var(--mono);font-size:8.5px;letter-spacing:.06em;color:var(--mute);text-transform:uppercase;height:10px}
+.gday.wk .wl{color:#F2C14E}
+.glegend{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font-size:10.5px;color:var(--mute)}
+.glegend i{display:inline-block;width:9px;height:9px;border-radius:3px;margin-right:6px;vertical-align:-1px}
+.gnote{margin:10px 0 0;color:var(--mute);font-size:12.5px;line-height:1.5}
+@media (max-width:900px){.team .wrap{grid-template-columns:1fr}}
+@media (max-width:600px){.gopts{grid-template-columns:minmax(0,1fr)}.gopt{grid-template-columns:auto 1fr;align-items:baseline;gap:10px;padding:12px 14px}.gweek{gap:5px}.gbar{height:120px}.gday .wl{font-size:7.5px}}
 
 /* ---------- BENTO ---------- */
 .bento{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;margin-top:clamp(40px,6vw,70px)}
@@ -779,7 +778,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
     <li><a href="#terv">Heti terv</a></li>
     <li><a href="#lista">Bevásárlólista</a></li>
     <li><a href="#szokas">Szokások</a></li>
-    <li><a href="#csapat">Csapat</a></li>
+    <li><a href="#cel">Cél</a></li>
     <li><a href="#arak">Árak</a></li>
     <li><a href="#gyik">GYIK</a></li>
   </ul>
@@ -816,7 +815,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
       <span class="ln"><span>Heti menü</span></span>
       <span class="ln"><span><span class="lime">négy</span> lépésben.</span></span>
     </h1>
-    <p class="hero-sub hero-in">Bevásárlólistával — és egy csapattal, amelyik <b>nem hagy kiszállni a negyedik napon.</b> 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
+    <p class="hero-sub hero-in">Bevásárlólistával, <b>a célodhoz igazítva</b> — fogyáshoz, izomépítéshez, vagy hogy formában maradj. 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
     <div class="hero-cta hero-in">
       <a class="badge magnet js-store" data-ct="land_hero" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store"><img src="assets/appstore-badge.svg" alt="Letöltés az App Store-ból" width="165" height="44"></a>
       <a class="btn btn-ghost magnet" href="#hogyan">Hogyan működik?</a>
@@ -847,7 +846,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   <div class="steps-intro wrap">
     <p class="kicker mono">01 / Hogyan működik</p>
     <h2 data-split>Vasárnap este már tudod, <span class="soft">mit eszel egész héten.</span></h2>
-    <p class="lead" data-reveal>Négy kérdés, egy lista, és egy csapat, aki holnap is rákérdez. Ennyi a rendszer.</p>
+    <p class="lead" data-reveal>Négy kérdés, egy lista, és egy szokás, ami huszonegy nap alatt beépül. Ennyi a rendszer.</p>
   </div>
   <div class="stage" id="steps">
     <div class="ghost" aria-hidden="true"><span>Terv</span><span>Lista</span><span>21 nap</span></div>
@@ -856,14 +855,14 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
       <div class="arts">
         <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 01</p><h3>Heti terv négy lépésben<span class="pro">PRO</span></h3><p>Napok → étkezések → edzés → szűrők. A varázsló a saját ízlésedből, allergiáidból és kalóriacélodból rak össze egy hetet — reggelitől vacsoráig, tízóraival és uzsonnával, edzésnapokon az edzéshez igazítva.</p><a class="try" href="#terv">Próbáld ki lent →</a></article>
         <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 02</p><h3>Bevásárlólista, ami magától összeáll<span class="pro">PRO</span></h3><p>A hét minden hozzávalója egy listán, polcok szerint rendezve. A boltban csak pipálsz — fejben nem kell tartanod semmit.</p></article>
-        <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 03</p><h3>21 nap — egyedül vagy a csapatoddal</h3><p>Egyszerre egy szokás épül. Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal: mindenki látja, ki tartotta ma, és egy koppintással biztathatjátok egymást.</p></article>
+        <article class="art"><p class="mono lime" style="margin:0 0 12px">Lépés 03</p><h3>21 nap — egy szokás</h3><p>Egyszerre egy szokás épül, egy kiváltó pillanathoz kötve. Hetente egy kihagyott nap belefér: a sorozat nem nullázódik, csak folytatod. Huszonegy nap után a szokás beépült.</p></article>
       </div>
       <div class="s-dots" aria-hidden="true"><i><b></b></i><i><b></b></i><i><b></b></i></div>
     </div>
     <div class="s-phone">
       <img src="img/phone-terv.webp" alt="A heti terv varázsló: Mely étkezések kellenek?">
       <img src="img/phone-lista.webp" alt="A bevásárlólista polcok szerint">
-      <img src="img/phone-szokas.webp" alt="A Szokásaid képernyő 21 napos sorozattal">
+      <img src="img/phone-szokas.webp" alt="A szokás képernyő 21 napos sorozattal">
     </div>
     <div class="s-decor" aria-hidden="true">
       <div class="dg">
@@ -879,9 +878,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
         <span class="chip" style="left:24%;top:72%;animation-delay:-3.3s">Fűszer <small>összecsukva</small></span>
       </div>
       <div class="dg">
-        <span class="chip" style="left:6%;top:22%"><span class="av">A</span>Anna <small>kész</small></span>
-        <span class="chip" style="left:28%;top:38%;animation-delay:-1.6s"><span class="av" style="background:#6B4BC4">K</span>Kata <small>kész</small></span>
-        <span class="chip l" style="left:2%;top:56%;animation-delay:-2.6s">Hajrá!</span>
+        <span class="chip" style="left:6%;top:22%">Étkezés után sétálj</span>
+        <span class="chip" style="left:28%;top:38%;animation-delay:-1.6s">Kiváltó pillanat <small>ebéd után</small></span>
+        <span class="chip l" style="left:2%;top:56%;animation-delay:-2.6s">1 szabadnap <small>/ hét</small></span>
         <span class="chip g" style="left:26%;top:71%;animation-delay:-3.4s">7. nap · mérföldkő</span>
       </div>
     </div>
@@ -1015,9 +1014,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
 <section class="sec habit-sec" id="szokas">
   <div class="wrap">
     <div>
-      <p class="kicker mono">04 / Szokás és tippek <span class="pro">PRO</span></p>
+      <p class="kicker mono">04 / Szokás és tippek</p>
       <h2 data-split>Egy szokás. <span class="soft">Huszonegy nap.</span></h2>
-      <p class="lead" data-reveal>Nem tíz fogadalom januárban. Egyetlen fókusz, egy kiváltó pillanathoz kötve — és huszonegy nap, amíg beépül. Hetente egy kihagyott nap belefér: a sorozat nem nullázódik, csak folytatod.</p>
+      <p class="lead" data-reveal>Nem tíz fogadalom januárban. Egyetlen fókusz, egy kiváltó pillanathoz kötve — és huszonegy nap, amíg beépül. Hetente egy kihagyott nap belefér: a sorozat nem nullázódik, csak folytatod. Egy szokás ingyenes, a Próval kettőt építhetsz egyszerre.</p>
       <div class="big21" id="big21" aria-hidden="true">21<small>nap</small></div>
     </div>
     <div class="habit" data-reveal>
@@ -1040,10 +1039,10 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
     <div class="tx-copy">
       <p class="kicker mono">Longevity-tippek <span class="pro">PRO</span></p>
       <h3>Apró dolgok, amik években mérhetők.</h3>
-      <p class="tl">Rövid, kutatásokon alapuló tippek a mindennapokra, mindegyik forrással. Egy koppintással fókusz-szokás lesz belőlük. Hármat itt is elolvashatsz — a többi a Pro-ban vár. Nem orvosi tanács.</p>
+      <p class="tl">Rövid, kutatásokon alapuló tippek a mindennapokra, mindegyik forrással. A legtöbbjükből egy koppintással fókusz-szokás lesz. Hármat itt is elolvashatsz — a többi a Pro-ban vár. Nem orvosi tanács.</p>
       <div class="tx-nav">
         <button class="pv" id="txPrev" aria-label="Előző tipp"><svg><use href="#i-back"/></svg></button>
-        <span class="tx-count" aria-live="polite"><b id="txN">01</b> / <span id="txT">10</span></span>
+        <span class="tx-count" aria-live="polite"><b id="txN">01</b> / <span id="txT">09</span></span>
         <button class="nx" id="txNext" aria-label="Következő tipp"><svg><use href="#i-back"/></svg></button>
       </div>
       <p class="tx-hint">Húzd félre a kártyát, vagy lapozz a nyilakkal.</p>
@@ -1052,36 +1051,32 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   </div>
 </section>
 
-<!-- CSAPAT -->
-<section class="sec team" id="csapat">
+<!-- CÉL -->
+<section class="sec team goal-sec" id="cel">
   <div class="wrap">
     <div>
-      <p class="kicker mono">05 / Csapat</p>
-      <h2 data-split>Nem hagy kiszállni <span class="lime">a negyedik napon.</span></h2>
-      <p class="lead" data-reveal>Hozz létre egy csoportot a pároddal, a kollégáiddal vagy a barátaiddal. Közös napi szokás, közös huszonegy nap.</p>
+      <p class="kicker mono">05 / Cél</p>
+      <h2 data-split>Egy cél. <span class="lime">Minden ehhez igazodik.</span></h2>
+      <p class="lead" data-reveal>Az appban az első kérdés: mi a célod? Ebből lesz a napi kalória- és makrócélod, és a heti terv is ehhez válogat.</p>
       <ol class="rules">
-        <li data-reveal><span><b>Kettő elég.</b> A közös nap akkor van meg, ha legalább két tag bejelöli — egy beteg tag nem töri meg a csoport sorozatát.</span></li>
-        <li data-reveal><span><b>Biztatás, nem figyelmeztetés.</b> Akinek ma még nincs meg, annak egy koppintással küldhetsz egy „Hajrá!”-t.</span></li>
-        <li data-reveal><span><b>Huszonegy közös nap</b> után a szokás beépült. Utána tarthatjátok tovább, vagy választhattok újat.</span></li>
-        <li data-reveal><span><b>Csapatcél a hétre:</b> nem egymás ellen versenyeztek, hanem együtt haladtok.</span></li>
+        <li data-reveal><span><b>Három cél.</b> Fogyás, izomépítés vagy formában maradni — bármelyiket választod, egészségesen érsz célba.</span></li>
+        <li data-reveal><span><b>Napi makrócél.</b> Fehérje, szénhidrát és zsír grammban, a célod és az aktivitásod alapján javasolva. Ha akarod, saját értékre írod át.</span></li>
+        <li data-reveal><span><b>Edzésnap, pihenőnap.</b> Edzésnapon több, pihenőnapon kevesebb szénhidrát. A fehérje és a zsír minden nap ugyanaz, a heti átlag a célod.</span></li>
+        <li data-reveal><span><b>Formában maradni</b> két úton: ha nemrég fogytál le, és nem akarsz visszahízni — vagy ha jó a súlyod, csak egészségesebben élnél.</span></li>
       </ol>
     </div>
-    <div data-reveal>
-      <div class="orbit" id="orbit">
-        <svg class="ring" viewBox="0 0 100 100" aria-hidden="true"><circle cx="50" cy="50" r="48" fill="none" stroke="rgba(243,240,231,.08)" stroke-width="1.2"/><circle id="teamArc" cx="50" cy="50" r="48" fill="none" stroke="#7DED4D" stroke-width="2" stroke-linecap="round" pathLength="100" stroke-dasharray="0 100" style="transition:stroke-dasharray 1s var(--ease)"/></svg>
-        <div class="o-core"><div><span class="mono" style="color:var(--mute)">Ma</span><b><span id="teamN">2</span><small>/4</small></b><p id="teamMsg">Megvan a mai közös nap</p></div></div>
-        <div class="o-rot">
-          <div class="mate done" style="--a:0deg"><div class="mate-in"><button class="av" data-cursor="Kész">A</button><span class="nm">Anna</span><span class="st">Kész</span></div></div>
-          <div class="mate done" style="--a:90deg"><div class="mate-in"><button class="av" data-cursor="Kész">K</button><span class="nm">Kata</span><span class="st">Kész</span></div></div>
-          <div class="mate" style="--a:180deg" data-hajra><div class="mate-in"><button class="av" data-cursor="Hajrá!">B</button><span class="nm">Bence</span><span class="st">Még nincs meg</span></div></div>
-          <div class="mate" style="--a:270deg" data-me><div class="mate-in"><button class="av" data-cursor="Bejelölöm">Te</button><span class="nm">Te</span><span class="st">Még nincs meg</span></div></div>
-        </div>
+    <div class="gcard" data-reveal>
+      <p class="mono lime" style="margin:0 0 14px">Mi a célod?</p>
+      <div class="gopts" id="gopts" role="radiogroup" aria-label="Cél">
+        <button class="gopt" role="radio" aria-checked="true" data-g="lose"><b>Fogyás</b><span>Fokozatosan, éhezés nélkül</span></button>
+        <button class="gopt" role="radio" aria-checked="false" data-g="muscle"><b>Izomépítés</b><span>Elég fehérje, edzés köré szabva</span></button>
+        <button class="gopt" role="radio" aria-checked="false" data-g="keep"><b>Formában maradni</b><span>A súlyod marad, a szokásaid jobbak lesznek</span></button>
       </div>
-      <p class="team-hint">Koppints Bencére egy „Hajrá!”-ért — vagy jelöld be magad.</p>
-      <div class="tbar">
-        <div class="hbar-l mono"><span>Közös építés</span><span><b id="teamDays">9</b> / 21 nap</span></div>
-        <div class="hbar"><i id="teamBar" style="width:0"></i></div>
-      </div>
+      <p class="glead" id="glead" aria-live="polite">Itt rakjuk össze a heteidet úgy, hogy elérd a célsúlyodat, éhezés nélkül.</p>
+      <div class="gweek-h"><span class="mono">Napi makrócél egy héten</span><span class="mono" id="gwN">3 edzésnap</span></div>
+      <div class="gweek" id="gweek"></div>
+      <div class="glegend mono"><span><i style="background:var(--lime)"></i>Fehérje</span><span><i style="background:#F2C14E"></i>Szénhidrát</span><span><i style="background:rgba(243,240,231,.38)"></i>Zsír</span></div>
+      <p class="gnote">Koppints a napokra, és jelöld az edzésnapjaidat. Arányos illusztráció — a saját grammjaidat az app számolja ki.</p>
     </div>
   </div>
 </section>
@@ -1150,7 +1145,9 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
         <ul>
           <li><svg><use href="#check"/></svg>Receptböngészés és keresés</li>
           <li><svg><use href="#check"/></svg>Napi naplózás, heti haladás</li>
-                    <li><svg><use href="#check"/></svg>Csoportok közös napi szokással, csapatcél, biztatás</li>
+                    <li><svg><use href="#check"/></svg>Cél, napi kalória- és makrócél</li>
+          <li><svg><use href="#check"/></svg>Egy szokás, 21 napos építés</li>
+          <li><svg><use href="#check"/></svg>Az első 3 nap terve az onboarding után</li>
           <li><svg><use href="#check"/></svg>Widgetek, Apple Health</li>
         </ul>
         <a class="btn btn-ghost magnet js-store" data-ct="land_free" href="https://apps.apple.com/hu/app/id6793034579">Letöltés ingyen</a>
@@ -1166,7 +1163,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
           <li><svg><use href="#check"/></svg>Heti terv varázsló, 4 lépésben</li>
           <li><svg><use href="#check"/></svg>Bevásárlólista polcok szerint</li>
           <li><svg><use href="#check"/></svg>Edzés körüli étkezések, dietetikussal összeállítva</li>
-          <li><svg><use href="#check"/></svg>Saját szokások, 21 napos építés, widget</li>
+          <li><svg><use href="#check"/></svg>Két szokás egyszerre</li>
           <li><svg><use href="#check"/></svg>Heti kiértékelés minden hétfőn</li>
           <li><svg><use href="#check"/></svg>Heti növényfogyasztás követése, tenyér-adagok</li>
           <li><svg><use href="#check"/></svg>A teljes recepttár és a bővített ízlésprofil</li>
@@ -1188,8 +1185,8 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
       <p class="lead" data-reveal>Más kérdés? Írj a <a href="mailto:support@freshplate.hu" class="lime">support@freshplate.hu</a> címre.</p>
     </div>
     <div class="faq" id="faq">
-      <div class="qa"><button aria-expanded="false">Tényleg ingyenes?<span class="pm"></span></button><div class="ans"><div><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Kell fiókot létrehoznom?<span class="pm"></span></button><div class="ans"><div><p>Az alapfunkciókhoz nem. Fiók a csoportokhoz és a barátokhoz kell — e-mail-címmel vagy Bejelentkezés az Apple-lel.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Tényleg ingyenes?<span class="pm"></span></button><div class="ans"><div><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. Az első 3 napod terve ingyen elkészül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Kell fiókot létrehoznom?<span class="pm"></span></button><div class="ans"><div><p>Az alapfunkciókhoz nem. Fiókkal a terved, a naplód és a szokásaid több eszközön és telefoncsere után is megmaradnak — e-mail-címmel, Bejelentkezés az Apple-lel vagy Google-fiókkal.</p></div></div></div>
       <div class="qa"><button aria-expanded="false">Ez egy fogyókúrás app?<span class="pm"></span></button><div class="ans"><div><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></div></div></div>
       <div class="qa"><button aria-expanded="false">Milyen adatot lát az app az Apple Healthből?<span class="pm"></span></button><div class="ans"><div><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></div></div></div>
       <div class="qa"><button aria-expanded="false">Hogyan mondom le a Pro-t?<span class="pm"></span></button><div class="ans"><div><p>Az iPhone Beállítások → Apple-fiók → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></div></div></div>
@@ -1218,7 +1215,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
 
 <!-- ZÁRÁS -->
 <section class="final">
-  <p class="scrub" id="scrub">Vasárnap este már tudod, mit eszel egész héten. Négy kérdés, egy lista, és <span class="lime">egy csapat, aki holnap is rákérdez.</span></p>
+  <p class="scrub" id="scrub">Vasárnap este már tudod, mit eszel egész héten. Négy kérdés, egy lista, és <span class="lime">egy szokás, ami megmarad.</span></p>
   <div class="mega" aria-hidden="true"><span>Fresh</span><span>Plate</span></div>
   <div class="final-cta">
     <a class="badge magnet js-store" data-ct="land_final" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store"><img src="assets/appstore-badge.svg" alt="Letöltés az App Store-ból" width="200" height="53"></a>
@@ -1507,7 +1504,7 @@ $('#nextBtn').addEventListener('click', () => {
 /* ---------- longevity-tippek pakli ---------- */
 (function tipsDeck() {
   // Csak a cím + az első 3 tipp rövid leadje kerül az oldalba; a kifejtés és a források az appban vannak.
-  const TIPS = [{"id": "steps", "ic": "i-walk", "t": "Emeld a napi aktivitásod", "l": "Nem kell 10 000 lépés – a napi 7000 is bőven megéri."}, {"id": "waist", "ic": "i-tape", "t": "Ne a súlyodat mérd, hanem a haskörméreted", "l": "A haskörméret pontosabb képet ad az egészségedről, mint a BMI."}, {"id": "postmeal_walk", "ic": "i-clock", "t": "Étkezés után sétálj", "l": "A vércukor legegyszerűbb természetes szabályozója: 10 perc séta."}, {"id": "vilpa", "ic": "i-pulse", "t": "Kapkodd a levegőt!", "lock": 1}, {"id": "thirty_plants", "ic": "i-bowl", "t": "Egyél hetente 30 féle növényt!", "lock": 1}, {"id": "morning_move", "ic": "i-sunrise", "t": "Kezdd a napot mozgással!", "lock": 1}, {"id": "carbs_smart", "ic": "i-chart", "t": "Nem minden szénhidrát egyforma", "lock": 1}, {"id": "blood_sugar_stable", "ic": "i-wave", "t": "Ismerd fel a vércukor-hullámvasutat", "lock": 1}, {"id": "protein_complete", "ic": "i-egg", "t": "A fehérjéhez nem kell egyetlen forrás", "lock": 1}, {"id": "produce_forms", "ic": "i-snow", "t": "A fagyasztott zöldség nem 'második osztályú'", "lock": 1}];
+  const TIPS = [{"id": "steps", "ic": "i-walk", "t": "Emeld a napi aktivitásod", "l": "Nem kell 10 000 lépés – a napi 7000 is bőven megéri."}, {"id": "waist", "ic": "i-tape", "t": "Ne a súlyodat mérd, hanem a haskörméreted", "l": "A haskörméret pontosabb képet ad az egészségedről, mint a BMI."}, {"id": "postmeal_walk", "ic": "i-clock", "t": "Étkezés után sétálj", "l": "A vércukor legegyszerűbb természetes szabályozója: 10 perc séta."}, {"id": "vilpa", "ic": "i-pulse", "t": "Kapkodd a levegőt!", "lock": 1}, {"id": "thirty_plants", "ic": "i-bowl", "t": "Egyél hetente 30 féle növényt!", "lock": 1}, {"id": "morning_move", "ic": "i-sunrise", "t": "Kezdd a napot mozgással!", "lock": 1}, {"id": "carbs_smart", "ic": "i-chart", "t": "Nem minden szénhidrát egyforma", "lock": 1}, {"id": "blood_sugar_stable", "ic": "i-wave", "t": "Ismerd fel a vércukor-hullámvasutat", "lock": 1}, {"id": "produce_forms", "ic": "i-snow", "t": "A fagyasztott zöldség nem másodosztályú", "lock": 1}];
   const deck = $('#deck'); if (!deck) return;
   const PAL = ['#DDF5C9', '#F7E3A6', '#FFD3C2', '#CBEBDD', '#E2D8F5'];
   const ROT = [-5, 4, -3, 5, -4];
@@ -1608,35 +1605,39 @@ $('#nextBtn').addEventListener('click', () => {
   } });
 })();
 
-/* ---------- team ---------- */
-const teamN = $('#teamN'), teamMsg = $('#teamMsg'), teamArc = $('#teamArc');
-let teamDone = 2;
-function renderTeam() {
-  teamN.textContent = teamDone;
-  teamArc.setAttribute('stroke-dasharray', `${teamDone / 4 * 100} 100`);
-  teamMsg.textContent = teamDone >= 2 ? 'Megvan a mai közös nap' : 'Még kell egy tag';
-}
-if (hasGsap && !RM) ScrollTrigger.create({ trigger: '#orbit', start: 'top 75%', once: true, onEnter: () => { renderTeam(); $('#teamBar').style.width = (9 / 21 * 100) + '%'; } });
-else { renderTeam(); $('#teamBar').style.width = (9 / 21 * 100) + '%'; }
-function bubble(fromEl, text) {
-  const r = fromEl.getBoundingClientRect();
-  const b = document.createElement('div'); b.className = 'bubble'; b.textContent = text; document.body.appendChild(b);
-  b.style.position = 'fixed'; b.style.left = r.left + r.width / 2 + 'px'; b.style.top = r.top - 10 + 'px';
-  if (!hasGsap || RM) { setTimeout(() => b.remove(), 1400); return; }
-  gsap.fromTo(b, { xPercent: -50, yPercent: -50, scale: .3, opacity: 0 }, { scale: 1, opacity: 1, y: -40, duration: .5, ease: 'back.out(2)' });
-  gsap.to(b, { y: -90, opacity: 0, duration: .6, delay: 1.1, ease: 'power2.in', onComplete: () => b.remove() });
-}
-$$('.mate').forEach(m => {
-  const av = $('.av', m);
-  av.addEventListener('click', e => {
-    if (m.hasAttribute('data-hajra')) { bubble(av, 'Hajrá!'); $('.st', m).textContent = 'Hajrá elküldve'; burst(e.clientX, e.clientY, 10); }
-    else if (m.hasAttribute('data-me')) {
-      const on = m.classList.toggle('done');
-      teamDone += on ? 1 : -1; $('.st', m).textContent = on ? 'Kész' : 'Még nincs meg';
-      renderTeam(); if (on) burst(e.clientX, e.clientY);
-    } else bubble(av, 'Ma már megvan');
-  });
-});
+/* ---------- cél + edzés-/pihenőnapi makró ---------- */
+(() => {
+  const LEAD = {
+    lose: 'Itt rakjuk össze a heteidet úgy, hogy elérd a célsúlyodat, éhezés nélkül.',
+    muscle: 'Itt rakjuk össze a heteidet az izomépítéshez: elég fehérjével, az edzésnapjaidhoz igazítva.',
+    keep: 'Itt rakjuk össze a heteidet úgy, hogy megtartsd a mostani súlyodat, változatosan.'
+  };
+  const opts = $$('#gopts .gopt'), lead = $('#glead'), week = $('#gweek'), gwN = $('#gwN');
+  opts.forEach(o => o.addEventListener('click', () => {
+    opts.forEach(x => x.setAttribute('aria-checked', x === o));
+    lead.textContent = LEAD[o.dataset.g];
+  }));
+  // Az app helpers.dayTargets szabálya: a heti átlag marad; edzésnapon +d·(7−n)/7,
+  // pihenőnapon −d·n/7 szénhidrát; a fehérje és a zsír minden nap ugyanaz.
+  const DAYS = ['H', 'K', 'Sze', 'Cs', 'P', 'Szo', 'V'], P = 46, C = 92, F = 30, D = 34, MAX = P + C + D + F + 6;
+  const wk = new Set([0, 2, 4]);
+  week.innerHTML = DAYS.map((d, i) => `<button class="gday" data-i="${i}" aria-pressed="false"><span class="wl"></span><span class="gbar"><i style="background:var(--lime)"></i><i style="background:#F2C14E"></i><i style="background:rgba(243,240,231,.38)"></i></span><span class="dl">${d}</span></button>`).join('');
+  const cells = $$('.gday', week);
+  function render() {
+    const n = wk.size;
+    cells.forEach((c, i) => {
+      const on = wk.has(i), carbs = on ? C + D * (7 - n) / 7 : C - D * n / 7;
+      const [p, cb, f] = $$('i', c);
+      p.style.height = (P / MAX * 100) + '%'; cb.style.height = (carbs / MAX * 100) + '%'; f.style.height = (F / MAX * 100) + '%';
+      c.classList.toggle('wk', on); c.setAttribute('aria-pressed', on);
+      $('.wl', c).textContent = on ? 'Edzés' : '';
+      c.setAttribute('aria-label', `${DAYS[i]}: ${on ? 'edzésnap' : 'pihenőnap'}`);
+    });
+    gwN.textContent = n ? `${n} edzésnap · a heti átlag ugyanaz` : 'Nincs edzésnap · minden nap egyforma';
+  }
+  cells.forEach(c => c.addEventListener('click', e => { const i = +c.dataset.i; wk.has(i) ? wk.delete(i) : wk.add(i); render(); if (wk.has(i)) burst(e.clientX, e.clientY, 8); }));
+  render();
+})();
 
 /* ---------- bento ---------- */
 const plantsEl = $('#plants'), PC = ['#E5483B', '#F28C38', '#F2C14E', '#7DED4D', '#14834A', '#8E5BD9', '#E8D9B5'];
