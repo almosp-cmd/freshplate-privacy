@@ -651,39 +651,6 @@ h2 .soft{color:var(--mute)}
   .shop-in{columns:1}
 }
 
-/* havi bajnok: -25% */
-.champ-chip{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:7px 14px 7px 8px;border-radius:999px;background:rgba(125,237,77,.12);color:var(--lime);font-size:14px;font-weight:600;text-decoration:none;transition:opacity .4s,transform .4s var(--ease),background .25s;width:fit-content;max-width:100%;line-height:1.3}
-.champ-chip b{display:grid;place-items:center;height:24px;padding:0 8px;border-radius:999px;background:var(--lime);color:var(--ink);font-size:12.5px;font-weight:800;flex:none}
-.champ-chip:hover{background:rgba(125,237,77,.2)}
-.champ-chip.off{opacity:0;transform:translateY(-6px);pointer-events:none}
-.champ{margin-top:16px;border-radius:30px;padding:clamp(24px,3.4vw,44px);position:relative;overflow:hidden;isolation:isolate;
-  background:radial-gradient(90% 120% at 0% 0%,rgba(125,237,77,.16),transparent 55%),var(--ink2);box-shadow:inset 0 0 0 1px var(--hair);
-  display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(24px,4.4vw,64px);align-items:center;scroll-margin-top:90px}
-.stamp{position:relative;width:clamp(180px,19vw,240px);aspect-ratio:1;display:grid;place-items:center}
-.stamp svg{position:absolute;inset:0;width:100%;height:100%;animation:spin 20s linear infinite;overflow:visible}
-.stamp text{font-family:var(--mono);font-size:7.4px;letter-spacing:.18em;fill:var(--lime);text-transform:uppercase}
-.stamp .sd{position:absolute;inset:17%;border-radius:50%;background:var(--ink3);box-shadow:inset 0 0 0 1.5px rgba(125,237,77,.35);transition:background .5s,box-shadow .5s,transform .6s var(--ease)}
-.stamp b{position:relative;font-weight:800;font-size:clamp(54px,5.6vw,76px);letter-spacing:-.04em;line-height:1;color:var(--lime);font-variation-settings:'opsz' 96,'wdth' 80;transition:color .5s}
-.champ.got .stamp .sd{background:var(--lime);box-shadow:0 0 0 10px rgba(125,237,77,.12),0 0 60px rgba(125,237,77,.45);transform:scale(1.04)}
-.champ.got .stamp b{color:var(--ink)}
-.champ h3{margin:0;font-size:clamp(28px,3vw,46px);line-height:1;letter-spacing:-.03em;font-weight:780;font-variation-settings:'opsz' 96,'wdth' 86}
-.champ .cp{margin:14px 0 0;color:var(--mute);max-width:600px}
-.c-prog{display:flex;align-items:center;gap:14px;margin-top:22px}
-.c-prog .hbar{flex:1;margin:0}
-.c-prog span{font-family:var(--mono);font-size:11px;color:var(--mute);white-space:nowrap}
-.c-prog span b{color:var(--cream)}
-.tasks{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:14px}
-.task{display:flex;align-items:center;gap:10px;padding:11px 12px;border-radius:16px;background:var(--ink3);text-align:left;font-size:14px;line-height:1.25;transition:background .35s,color .35s}
-.task .ck{flex:none;width:24px;height:24px;border-radius:50%;box-shadow:inset 0 0 0 1.5px var(--faint);display:grid;place-items:center;transition:background .3s,box-shadow .3s}
-.task .ck svg{width:13px;height:13px;color:var(--ink);opacity:0;transform:scale(.4);transition:.35s var(--ease)}
-.task.on{background:rgba(125,237,77,.11)}
-.task.on .ck{background:var(--lime);box-shadow:none}
-.task.on .ck svg{opacity:1;transform:none}
-.task.nudge{animation:nudge 1.6s ease-in-out infinite}
-@keyframes nudge{0%,100%{box-shadow:inset 0 0 0 1px transparent}50%{box-shadow:inset 0 0 0 1.5px var(--lime)}}
-.c-msg{margin:14px 0 0;min-height:1.5em;color:var(--lime);font-size:14.5px}
-.c-fine{margin:10px 0 0;color:var(--mute);font-size:12.5px;line-height:1.5;max-width:640px}
-@media (max-width:900px){.champ{grid-template-columns:minmax(0,1fr);justify-items:center}.champ>div:last-child{width:100%}.tasks{grid-template-columns:repeat(2,minmax(0,1fr))}.task{font-size:13px;padding:10px;gap:8px}}
 
 /* ---------- FAQ ---------- */
 .faq{margin-top:clamp(36px,5vw,60px);border-top:1px solid var(--faint)}
@@ -1195,7 +1162,6 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
         </div>
         <div class="amt"><span class="big odo" id="odo" aria-hidden="true"></span><span class="unit" id="unit">Ft / hó</span><span class="sr" id="priceSr">1 990 Ft / hó</span></div>
         <p class="alt" id="alt">vagy 12 990 Ft / év · az első 7 nap ingyen</p>
-        <a class="champ-chip" id="champChip" href="#bajnok" data-cursor="Hogyan?"><b>−25%</b>minden hónapban megszerezhető a havi csomagra</a>
         <ul>
           <li><svg><use href="#check"/></svg>Heti terv varázsló, 4 lépésben</li>
           <li><svg><use href="#check"/></svg>Bevásárlólista polcok szerint</li>
@@ -1208,29 +1174,6 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
         </ul>
         <a class="btn btn-lime magnet js-store" data-ct="land_pro" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="7 nap ingyen">Letöltés — 7 nap ingyen Pro</a>
         <p class="fine">A próba után az előfizetés automatikusan megújul, az App Store beállításaiban bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
-      </div>
-    </div>
-    <div class="champ" id="bajnok" data-reveal>
-      <div class="stamp" aria-hidden="true">
-        <svg viewBox="0 0 100 100"><defs><path id="cpath" d="M50 50m-41 0a41 41 0 1 1 82 0a41 41 0 1 1-82 0"/></defs>
-          <text><textPath href="#cpath" textLength="255" lengthAdjust="spacing">Havi bajnok · minden hónapban · havi bajnok · minden hónapban ·</textPath></text></svg>
-        <span class="sd"></span><b>−25%</b>
-      </div>
-      <div>
-        <p class="mono lime" style="margin:0 0 12px">Havi kihívás · havi bajnok</p>
-        <h3>Minden hónapban megszerezhető 25% kedvezmény a havi csomagra.</h3>
-        <p class="cp">Teljesítsd a havi kihívás hat feladatát az appban, és egy hónap havi Pro 25%-kal olcsóbb. A következő hónapban újra kezdődik — és újra megszerezheted.</p>
-        <div class="c-prog"><div class="hbar"><i id="cBar"></i></div><span><b id="cN">0</b> / 6 feladat</span></div>
-        <div class="tasks" id="tasks">
-          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Értékelj legalább 1 receptet</button>
-          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Oszd meg egy receptedet</button>
-          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Adj hozzá egy barátot</button>
-          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Naplózz 10 napot ebben a hónapban</button>
-          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Próbálj ki egy új receptet</button>
-          <button class="task"><span class="ck"><svg><use href="#check"/></svg></span>Jelölj be egy szokást 5 napon</button>
-        </div>
-        <p class="c-msg" id="cMsg" aria-live="polite"></p>
-        <p class="c-fine">A kedvezményt egyszer használható App Store-beváltókóddal adjuk; az App Store-ban váltod be, egy hónapra szól, és havonta egyszer szerezhető meg. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
       </div>
     </div>
   </div>
@@ -1246,7 +1189,6 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
     </div>
     <div class="faq" id="faq">
       <div class="qa"><button aria-expanded="false">Tényleg ingyenes?<span class="pm"></span></button><div class="ans"><div><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Van kedvezmény a havi csomagra?<span class="pm"></span></button><div class="ans"><div><p>Igen: minden hónapban megszerezhető 25% kedvezmény. Teljesítsd a havi kihívás hat feladatát az appban, és kapsz egy beváltókódot, amellyel egy hónap havi Pro 25%-kal olcsóbb. A következő hónapban újra megszerezheted.</p></div></div></div>
       <div class="qa"><button aria-expanded="false">Kell fiókot létrehoznom?<span class="pm"></span></button><div class="ans"><div><p>Az alapfunkciókhoz nem. Fiók a csoportokhoz és a barátokhoz kell — e-mail-címmel vagy Bejelentkezés az Apple-lel.</p></div></div></div>
       <div class="qa"><button aria-expanded="false">Ez egy fogyókúrás app?<span class="pm"></span></button><div class="ans"><div><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></div></div></div>
       <div class="qa"><button aria-expanded="false">Milyen adatot lát az app az Apple Healthből?<span class="pm"></span></button><div class="ans"><div><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></div></div></div>
@@ -1774,7 +1716,6 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
   $$('button', toggle).forEach(x => x.setAttribute('aria-pressed', x === b));
   setOdo(y ? '12 990' : '1 990');
   $('#unit').textContent = y ? 'Ft / év' : 'Ft / hó';
-  $('#champChip').classList.toggle('off', y);
   $('#priceSr').textContent = y ? '12 990 Ft / év' : '1 990 Ft / hó';
   $('#alt').textContent = y ? 'vagy 1 990 Ft / hó · az első 7 nap ingyen' : 'vagy 12 990 Ft / év · az első 7 nap ingyen';
 }));
@@ -2071,26 +2012,6 @@ $$('button', toggle).forEach(b => b.addEventListener('click', () => {
   if (hasGsap && !RM) ScrollTrigger.create({ trigger: root, start: 'top 90%', once: true, onEnter: preloadDecoys });
 })();
 
-/* ---------- havi bajnok (-25%) ---------- */
-const tasks = $$('#tasks .task'), champ = $('#bajnok'), cMsg = $('#cMsg');
-function renderChamp() {
-  const n = tasks.filter(t => t.classList.contains('on')).length;
-  $('#cN').textContent = n; $('#cBar').style.width = (n / 6 * 100) + '%';
-  const got = n === 6, was = champ.classList.contains('got');
-  champ.classList.toggle('got', got);
-  tasks.forEach(t => t.classList.remove('nudge'));
-  if (got) {
-    cMsg.textContent = 'Havi bajnok! A 25% kedvezmény a havi csomagra a Pro ablakban vár.';
-    if (!was) { const r = $('.stamp', champ).getBoundingClientRect(); burst(r.left + r.width / 2, r.top + r.height / 2, 46); }
-  } else if (n === 5) {
-    tasks.find(t => !t.classList.contains('on')).classList.add('nudge');
-    cMsg.textContent = 'Még egy feladat a −25%-ig. Koppints rá!';
-  } else cMsg.textContent = n ? `Még ${6 - n} feladat a −25%-ig.` : '';
-}
-tasks.forEach(t => t.addEventListener('click', e => { t.classList.toggle('on'); if (t.classList.contains('on')) burst(e.clientX, e.clientY, 8); renderChamp(); }));
-function champIn() { tasks.slice(0, 5).forEach((t, i) => setTimeout(() => { t.classList.add('on'); renderChamp(); }, RM ? 0 : 300 + i * 320)); }
-if (hasGsap && !RM) ScrollTrigger.create({ trigger: champ, start: 'top 70%', once: true, onEnter: champIn });
-else champIn();
 
 /* ---------- FAQ ---------- */
 $$('.qa').forEach(q => $('button', q).addEventListener('click', () => {
