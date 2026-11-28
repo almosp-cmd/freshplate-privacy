@@ -20,13 +20,15 @@
 <p>Átirányítunk a FreshPlate-hez… <a id="l" href="https://apps.apple.com/hu/app/id6793034579">Ha nem történik semmi, koppints ide.</a></p>
 <script>
   // Megosztás-link: iPhone/iPad → App Store KAMPÁNYLINK (ct = melyik megosztásból jött);
-  // minden más → a landing, az Android-blokkhoz görgetve. A PT-t (provider token) az
+  // Android → Google Play; minden más → a landing. A PT-t (provider token) az
   // App Store Connect kampánylink-generátorából kell ide írni; üresen sima Store-link.
   var PT = '', CT = 'share_goal', APP_ID = '6793034579';
   var ios = /iPhone|iPad|iPod/.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
   var store = PT ? 'https://apps.apple.com/app/apple-store/id' + APP_ID + '?pt=' + encodeURIComponent(PT) + '&ct=' + CT + '&mt=8'
                  : 'https://apps.apple.com/hu/app/id' + APP_ID;
-  var target = ios ? store : 'https://freshplate.hu/?from=' + CT + '#android';
+  var android = /Android/i.test(navigator.userAgent);
+  var play = 'https://play.google.com/store/apps/details?id=com.almos.freshplate&referrer=' + encodeURIComponent('utm_source=freshplate.hu&utm_medium=share&utm_campaign=' + CT);
+  var target = ios ? store : android ? play : 'https://freshplate.hu/?from=' + CT;
   document.getElementById('l').href = target;
   location.replace(target);
 </script>

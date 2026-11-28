@@ -26,12 +26,13 @@
   "@context": "https://schema.org",
   "@type": "MobileApplication",
   "name": "FreshPlate",
-  "operatingSystem": "iOS",
+  "operatingSystem": "iOS, Android",
   "applicationCategory": "HealthApplication",
   "inLanguage": ["hu", "en"],
   "description": "Heti menü négy lépésben, bevásárlólistával, célhoz igazított napi kalória- és makrócéllal és 21 napos szokásépítéssel. 1300 egészséges recept.",
   "url": "https://freshplate.hu/",
   "downloadUrl": "https://apps.apple.com/hu/app/id6793034579",
+  "installUrl": "https://play.google.com/store/apps/details?id=com.almos.freshplate",
   "offers": { "@type": "Offer", "price": "0", "priceCurrency": "HUF" },
   "publisher": { "@type": "Organization", "name": "Movement Lab Kft.", "email": "support@freshplate.hu" }
 }
@@ -672,7 +673,8 @@ h2 .soft{color:var(--mute)}
 .droid{margin:0 var(--pad);border-radius:34px;background:var(--cream);color:var(--ink);padding:clamp(28px,5vw,70px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,5vw,80px);align-items:center;overflow:hidden;position:relative}
 .droid h2{font-size:clamp(36px,4.6vw,72px)}
 .droid p{color:rgba(10,14,9,.66);margin:18px 0 0;max-width:460px}
-.droid form{display:grid;gap:12px}
+.droid-cta{display:flex;justify-content:center}
+.droid-cta .badge img{width:222px;max-width:100%;height:auto}
 .field{display:flex;gap:8px;padding:6px;border-radius:999px;background:#fff;box-shadow:inset 0 0 0 1.5px rgba(10,14,9,.12)}
 .field input{flex:1;min-width:0;width:100%;border:0;outline:0;background:none;font:inherit;padding:0 16px;color:var(--ink)}
 .field .btn{background:var(--ink);color:var(--cream);height:48px}
@@ -809,7 +811,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   </div>
 
   <div class="hero-copy">
-    <p class="eyebrow mono hero-in"><i></i>iPhone-ra · ingyenesen letölthető</p>
+    <p class="eyebrow mono hero-in"><i></i>iPhone-ra és Androidra · ingyenesen letölthető</p>
     <h1 aria-label="Nem diéta. Heti menü négy lépésben.">
       <span class="ln"><span>Nem <span class="strike">diéta.<svg viewBox="0 0 200 40" preserveAspectRatio="none" aria-hidden="true"><path d="M4 26C40 14 90 30 130 18S186 12 196 16" fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" pathLength="1"/></svg></span></span></span>
       <span class="ln"><span>Heti menü</span></span>
@@ -818,6 +820,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
     <p class="hero-sub hero-in">Bevásárlólistával, <b>a célodhoz igazítva</b> — fogyáshoz, izomépítéshez, vagy hogy formában maradj. 1300 egészséges recept magyarul, a te ízlésedre szabva.</p>
     <div class="hero-cta hero-in">
       <a class="badge magnet js-store" data-ct="land_hero" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store"><img src="assets/appstore-badge.svg" alt="Letöltés az App Store-ból" width="165" height="44"></a>
+      <a class="badge magnet js-play" data-ct="land_hero" href="https://play.google.com/store/apps/details?id=com.almos.freshplate" data-cursor="Google Play"><img src="assets/googleplay-badge.svg" alt="Szerezd meg: Google Play" width="148" height="44"></a>
       <a class="btn btn-ghost magnet" href="#hogyan">Hogyan működik?</a>
     </div>
   </div>
@@ -1108,19 +1111,19 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
       </div>
       <div class="tile t2" data-tile="energy">
         <div class="energy">
-          <div class="val"><b>+<span id="kcalN">0</span></b><span class="mono" style="color:var(--mute)">aktív kcal ma</span></div>
+          <div class="val"><b>+<span id="kcalN">0</span></b><span class="mono" style="color:var(--mute)">kcal edzésnapon</span></div>
           <svg viewBox="0 0 300 150" preserveAspectRatio="none"><defs><linearGradient id="eg" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#7DED4D" stop-opacity=".35"/><stop offset="1" stop-color="#7DED4D" stop-opacity="0"/></linearGradient></defs>
             <path id="eFill" d="M0 130 C30 126 45 110 70 112 S110 70 140 84 S190 40 215 52 S265 24 300 18 V150 H0Z" fill="url(#eg)" opacity="0"/>
             <path id="eLine" d="M0 130 C30 126 45 110 70 112 S110 70 140 84 S190 40 215 52 S265 24 300 18" fill="none" stroke="#7DED4D" stroke-width="2.5" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1" vector-effect="non-scaling-stroke"/></svg>
         </div>
-        <div><h3>Apple Health és Apple Watch</h3><p>Ha bekapcsolod, a napi kalóriacél az elégetett aktív energiához igazodik. Az adat nem hagyja el a telefonodat.</p></div>
+        <div><h3>Edzésnap, pihenőnap</h3><p>Edzésnapon több szénhidrátot kapsz, pihenőnapon kevesebbet — a heti átlag közben a célodon marad.</p></div>
       </div>
       <div class="tile t3" data-tile="widgets">
         <div class="widgets">
           <div class="wdg"><span class="mono">Szokás</span><svg class="ring-s" viewBox="0 0 40 40"><circle cx="20" cy="20" r="16" fill="none" stroke="#222B20" stroke-width="5"/><circle cx="20" cy="20" r="16" fill="none" stroke="#7DED4D" stroke-width="5" stroke-linecap="round" pathLength="21" stroke-dasharray="11 21" transform="rotate(-90 20 20)"/></svg><b>11<small>/21</small></b></div>
           <div class="wdg"><span class="mono">Ma</span><b>3<small>/5</small></b><div class="mini"><i class="on"></i><i class="on"></i><i class="on"></i><i></i><i></i></div><span class="mono">étkezés</span></div>
         </div>
-        <div><h3>Widgetek a főképernyőn</h3><p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül.</p></div>
+        <div><h3>Widgetek a főképernyőn</h3><p>Szokás, mai étkezések és energiamérleg — egy pillantásra, az app megnyitása nélkül. iPhone-on.</p></div>
       </div>
       <div class="tile t4" data-tile="week">
         <div class="week" id="week">
@@ -1148,7 +1151,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
                     <li><svg><use href="#check"/></svg>Cél, napi kalória- és makrócél</li>
           <li><svg><use href="#check"/></svg>Egy szokás, 21 napos építés</li>
           <li><svg><use href="#check"/></svg>Az első 3 nap terve az onboarding után</li>
-          <li><svg><use href="#check"/></svg>Widgetek, Apple Health</li>
+          <li><svg><use href="#check"/></svg>Widgetek a főképernyőn (iPhone)</li>
         </ul>
         <a class="btn btn-ghost magnet js-store" data-ct="land_free" href="https://apps.apple.com/hu/app/id6793034579">Letöltés ingyen</a>
       </div>
@@ -1170,7 +1173,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
           <li><svg><use href="#check"/></svg>Longevity tippek forrással</li>
         </ul>
         <a class="btn btn-lime magnet js-store" data-ct="land_pro" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="7 nap ingyen">Letöltés — 7 nap ingyen Pro</a>
-        <p class="fine">A próba után az előfizetés automatikusan megújul, az App Store beállításaiban bármikor lemondható. Az aktuális árat az App Store mutatja a vásárlás előtt.</p>
+        <p class="fine">A próba után az előfizetés automatikusan megújul, az App Store vagy a Google Play előfizetései között bármikor lemondható. Az aktuális árat az áruház mutatja a vásárlás előtt.</p>
       </div>
     </div>
   </div>
@@ -1186,11 +1189,10 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
     </div>
     <div class="faq" id="faq">
       <div class="qa"><button aria-expanded="false">Tényleg ingyenes?<span class="pm"></span></button><div class="ans"><div><p>Igen: a letöltés és az alapverzió ingyenes, reklám nélkül. Az első 3 napod terve ingyen elkészül. A Pro a heti terv varázslót, a bevásárlólistát és a növény-követőt oldja fel; 7 napig ingyen kipróbálhatod, utána 1 990 Ft/hó vagy 12 990 Ft/év.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Kell fiókot létrehoznom?<span class="pm"></span></button><div class="ans"><div><p>Az alapfunkciókhoz nem. Fiókkal a terved, a naplód és a szokásaid több eszközön és telefoncsere után is megmaradnak — e-mail-címmel, Bejelentkezés az Apple-lel vagy Google-fiókkal.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Kell fiókot létrehoznom?<span class="pm"></span></button><div class="ans"><div><p>Az alapfunkciókhoz nem. Fiókkal a terved, a naplód és a szokásaid több eszközön és telefoncsere után is megmaradnak — e-mail-címmel vagy Google-fiókkal, iPhone-on Bejelentkezés az Apple-lel is.</p></div></div></div>
       <div class="qa"><button aria-expanded="false">Ez egy fogyókúrás app?<span class="pm"></span></button><div class="ans"><div><p>Nem. A FreshPlate nem tilt és nem számol le: heti menüt ad, ami a saját célodhoz és ízlésedhez igazodik, és segít, hogy a jó szokás megmaradjon. Nem helyettesíti az orvosi vagy dietetikusi tanácsadást.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Milyen adatot lát az app az Apple Healthből?<span class="pm"></span></button><div class="ans"><div><p>Csak az elégetett aktív energiát, és csak ha te bekapcsolod. Az érték nem hagyja el a telefonodat, és soha nem használjuk hirdetésre.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Hogyan mondom le a Pro-t?<span class="pm"></span></button><div class="ans"><div><p>Az iPhone Beállítások → Apple-fiók → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></div></div></div>
-      <div class="qa"><button aria-expanded="false">Mikor jön Androidra?<span class="pm"></span></button><div class="ans"><div><p>Készül. Iratkozz fel a várólistára, és szólunk, amint elérhető.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Hogyan mondom le a Pro-t?<span class="pm"></span></button><div class="ans"><div><p>iPhone-on a Beállítások → Apple-fiók → Előfizetések menüben, Androidon a Google Play → Profil → Fizetések és előfizetések → Előfizetések menüben, bármikor. A próbaidő alatt lemondva nem kerül semmibe.</p></div></div></div>
+      <div class="qa"><button aria-expanded="false">Androidon is elérhető?<span class="pm"></span></button><div class="ans"><div><p>Igen. iPhone-ra az App Store-ból, Androidra a Google Playről töltheted le, ugyanazzal a heti tervvel, bevásárlólistával és szokásépítéssel.</p></div></div></div>
     </div>
   </div>
 </section>
@@ -1201,15 +1203,12 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
     <span class="robot" aria-hidden="true">Android</span>
     <div>
       <p class="mono" style="margin:0 0 16px;color:var(--green)">Android</p>
-      <h2>Androidon van a telefonod?</h2>
-      <p>A FreshPlate ma iPhone-on érhető el. Az Android-verzió készül — hagyd itt az e-mail-címed, és egyszer szólunk, amikor megjelent. Mást nem küldünk.</p>
+      <h2>Most már Androidon is.</h2>
+      <p>A FreshPlate megjelent a Google Playen. Ugyanaz a heti menü, bevásárlólista és 21 napos szokásépítés, mint iPhone-on — ingyen letöltheted, a Pro-t pedig 7 napig kipróbálhatod.</p>
     </div>
-    <form id="droidForm" novalidate>
-      <label class="sr" for="em">E-mail-cím</label>
-      <div class="field"><input id="em" type="email" placeholder="E-mail-cím" autocomplete="email" inputmode="email" required><button class="btn" type="submit" id="wlBtn">Értesíts</button></div>
-      <label class="consent"><input type="checkbox" id="wlConsent" required> <span>Hozzájárulok, hogy a Movement Lab Kft. az e-mail-címemet az Android-verzió megjelenéséről szóló egyszeri értesítéshez kezelje. A hozzájárulást bármikor visszavonhatom a support@freshplate.hu címen. <a href="privacy.html">Adatkezelési tájékoztató</a></span></label>
-      <p class="wl-msg" id="wlMsg" aria-live="polite"></p>
-    </form>
+    <div class="droid-cta">
+      <a class="badge magnet js-play" data-ct="land_android" href="https://play.google.com/store/apps/details?id=com.almos.freshplate" data-cursor="Google Play"><img src="assets/googleplay-badge.svg" alt="Szerezd meg: Google Play" width="222" height="66"></a>
+    </div>
   </div>
 </section>
 
@@ -1219,7 +1218,8 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   <div class="mega" aria-hidden="true"><span>Fresh</span><span>Plate</span></div>
   <div class="final-cta">
     <a class="badge magnet js-store" data-ct="land_final" href="https://apps.apple.com/hu/app/id6793034579" data-cursor="App Store"><img src="assets/appstore-badge.svg" alt="Letöltés az App Store-ból" width="200" height="53"></a>
-    <div class="qr"><img src="img/qr-app.svg" alt="QR-kód az App Store-oldalhoz"><span>Gépen vagy?<br>Olvasd be a telefonoddal.</span></div>
+    <a class="badge magnet js-play" data-ct="land_final" href="https://play.google.com/store/apps/details?id=com.almos.freshplate" data-cursor="Google Play"><img src="assets/googleplay-badge.svg" alt="Szerezd meg: Google Play" width="179" height="53"></a>
+    <div class="qr"><img src="img/qr-app.svg" alt="QR-kód a letöltéshez"><span>Gépen vagy?<br>Olvasd be a telefonoddal.</span></div>
   </div>
 </section>
 </main>
@@ -1229,7 +1229,7 @@ footer a{text-decoration:none}footer a:hover{color:var(--lime)}
   <nav><a href="support.html">Támogatás</a><a href="privacy.html">Adatvédelem</a><a href="terms.html">Feltételek</a></nav>
   <div class="ft-legal">
     <p style="margin:0">Üzemeltető: Movement Lab Kft. · 1038 Budapest, Dűne utca 12. 1. em. 4. · Cégjegyzékszám: 01-09-352058 · Adószám: 27286012-2-41 · <a href="mailto:support@freshplate.hu">support@freshplate.hu</a></p>
-    <p style="margin:0">Az Apple, az App Store és az Apple Health az Apple Inc. védjegyei. A tápérték-adatok tájékoztató jellegűek; az app nem nyújt orvosi tanácsot.</p>
+    <p style="margin:0">Az Apple és az App Store az Apple Inc. védjegyei, a Google Play és a Google Play logó a Google LLC védjegyei. A tápérték-adatok tájékoztató jellegűek; az app nem nyújt orvosi tanácsot.</p>
   </div>
 </footer>
 
@@ -1647,7 +1647,7 @@ function plantsOn() {
   pDots.slice(0, 19).forEach((d, i) => setTimeout(() => { d.classList.add('on'); d.style.background = PC[i % 7]; }, RM ? 0 : 200 + i * 70));
   countUp($('#plantN'), 19, 2);
 }
-function energyOn() { countUp($('#kcalN'), 320, 1.8); if (hasGsap && !RM) { gsap.to('#eLine', { strokeDashoffset: 0, duration: 1.8, ease: 'power2.inOut' }); gsap.to('#eFill', { opacity: 1, duration: 1, delay: 1 }); } else { $('#eLine').style.strokeDashoffset = 0; $('#eFill').setAttribute('opacity', 1); } }
+function energyOn() { countUp($('#kcalN'), 300, 1.8); if (hasGsap && !RM) { gsap.to('#eLine', { strokeDashoffset: 0, duration: 1.8, ease: 'power2.inOut' }); gsap.to('#eFill', { opacity: 1, duration: 1, delay: 1 }); } else { $('#eLine').style.strokeDashoffset = 0; $('#eFill').setAttribute('opacity', 1); } }
 function weekOn() { $('#week').classList.add('on'); $$('#week i').forEach((b, i) => b.style.transitionDelay = (i * .08) + 's'); }
 if (hasGsap && !RM) {
   ScrollTrigger.create({ trigger: '[data-tile=plants]', start: 'top 75%', once: true, onEnter: plantsOn });
@@ -2021,26 +2021,12 @@ $$('.qa').forEach(q => $('button', q).addEventListener('click', () => {
   if (!open) { q.setAttribute('data-open', ''); $('button', q).setAttribute('aria-expanded', 'true'); }
 }));
 
-/* ---------- android form (terv: nem küld semmit) ---------- */
-// Várólista: saját backend, csak a hozzájárulással (az élő oldallal azonos végpont és szöveg).
+/* ---------- Android: a Play-linkek mérése; Androidon az általános letöltés-gombok is a Playre visznek ---------- */
 (function () {
-  const API = 'https://freshplate-backend-ybm3.onrender.com/api/waitlist';
-  const form = $('#droidForm'), msg = $('#wlMsg'), btn = $('#wlBtn'), from = new URLSearchParams(location.search).get('from');
-  form.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = $('#em').value.trim(), consent = $('#wlConsent').checked;
-    msg.className = 'wl-msg';
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { msg.className = 'wl-msg err'; msg.textContent = 'Adj meg egy érvényes e-mail-címet.'; return; }
-    if (!consent) { msg.className = 'wl-msg err'; msg.textContent = 'A feliratkozáshoz a hozzájárulás bejelölése szükséges.'; return; }
-    btn.disabled = true; msg.textContent = 'Küldés…';
-    fetch(API, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email, platform: 'android', consent: true, source: from || 'landing' }) })
-      .then((r) => r.json().then((d) => ({ ok: r.ok, d })))
-      .then((x) => { if (x.ok) { msg.textContent = 'Köszönjük — szólunk, amint az Android-verzió elérhető.'; form.reset(); } else { msg.className = 'wl-msg err'; msg.textContent = (x.d && x.d.error) || 'A feliratkozás most nem sikerült. Próbáld újra később.'; } })
-      .catch(() => { msg.className = 'wl-msg err'; msg.textContent = 'Nem érjük el a szervert. Próbáld újra egy perc múlva.'; })
-      .finally(() => { btn.disabled = false; });
-  });
-  // A /go/ átirányítókról nem-iPhone-nal érkezők az Android-blokkhoz jutnak.
-  if (from) setTimeout(() => $('#android').scrollIntoView({ behavior: 'smooth' }), 600);
+  const PLAY = 'https://play.google.com/store/apps/details?id=com.almos.freshplate';
+  const ref = (ct) => PLAY + '&referrer=' + encodeURIComponent('utm_source=freshplate.hu&utm_medium=web&utm_campaign=' + (ct || 'land'));
+  $$('.js-play').forEach((a) => { a.href = ref(a.dataset.ct); });
+  if (/Android/i.test(navigator.userAgent)) $$('.js-store:not(.badge)').forEach((a) => { a.href = ref(a.dataset.ct); a.dataset.cursor = 'Google Play'; a.classList.replace('js-store', 'js-play'); });
 })();
 // App Store kampánylinkek (ASC → Campaigns). Amíg a PT üres, sima Store-linkek (működnek, csak nem mérhetők).
 (function () {
